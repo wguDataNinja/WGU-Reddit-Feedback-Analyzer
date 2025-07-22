@@ -21,6 +21,10 @@
         box-shadow:0 2px 4px rgba(0,0,0,.1);
     }
     .header h1{color:#ff4500;margin-bottom:10px;font-size:1.8rem}
+    .readme-link{
+        margin-left:10px;color:#007BFF;text-decoration:underline;font-weight:500;cursor:pointer;
+    }
+    .readme-link:hover{color:#0056b3}
 
     /* Filter Bar */
     .filter-bar{
@@ -45,8 +49,6 @@
         outline:none;border-color:#ff4500;box-shadow:0 0 0 2px rgba(255,69,0,.1);
     }
     .sentiment-filter{display:flex;gap:8px;align-items:end}
-
-    /* removed .length-filter block */
 
     /* Buttons */
     .reset-btn{
@@ -79,7 +81,12 @@
     .expand-btn:hover{text-decoration:underline}
 
     .post-row-2{
-        display:flex;gap:15px;font-size:.85rem;color:#666;align-items:center;flex-wrap:wrap;
+        display:flex;
+        gap:15px;
+        font-size:.85rem;
+        color:#666;
+        align-items:flex-start;
+        flex-wrap:wrap;
     }
 
     .post-meta{
@@ -88,7 +95,11 @@
 
     .course-info{
         font-weight:500;
-        color:#006400; /* dark green */
+        color:#006400;
+        width:250px;
+        flex-shrink:0;
+        flex-grow:0;
+        word-wrap:break-word;
     }
 
     .categories,.intent-tags{display:flex;gap:5px}
@@ -141,7 +152,11 @@
 <div class="container">
     <div class="header">
         <h1>WGU Reddit Monitoring Dashboard</h1>
-        <p>View Posts by category, sentiment, course or college</p>
+        <p>
+            View Posts by category, sentiment, course or college
+            <a href="https://github.com/wguDataNinja/wgu-reddit-monitoring-pipeline/blob/main/README.md"
+               class="readme-link" target="_blank" rel="noopener">View Readme</a>
+        </p>
     </div>
 
     <div class="filter-bar">
@@ -193,8 +208,6 @@
                     <input type="number" id="sentimentValue" step="0.1" min="-1" max="1" placeholder="0.0">
                 </div>
             </div>
-
-            <!-- Text Length filter removed -->
 
             <div class="filter-group">
                 <label for="dateRange">Date Range</label>
@@ -267,6 +280,11 @@ async function init() {
 
 // Preprocess posts data
 function normalizePosts() {
+    // Ensure colleges is an array
+    allPosts = allPosts.map(p => ({
+        ...p,
+        colleges: Array.isArray(p.colleges) ? p.colleges : (p.colleges ? [p.colleges] : [])
+    }));
     maxCreatedUtc = Math.max(...allPosts.map(post => post.created_utc));
 }
 
@@ -296,12 +314,16 @@ function populateFilterOptions() {
         intentSelect.appendChild(option);
     });
 
-    // Courses datalist (first 20 uniques)
-    const courses = [...new Set(allPosts.map(p => p.course_code))].filter(Boolean).slice(0, 20);
+    // Courses datalist (up to 100 uniques, with label)
+    const courseSet = [...new Set(allPosts.map(p => p.course_code))].filter(Boolean).slice(0, 100);
     const datalist = document.getElementById('courseList');
-    courses.forEach(code => {
+    datalist.innerHTML = '';
+    courseSet.forEach(code => {
+        const post = allPosts.find(p => p.course_code === code);
+        const label = `${code} - ${post?.course_title || ''}`.slice(0, 60);
         const option = document.createElement('option');
         option.value = code;
+        option.label = label;
         datalist.appendChild(option);
     });
 }
@@ -321,7 +343,14 @@ function renderFilters() {
     document.getElementById('loadMoreBtn').addEventListener('click', loadMore);
 
     document.getElementById('resetFilters').addEventListener('click', () => {
-        document.querySelectorAll('.filter-bar select, .filter-bar input').forEach(el => el.value = '');
+        const idsToReset = [
+            'search','category','intent','sentimentOp','sentimentValue',
+            'dateRange','sortBy','course','college'
+        ];
+        idsToReset.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.value = '';
+        });
         updateView();
     });
 }
@@ -354,8 +383,8 @@ function filterPosts(posts, filters) {
         // Course
         if (filters.course && post.course_code !== filters.course) return false;
 
-        // College
-        if (filters.college && post.college !== filters.college) return false;
+        // College (fixed)
+        if (filters.college && (!post.colleges || !post.colleges.includes(filters.college))) return false;
 
         // Category
         if (filters.category && (!post.categories || !post.categories.includes(filters.category))) return false;
@@ -452,7 +481,7 @@ function renderPostCard(post) {
             </div>
         </div>
         <div class="post-row-2">
-            <span class="course-info">${post.course_code} - ${post.course_title}</span>
+            <span class="course-info">${post.course_code || ''} - ${post.course_title || ''}</span>
             <div class="categories">
                 ${(post.categories || []).map(cat => `<span class="tag">${cat}</span>`).join('')}
             </div>
@@ -532,7 +561,7 @@ function debounce(func,wait){
         timeout=setTimeout(()=>func(...args),wait);
     };
 }
-function escapeRegExp(str){return str.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
+function escapeRegExp(str){return str.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&');}
 
 // Start
 init();
