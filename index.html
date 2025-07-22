@@ -392,22 +392,35 @@
         const POSTS_PER_PAGE = 20;
 
         // Initialize the application
-        async function init() {
-            try {
-                await loadPosts();
-                normalizePosts();
-                populateFilterOptions();
-                renderFilters();
-                updateView();
-                
-                document.getElementById('status').style.display = 'none';
-                document.getElementById('postList').style.display = 'block';
-                document.getElementById('loadMoreContainer').style.display = 'block';
-            } catch (error) {
-                console.error('Error initializing app:', error);
-                document.getElementById('status').textContent = 'Error loading posts. Please check if gui_prototype_posts_merged.json is available.';
-            }
+// index.html
+async function init() {
+    try {
+        const response = await fetch('data/gui_prototype_posts_merged.json');
+        console.log("Fetch response status:", response.status);
+        const text = await response.text();
+        console.log("Raw JSON preview:", text.slice(0, 500));
+
+        try {
+            allPosts = JSON.parse(text);
+            console.log("Parsed JSON successfully. Total posts:", allPosts.length);
+        } catch (parseErr) {
+            console.error("JSON parse error:", parseErr);
+            throw parseErr;
         }
+
+        normalizePosts();
+        populateFilterOptions();
+        renderFilters();
+        updateView();
+
+        document.getElementById('status').style.display = 'none';
+        document.getElementById('postList').style.display = 'block';
+        document.getElementById('loadMoreContainer').style.display = 'block';
+    } catch (error) {
+        console.error('Error initializing app:', error);
+        document.getElementById('status').textContent = 'Error loading posts. Please check if gui_prototype_posts_merged.json is available.';
+    }
+}
 
         // Load and parse the JSON data
         async function loadPosts() {
