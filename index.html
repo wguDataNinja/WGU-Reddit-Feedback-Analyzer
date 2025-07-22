@@ -231,7 +231,7 @@
             </div>
         </div>
 
-        <button id="resetFilters" class="reset-btn">Reset All Filters</button>
+        <button id="resetFilters" class="reset-btn">Refresh / Reset All Filters</button>
     </div>
 
     <div id="displayCount" class="status" style="margin-top:-10px;"></div>
@@ -342,16 +342,9 @@ function renderFilters() {
 
     document.getElementById('loadMoreBtn').addEventListener('click', loadMore);
 
-    document.getElementById('resetFilters').addEventListener('click', () => {
-        const idsToReset = [
-            'search','category','intent','sentimentOp','sentimentValue',
-            'dateRange','sortBy','course','college'
-        ];
-        idsToReset.forEach(id => {
-            const el = document.getElementById(id);
-            if (el) el.value = '';
-        });
-        updateView();
+    // 🔁 Replaced Reset Filters with Refresh
+    document.getElementById('forceRefresh').addEventListener('click', () => {
+        location.reload();
     });
 }
 
