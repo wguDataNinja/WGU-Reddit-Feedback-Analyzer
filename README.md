@@ -57,6 +57,11 @@ Each post record includes:
 - created_utc (original Reddit post timestamp)
 ---
 
+### Known Limitations:
+- Current list of wgu-related subreddits is not actively updated. New subreddits will not be picked up. 
+
+
+
 ## GPT Model Usage & Expansion Plans
 
 ### Prototype Model: `gpt-4o-mini`
@@ -117,6 +122,11 @@ Pain Point: **Chapters 7 & 8 Update**
 
 LLMs will also be prompted to flag **emerging pain points**, supporting the monitoring goal of the capstone.
 
+### 3. Including Comments
+- comments are an important source of additional help seeking, as well as advice. Comments are API-intensive and currently 
+- currently only fetched at 3 comments per level, and two levels deep. Only comments made before post fetch will be fetched. 
+Plan: identify potential sources of high value comments (post classification, sentiment) re-fetch the post, and using `num_comments` 
+plan an API comments-fetch for comment-level analysis. 
 ---
 
 ## Possible Expansion

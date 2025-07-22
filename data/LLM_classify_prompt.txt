@@ -1,8 +1,3 @@
-Perfect — with those two clarifications, your prompt becomes much more robust and scalable. Here’s how to integrate your rules directly into the prompt for future use:
-
-⸻
-
-✅ Revised Prompt (with your decisions included)
 
 Instruction:
 You will receive Reddit posts about a university course.

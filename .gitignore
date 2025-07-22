@@ -41,3 +41,13 @@ old/
 !fetchers/
 !WGU_catalog/
 !notebooks/
+
+data/.old/
+data/stopwords/
+
+db/
+dev/
+fetchers/fetch_comments_custom.py
+fetchers/fetch_user_stats.py
+fetchers/fetch_users_daily.py
+fetchers/helpers.py

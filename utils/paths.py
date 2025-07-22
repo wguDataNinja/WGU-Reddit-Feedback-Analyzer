@@ -4,6 +4,7 @@ from pathlib import Path
 
 # Always resolves to the project root (WGU-Reddit/)
 ROOT_DIR = Path(__file__).parent.parent.resolve()
+project_path = ROOT_DIR
 
 # Input/output data folders
 DATA_DIR = ROOT_DIR / "data"
