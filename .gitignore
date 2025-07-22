@@ -1,0 +1,43 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Logs and system files
+*.log
+.DS_Store
+
+# IDE / environment
+.idea/
+.venv/
+env/
+venv/
+.vscode/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Secrets
+*.key
+*.pem
+
+# Data files — allow specific includes later
+*.json
+*.csv
+*.sqlite
+*.db
+*.pkl
+
+# Log and output dirs
+logs/
+outputs/
+notebooks/outputs/
+data/output/
+
+# Old/unused dirs
+WGU_catalog copy/
+old/
+
+# Allow-listed dirs (don't ignore)
+!fetchers/
+!WGU_catalog/
+!notebooks/

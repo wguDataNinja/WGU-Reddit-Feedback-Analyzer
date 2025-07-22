@@ -1,0 +1,170 @@
+these methods were made to test varous ways to parse codes:
+
+# parse_courses_validation.py
+
+import os
+import csv
+
+# Assume parse_file, parse_courses, all_files, etc. already imported
+
+output_rows = []
+
+for f in all_files:
+    results = parse_file(f)
+    for prog in results:
+        college = prog.get("college", "Unknown")
+        for course in prog["courses"]:
+            output_rows.append({
+                "college": college,
+                "ccn": course["ccn"],
+                "course_code": course["course_code"],
+                "course_name": course["course_name"],
+                "cu": course["cu"]
+            })
+
+# Collect unique (college, ccn, course_code)
+unique_keys = set()
+duplicates = []
+none_ccn = []
+
+for row in output_rows:
+    key = (row["college"], row["ccn"], row["course_code"])
+    if key in unique_keys:
+        duplicates.append(row)
+    else:
+        unique_keys.add(key)
+    if row["ccn"] is None:
+        none_ccn.append(row)
+
+# Write flat CSV
+with open("wgu_courses_flat.csv", "w", newline="", encoding="utf-8") as csvfile:
+    writer = csv.DictWriter(csvfile, fieldnames=["college", "ccn", "course_code", "course_name", "cu"])
+    writer.writeheader()
+    writer.writerows(output_rows)
+
+print(f"✅ Flat CSV written: wgu_courses_flat.csv")
+print(f"  • Total rows: {len(output_rows)}")
+print(f"  • Duplicates: {len(duplicates)}")
+print(f"  • None CCN: {len(none_ccn)}")
+
+# Optionally dump these for manual review
+if duplicates:
+    with open("wgu_courses_duplicates.csv", "w", newline="", encoding="utf-8") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=["college", "ccn", "course_code", "course_name", "cu"])
+        writer.writeheader()
+        writer.writerows(duplicates)
+    print(f"  • Duplicate rows written: wgu_courses_duplicates.csv")
+
+if none_ccn:
+    with open("wgu_courses_none_ccn.csv", "w", newline="", encoding="utf-8") as csvfile:
+        writer = csv.DictWriter(csvfile, fieldnames=["college", "ccn", "course_code", "course_name", "cu"])
+        writer.writeheader()
+        writer.writerows(none_ccn)
+    print(f"  • None CCN rows written: wgu_courses_none_ccn.csv")
+
+
+
+
+
+# compare_parse_methods.py
+
+import os
+import csv
+
+# Pick any file or loop — here just the 2025 file for demonstration:
+test_file = all_files[-1]  # catalog_june_2025.txt
+
+# Load raw lines
+with open(test_file, "r", encoding="utf-8") as f:
+    lines = [line.strip() for line in f]
+
+lines = fix_lines_if_needed(lines, test_file)
+
+# Collect all course rows from all programs
+ccn_rows = []
+results = parse_file(test_file)
+for prog in results:
+    for course in prog["courses"]:
+        pass  # Original parse_courses is already run in parse_program
+
+# Re-run raw parse directly on the same file:
+raw_course_lines = []
+for prog in results:
+    # Rebuild raw ccn_rows by re-parsing lines inside blocks if needed
+    # Or store them separately when you parse the programs
+    pass  # In this quick test, you might extract raw course blocks manually if needed
+
+# ---- Example: define both parse_courses versions ----
+
+def parse_courses_strict(ccn_rows):
+    dept_course_regex = re.compile(
+        r'^([A-Z]{2,5})\s+(\d{1,4})?\s*([A-Z]?\d+[A-Z]?)\s+(.*?)\s+(\d+)\s+\d+$'
+    )
+    courses = []
+    seen = set()
+    for line in ccn_rows:
+        if '©' in line or len(line.split()) < 4:
+            continue
+        match = dept_course_regex.match(line)
+        if not match:
+            continue
+        dept, _, code, name, cu = match.groups()
+        key = (dept, code, name)
+        if key in seen:
+            continue
+        courses.append((dept, code, name.strip(), int(cu)))
+        seen.add(key)
+    return courses
+
+def parse_courses_hybrid(ccn_rows):
+    courses = []
+    seen = set()
+    for line in ccn_rows:
+        if '©' in line or len(line.split()) < 4:
+            continue
+        parts = line.split()
+        if not (parts[-2].isdigit() and parts[-1].isdigit()):
+            continue
+        cu = int(parts[-2])
+        code = None
+        ccn = None
+        if re.match(r'^[A-Z]{1,5}\d+[A-Z0-9]*$', parts[0]):
+            code = parts[0]
+            name = " ".join(parts[1:-2])
+        elif len(parts) >= 5 and re.match(r'^[A-Z]{1,5}\d+[A-Z0-9]*$', parts[1]):
+            ccn = parts[0]
+            code = parts[1]
+            name = " ".join(parts[2:-2])
+        else:
+            continue
+        key = (ccn, code, name)
+        if key in seen:
+            continue
+        courses.append((ccn, code, name.strip(), cu))
+        seen.add(key)
+    return courses
+
+# Suppose you manually grab raw course blocks for testing:
+# raw_course_lines = [...]  # your known lines for test
+
+# Run both
+strict_courses = parse_courses_strict(raw_course_lines)
+hybrid_courses = parse_courses_hybrid(raw_course_lines)
+
+strict_codes = {c[1] for c in strict_courses}
+hybrid_codes = {c[1] for c in hybrid_courses}
+
+print(f"Strict: {len(strict_courses)} rows → Unique codes: {len(strict_codes)}")
+print(f"Hybrid: {len(hybrid_courses)} rows → Unique codes: {len(hybrid_codes)}")
+
+# Find differences
+only_in_strict = strict_codes - hybrid_codes
+only_in_hybrid = hybrid_codes - strict_codes
+
+print(f"Only in strict: {len(only_in_strict)}")
+print(f"Only in hybrid: {len(only_in_hybrid)}")
+
+if only_in_strict:
+    print("Examples only in strict:", list(only_in_strict)[:5])
+if only_in_hybrid:
+    print("Examples only in hybrid:", list(only_in_hybrid)[:5])

@@ -1,0 +1,39 @@
+Perfect — with those two clarifications, your prompt becomes much more robust and scalable. Here’s how to integrate your rules directly into the prompt for future use:
+
+⸻
+
+✅ Revised Prompt (with your decisions included)
+
+Instruction:
+You will receive Reddit posts about a university course.
+For each post, classify it using one or more Categories and optionally one or more Intent Tags (see below).
+Use multi-label conservative classification — apply multiple categories or tags only if they are clearly distinct.
+A post must explicitly ask for help to receive a help_request tag.
+
+Output a JSON object per post in the following format:
+
+{
+  "post_id": "...",
+  "categories": [ ... ],
+  "intent_tags": [ ... ]
+}
+
+
+
+Categories:
+
+0: Assessment & Exam Content — PA, OA, proctoring, retaking, etc  
+1: Course Content Issues — outdated, incorrect, missing, or misleading course material  
+2: Study Support & Resources — study materials, guides, notes, etc  
+3: Course Planning & Timing — degree plan, course order, pacing guide, timeline  
+4: Celebration & Motivation — passing, graduating, confetti, encouragement  
+5: uncategorized — not fitting into other categories
+
+
+
+Intent Tags:
+
+0: help_request — explicit asks for help, support, etc  
+1: advice_offered — offering advice, tips, etc
+
+

@@ -1,0 +1,452 @@
+
+© Western Governors University May 22, 2025 48
+Standalone Courses and Certificates
+In addition to degree programs, WGU offers single courses, course bundles, and certificates. For students that want to
+try out online learning or start their educational journey with low cost and low risk, single courses are the perfect
+launching pad for bachelor’s degree pursuit. Course bundles are thoughtfully curated groups of courses that allow
+students to experience college coursework while exploring an area of interest. Certificate programs are designed to focus
+on real-world skills that are in high demand. A professional certificate can help students enhance their resume by adding
+powerful credentials that show they have the knowledge and skills employers are looking for.
+At this time, federal financial aid is not available for standalone courses or certificate offerings.
+Single Courses
+• Academic Readiness for Nursing (ARN)
+• Accounting Research and Critical Thinking (D252A)
+• American Politics and the U.S. Constitution (C963A)
+• Applied Algebra (C957A)
+• Applied Probability and Statistics (C955A)
+• Basic Skills for Educators (BSE)
+• Corporate Taxation (D557A)
+• Data Analytics for Accountants I (D552A)
+• Data Analytics for Accountants II (D553A)
+• English Composition I (ENG1)
+• Ethics for Accountants (D550A)
+• Ethics in Technology (D333A)
+• Foundations of Coding (D615A)
+• Foundations of Computer Science (D792A)
+• Fraud and Forensic Accounting (D551A)
+• Fundamentals for Success in Business (D072A)
+• Fundamentals of Information Security (D430A)
+• Fundamentals of Spreadsheets and Data Presentations (D388A)
+• Global Arts and Humanities (D198A)
+• Introduction to Biology (C190A)
+• Introduction to Psychology (C180A)
+• Introduction to Python Programming (D335A)
+• Introduction to Sociology (C273A)
+• IT and Tech Fundamentals (CTIAT)
+• Learner Development and the Science of Learning (D665A)
+• Learners and Learning Science (D664A)
+• PACA: Introduction to Communications and Reflective Development (PACA101)
+• Pass-Through Taxation (D558A)
+• Precalculus (MAT201)
+• Problem Solving with Artificial Intelligence (D685A)
+• Project Management (C722A)
+• Quantitative Literacy (D771A)
+• Scripting and Programming Foundations (D278A)
+• U.S. History (HIS101)
+• Utah History (UTH)
+Single courses cost $750 - $1,000 for two to three months of access, depending on the course. Courses offer 2 - 4
+competency units and are stackable towards a relevant WGU bachelor’s degree program. Note: Standalone courses
+have distinct course numbers differing from equivalent WGU degree program courses. For more information on single
+courses, visit https://www.wgu.edu/academy/courses.html. Course descriptions are listed below in this section.
+© Western Governors University May 22, 2025 49
+Course Bundles
+Students have the option to bundle some courses together during the enrollment process. Course bundles cost $1,500 -
+$1,750 for three or four months of access, depending on the bundle, and consist of two courses (6 or 7 competency
+units).
+Certificates
+• Accounting Fundamentals Certificate – $2,000
+• Business Leadership Certificate – $1,125
+• B2B Sales Fundamentals Certificate – $799
+• Digital Marketing Fundamentals Certificate – $1,900
+• Entrepreneurship Fundamentals Certificate – $1,500
+• Management Skills for Supervisors Certificate – $1,200
+• Project Management Certificate – $1,900
+• Supply Chain Fundamentals Certificate – $2,500
+• Nursing Leadership Certificate – $2,000
+• AI Skills Fundamentals Certificate - $699
+• Data Analytics Skills Certificate – $2,000
+• Data Engineering Professional Certificate - $3,500
+• Front-End Web Developer Certificate – $499
+• Java Developer Certificate – $499
+• ServiceNow Application Developer Certificate – $1,500
+• Full Stack Engineering Certificates - $10,850
+Certificates are 3 to 18 months in length and consist of between 5 and 44 competency units, depending on the certificate.
+For more information on certificates, visit https://www.wgu.edu/academy/certificates.html. Standard paths for certificates
+are listed at the end of the catalog on page 332.
+The Full Stack Engineering Certificates include all courses included in the Front End Web Development, Back End Web
+Development, and Web Application Deployment and Support certificates.
+For success in the Full Stack Engineering Certificates it is strongly recommended students have experience in the
+following areas:
+• Experience with either Python or Java or another high-order OO (object-oriented) programming language along
+with Git
+• Experience with HTML, CSS, and JavaScript
+• Experience with a major DBMS (database management system) - MySQL (preferred), SQL Server, Oracle,
+MariaDB, etc.
+Course Descriptions
+Academic Readiness for Nursing (ARN) - This course is designed to support students as they prepare for exams such as
+the Test of Essential Academic Skills (TEAS) and the Health Education Systems, Inc. (HESI) assessment. Through
+targeted review and practice, students strengthen their foundational knowledge in reading comprehension, language
+usage, mathematics, and science—core areas essential for success in nursing programs and beyond.
+Accounting Research and Critical Thinking (D252A) - Companies often rely on accountants to conduct research so they
+can understand economic and financial conditions. This research enables accountants to gather and present information
+to assist leaders in their decision-making processes. In this graduate-level course, students hone research application
+skills by identifying accounting issues and researching concepts related to public accounting firms, businesses, and
+regulating authorities. They develop analytical and critical-thinking capabilities and learn to apply their technical
+knowledge of accounting theory to solve complex accounting problems. This expertise helps them become greater
+assets in the accounting field.
+Agile, Risk, and Leadership in Project Management (PM3) - In project management, change is constant. How a project
+manager adapts to changes and resolves challenges is critical to driving projects to completion. In this course, students
+© Western Governors University May 22, 2025 50
+focus on Agile practices that help project teams stay focused, remain flexible, and continuously improve. They learn how
+to adapt under pressure, solve problems effectively, choose smart solutions, and lead through uncertainty. Students
+examine risk management practices and how to plan for the unexpected while keeping the project on track. They also
+develop essential leadership skills, including fostering team collaboration and practicing clear communication to ensure
+stakeholders remain aligned and informed.
+AI Skills Fundamentals Capstone (AIAPP) - In this course, students complete a project that uses AI to take innovative
+and creative ideas to the next level. They apply the skills and knowledge gained from Problem-Solving with Artificial
+Intelligence and Responsible Use of AI to this project. As the culmination of their learning, the capstone allows them to
+design and propose AI solutions to enhance productivity and solve specific challenges in their workplace or within a
+hypothetical organization. The project not only showcases their technical skills but also gives them the chance to critically
+assess the ethical implications of AI recommendations.
+American Politics and the U.S. Constitution (C963A) - American Politics and the U.S. Constitution examines the evolution
+of representative government in the United States and the changing interpretations of the civil rights and civil liberties
+protected by the Constitution. This course will give candidates an understanding of the powers of the branches of the
+federal government, the continual tensions inherent in a federal system, the shifting relationship between state and
+federal governments, and the interactions between elected officials and the ever-changing electorate. This course will
+focus on such topics as the role of a free press in a democracy, the impact of changing demographics on American
+politics, and the debates over and expansion of civil rights. Upon completion of the course, candidates should be able to
+explain the basic functions of the federal government, describe the forces that shape American policy and politics, and be
+better prepared to participate in America’s civic institutions.
+Applied Algebra (C957A) - Applied Algebra is designed to help you develop competence in working with functions, the
+algebra of functions, and using some applied properties of functions. You will start learning about how we can apply
+different kinds of functions to relevant, real-life examples. From there, the algebra of several families of functions will be
+explored, including linear, polynomial, exponential, and logistic functions. You will also learn about relevant, applicable
+mathematical properties of each family of functions, including rate of change, concavity, maximizing/minimizing, and
+asymptotes. These properties will be used to solve problems related to your major and make sense of everyday living
+problems.
+Applied Probability and Statistics (C955A) - Students who want to make reasoned, well-informed decisions might be
+surprised to learn that using statistics and probability can be a key strategy. Scientists use statistical data to create new
+medical treatments, and business leaders use probability to determine their next ventures. Probability and statistics also
+affect choices in education, information technology, and entertainment. In this course, students will learn the basics of
+algebra and graphing, descriptive statistics, regression and correlation, and probability. They will also explore how
+researchers use statistical data. Along the way, students will gain knowledge and skills that help ensure they make well-
+founded decisions in any career field.
+Back-End Coding: Java and Job Readiness (CSBE) - The first thing we might notice when visiting a website or
+application is its aesthetic and layout. But as we begin to navigate, we quickly discover that a site’s performance is as
+important as how it looks. The purpose of back-end web development is to ensure that a website or application operates
+efficiently beyond the appealing graphics and design. This is crucial for creating web applications that users can rely on
+and trust. In this offering, students will explore Java programming for beginners. They will also work toward mastering
+algorithms and data structures in Java.
+Basic Skills for Educators (BSE) - Students who aspire to be teachers must attain basic skills in reading, writing, and
+mathematics. In this course, students engage with these subjects and gain knowledge that helps prepare them to
+become effective educators. They explore mathematical concepts, analytical reading, and essay writing. Along the way,
+they encounter the same types of questions, problems, and passages that appear on standard exams required for
+teacher licensure in many states.
+Build Your Strategy (ESHIP2) - This interactive, project-based course gives aspiring entrepreneurs the tools and
+strategies to confidently launch and grow a business. Students define their brand identity by creating a visual brand
+board, writing a compelling brand story, and selecting key marketing channels to reach their target audience. They
+sharpen their financial planning skills and reflect on the challenges of financial decision-making. In addition, students
+explore how to choose the best legal structure for their business by evaluating factors like liability, ownership, taxes, and
+scalability.
+Building a B2B Sales Foundation (B2BS1) - Sales starts with mindfulness and attitude. In this course, students focus on
+what they are feeling, controlling how they express themselves, and learning to channel their energy to become
+successful sales professionals. The course discusses communication theory and active and empathetic
+© Western Governors University May 22, 2025 51
+listening—essential skills for salespeople. It introduces the importance of self-confidence, which lays the foundation for
+sales training.
+Building and Inspiring Teams (FL1) - In this course, students develop practical skills in managing teams by focusing on
+coaching, team building, and fostering an inclusive environment. Through formative role-play assessments and
+summative team management exercises, students will practice giving feedback, conducting performance reviews, and
+creating an inclusive culture that encourages growth and productivity.
+B2B Relationship Management and Negotiation (B2BS3) - This course focuses specifically on business-to-business
+sales. It emphasizes the importance of creating and maintaining long-term relationships. Students explore the use of
+active and empathetic listening with their customers, and they discover the importance of solving problems, adding value,
+and negotiating. In addition, students learn about research and analysis, leveraging AI when possible, to gather
+information, ways to improve messaging, and how to identify resources. They are also introduced to the basics of project
+management and customer relationship management systems.
+B2B Sales Strategies (B2BS2) - As an introduction to sales training, this course focuses on the basics of sales, tailoring
+content for technology, healthcare, and industrial manufacturing. Students explore sales approaches with specific
+discussions of the Challenger, SPIN, and Sandler methodologies. They learn about networking and teamwork, and they
+have the opportunity to apply the skills they have gained.
+Corporate Taxation (D557A) - Corporations are required to pay taxes based on their profits, and these funds are used to
+support government programs and services. The challenge for accountants is to ensure companies comply with the tax
+laws while protecting their bottom line. In this graduate-level course, students explore federal income taxation of
+corporations and their shareholders. They learn about the formation of the corporation, capital structure, operational
+alternatives, distributions, partial and complete liquidations, personal holding companies, and the accumulated earnings
+tax. In addition, they engage in real-life scenarios that enable them to apply course concepts. By completing this course,
+students are better prepared to represent corporations and manage their tax obligations.
+Data Analysis with SQL (DCADA) - In this course, students will learn to analyze and interpret data. They will develop a
+fundamental understanding of structured query language (SQL) and use PostgreSQL to extract, join, aggregate, validate,
+and clean data.
+Data Analytics for Accountants I (D552A) - Why do accountants rely on data analytics? Understanding data allows them
+to uncover valuable insights. These include identifying market behavior, detecting patterns in client spending, and
+predicting trends. In this graduate-level course, students learn basic concepts and techniques used in the field of
+accounting data analytics. They summarize data analysis definitions and models for the accounting field. In addition, they
+explore data mining techniques and the extract-transform-load (ETL) process, ultimately creating a presentation from
+accounting data results. This knowledge sets students up for data analytics expertise. This course is a prerequisite for
+Data Analytics for Accountants II.
+Data Analytics for Accountants II (D553A) - Can accountants predict the future? Not exactly, but those with data analytics
+skills can anticipate financial needs. In this graduate-level course, students learn to analyze and present data to make
+reliable forecasts and propose strategies. In this way, they are no longer limited to being the chroniclers of an
+organization’s profits and expenses. Instead, they can leverage the power of data to predict the future and advise leaders
+on appropriate actions. This course emphasizes auditing, managerial accounting, tax accounting, and financial reporting
+as students complete a professional scenario that requires predictive analysis and a course-of-action presentation. In
+addition, they explore content that appears in the data analysis portions of the Certified Public Accountant (CPA) and
+Certified Management Accountant (CMA) exams. Data Analytics for Accountants I is a prerequisite for this course.
+Data Visualization (DCDV) - In this course, students explore how data is collected and sorted. They learn how to present
+data and create reports using Power BI (business intelligence) and Tableau.
+Decision Making for Team Leaders (FL3) - In this course, students develop the ability to make quick and effective
+decisions in high-pressure situations. Through practical simulations and case-based problem-solving assessments,
+students will enhance their decision-making and adaptability while managing day-to-day operations in a fast-paced
+environment.
+Define Your Business (ESHIP1) - With this hands-on, outcome-driven course designed for aspiring entrepreneurs and
+innovators, students develop a comprehensive strategic business plan, building a strong foundation by defining their
+business’s mission, as well as short- and long-term goals. Through practical market research, students identify their
+target audience, perform in-depth competitor analysis, and produce an actionable market research brief that directly
+informs business strategy. Leveraging the power of AI, students also maintain an AI-enhanced business planning journal,
+© Western Governors University May 22, 2025 52
+tracking their use of AI tools for productivity and market analysis.
+Digital Marketing Capstone (DMC) - Designed to bridge education and industry, this course connects students with actual
+companies through Riipen, allowing them to work on live marketing projects that address current business challenges.
+Students integrate core digital marketing competencies to develop targeted campaigns and deliver marketing assets.
+They select projects aligned with their interests and career goals, then build a set of authentic marketing deliverables
+while reflecting on the creative and strategic decisions made along the way.
+Effective Communication for Team Leaders (FL2) - This course focuses on effective communication and emotional
+intelligence, equipping students with the skills to manage conflicts and communicate clearly in challenging situations.
+Students will pass through simulations and role-playing exercises that test their ability to resolve conflicts, listen actively,
+and respond to emotional cues during team interactions.
+English Composition I (ENG1) - This course is intended for learners who struggle with written communication or like to
+write but want to improve. The course illustrates that anyone can become a good writer. But, just like anything that
+requires practice, writing is a process. Learners will explore four distinct writing approaches: expressive, narrative,
+interpretive, and argumentative. Using these approaches, they will develop writing skills that will benefit them in all
+aspects of their lives.
+Ethics for Accountants (D550A) - A trusted accountant has expertise in more than numbers and spreadsheets. For
+accounting professionals to be steadfast and reliable, they must also be ethical. In this graduate-level course, students
+examine the standards of professional conduct and business practices required for this field. They explore the necessity
+of applying ethical principles in accounting services, tax preparation, and financial evaluation. In addition, they learn how
+to apply ethical reasoning, professional skepticism, and ethical decision-making to situations involving corporate
+governance and moral dilemmas. With this knowledge, students will be better prepared to employ ethical and objective
+standards in their accounting careers.
+Ethics in Technology (D333A) - Ethics in Technology examines the ethical considerations of technology use in the 21st
+century and introduces students to a decision-making process informed by ethical frameworks. Students will study
+specific cases related to important topics such as surveillance, social media, hacking, data manipulation, plagiarism and
+piracy, artificial intelligence, responsible innovation, and the digital divide.
+Find Your Inner Founder (ESHIP3) - This immersive course helps students discover their unique leadership style and
+develop the emotional and strategic tools required to thrive as a founder. Designed for real-world entrepreneurial
+readiness, the course focuses on communication, time management, emotional resilience, and team leadership—critical
+skills for launching and leading a business. Students engage in leadership practice by recording and reflecting on real-
+time feedback scenarios. They document meaningful community outreach and explore how authentic connection shapes
+founder identity. By the end of the course, students have everything they need to launch their business and lead with a
+sharpened entrepreneurial mindset.
+Foundations of Coding (D615A) - Successful programmers know how to solve a puzzle. They have the curiosity and
+foundational knowledge to write code for countless applications. For students ready to gain that expertise, this course will
+introduce them to algorithmic thinking and how to apply it to everyday situations. They will explore key programming
+concepts, including flow control, data types, and common data structures. They will also study the organization and
+documentation of simple programs. As students progress in this course, they will learn about the major programming
+language types and how to develop basic programs in Python. Along the way, they will discover key troubleshooting
+strategies and develop a growth mindset so they can overcome any challenges they encounter.
+Foundations of Computer Science (D792A) - People use computers every day. But how much do they know about their
+design, development, and application? This course is for students who want to learn about computational systems and
+how humans interact with them. By studying this material, they focus on the essential principles and practices of
+computer science. They explore concepts such as designing basic computer programs, evaluating the efficiency of
+algorithms, understanding operating systems, and using data profiling. This course thoroughly introduces the
+fundamental aspects of computer science necessary for further study and practice in the discipline.
+Fraud and Forensic Accounting (D551A) - Where there is money, there is always the risk of fraud, and forensic
+accountants are charged with uncovering it. In this graduate-level course, students learn how fraud and forensic
+investigations are part of the accounting profession. They explore the various types of fraud and their impact on
+organizations. They discover the role that forensic accountants have in the legal system and the techniques they use in
+financial investigations. Through scenarios and hands-on exercises, students gain practical experience in detecting,
+investigating, and preventing fraud. This knowledge makes them even more valuable in the accounting field.
+© Western Governors University May 22, 2025 53
+Front-End Engineering: JavaScript and React (CSFE) - There is an art and science to front-end web development. A
+skilled front-end web developer aims to craft a user interface that is accessible and effortless. The goal is to captivate
+and delight the user, ensuring that they remain loyal and return to the website time and again. In this offering, students
+will explore the fundamentals of HTML, CSS, JavaScript, and so much more.
+Fundamentals for Success in Business (D072A) - This introductory course provides students with an overview of the field
+of business and a basic understanding of how management, organizational structure, communication, and leadership
+styles affect the business environment. It also introduces them to some of the power skills that help make successful
+business professionals, including time management, problem solving, emotional intelligence and innovation; while also
+teaching them the importance of ethics. This course gives students an opportunity to begin to explore their own strengths
+and passions in relation to the field while also acclimating them to the online competency-based environment.
+Fundamentals of Information Security (D430A) - This course lays the foundation for understanding terminology,
+principles, processes, and best practices of information security at local and global levels. It further provides an overview
+of basic security vulnerabilities and countermeasures for protecting information assets through planning and
+administrative controls within an organization.
+Fundamentals of Spreadsheets and Data Presentations (D388A) - Fundamentals of Spreadsheets and Data
+Presentations offers learners an overview of the use of spreadsheet functions and methods for presenting data within
+spreadsheets. Learners will have the opportunity to explore features and uses of MS Excel and apply the tools to
+situations they may encounter while studying in their program. They will also be introduced to real world uses and tools to
+collect, organize and present data.
+Global Arts and Humanities (D198A) - What makes us human? That is the question students will explore in this course
+as they study the many facets of the arts and humanities, including literature, painting and sculpture, history, languages,
+and philosophy. Students will also follow the creation and impact of music around the world. These aspects of our culture
+are mirrors, reflecting who we are individually and collectively. By understanding the arts and humanities, students will
+learn how people use these constructs to express themselves and communicate. In turn, they will discover the struggles
+and triumphs we have all experienced. In addition, students will uncover what issues matter to us and how we are all
+connected.
+Introduction to Biology (C190A) - This course is a foundational introduction to the biological sciences. The overarching
+theories of life from biological research are explored as well as the fundamental concepts and principles of the study of
+living organisms and their interaction with the environment. Key concepts include how living organisms use and produce
+energy; how life grows, develops, and reproduces; how life responds to the environment to maintain internal stability; and
+how life evolves and adapts to the environment.
+Introduction to Psychology (C180A) - In this course, students will develop an understanding of psychology and how it
+helps them better understand others and themselves. Students will learn general theories about psychological
+development, the structure of the brain, and how psychologists study behavior. They will gain an understanding of both
+normal and disordered psychological behaviors, as well as general applications of the science of psychology in society
+(such as personality typing and counseling).
+Introduction to Python Programming (D335A) - Python is a computer programming language created for various
+purposes. It is often used to develop software and build websites. It is also employed to automate tasks and analyze
+data. In fact, Python is all around us. Its technology enables movie streaming services to make recommendations. It
+allows Google to find the information people search for. It can even help direct self-driving cars. By taking this course,
+students gain skills in creating Python scripts with basic programming concepts. They learn to create control flow with
+functions and loops. In addition, they discover how to implement code with packages, modules, and libraries.
+Introduction to Sociology (C273A) - This course teaches students to think like sociologists, or, in other words, to see and
+understand the hidden rules, or norms, by which people live, and how they free or restrain behavior. Students will learn
+about socializing institutions, such as schools and families, as well as workplace organizations and governments.
+Participants will also learn how people deviate from the rules by challenging norms and how such behavior may result in
+social change, either on a large scale or within small groups.
+IT and Tech Fundamentals (CTIAT) - In this course, students explore a diverse range of IT concepts and career paths,
+from building computers and databases to computer programming. In addition, they learn about browsing the Internet
+securely, creating networks, using common software applications, understanding external computer hardware, and
+updating operating systems. By completing this course, students establish a solid tech-fluent foundation. This course
+prepares them to take the CompTIA Tech+ certification exam, an industry standard that will enhance their career options
+in numerous fields.
+© Western Governors University May 22, 2025 54
+Learner Development and the Science of Learning (D665A) - What are the best strategies for helping students learn? An
+effective approach involves so much more than receiving information and memorizing facts. For real learning to occur, it
+is critical to understand how students comprehend and retain information. In fact, there is a science to it! In this graduate-
+level course, participants will explore how students’ brains work. They will discover how growth and development
+influence learning, as well as the role that learning theories play in academic success. Along the way, they will gain
+expertise in instructional techniques and how to apply those in the classroom.
+Learners and Learning Science (D664A) - How do students learn? This is a key question aspiring educators will explore
+in this undergraduate course. They will consider concepts related to learning environments and educational levels, from
+early childhood through adolescence. As they study the material, they will encounter evidence-based practices and the
+practical application of learning science principles. These can help equip their future students with strategies to enhance
+learning outcomes and increase engagement. After completing this course, they will be empowered educators—ready to
+create effective, inclusive, and engaging learning experiences for their students.
+Mastering HubSpot - To be successful, digital marketers must effectively keep track of sales, service, web content,
+operations, and other business essentials. HubSpot is a powerful software tool that can assist by providing all-in-one
+solutions. In this course, students will learn about HubSpot and how to best utilize it. They will explore how this cloud-
+based platform can sync and connect consumers, teams, and devices. They will discover the ways HubSpot can improve
+business functions by tracking potential clients, managing emails and social media posts, hosting web pages, and
+tracking customer service. Along the way, they will learn how the software analyzes campaign results and user behavior.
+Mastering QuickBooks - Bookkeeping is the detailed art of recording all the financial transactions for a company. When
+done well, this process helps a business track its progress and ultimately succeed. One essential tool is Intuit
+QuickBooks. This software can help manage bookkeeping tasks, such as tracking income and expenses, managing
+payroll, simplifying taxes, and accepting online payments. This course will show students how to properly use
+QuickBooks Online. They will learn to create a QuickBooks Online account, customize settings, manage customers and
+products, enter transactions, generate reports, and close books. They will discover tips, shortcuts, and best practices to
+save time and become proficient in the use of this software.
+Native Histories of the Pacific Northwest (D506A) - The history of the Pacific Northwest is rich in culture and tradition.
+The lives of the early peoples helped shape this region and continue to influence it. In this undergraduate course,
+students will explore the geographic, social, and economic development of the Pacific Northwest region of the United
+States, with a particular emphasis on the Native population who were the region's first inhabitants. They will discover how
+contact with European colonists disrupted tribal societies and how Native peoples resisted assimilation efforts. They will
+also consider the continuing activism of Native communities in areas of civil and environmental rights.
+Native Histories of the Pacific Northwest (D507A) - The first inhabitants of the Pacific Northwest have much to teach us.
+Studying Native peoples’ history enhances our understanding of U.S. history. It helps us see the vital role Native peoples
+played in our past and how they continue to impact our present. In this graduate-level course, students will explore the
+long, early histories of the region’s diverse tribes. They will discover how the environment shaped their practices and
+beliefs. In addition, they will learn about the challenges the Native peoples faced and how they have endured over the
+centuries. This knowledge will help students become well-informed and better-prepared educators.
+Nursing Leadership Capstone (NLC) - This course covers the foundational management skills nurses need to become an
+effective healthcare leader. Those skills include time management, problem-solving, delegating, conflict resolution,
+coaching, and accountability.
+Pacific Northwest K-12 Integrated Methods (D461A) - A critical aspect of an enriched educational environment is
+addressing the backgrounds and needs of all students. To that end, this undergraduate course was created to help future
+educators integrate Native perspectives into their lessons, a requirement in Washington State public education. The
+course material is derived from the Since Time Immemorial tribal sovereignty curriculum. Participants will study various
+ways to incorporate its concepts into content areas, such as art and mathematics. They will also delve into cultural
+intelligence and conscious collaboration as they learn to communicate and work with local Native tribes.
+Pacific Northwest K-12 Integrated Methods and Curriculum (D462A) - In Washington State, teachers are required to
+incorporate tribal history, culture, and tribal governments in public education. Beyond this requirement, including Native
+perspectives in lessons can result in dynamic and engaging classrooms. This graduate-level course provides participants
+with the knowledge and skills necessary to create learning activities that are aligned with state standards and integrate
+curricula within various content areas. They will learn to design content-specific instruction based on the Since Time
+Immemorial curriculum. Integrating curriculum in various content areas is a critical skill, and gaining this expertise will
+lead to more enriched learning environments.
+© Western Governors University May 22, 2025 55
+PACA: Introduction to Communications and Reflective Development (PACA101) - In this course, learners will explore
+interacting with others and managing conflict. This knowledge will help them build positive relationships at home, work,
+and school. Throughout the course, learners will be encouraged to improve their communication and relationship
+management skills. They will learn strategies for working on self-awareness, empathy, emotion management, and
+thriving mindset. Having these skills will increase their chances of success in academics and in their careers.
+Pass-Through Taxation (D558A) - Every business must pay taxes, but not every business is a huge corporation. Instead,
+many are pass-through entities, such as partnerships, limited liability companies (LLCs), and S corporations. These
+entities appear in almost all business sectors, and each offers unique features that provide advantages to specific
+business situations. Since accountants may encounter all these entity types in their careers, this graduate-level course
+explains the various taxation advantages and disadvantages, as well as specific rules and procedures. Using real-world
+business scenarios, students gain practical knowledge that is vital for modern tax professionals.
+Precalculus (MAT201) - Numeracy is the ability to understand and use numbers. In this course, learners will improve
+their numeracy and their ability to perform four basic operations: addition, subtraction, multiplication, and division. With
+these operations, learners will use not only whole numbers, but also integers, fractions, decimals, variables, and
+algebraic expressions. They will learn to use data, functions, and graphs to analyze information. Once learners are
+comfortable with the concepts, they will apply them to solve real-world problems they might face at work or at home.
+Problem Solving with Artificial Intelligence (D685A) - Technology is advancing faster than ever before, and one of the
+most fascinating developments is artificial intelligence (AI). Understanding its purpose, functionality, and how to utilize it
+is key to unlocking its true potential. In this course, students will explore the anatomy of a well-constructed prompt. They
+will learn how to sharpen their ability to craft messages tailored to specific contexts and audiences. They will master the
+nuance of language and analyze the images, texts, and tone of prompts with the goal of adjusting them to achieve
+optimal results. No matter what their career field, this course will empower students to understand the ever-evolving
+digital landscape and stay ahead of the AI curve.
+Project Execution and Performance Management (PM2) - In this course, students focus on project execution plans and
+performance evaluation. They learn how to structure a project schedule with task sequences, key milestones,
+dependencies, and required resources. Students explore how to make projects financially sustainable by setting realistic
+budgets, tracking spending, and preparing for unexpected costs. Then, they assess project quality by defining metrics,
+using data to support decisions, selecting and managing vendors, monitoring results, and continuously improving
+processes to meet quality standards.
+Project Management (C722A) - Project Management prepares you to manage projects from start to finish within any
+organization structure. The course represents a view into different project-management methods and delves into topics
+such as project profiling and phases, constraints, building the project team, scheduling, and risk. You will be able to
+grasp the full scope of projects you may work with on in the future, and apply proper management approaches to
+complete a project. The course features practice in each of the project phases as you learn how to strategically apply
+project-management tools and techniques to help organizations achieve their goals.
+Project Management Capstone (PM4) - In this course, students apply project management skills and knowledge to an
+end-to-end project scenario. They select a real or hypothetical project and demonstrate their ability to manage it from
+initiation to closure. Students showcase their skills in project planning, execution, and reflection. They articulate project
+goals, develop planning documents, apply leadership and communication strategies, and complete a retrospective to
+capture lessons learned. This approach challenges students to synthesize their understanding of project management
+principles and practices, with an emphasis on real-world relevance, workplace readiness, and strategic thinking.
+Project Planning and Strategy (PM1) - All successful projects start with a well-organized plan. In this course, students
+focus on the fundamentals of effective project planning. Beginning with project charters, students learn how to combine
+all parts of a project—goals, team input, timeline, scope, and communication—into one unified plan. Students discover
+how to connect project goals with broader organizational objectives. They learn how to create a work breakdown
+structure to outline how tasks will be completed and tracked. Finally, students explore the importance of a project
+schedule and stakeholder engagement strategy, one that keeps key players informed about and engaged in key
+milestones and project timelines.
+Quantitative Literacy (D771A) - Students in this course learn to use quantitative literacy to view real-world problems
+through the lens of quantitative reasoning. They discover how to apply quantitative concepts to financial questions and
+other matters. They also employ the principles of geometry and algebra to assess real-life scenarios. By engaging with
+mathematical concepts for modeling and understanding everyday problems, students come to perceive math as a useful
+and relevant tool for a variety of situations.
+© Western Governors University May 22, 2025 56
+Responsible Use of Artificial Intelligence (AIRU) - In today’s world, we encounter artificial intelligence (AI)
+everywhere—including online, in the media, and in the workplace. From ChatGPT to self-driving cars, from smart home
+assistants to facial recognition on our smartphones, AI is increasingly being integrated into our daily lives. This course
+addresses the ethical issues of AI and guides students in understanding how this evolving technology can be used
+efficiently but wisely.
+ServiceNow Application Developer - As technology rapidly evolves, the demand for straightforward, intuitive software
+programs and applications grows alongside it. However, creating these programs and apps the traditional way calls for a
+deep understanding of coding languages and advanced IT skills, which may not be practical in such a fast-paced and
+ever-changing environment. That’s why developing applications through a more accessible Low-Code Application
+Platform like ServiceNow is vital. This platform provides ways to create sophisticated and user-friendly applications
+without requiring an advanced coding or IT background. In this course, students will implement user-centered solutions
+from multiple perspectives. They will use the Flow Designer platform to automate real-world processes and develop a
+custom application with an emphasis on user experience.
+Scripting and Programming Foundations (D278A) - Scripting and Programming Foundations introduces programming
+basics such as variables, data types, flow control, and design concepts. The course is language-agnostic in nature,
+ending in a survey of languages, and introduces the distinction between interpreted and compiled languages. Learners
+will gain skills in identifying scripts for computer program requirements and in using fundamental programming elements
+as part of common computer programming tasks. Learners will also gain an understanding of the logic and outcome of
+simple algorithms.
+U.S. History (HIS101) - Studying history can be like traveling across time and space. This is true even when learners
+study the history of their own country. In this course, learners will delve into the history of the United States from its
+earliest beginnings to the late 20th century. They will realize that to appreciate history, they must be able to relate to the
+people who lived in earlier times. They need to examine the decisions that historical figures made, what their daily lives
+were like, and what relationships they had. They will also come to understand how history repeats itself.
+Utah History (UTH) - In this graduate-level course, students explore Utah’s unique geographic regions, learning how they
+influenced human history and the environment. They discover how Utah’s earliest human inhabitants relied on innovative
+survival strategies and developed profound connections to the land. In addition, they study the various phases of
+exploration, colonization, and development. They learn how these eras affected Indigenous populations and how Utah’s
+social, economic, and political landscape transformed over the centuries. This knowledge prepares education students
+for teaching Utah history and creating effective lesson plans.

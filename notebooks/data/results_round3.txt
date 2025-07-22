@@ -1,0 +1,59 @@
+Alright — let’s process this step by step.
+Here’s the manual labeling for is_pain_point for each row based on the instructions:
+
+⸻
+
+
+sentiment_band	vader	title	is_pain_point	Explanation
+<= -0.5	-0.8224	Do I need to worry about the labs for D488	❌	General question, not frustration or blocker.
+<= -0.5	-0.7725	I can’t access the college starter	✅	Clear frustration, system/payment blocker.
+<= -0.5	-0.7747	MSN program	❌	Exploring options, not expressing a pain point.
+<= -0.5	-0.8501	D675 -Elementary Literacy Methods Task 2 Literacy Block	✅	Expresses frustration about lack of information to complete a task.
+<= -0.5	-0.5538	Is this degree worth it?	✅	Expresses concern about degree value; possible regret or fear of wasted effort.
+-0.5 to -0.3	-0.4678	Does the MS CS have a thesis?	❌	Neutral question, no sign of friction.
+-0.5 to -0.3	-0.4215	Computer recommendations	❌	Seeking advice, no pain with program itself.
+-0.5 to -0.3	-0.4098	6 Classes Left with term ending July 31st	✅	Expresses worry about finishing in time; possible friction with pacing.
+-0.5 to -0.3	-0.3744	Professional Communication	✅	Frustrated that PDF not compatible with required tool.
+-0.5 to -0.3	-0.4137	IA 2 PA 1 marking things wrong that aren’t there?	✅	Grievance about PA marking errors — clear blocker/friction.
+-0.3 to -0.2	-0.2960	D333	❌	Just informational, no pain stated.
+-0.3 to -0.2	-0.2462	IT Capstone Task 3 Submitted! Now the hard part….waiting!	❌	Waiting is not a blocker with the program.
+-0.3 to -0.2	-0.2243	CA CPA - 24 business + 14 other studies requirements question	✅	Frustration/confusion about requirements — a friction point.
+-0.3 to -0.2	-0.2732	Ugh I just want my capstone to be graded 😅😩	✅	Clear frustration with grading delay — friction.
+-0.3 to -0.2	-0.2168	Student Teaching Application	✅	Blocker — application not populating, causing panic.
+-0.2 to -0.1	-0.1689	Is it possible to choose the order you accelerate classes in?	✅	Expressing confusion/frustration with mentor — friction with process.
+-0.2 to -0.1	-0.1134	Data analytics	❌	General program choice question — no pain.
+-0.2 to -0.1	-0.1695	Mentor	✅	Frustration with mentor not reaching out — pain point.
+-0.2 to -0.1	-0.1803	D459 task 3	✅	Frustration with similarity report, deadline stress — friction.
+-0.2 to -0.1	-0.1431	Financial aid - How quickly did you get your refund?	❌	Timing question — not a program pain point.
+-0.1 to 0.0	0.0000	Where can I practice for the test	❌	Basic question, no friction.
+-0.1 to 0.0	0.0000	D082 - What is the GEIT and how do I find it	✅	Can’t locate needed resource — mild friction.
+-0.1 to 0.0	-0.0598	Data engineering course content	✅	Friction: switch causing stall, asking for workarounds.
+-0.1 to 0.0	0.0000	C214 test. Any tips on the test since the revamp 2+ months ago?	❌	General test tips, not a pain point.
+-0.1 to 0.0	0.0000	Hi there! I’m attending WGU in July…	❌	Seeking advice, no friction described.
+> 0.0	0.9388	Advise/opinion for prospective student	❌	Exploring options, no pain.
+> 0.0	0.6515	Sooooo Closeeee!!!	❌	Celebratory, no pain.
+> 0.0	0.9794	Passed C207 this morning	❌	Celebratory, no pain.
+> 0.0	0.7213	D427 Finally	❌	Celebratory, no pain.
+> 0.0	0.9157	D265 Critical Thinking: Reason and Evidence - PASSED	❌	Celebratory, no pain.
+
+
+⸻
+
+✅ Count Summary
+
+band	pain-points	total_posts	%
+<= -0.5	3	5	60%
+-0.5 to -0.3	4	5	80%
+-0.3 to -0.2	4	5	80%
+-0.2 to -0.1	4	5	80%
+-0.1 to 0.0	2	5	40%
+> 0.0	0	5	0%
+
+
+⸻
+
+📌 Verdict
+
+The pain-point density stays flat (80%) for both -0.5 to -0.3, -0.3 to -0.2, and -0.2 to -0.1, with only a slight drop above -0.1. So the current -0.2 threshold is reasonable — there’s no strong gain from raising or lowering it. Keep it at -0.2.
+
+Let me know if you’d like the labeled table exported as CSV!

@@ -1,0 +1,332 @@
+
+Rows 1–20
+
+post_category_map.json
+
+[
+  {"post_id": "1k5pa91", "category_number": 1},
+  {"post_id": "1jjqu4g", "category_number": 3},
+  {"post_id": "1j3pf5q", "category_number": 2},
+  {"post_id": "1k3p5fv", "category_number": 4},
+  {"post_id": "1ino50z", "category_number": 4},
+  {"post_id": "1i39kfp", "category_number": 4},
+  {"post_id": "1d7iajt", "category_number": 4},
+  {"post_id": "1g1pc7g", "category_number": 4},
+  {"post_id": "1iezce3", "category_number": 2},
+  {"post_id": "1k3p4l7", "category_number": 4},
+  {"post_id": "1ivcs4o", "category_number": 3},
+  {"post_id": "1k3qs2s", "category_number": 3},
+  {"post_id": "1k3p661", "category_number": 4},
+  {"post_id": "1k2fa2s", "category_number": 2},
+  {"post_id": "1k12o7a", "category_number": 5},
+  {"post_id": "1jzbfz2", "category_number": 2}
+]
+
+notable_posts.json
+
+[
+  {
+    "post_id": "1k4p3nr",
+    "reason": "Unclear category",
+    "notes": "Mostly lists courses for a degree transfer; does not ask for planning advice specifically about D427."
+  }
+]
+
+
+
+Rows 21–40
+
+post_category_map.json
+
+[
+  {"post_id": "1jym5q9", "category_number": 3},
+  {"post_id": "1jyikll", "category_number": 1},
+  {"post_id": "1jxy3do", "category_number": 4},
+  {"post_id": "1jxxijk", "category_number": 2},
+  {"post_id": "1jxhdxk", "category_number": 5},
+  {"post_id": "1jwhsi5", "category_number": 5},
+  {"post_id": "1jtyqgz", "category_number": 3},
+  {"post_id": "1jtxqq5", "category_number": 5},
+  {"post_id": "1jt9xq4", "category_number": 2},
+  {"post_id": "1jszrg3", "category_number": 2},
+  {"post_id": "1j1asnh", "category_number": 3},
+  {"post_id": "1isnnta", "category_number": 1},
+  {"post_id": "1ijj51u", "category_number": 3},
+  {"post_id": "1iir6xz", "category_number": 2},
+  {"post_id": "1ibsu3m", "category_number": 3},
+  {"post_id": "1hxmxwp", "category_number": 1},
+  {"post_id": "1hunrki", "category_number": 1},
+  {"post_id": "1hund4r", "category_number": 4},
+  {"post_id": "1hoiqh8", "category_number": 5}
+]
+
+notable_posts.json
+
+[]
+Rows 41–60
+
+post_category_map.json
+
+[
+  {"post_id": "1hbicsg", "category_number": 3},
+  {"post_id": "1gh63tt", "category_number": 1},
+  {"post_id": "1g9rzke", "category_number": 2},
+  {"post_id": "1g4zs1v", "category_number": 2},
+  {"post_id": "1g1jzqh", "category_number": 3},
+  {"post_id": "1g08pxn", "category_number": 4},
+  {"post_id": "1fnzs9g", "category_number": 2},
+  {"post_id": "1ipurdt", "category_number": 5},
+  {"post_id": "1igw47q", "category_number": 4},
+  {"post_id": "1hymsx0", "category_number": 1},
+  {"post_id": "1gqsqkv", "category_number": 4},
+  {"post_id": "1gqsqkv", "category_number": 4},
+  {"post_id": "1gqq7do", "category_number": 2},
+  {"post_id": "1gj31l6", "category_number": 1},
+  {"post_id": "1g4zs8p", "category_number": 2},
+  {"post_id": "1f55og7", "category_number": 4},
+  {"post_id": "1ewde3o", "category_number": 4},
+  {"post_id": "1ewde3o", "category_number": 4},
+  {"post_id": "1ek1lqn", "category_number": 4},
+  {"post_id": "1dh8nk8", "category_number": 4}
+]
+
+notable_posts.json
+
+[]
+
+
+Rows 61–80
+
+post_category_map.json
+
+[
+  {"post_id": "1d9x1uv", "category_number": 3},
+  {"post_id": "1d2qoov", "category_number": 4},
+  {"post_id": "1czw2l8", "category_number": 4},
+  {"post_id": "1cwfwcv", "category_number": 2},
+  {"post_id": "1cnd0gy", "category_number": 4},
+  {"post_id": "1bseimy", "category_number": 4},
+  {"post_id": "1bid1v0", "category_number": 1},
+  {"post_id": "1bgg63w", "category_number": 4},
+  {"post_id": "1b4xpug", "category_number": 2},
+  {"post_id": "1b01m6z", "category_number": 4},
+  {"post_id": "1atx5ye", "category_number": 5},
+  {"post_id": "1ap5as3", "category_number": 3},
+  {"post_id": "19c98dy", "category_number": 3},
+  {"post_id": "18og9l0", "category_number": 2},
+  {"post_id": "17ey9u8", "category_number": 4},
+  {"post_id": "1hew907", "category_number": 4},
+  {"post_id": "1gr2pfw", "category_number": 4},
+  {"post_id": "1g1pbu2", "category_number": 3}
+]
+
+notable_posts.json
+
+[]
+
+
+
+Rows 81–100
+
+post_category_map.json
+
+[
+  {"post_id": "1g1pbu2", "category_number": 4},
+  {"post_id": "1ff9dl8", "category_number": 5},
+  {"post_id": "1fbzi1g", "category_number": 3},
+  {"post_id": "1exvwty", "category_number": 4},
+  {"post_id": "1dpzy71", "category_number": 4},
+  {"post_id": "1j1lea2", "category_number": 5},
+  {"post_id": "1ivapri", "category_number": 3},
+  {"post_id": "1i2pt65", "category_number": 5},
+  {"post_id": "1hkpcfm", "category_number": 1},
+  {"post_id": "1grkam1", "category_number": 4},
+  {"post_id": "1gjet2a", "category_number": 2},
+  {"post_id": "1g6f5ov", "category_number": 1},
+  {"post_id": "1fqlv4f", "category_number": 2},
+  {"post_id": "1fpjdak", "category_number": 5},
+  {"post_id": "1fkax4w", "category_number": 4},
+  {"post_id": "1fkax4w", "category_number": 4},
+  {"post_id": "1fjwk8c", "category_number": 5},
+  {"post_id": "1fd0duy", "category_number": 3},
+  {"post_id": "1f953tt", "category_number": 5},
+  {"post_id": "1f6lrrs", "category_number": 5}
+]
+
+notable_posts.json
+
+[]
+Rows 101–120
+
+post_category_map.json
+
+[
+  {"post_id": "1eqx543", "category_number": 2},
+  {"post_id": "1el51go", "category_number": 1},
+  {"post_id": "1ec6r00", "category_number": 2},
+  {"post_id": "1cxhm4m", "category_number": 1},
+  {"post_id": "1cjhhel", "category_number": 5},
+  {"post_id": "1ccvyp4", "category_number": 3},
+  {"post_id": "1cc6rp8", "category_number": 3},
+  {"post_id": "1c7nw0c", "category_number": 2},
+  {"post_id": "1c54ssa", "category_number": 3},
+  {"post_id": "1bxnw9q", "category_number": 3},
+  {"post_id": "19btynr", "category_number": 4},
+  {"post_id": "199tofm", "category_number": 2},
+  {"post_id": "1im6dwo", "category_number": 5},
+  {"post_id": "1h5t89l", "category_number": 1},
+  {"post_id": "1h0nx8z", "category_number": 4}
+]
+
+notable_posts.json
+
+[]
+
+Rows 121–140
+
+post_category_map.json
+
+[
+  {"post_id": "1fvgrtr", "category_number": 1},
+  {"post_id": "1ff9eom", "category_number": 5},
+  {"post_id": "1er5r2w", "category_number": 1},
+  {"post_id": "1eqojcd", "category_number": 4},
+  {"post_id": "1enna0x", "category_number": 3},
+  {"post_id": "1echecw", "category_number": 3},
+  {"post_id": "1dylkt4", "category_number": 3},
+  {"post_id": "1dsnh6a", "category_number": 1},
+  {"post_id": "1d8s1ux", "category_number": 3},
+  {"post_id": "1co4649", "category_number": 4},
+  {"post_id": "1ckra26", "category_number": 5},
+  {"post_id": "1bjv5sv", "category_number": 4},
+  {"post_id": "1b9vblh", "category_number": 4},
+  {"post_id": "1b8bg0p", "category_number": 3},
+  {"post_id": "1b4xq4k", "category_number": 5},
+  {"post_id": "1aqsiye", "category_number": 5}
+]
+
+notable_posts.json
+
+[]
+Rows 141–160
+
+post_category_map.json
+
+[
+  {"post_id": "1agt0lj", "category_number": 5},
+  {"post_id": "1aedmh9", "category_number": 3},
+  {"post_id": "1967i69", "category_number": 4},
+  {"post_id": "192svzq", "category_number": 1},
+  {"post_id": "17uhv7m", "category_number": 4},
+  {"post_id": "17rqrk4", "category_number": 4},
+  {"post_id": "1k6si11", "category_number": 2},
+  {"post_id": "1k75hhf", "category_number": 4},
+  {"post_id": "1k7pau9", "category_number": 2},
+  {"post_id": "1k9mxy1", "category_number": 3},
+  {"post_id": "1kb7dja", "category_number": 5},
+  {"post_id": "1ka3rxu", "category_number": 1},
+  {"post_id": "1ka198z", "category_number": 2},
+  {"post_id": "1ka3s3l", "category_number": 1},
+  {"post_id": "1kaoj4o", "category_number": 2},
+  {"post_id": "1ka3s0p", "category_number": 1}
+]
+
+notable_posts.json
+
+[]
+
+Rows 161–180
+
+post_category_map.json
+
+[
+  {"post_id": "1kcgyfh", "category_number": 4},
+  {"post_id": "1kc5dxj", "category_number": 1},
+  {"post_id": "1kcf664", "category_number": 3},
+  {"post_id": "1kda0zr", "category_number": 1},
+  {"post_id": "1kd61cp", "category_number": 3},
+  {"post_id": "1kd3fqs", "category_number": 1},
+  {"post_id": "1kd3f79", "category_number": 1},
+  {"post_id": "1kdhnm6", "category_number": 5},
+  {"post_id": "1kezkuh", "category_number": 1},
+  {"post_id": "1ke2mfm", "category_number": 2},
+  {"post_id": "1kffhci", "category_number": 1},
+  {"post_id": "1ki7dpf", "category_number": 3},
+  {"post_id": "1khwobq", "category_number": 3},
+  {"post_id": "1kh67hn", "category_number": 3},
+  {"post_id": "1kiz9da", "category_number": 2},
+  {"post_id": "1kl33ex", "category_number": 4},
+  {"post_id": "1kkpele", "category_number": 3}
+]
+
+notable_posts.json
+
+[]
+Rows 181–200
+
+post_category_map.json
+
+[
+  {"post_id": "1km3lpk", "category_number": 5},
+  {"post_id": "1klx3a1", "category_number": 4},
+  {"post_id": "1knlyqn", "category_number": 2},
+  {"post_id": "1kmkw7t", "category_number": 2},
+  {"post_id": "1knltvj", "category_number": 2},
+  {"post_id": "1l2xlc1", "category_number": 3},
+  {"post_id": "1kyw54v", "category_number": 5},
+  {"post_id": "1kx2jhk", "category_number": 2},
+  {"post_id": "1kukcgw", "category_number": 1},
+  {"post_id": "1kt41e6", "category_number": 5},
+  {"post_id": "1ksjnhy", "category_number": 3},
+  {"post_id": "1ksc94f", "category_number": 2},
+  {"post_id": "1krdqip", "category_number": 4},
+  {"post_id": "1krbuyq", "category_number": 4},
+  {"post_id": "1kpyugp", "category_number": 4},
+  {"post_id": "1kpwx8c", "category_number": 4},
+  {"post_id": "1kp0iz0", "category_number": 4},
+  {"post_id": "1l2xnfn", "category_number": 3},
+  {"post_id": "1kxs91s", "category_number": 3},
+  {"post_id": "1kx2lbf", "category_number": 2}
+]
+Rows 201–220
+
+post_category_map.json
+
+[
+  {"post_id": "1ksmfml", "category_number": 4},
+  {"post_id": "1l2xnto", "category_number": 3},
+  {"post_id": "1kwn24r", "category_number": 5},
+  {"post_id": "1krdr28", "category_number": 4},
+  {"post_id": "1kv2zuw", "category_number": 4},
+  {"post_id": "1kp4969", "category_number": 5},
+  {"post_id": "1kxt91o", "category_number": 1},
+  {"post_id": "1lbnstb", "category_number": 3},
+  {"post_id": "1l8tux5", "category_number": 4},
+  {"post_id": "1l89k4k", "category_number": 1},
+  {"post_id": "1lepi38", "category_number": 1},
+  {"post_id": "1lel58s", "category_number": 4},
+  {"post_id": "1l9a2o9", "category_number": 2},
+  {"post_id": "1l77kpg", "category_number": 2},
+  {"post_id": "1lgcssk", "category_number": 5},
+  {"post_id": "1lboa9z", "category_number": 1},
+  {"post_id": "1la7wes", "category_number": 1}
+]
+
+notable_posts.json
+
+[]
+
+Rows 221–222
+
+post_category_map.json
+
+[
+  {"post_id": "1lij4py", "category_number": 3},
+  {"post_id": "1ljssf9", "category_number": 5}
+]
+
+notable_posts.json
+
+[]
+
+.

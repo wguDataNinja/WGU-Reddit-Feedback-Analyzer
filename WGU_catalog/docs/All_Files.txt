@@ -1,0 +1,764 @@
+WGU_catalog/lib/anchors.py
+
+# anchors.py
+import re
+
+# Anchors
+ANCHOR_CCN_HEADER = re.compile(r"CCN.*Course Number", re.IGNORECASE)
+ANCHOR_COURSE_CODE = re.compile(r"^[A-Z]{2,4}\s+\d{4}")
+ANCHOR_COURSES_SECTION_BREAK = re.compile(r"^Courses", re.IGNORECASE)
+ANCHOR_PROGRAM_OUTCOMES = re.compile(r"^Program Outcomes$", re.IGNORECASE)
+ANCHOR_SCHOOL_OF = re.compile(r"^School of ", re.IGNORECASE)
+ANCHOR_FOOTER_COPYRIGHT = re.compile(r"©", re.IGNORECASE)
+ANCHOR_FOOTER_TOTAL_CUS = re.compile(r"Total CUs", re.IGNORECASE)
+
+# Filters
+PROGRAM_TITLE_EXCLUDE_PATTERNS = re.compile(r"^(Steps|[0-9]|[•\-])")
+
+# Course row patterns
+PATTERN_CCN_FULL = re.compile(
+    r'^([A-Z]{2,5})\s+(\d{1,4})\s+([A-Z0-9]{2,5})\s+(.+?)\s+(\d+)\s+(\d+)$'
+)
+PATTERN_CODE_ONLY = re.compile(
+    r'^([A-Z0-9]{1,6})\s+(.+?)\s+(\d+)\s+(\d+)$'
+)
+PATTERN_FALLBACK = re.compile(
+    r'^(.+?)\s+(\d+)\s+(\d+)$'
+)
+
+# Registered collections
+ANCHORS = {
+    "CCN_HEADER": ANCHOR_CCN_HEADER,
+    "COURSE_CODE": ANCHOR_COURSE_CODE,
+    "COURSES_SECTION_BREAK": ANCHOR_COURSES_SECTION_BREAK,
+    "PROGRAM_OUTCOMES": ANCHOR_PROGRAM_OUTCOMES,
+    "SCHOOL_OF": ANCHOR_SCHOOL_OF,
+    "FOOTER_COPYRIGHT": ANCHOR_FOOTER_COPYRIGHT,
+    "FOOTER_TOTAL_CUS": ANCHOR_FOOTER_TOTAL_CUS
+}
+
+FILTERS = {
+    "PROGRAM_TITLE_EXCLUDE_PATTERNS": PROGRAM_TITLE_EXCLUDE_PATTERNS
+}
+
+COURSE_PATTERNS = {
+    "CCN_FULL": PATTERN_CCN_FULL,
+    "CODE_ONLY": PATTERN_CODE_ONLY,
+    "FALLBACK": PATTERN_FALLBACK
+}
+
+
+
+WGU-Reddit/WGU_catalog/lib/config.py
+# lib/config.py
+from pathlib import Path
+import json
+
+# Project root: /Users/buddy/Desktop/WGU-Reddit/WGU_catalog
+BASE_DIR = Path(__file__).parent.parent
+
+# Inputs
+TEXT_DIR = BASE_DIR / "data" / "raw_catalog_texts"
+SHARED_DIR = BASE_DIR / "shared"
+
+# Outputs (all under /WGU_catalog/outputs)
+OUTPUTS_DIR = BASE_DIR / "outputs"
+HELPERS_DIR = OUTPUTS_DIR / "helpers"
+PROGRAM_NAMES_DIR = OUTPUTS_DIR / "program_names"
+RAW_ROWS_OUTPUT_DIR = OUTPUTS_DIR / "raw_course_rows"
+ANOMALY_DIR = OUTPUTS_DIR / "anomalies"
+
+# Shared inputs
+SNAPSHOT_COLLEGES_PATH = SHARED_DIR / "college_snapshots.json"
+DEGREE_DUPLICATES_FILE = SHARED_DIR / "degree_duplicates_master.json"
+
+# Generated outputs
+SECTION_INDEX_PATH = HELPERS_DIR / "sections_index_v10.json"
+DEGREE_SNAPSHOTS_OUT_FILE = HELPERS_DIR / "degree_snapshots_v10_seed.json"
+COURSE_INDEX_PATH = HELPERS_DIR / "course_index_v10.json"
+
+# Final CSV outputs
+COURSES_FLAT_CSV = OUTPUTS_DIR / "courses_flat_v10.csv"
+COURSES_WITH_COLLEGE_CSV = OUTPUTS_DIR / "courses_with_college_v10.csv"
+
+# Default test file
+TEST_FILE = TEXT_DIR / "catalog_2017_01.txt"
+
+# Ensure required output directories exist
+for d in [OUTPUTS_DIR, HELPERS_DIR, PROGRAM_NAMES_DIR, RAW_ROWS_OUTPUT_DIR, ANOMALY_DIR]:
+    d.mkdir(parents=True, exist_ok=True)
+
+# Preload shared JSON inputs
+with open(SNAPSHOT_COLLEGES_PATH, "r", encoding="utf-8") as f:
+    COLLEGE_SNAPSHOTS = json.load(f)
+
+with open(DEGREE_DUPLICATES_FILE, "r", encoding="utf-8") as f:
+    DEGREE_DUPLICATES = json.load(f)
+
+
+
+WGU_catalog/lib/snapshot_utils.py
+
+# lib/snapshot_utils.py
+import json
+from pathlib import Path
+from .config import SNAPSHOT_COLLEGES_PATH
+
+def load_snapshot_dict(path: Path) -> dict:
+    """
+    Load a JSON snapshot file into a dict.
+    """
+    with open(path, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def pick_snapshot(date_str: str, snapshots: dict) -> list:
+    """
+    Given a catalog date (YYYY-MM) and a dict of snapshots keyed by version,
+    return the snapshot list for the greatest version <= date_str.
+    """
+    versions = sorted(snapshots.keys())
+    chosen = None
+    for version in versions:
+        if version <= date_str:
+            chosen = version
+    if chosen is None:
+        raise ValueError(f"[FAIL] No snapshot version found for {date_str}")
+    return snapshots[chosen]
+
+def pick_degree_snapshot(catalog_date: str) -> str:
+    """
+    Return the snapshot version string (key) for the greatest college snapshot
+    version <= catalog_date, using the master colleges snapshots file.
+    """
+    college_snapshots = load_snapshot_dict(SNAPSHOT_COLLEGES_PATH)
+    versions = sorted(college_snapshots.keys())
+    chosen = None
+    for version in versions:
+        if version <= catalog_date:
+            chosen = version
+    if chosen is None:
+        raise ValueError(f"[FAIL] No valid College snapshot found for {catalog_date}")
+    return chosen
+
+
+
+
+
+# parse_catalog.py
+from pathlib import Path
+import os
+import json
+import csv
+
+
+from lib.config import (
+    TEXT_DIR,
+    PROGRAM_NAMES_DIR,
+    SNAPSHOT_COLLEGES_PATH,
+    SECTION_INDEX_PATH,
+    DEGREE_DUPLICATES_FILE,
+    DEGREE_SNAPSHOTS_OUT_FILE,
+    COURSE_INDEX_PATH,
+    RAW_ROWS_OUTPUT_DIR,
+    ANOMALY_DIR,
+    COURSES_FLAT_CSV,
+    COURSES_WITH_COLLEGE_CSV,
+    HELPERS_DIR,  # ← add this line
+)
+from lib.anchors import ANCHORS, COURSE_PATTERNS
+from lib.snapshot_utils import load_snapshot_dict, pick_snapshot, pick_degree_snapshot
+
+# Ensure helpers directory exists
+HELPERS_DIR.mkdir(parents=True, exist_ok=True)
+
+
+
+def match_course_row(row: str) -> dict:
+    """
+    Attempts to classify the given course row.
+    Order enforced: CCN_FULL → CODE_ONLY → FALLBACK.
+    """
+    for pattern_name, pattern in COURSE_PATTERNS.items():
+        match = pattern.match(row)
+        if match:
+            return {"matched_pattern": pattern_name, "groups": match.groups()}
+    return None
+
+
+def get_program_section_start(lines: list, valid_colleges: list) -> int:
+    first_ccn_idx = None
+    for i, line in enumerate(lines):
+        if ANCHORS["CCN_HEADER"].search(line):
+            first_ccn_idx = i
+            break
+    if first_ccn_idx is None:
+        raise ValueError("[FAIL] No CCN header found")
+    for j in range(first_ccn_idx, -1, -1):
+        if lines[j].strip() in valid_colleges:
+            return j
+    raise ValueError("[FAIL] No College header found above first CCN")
+
+
+def parse_catalog():
+    outputs = []
+
+    # ----------------------------------------------------------------
+    # Build Verified Degree Fences
+    # ----------------------------------------------------------------
+    sections_index = {}
+    catalog_files = sorted([f for f in os.listdir(TEXT_DIR) if f.endswith('.txt')])
+
+    for FILE_NAME in catalog_files:
+        FILE_PATH = Path(TEXT_DIR) / FILE_NAME
+        parts = FILE_NAME.replace('.txt', '').split('_')[1:]
+        CATALOG_DATE = f"{parts[0]}-{parts[1]}"
+        print(f"\n📅 Processing: {CATALOG_DATE}")
+
+        degree_names_path = Path(PROGRAM_NAMES_DIR) / f"{parts[0]}_{parts[1]}_program_names_v10.json"
+        if not degree_names_path.exists():
+            print(f"❌ No Degree names JSON for {CATALOG_DATE} — skipping.")
+            continue
+
+        with open(degree_names_path, 'r', encoding='utf-8') as f:
+            degree_names = json.load(f)
+        with open(FILE_PATH, 'r', encoding='utf-8') as f:
+            lines = [l.strip() for l in f]
+
+        sections_index.setdefault(CATALOG_DATE, {})
+        for college, programs in degree_names.items():
+            sections_index[CATALOG_DATE].setdefault(college, {})
+            for degree_name in programs:
+                start_idx = None
+                stop_idx = len(lines)
+
+                # 1. Find Degree heading
+                degree_heading_idx = None
+                for i, line in enumerate(lines):
+                    if line == degree_name:
+                        degree_heading_idx = i
+                        break
+                if degree_heading_idx is None:
+                    print(f"⚠️  Degree name not found: {degree_name} in {CATALOG_DATE} ({college})")
+                    continue
+
+                # 2. Forward scan to first CCN_HEADER
+                for j in range(degree_heading_idx, len(lines)):
+                    if ANCHORS['CCN_HEADER'].search(lines[j]):
+                        start_idx = j
+                        break
+                if start_idx is None:
+                    print(f"⚠️  No CCN table found for: {degree_name} in {CATALOG_DATE} ({college})")
+                    continue
+
+                # 3. Find stop fence
+                for k in range(start_idx + 1, len(lines)):
+                    next_line = lines[k].strip()
+                    if next_line in programs and next_line != degree_name:
+                        stop_idx = k
+                        break
+                    if ANCHORS['FOOTER_TOTAL_CUS'].search(next_line) or ANCHORS['FOOTER_COPYRIGHT'].search(next_line):
+                        stop_idx = k
+                        break
+
+                sections_index[CATALOG_DATE][college][degree_name] = [start_idx, stop_idx]
+                print(f"✅ {degree_name}: [{start_idx}, {stop_idx}]")
+
+    # Save sections index
+    with open(SECTION_INDEX_PATH, 'w', encoding='utf-8') as f:
+        json.dump(sections_index, f, indent=2)
+    print(f"\n✅ sections_index_v10.json saved: {SECTION_INDEX_PATH}")
+    outputs.append(str(SECTION_INDEX_PATH))
+
+    # ----------------------------------------------------------------
+    # Build Verified Degree Snapshots
+    # ----------------------------------------------------------------
+    with open(SNAPSHOT_COLLEGES_PATH, 'r', encoding='utf-8') as f:
+        college_snapshots = json.load(f)
+    with open(DEGREE_DUPLICATES_FILE, 'r', encoding='utf-8') as f:
+        degree_duplicates = json.load(f)
+
+    degree_snapshots = {}
+    snapshot_versions = sorted(college_snapshots.keys())
+
+    for program_file in sorted(Path(PROGRAM_NAMES_DIR).glob('*_program_names_v10.json')):
+        catalog_date = program_file.stem.split('_program_names_v10')[0].replace('_', '-')
+        with open(program_file, 'r', encoding='utf-8') as f:
+            program_names = json.load(f)
+
+        snapshot_version = pick_degree_snapshot(catalog_date)
+        canonical_order = college_snapshots[snapshot_version]
+
+        snapshot_unsorted = {}
+        embedded_certificates = set()
+        trailing_certificates = []
+
+        for college_name, degrees in program_names.items():
+            resolved_degrees = []
+            for degree in degrees:
+                d = degree.strip()
+                if d in degree_duplicates:
+                    d = degree_duplicates[d]
+                resolved_degrees.append(d)
+
+            if college_name == "Certificates - Standard Paths":
+                trailing_certificates.extend(resolved_degrees)
+            else:
+                unique_sorted = sorted(set(resolved_degrees))
+                snapshot_unsorted[college_name] = unique_sorted
+                for deg in unique_sorted:
+                    if "Certificate" in deg:
+                        embedded_certificates.add(deg)
+
+        if trailing_certificates:
+            trailing_certificates = sorted(set(trailing_certificates))
+            overlap = embedded_certificates.intersection(trailing_certificates)
+            if overlap:
+                raise ValueError(
+                    f"[FAIL] Overlapping Certificates found in both embedded Colleges and trailing Certificates - Standard Paths for {catalog_date}: {overlap}"
+                )
+            snapshot_unsorted["Certificates - Standard Paths"] = trailing_certificates
+
+        ordered = {}
+        for college in canonical_order:
+            if college in snapshot_unsorted:
+                ordered[college] = snapshot_unsorted[college]
+            else:
+                if college == "Certificates - Standard Paths":
+                    continue
+                raise ValueError(
+                    f"[FAIL] Expected College '{college}' not found in parsed output for {catalog_date} (using snapshot version {snapshot_version})"
+                )
+
+        degree_snapshots[catalog_date] = ordered
+
+    # Save degree snapshots
+    with open(DEGREE_SNAPSHOTS_OUT_FILE, 'w', encoding='utf-8') as f:
+        json.dump(degree_snapshots, f, indent=4, ensure_ascii=False)
+    print(f"\n✅ degree_snapshots_v10_seed.json saved: {DEGREE_SNAPSHOTS_OUT_FILE}")
+    outputs.append(str(DEGREE_SNAPSHOTS_OUT_FILE))
+
+    # ----------------------------------------------------------------
+    # Extract raw course rows & anomalies
+    # ----------------------------------------------------------------
+    for FILE_NAME in sorted(os.listdir(TEXT_DIR)):
+        if not FILE_NAME.endswith('.txt'):
+            continue
+
+        FILE_PATH = Path(TEXT_DIR) / FILE_NAME
+        parts = FILE_NAME.replace('.txt', '').split('_')[1:]
+        date_prefix = f"{parts[0]}_{parts[1]}"
+        catalog_date = f"{parts[0]}-{parts[1]}"
+        print(f"\n📘 Processing: {FILE_NAME} | Catalog Date: {catalog_date}")
+
+        valid_colleges = pick_snapshot(catalog_date, college_snapshots)
+        with open(FILE_PATH, 'r', encoding='utf-8') as f:
+            lines = [l.strip() for l in f]
+
+        start_idx = get_program_section_start(lines, valid_colleges)
+        scan_lines = lines[start_idx:]
+        ccn_indices = [i for i, l in enumerate(scan_lines) if ANCHORS['CCN_HEADER'].search(l)]
+
+        raw_course_rows = []
+        for idx, ai in enumerate(ccn_indices):
+            block_start = ai + 1
+            block_end = len(scan_lines)
+            if idx + 1 < len(ccn_indices):
+                block_end = ccn_indices[idx + 1]
+            for i in range(block_start, block_end):
+                if ANCHORS['FOOTER_TOTAL_CUS'].search(scan_lines[i]) or ANCHORS['FOOTER_COPYRIGHT'].search(scan_lines[i]):
+                    block_end = i
+                    break
+            for i in range(block_start, block_end):
+                line = scan_lines[i].strip()
+                if line:
+                    raw_course_rows.append(line)
+
+        valid_rows = []
+        anomalies = []
+        for row in raw_course_rows:
+            if match_course_row(row):
+                valid_rows.append(row)
+            else:
+                anomalies.append(row)
+
+        raw_out = RAW_ROWS_OUTPUT_DIR / f"{date_prefix}_raw_course_rows_v10.json"
+        anomaly_out = ANOMALY_DIR / f"anomalies_{date_prefix}_v10.json"
+        with open(raw_out, 'w', encoding='utf-8') as f:
+            json.dump(raw_course_rows, f, indent=2)
+        with open(anomaly_out, 'w', encoding='utf-8') as f:
+            json.dump(anomalies, f, indent=2)
+        print(f"✅ Saved raw to {raw_out}")
+        print(f"✅ Saved anomalies to {anomaly_out}")
+        outputs.extend([str(raw_out), str(anomaly_out)])
+
+    # ----------------------------------------------------------------
+    # Generate CSV outputs
+    # ----------------------------------------------------------------
+    with open(COURSE_INDEX_PATH, 'r', encoding='utf-8') as f:
+        course_index = json.load(f)
+
+    with open(COURSES_FLAT_CSV, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=["CourseCode", "CourseName"])
+        writer.writeheader()
+        for ccn, details in course_index.items():
+            writer.writerow({
+                "CourseCode": ccn.strip(),
+                "CourseName": details.get("canonical_title", "").strip()
+            })
+    print(f"✅ {COURSES_FLAT_CSV} saved")
+    outputs.append(str(COURSES_FLAT_CSV))
+
+    with open(COURSES_WITH_COLLEGE_CSV, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=["CourseCode", "CourseName", "Colleges"])
+        writer.writeheader()
+        for ccn, details in course_index.items():
+            colleges = set()
+            for inst in details.get("instances", []):
+                college = inst.get("college", "").strip()
+                if college:
+                    colleges.add(college)
+            writer.writerow({
+                "CourseCode": ccn.strip(),
+                "CourseName": details.get("canonical_title", "").strip(),
+                "Colleges": "; ".join(sorted(colleges))
+            })
+    print(f"✅ {COURSES_WITH_COLLEGE_CSV} saved")
+    outputs.append(str(COURSES_WITH_COLLEGE_CSV))
+
+    return {"success": True, "outputs": outputs}
+
+
+
+
+WGU_catalog/shared/college_snapshots.json
+
+{
+    "2017-01": [
+        "College of Business",
+        "College of Health Professions",
+        "College of Information Technology",
+        "Teachers College"
+    ],
+    "2023-01": [
+        "College of Business",
+        "Leavitt School of Health",
+        "College of Information Technology",
+        "Teachers College"
+    ],
+    ...............
+WGU_catalog/shared/degree_duplicates_master.json
+
+[
+  {
+    "college_name": "College of Business",
+    "raw_degree_name": "Bachelor of Science Business Administration Management",
+    "instance_num": 1,
+    "resolved_name": "Bachelor of Science Business Administration - Management (Marketing Emphasis)",
+    "catalog_dates": [
+      "2020-02",
+      "2020-03",
+      "2020-04"
+    ],
+    "count_in_college": 2
+  },
+  {...........
+
+
+WGU_catalog/parse_catalog.py
+
+
+
+# parse_catalog.py
+from pathlib import Path
+import os
+import json
+import csv
+
+
+from lib.config import (
+    TEXT_DIR,
+    PROGRAM_NAMES_DIR,
+    SNAPSHOT_COLLEGES_PATH,
+    SECTION_INDEX_PATH,
+    DEGREE_DUPLICATES_FILE,
+    DEGREE_SNAPSHOTS_OUT_FILE,
+    COURSE_INDEX_PATH,
+    RAW_ROWS_OUTPUT_DIR,
+    ANOMALY_DIR,
+    COURSES_FLAT_CSV,
+    COURSES_WITH_COLLEGE_CSV,
+    HELPERS_DIR,  # ← add this line
+)
+from lib.anchors import ANCHORS, COURSE_PATTERNS
+from lib.snapshot_utils import load_snapshot_dict, pick_snapshot, pick_degree_snapshot
+
+# Ensure helpers directory exists
+HELPERS_DIR.mkdir(parents=True, exist_ok=True)
+
+
+
+def match_course_row(row: str) -> dict:
+    """
+    Attempts to classify the given course row.
+    Order enforced: CCN_FULL → CODE_ONLY → FALLBACK.
+    """
+    for pattern_name, pattern in COURSE_PATTERNS.items():
+        match = pattern.match(row)
+        if match:
+            return {"matched_pattern": pattern_name, "groups": match.groups()}
+    return None
+
+
+def get_program_section_start(lines: list, valid_colleges: list) -> int:
+    first_ccn_idx = None
+    for i, line in enumerate(lines):
+        if ANCHORS["CCN_HEADER"].search(line):
+            first_ccn_idx = i
+            break
+    if first_ccn_idx is None:
+        raise ValueError("[FAIL] No CCN header found")
+    for j in range(first_ccn_idx, -1, -1):
+        if lines[j].strip() in valid_colleges:
+            return j
+    raise ValueError("[FAIL] No College header found above first CCN")
+
+
+def parse_catalog():
+    outputs = []
+
+    # ----------------------------------------------------------------
+    # Build Verified Degree Fences
+    # ----------------------------------------------------------------
+    sections_index = {}
+    catalog_files = sorted([f for f in os.listdir(TEXT_DIR) if f.endswith('.txt')])
+
+    for FILE_NAME in catalog_files:
+        FILE_PATH = Path(TEXT_DIR) / FILE_NAME
+        parts = FILE_NAME.replace('.txt', '').split('_')[1:]
+        CATALOG_DATE = f"{parts[0]}-{parts[1]}"
+        print(f"\n📅 Processing: {CATALOG_DATE}")
+
+        degree_names_path = Path(PROGRAM_NAMES_DIR) / f"{parts[0]}_{parts[1]}_program_names_v10.json"
+        if not degree_names_path.exists():
+            print(f"❌ No Degree names JSON for {CATALOG_DATE} — skipping.")
+            continue
+
+        with open(degree_names_path, 'r', encoding='utf-8') as f:
+            degree_names = json.load(f)
+        with open(FILE_PATH, 'r', encoding='utf-8') as f:
+            lines = [l.strip() for l in f]
+
+        sections_index.setdefault(CATALOG_DATE, {})
+        for college, programs in degree_names.items():
+            sections_index[CATALOG_DATE].setdefault(college, {})
+            for degree_name in programs:
+                start_idx = None
+                stop_idx = len(lines)
+
+                # 1. Find Degree heading
+                degree_heading_idx = None
+                for i, line in enumerate(lines):
+                    if line == degree_name:
+                        degree_heading_idx = i
+                        break
+                if degree_heading_idx is None:
+                    print(f"⚠️  Degree name not found: {degree_name} in {CATALOG_DATE} ({college})")
+                    continue
+
+                # 2. Forward scan to first CCN_HEADER
+                for j in range(degree_heading_idx, len(lines)):
+                    if ANCHORS['CCN_HEADER'].search(lines[j]):
+                        start_idx = j
+                        break
+                if start_idx is None:
+                    print(f"⚠️  No CCN table found for: {degree_name} in {CATALOG_DATE} ({college})")
+                    continue
+
+                # 3. Find stop fence
+                for k in range(start_idx + 1, len(lines)):
+                    next_line = lines[k].strip()
+                    if next_line in programs and next_line != degree_name:
+                        stop_idx = k
+                        break
+                    if ANCHORS['FOOTER_TOTAL_CUS'].search(next_line) or ANCHORS['FOOTER_COPYRIGHT'].search(next_line):
+                        stop_idx = k
+                        break
+
+                sections_index[CATALOG_DATE][college][degree_name] = [start_idx, stop_idx]
+                print(f"✅ {degree_name}: [{start_idx}, {stop_idx}]")
+
+    # Save sections index
+    with open(SECTION_INDEX_PATH, 'w', encoding='utf-8') as f:
+        json.dump(sections_index, f, indent=2)
+    print(f"\n✅ sections_index_v10.json saved: {SECTION_INDEX_PATH}")
+    outputs.append(str(SECTION_INDEX_PATH))
+
+    # ----------------------------------------------------------------
+    # Build Verified Degree Snapshots
+    # ----------------------------------------------------------------
+    with open(SNAPSHOT_COLLEGES_PATH, 'r', encoding='utf-8') as f:
+        college_snapshots = json.load(f)
+    with open(DEGREE_DUPLICATES_FILE, 'r', encoding='utf-8') as f:
+        degree_duplicates = json.load(f)
+
+    degree_snapshots = {}
+    snapshot_versions = sorted(college_snapshots.keys())
+
+    for program_file in sorted(Path(PROGRAM_NAMES_DIR).glob('*_program_names_v10.json')):
+        catalog_date = program_file.stem.split('_program_names_v10')[0].replace('_', '-')
+        with open(program_file, 'r', encoding='utf-8') as f:
+            program_names = json.load(f)
+
+        snapshot_version = pick_degree_snapshot(catalog_date)
+        canonical_order = college_snapshots[snapshot_version]
+
+        snapshot_unsorted = {}
+        embedded_certificates = set()
+        trailing_certificates = []
+
+        for college_name, degrees in program_names.items():
+            resolved_degrees = []
+            for degree in degrees:
+                d = degree.strip()
+                if d in degree_duplicates:
+                    d = degree_duplicates[d]
+                resolved_degrees.append(d)
+
+            if college_name == "Certificates - Standard Paths":
+                trailing_certificates.extend(resolved_degrees)
+            else:
+                unique_sorted = sorted(set(resolved_degrees))
+                snapshot_unsorted[college_name] = unique_sorted
+                for deg in unique_sorted:
+                    if "Certificate" in deg:
+                        embedded_certificates.add(deg)
+
+        if trailing_certificates:
+            trailing_certificates = sorted(set(trailing_certificates))
+            overlap = embedded_certificates.intersection(trailing_certificates)
+            if overlap:
+                raise ValueError(
+                    f"[FAIL] Overlapping Certificates found in both embedded Colleges and trailing Certificates - Standard Paths for {catalog_date}: {overlap}"
+                )
+            snapshot_unsorted["Certificates - Standard Paths"] = trailing_certificates
+
+        ordered = {}
+        for college in canonical_order:
+            if college in snapshot_unsorted:
+                ordered[college] = snapshot_unsorted[college]
+            else:
+                if college == "Certificates - Standard Paths":
+                    continue
+                raise ValueError(
+                    f"[FAIL] Expected College '{college}' not found in parsed output for {catalog_date} (using snapshot version {snapshot_version})"
+                )
+
+        degree_snapshots[catalog_date] = ordered
+
+    # Save degree snapshots
+    with open(DEGREE_SNAPSHOTS_OUT_FILE, 'w', encoding='utf-8') as f:
+        json.dump(degree_snapshots, f, indent=4, ensure_ascii=False)
+    print(f"\n✅ degree_snapshots_v10_seed.json saved: {DEGREE_SNAPSHOTS_OUT_FILE}")
+    outputs.append(str(DEGREE_SNAPSHOTS_OUT_FILE))
+
+    # ----------------------------------------------------------------
+    # Extract raw course rows & anomalies
+    # ----------------------------------------------------------------
+    for FILE_NAME in sorted(os.listdir(TEXT_DIR)):
+        if not FILE_NAME.endswith('.txt'):
+            continue
+
+        FILE_PATH = Path(TEXT_DIR) / FILE_NAME
+        parts = FILE_NAME.replace('.txt', '').split('_')[1:]
+        date_prefix = f"{parts[0]}_{parts[1]}"
+        catalog_date = f"{parts[0]}-{parts[1]}"
+        print(f"\n📘 Processing: {FILE_NAME} | Catalog Date: {catalog_date}")
+
+        valid_colleges = pick_snapshot(catalog_date, college_snapshots)
+        with open(FILE_PATH, 'r', encoding='utf-8') as f:
+            lines = [l.strip() for l in f]
+
+        start_idx = get_program_section_start(lines, valid_colleges)
+        scan_lines = lines[start_idx:]
+        ccn_indices = [i for i, l in enumerate(scan_lines) if ANCHORS['CCN_HEADER'].search(l)]
+
+        raw_course_rows = []
+        for idx, ai in enumerate(ccn_indices):
+            block_start = ai + 1
+            block_end = len(scan_lines)
+            if idx + 1 < len(ccn_indices):
+                block_end = ccn_indices[idx + 1]
+            for i in range(block_start, block_end):
+                if ANCHORS['FOOTER_TOTAL_CUS'].search(scan_lines[i]) or ANCHORS['FOOTER_COPYRIGHT'].search(scan_lines[i]):
+                    block_end = i
+                    break
+            for i in range(block_start, block_end):
+                line = scan_lines[i].strip()
+                if line:
+                    raw_course_rows.append(line)
+
+        valid_rows = []
+        anomalies = []
+        for row in raw_course_rows:
+            if match_course_row(row):
+                valid_rows.append(row)
+            else:
+                anomalies.append(row)
+
+        raw_out = RAW_ROWS_OUTPUT_DIR / f"{date_prefix}_raw_course_rows_v10.json"
+        anomaly_out = ANOMALY_DIR / f"anomalies_{date_prefix}_v10.json"
+        with open(raw_out, 'w', encoding='utf-8') as f:
+            json.dump(raw_course_rows, f, indent=2)
+        with open(anomaly_out, 'w', encoding='utf-8') as f:
+            json.dump(anomalies, f, indent=2)
+        print(f"✅ Saved raw to {raw_out}")
+        print(f"✅ Saved anomalies to {anomaly_out}")
+        outputs.extend([str(raw_out), str(anomaly_out)])
+
+    # ----------------------------------------------------------------
+    # Generate CSV outputs
+    # ----------------------------------------------------------------
+    with open(COURSE_INDEX_PATH, 'r', encoding='utf-8') as f:
+        course_index = json.load(f)
+
+    with open(COURSES_FLAT_CSV, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=["CourseCode", "CourseName"])
+        writer.writeheader()
+        for ccn, details in course_index.items():
+            writer.writerow({
+                "CourseCode": ccn.strip(),
+                "CourseName": details.get("canonical_title", "").strip()
+            })
+    print(f"✅ {COURSES_FLAT_CSV} saved")
+    outputs.append(str(COURSES_FLAT_CSV))
+
+    with open(COURSES_WITH_COLLEGE_CSV, 'w', newline='', encoding='utf-8') as f:
+        writer = csv.DictWriter(f, fieldnames=["CourseCode", "CourseName", "Colleges"])
+        writer.writeheader()
+        for ccn, details in course_index.items():
+            colleges = set()
+            for inst in details.get("instances", []):
+                college = inst.get("college", "").strip()
+                if college:
+                    colleges.add(college)
+            writer.writerow({
+                "CourseCode": ccn.strip(),
+                "CourseName": details.get("canonical_title", "").strip(),
+                "Colleges": "; ".join(sorted(colleges))
+            })
+    print(f"✅ {COURSES_WITH_COLLEGE_CSV} saved")
+    outputs.append(str(COURSES_WITH_COLLEGE_CSV))
+
+    return {"success": True, "outputs": outputs}
+
+
+
+
+
+
+
+
+
+
+
+

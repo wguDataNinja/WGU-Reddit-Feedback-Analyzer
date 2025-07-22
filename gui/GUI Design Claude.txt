@@ -1,0 +1,1274 @@
+# WGU Reddit Monitoring - Streamlit App Design & Views
+
+## 📱 Overall Design Philosophy
+
+**Academic Dashboard Approach**: Clean, data-driven interface that feels like a research tool rather than social media. Think Tableau meets Reddit, optimized for insights discovery.
+
+**Key Design Principles**:
+- **Mobile-responsive** (many students browse on phones)
+- **Fast loading** with cached queries for large datasets
+- **Intuitive navigation** with clear visual hierarchy
+- **Export capabilities** for academic use (CSV, charts)
+- **Color coding** for colleges and sentiment
+
+---
+
+## 🗂️ Core View Architecture
+
+### 1. **Dashboard (Landing Page)** 📊
+*The command center - high-level insights at a glance*
+
+**Must-Have Components**:
+- **Live Stats Cards**: Total posts, comments, active subreddits, last update
+- **Trending Topics** (last 7/30 days): Word cloud or topic bars
+- **College Activity Breakdown**: Pie chart showing post distribution by WGU college
+- **Help-Seeking Alert**: Count of recent posts flagged as needing help
+- **Subreddit Health Grid**: 51 subreddits with subscriber count, recent activity, growth indicators
+
+**Interactions**:
+- Click any metric to drill down to relevant filtered view
+- Hover for tooltips with trend arrows (↑↓)
+- Date range selector affects all dashboard metrics
+
+---
+
+### 2. **Posts Explorer** 📝
+*Reddit-style browsing with academic filters*
+
+**Layout**: Left sidebar filters + main content feed
+
+**Essential Filters**:
+- **Subreddit** (multi-select dropdown)
+- **Date Range** (calendar picker)
+- **College** (based on course mentions)
+- **Help-Seeking Status** (Yes/No/Unknown)
+- **Sentiment Range** (slider: Very Negative to Very Positive)
+- **Course Mentioned** (searchable dropdown)
+- **Score Threshold** (minimum upvotes)
+- **Post Type** (Text, Link, Image)
+
+**Post Display Cards**:
+```
+[Subreddit Badge] [College Tag] [Help-Seeking Flag]
+Post Title
+Score: ▲123 | Comments: 45 | Sentiment: 😐 Neutral
+Date: 2025-06-20 | Course: C950 (Data Structures)
+[Preview text...]
+[View Comments] [View on Reddit] [Export]
+```
+
+**Sorting Options**: Top, New, Controversial, Most Discussed, Help Priority
+
+---
+
+### 3. **Comments Deep Dive** 💬
+*Unique insights not available on Reddit*
+
+**Special Views**:
+- **High-Value Comments**: Comments with high score-to-parent ratio (hidden gems)
+- **Unanswered Questions**: Posts with low comment-to-score ratios
+- **Expert Responses**: Comments from users with high karma in specific subreddits
+- **Thread Analysis**: Conversation trees with sentiment flow
+
+**Filters**:
+- Parent post filters (inherit from Posts view)
+- Comment score range
+- Comment length (short/medium/long)
+- Response time (how quickly after post)
+
+---
+
+### 4. **Course Intelligence** 🎓
+*Academic-focused content discovery*
+
+**Two-Panel Layout**:
+
+**Left Panel - Course Search**:
+- Search bar with autocomplete
+- Course lifecycle timeline (which years course was offered)
+- Course metadata (CCN, name, college, description)
+
+**Right Panel - Reddit Activity**:
+- Posts mentioning selected course
+- Common discussion themes for that course
+- Sentiment trends over time
+- Related courses (mentioned together)
+
+**College Overview Mode**:
+- Switch to college-level view
+- Compare colleges by discussion volume, sentiment, help-seeking frequency
+- Identify problem courses (high help-seeking, low sentiment)
+
+---
+
+### 5. **Help-Seeking Detection** 🆘
+*NLP-powered academic support insights*
+
+**Priority Queue Layout**:
+- **Urgent**: Recent posts with negative sentiment + question words + course mentions
+- **Unanswered**: Help posts with few/no responses after 24+ hours
+- **Resolved**: Help posts with accepted solutions (high-scoring replies)
+
+**Help Pattern Analysis**:
+- Most common help topics by college
+- Time-of-day patterns (when do students ask for help?)
+- Success rate: what percentage of help posts get meaningful responses?
+- Course difficulty indicators based on help frequency
+
+**Intervention Insights**:
+- Students who frequently ask for help (might need proactive support)
+- Courses generating most help requests
+- Subreddits with best help response rates
+
+---
+
+### 6. **User Profiles & Community** 👥
+*Individual and collective user insights*
+
+**Individual User View**:
+- User lookup (username search)
+- Activity timeline with sentiment curve
+- Posts vs comments ratio
+- Subreddit participation map
+- Help-giving vs help-seeking balance
+
+**Community Patterns**:
+- Most helpful users (high-scoring replies to help posts)
+- User journey analysis (progression through courses/colleges)
+- Cross-subreddit activity patterns
+- New vs veteran user behavior differences
+
+---
+
+### 7. **Topic Modeling & Trends** 📈
+*Advanced NLP insights dashboard*
+
+**Topic Discovery**:
+- Interactive topic model visualization (BERTopic)
+- Topic evolution over time
+- Topic distribution by college/subreddit
+- Emerging topics (new themes in recent posts)
+
+**Sentiment Analysis**:
+- Sentiment trends by subreddit, college, time period
+- Sentiment vs engagement correlation
+- Most positive/negative discussion topics
+- Seasonal sentiment patterns (stress during exam periods?)
+
+---
+
+### 8. **Export & Research Tools** 📤
+*Academic workflow support*
+
+**Data Export Options**:
+- Filtered dataset downloads (CSV, JSON)
+- Visualization exports (PNG, PDF)
+- Citation-ready data summaries
+- API-style query builder for reproducible research
+
+**Research Templates**:
+- Pre-built queries for common research questions
+- Comparative analysis tools (before/after course changes)
+- Statistical summaries with confidence intervals
+
+---
+
+## 🎨 UI/UX Design Specifications
+
+### **Color Scheme**:
+- **Primary**: WGU Blue (#003f7f) for headers and key actions
+- **College Colors**: Distinct colors for each college (IT=blue, Business=green, etc.)
+- **Sentiment Colors**: Red (negative) → Yellow (neutral) → Green (positive)
+- **Help Status**: Orange for help-seeking, Green for resolved
+
+### **Navigation**:
+- **Horizontal top nav** with view icons
+- **Breadcrumb trail** for complex filters
+- **Quick filters bar** that persists across views
+- **Search everything** box in header
+
+### **Responsive Design**:
+- **Desktop**: Multi-column layouts with rich filtering
+- **Tablet**: Collapsible sidebars, touch-friendly controls
+- **Mobile**: Stack layouts, swipe navigation, essential filters only
+
+### **Performance Features**:
+- **Lazy loading** for large datasets
+- **Caching** for expensive queries (topic modeling, user stats)
+- **Progressive enhancement** (basic functionality loads first)
+- **Export limits** to prevent server overload
+
+---
+
+## 🚀 Technical Implementation Notes
+
+### **State Management**:
+- Use `st.session_state` for cross-view filter persistence
+- Cache expensive operations with `@st.cache_data`
+- URL parameters for shareable filtered views
+
+### **Database Optimization**:
+- Pre-aggregate common queries for dashboard
+- Index on frequently filtered columns
+- Consider read replicas for heavy analysis queries
+
+### **NLP Pipeline Integration**:
+- Run sentiment analysis on app startup for recent posts
+- Background processing for topic modeling
+- Real-time help-seeking detection for new posts
+
+---
+
+## 🎯 Success Metrics
+
+**User Engagement**:
+- Time spent in app
+- Views per session
+- Export downloads
+
+**Academic Value**:
+- Insights discovered (help patterns, course issues)
+- Support interventions enabled
+- Research outputs generated
+
+**Technical Performance**:
+- Page load times <3 seconds
+- 99% uptime on Streamlit Cloud
+- Mobile usage percentage
+
+---
+
+Must-Have Views (Priority Order):
+
+Dashboard - Your entry point that immediately shows the value
+Posts Explorer - Core Reddit browsing with academic filters
+Course Intelligence - Unique course-to-discussion mapping
+Help-Seeking Detection - Your key NLP innovation
+Comments Deep Dive - Insights not available anywhere else
+User Profiles - Individual and community patterns
+Topic Modeling - Advanced NLP visualizations
+Export Tools - Academic workflow support
+
+Design Differentiators:
+The app should feel like a research dashboard rather than a social media clone. Key features that set it apart:
+
+Academic focus: Course codes, college classifications, help-seeking detection
+Unique insights: Comment value analysis, expert identification, unanswered questions
+Research-ready: Exportable data, citation support, reproducible queries
+Cross-subreddit intelligence: Patterns across all 51 WGU subreddits simultaneously
+
+Next Steps:
+
+Start with Dashboard + Posts Explorer (core functionality)
+Add Course Intelligence (your unique value proposition)
+Implement Help-Seeking Detection (NLP capstone requirement)
+Layer on advanced features based on time remaining
+
+
+You're absolutely right! Streamlit's multi-page architecture is perfect for this project. Let me show you the proper modular structure:This structure follows Streamlit's best practices for multi-page apps:
+
+## **Key Architecture Points:**
+
+### **1. File Naming Convention**
+- Pages are numbered with emojis: `1_📊_Dashboard.py`
+- Streamlit auto-generates navigation from filenames
+- Numbers control order, emojis make it visually appealing
+
+### **2. Modular Design**
+- **`utils/`** - Pure functions for data processing, NLP, database queries
+- **`components/`** - Reusable UI widgets and layouts
+- **`pages/`** - Individual page logic, imports from utils/components
+
+### **3. State Management**
+- **Session state** for cross-page filter persistence
+- **Caching** for expensive operations (database queries, NLP processing)
+- **Configuration** centralized in `utils/config.py`
+
+### **4. Database Pattern**
+- Single cached connection shared across pages
+- Parameterized queries to prevent SQL injection
+- Separate functions for different query types
+
+## **Benefits of This Structure:**
+
+✅ **Maintainable** - Each page is self-contained but shares common utilities
+✅ **Performant** - Caching prevents redundant database calls
+✅ **Scalable** - Easy to add new pages or modify existing ones
+✅ **Professional** - Clean separation of concerns
+✅ **Deployable** - Works perfectly with Streamlit Community Cloud
+
+## **Development Workflow:**
+
+1. **Start with `app.py`** - Your landing page and global setup
+2. **Build core utilities** - Database connections, basic queries
+3. **Create one page at a time** - Start with Dashboard, then Posts Explorer
+4. **Extract common patterns** - Move reusable code to `components/`
+5. **Add advanced features** - NLP analysis, complex visualizations
+
+## **Pro Tips:**
+
+- **Use descriptive page names** - Users see them in the sidebar
+- **Cache everything expensive** - Database queries, NLP processing
+- **Keep pages focused** - Each page should have one clear purpose
+- **Test modularly** - Each util function should work independently
+
+# Streamlit Multi-Page App Structure for WGU Reddit Monitoring
+# This shows the proper modular architecture
+
+"""
+📁 Project Structure:
+WGU-Reddit/
+├── app.py                          # Main entry point
+├── requirements.txt                # Dependencies
+├── .streamlit/
+│   └── config.toml                # App configuration
+├── pages/                         # All page modules
+│   ├── 1_📊_Dashboard.py         # Landing page
+│   ├── 2_📝_Posts_Explorer.py    # Posts browsing
+│   ├── 3_🎓_Course_Intelligence.py # Course analysis
+│   ├── 4_🆘_Help_Seeking.py      # Help detection
+│   ├── 5_💬_Comments_Deep_Dive.py # Comments analysis
+│   ├── 6_👥_User_Profiles.py     # User insights
+│   ├── 7_📈_Topic_Trends.py      # NLP analysis
+│   └── 8_📤_Export_Tools.py      # Data export
+├── utils/                         # Shared utilities
+│   ├── __init__.py
+│   ├── database.py               # DB connection & queries
+│   ├── nlp_analysis.py          # NLP functions
+│   ├── data_processing.py       # Data cleaning/processing
+│   ├── visualizations.py        # Chart functions
+│   └── config.py                # App configuration
+├── components/                    # Reusable UI components
+│   ├── __init__.py
+│   ├── filters.py               # Common filter widgets
+│   ├── cards.py                 # Info cards
+│   ├── charts.py                # Chart components
+│   └── export.py                # Export functions
+├── db/
+│   └── WGU-Reddit.db            # SQLite database
+└── data/
+    ├── all_course_codes_cleaned.csv
+    └── ccn-college-mappings.json
+"""
+
+# =====================================
+# app.py - Main Entry Point
+# =====================================
+
+import streamlit as st
+import sys
+import os
+
+# Add project root to Python path
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+from utils.config import APP_CONFIG
+from utils.database import init_database_connection
+from components.filters import initialize_session_state
+
+# Configure page
+st.set_page_config(
+    page_title="WGU Reddit Monitoring",
+    page_icon="🎓",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
+
+# Initialize app state
+initialize_session_state()
+
+# Initialize database connection
+@st.cache_resource
+def get_database_connection():
+    return init_database_connection()
+
+# Store DB connection in session state
+if 'db_conn' not in st.session_state:
+    st.session_state.db_conn = get_database_connection()
+
+# =====================================
+# Main App Content (Home Page)
+# =====================================
+
+def main():
+    st.title("🎓 WGU Reddit Monitoring & Analysis")
+    st.markdown("---")
+
+    # Welcome section
+    st.markdown("""
+    ## Welcome to the WGU Reddit Intelligence Dashboard
+
+    This application provides comprehensive analysis of discussions across 51 WGU-related subreddits,
+    offering unique insights into student help-seeking behavior, course-specific issues, and academic trends.
+
+    ### 🗂️ Navigate Using the Sidebar
+    Use the sidebar to explore different aspects of the WGU Reddit community:
+    """)
+
+    # Feature overview
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.markdown("""
+        **📊 Dashboard** - Overview and key metrics
+
+        **📝 Posts Explorer** - Browse and filter discussions
+
+        **🎓 Course Intelligence** - Course-specific analysis
+
+        **🆘 Help-Seeking Detection** - NLP-powered support insights
+        """)
+
+    with col2:
+        st.markdown("""
+        **💬 Comments Deep Dive** - Hidden conversation gems
+
+        **👥 User Profiles** - Community member insights
+
+        **📈 Topic & Trends** - NLP topic modeling
+
+        **📤 Export Tools** - Research data downloads
+        """)
+
+    # Quick stats
+    st.markdown("---")
+    st.markdown("### 📈 Quick Stats")
+
+    # This would be populated with actual data
+    metric_col1, metric_col2, metric_col3, metric_col4 = st.columns(4)
+
+    with metric_col1:
+        st.metric("Subreddits Monitored", "51")
+
+    with metric_col2:
+        st.metric("Total Posts", "17,343")
+
+    with metric_col3:
+        st.metric("Total Comments", "81,104")
+
+    with metric_col4:
+        st.metric("Users Tracked", "19,404")
+
+if __name__ == "__main__":
+    main()
+
+# =====================================
+# utils/config.py - Configuration
+# =====================================
+
+import os
+from pathlib import Path
+
+# Project paths
+PROJECT_ROOT = Path(__file__).parent.parent
+DB_PATH = PROJECT_ROOT / "db" / "WGU-Reddit.db"
+DATA_PATH = PROJECT_ROOT / "data"
+
+# App configuration
+APP_CONFIG = {
+    "title": "WGU Reddit Monitoring",
+    "description": "Comprehensive analysis of WGU Reddit discussions",
+    "version": "1.0.0",
+    "database_path": str(DB_PATH),
+    "data_path": str(DATA_PATH),
+    "page_size": 50,  # Default pagination
+    "cache_ttl": 3600,  # Cache time-to-live in seconds
+}
+
+# College color mapping
+COLLEGE_COLORS = {
+    "IT": "#2E86AB",
+    "Business": "#A23B72",
+    "Education": "#F18F01",
+    "Health": "#C73E1D",
+    "Nursing": "#92140C",
+    "General": "#6C757D"
+}
+
+# Sentiment colors
+SENTIMENT_COLORS = {
+    "positive": "#28a745",
+    "neutral": "#ffc107",
+    "negative": "#dc3545"
+}
+
+# =====================================
+# utils/database.py - Database Functions
+# =====================================
+
+import sqlite3
+import pandas as pd
+import streamlit as st
+from typing import Optional, Dict, Any
+from .config import APP_CONFIG
+
+@st.cache_resource
+def init_database_connection():
+    """Initialize database connection with proper configuration."""
+    try:
+        conn = sqlite3.connect(
+            APP_CONFIG["database_path"],
+            check_same_thread=False
+        )
+        conn.row_factory = sqlite3.Row  # Enable dict-like access
+        return conn
+    except Exception as e:
+        st.error(f"Database connection failed: {e}")
+        return None
+
+@st.cache_data(ttl=APP_CONFIG["cache_ttl"])
+def get_subreddit_stats():
+    """Get overview statistics for all subreddits."""
+    conn = st.session_state.db_conn
+    if not conn:
+        return pd.DataFrame()
+
+    query = """
+    SELECT
+        s.name,
+        s.display_name,
+        s.subscribers,
+        COUNT(DISTINCT p.id) as post_count,
+        COUNT(DISTINCT c.id) as comment_count,
+        MAX(p.created_utc) as last_post_date
+    FROM subreddits s
+    LEFT JOIN posts p ON s.id = p.subreddit_id
+    LEFT JOIN comments c ON p.id = c.post_id
+    GROUP BY s.id, s.name, s.display_name, s.subscribers
+    ORDER BY s.subscribers DESC
+    """
+
+    return pd.read_sql_query(query, conn)
+
+@st.cache_data(ttl=APP_CONFIG["cache_ttl"])
+def get_posts_with_filters(
+    subreddit_ids: Optional[list] = None,
+    date_range: Optional[tuple] = None,
+    min_score: int = 0,
+    limit: int = 50,
+    offset: int = 0
+) -> pd.DataFrame:
+    """Get posts with various filters applied."""
+    conn = st.session_state.db_conn
+    if not conn:
+        return pd.DataFrame()
+
+    # Build dynamic query
+    conditions = ["1=1"]  # Always true condition
+    params = []
+
+    if subreddit_ids:
+        placeholders = ",".join("?" * len(subreddit_ids))
+        conditions.append(f"p.subreddit_id IN ({placeholders})")
+        params.extend(subreddit_ids)
+
+    if date_range:
+        conditions.append("p.created_utc BETWEEN ? AND ?")
+        params.extend(date_range)
+
+    if min_score > 0:
+        conditions.append("p.score >= ?")
+        params.append(min_score)
+
+    where_clause = " AND ".join(conditions)
+
+    query = f"""
+    SELECT
+        p.id,
+        p.title,
+        p.selftext,
+        p.score,
+        p.num_comments,
+        p.created_utc,
+        p.author,
+        p.url,
+        p.flair_text,
+        s.display_name as subreddit_name
+    FROM posts p
+    JOIN subreddits s ON p.subreddit_id = s.id
+    WHERE {where_clause}
+    ORDER BY p.created_utc DESC
+    LIMIT ? OFFSET ?
+    """
+
+    params.extend([limit, offset])
+    return pd.read_sql_query(query, conn, params=params)
+
+# =====================================
+# components/filters.py - Reusable Filters
+# =====================================
+
+import streamlit as st
+from datetime import datetime, timedelta
+from utils.database import get_subreddit_stats
+
+def initialize_session_state():
+    """Initialize session state variables."""
+    if 'selected_subreddits' not in st.session_state:
+        st.session_state.selected_subreddits = []
+
+    if 'date_range' not in st.session_state:
+        st.session_state.date_range = (
+            datetime.now() - timedelta(days=30),
+            datetime.now()
+        )
+
+    if 'min_score' not in st.session_state:
+        st.session_state.min_score = 0
+
+def render_common_filters():
+    """Render common filters in sidebar."""
+    st.sidebar.header("🔍 Filters")
+
+    # Subreddit filter
+    subreddit_df = get_subreddit_stats()
+    if not subreddit_df.empty:
+        subreddit_options = subreddit_df['display_name'].tolist()
+        selected_subreddits = st.sidebar.multiselect(
+            "Select Subreddits",
+            options=subreddit_options,
+            default=st.session_state.selected_subreddits,
+            key="subreddit_filter"
+        )
+        st.session_state.selected_subreddits = selected_subreddits
+
+    # Date range filter
+    date_range = st.sidebar.date_input(
+        "Date Range",
+        value=st.session_state.date_range,
+        key="date_range_filter"
+    )
+    if len(date_range) == 2:
+        st.session_state.date_range = date_range
+
+    # Score filter
+    min_score = st.sidebar.slider(
+        "Minimum Score",
+        min_value=0,
+        max_value=100,
+        value=st.session_state.min_score,
+        key="score_filter"
+    )
+    st.session_state.min_score = min_score
+
+    return {
+        'subreddits': selected_subreddits,
+        'date_range': date_range,
+        'min_score': min_score
+    }
+
+# =====================================
+# components/cards.py - UI Components
+# =====================================
+
+import streamlit as st
+from datetime import datetime
+
+def render_post_card(post_data):
+    """Render a single post as a card."""
+    with st.container():
+        # Post header
+        col1, col2, col3 = st.columns([3, 1, 1])
+
+        with col1:
+            st.markdown(f"**{post_data['title']}**")
+            st.caption(f"r/{post_data['subreddit_name']} • {post_data['author']}")
+
+        with col2:
+            st.metric("Score", post_data['score'])
+
+        with col3:
+            st.metric("Comments", post_data['num_comments'])
+
+        # Post content preview
+        if post_data['selftext']:
+            preview = post_data['selftext'][:200] + "..." if len(post_data['selftext']) > 200 else post_data['selftext']
+            st.markdown(preview)
+
+        # Post metadata
+        col1, col2, col3 = st.columns(3)
+
+        with col1:
+            created_date = datetime.fromtimestamp(post_data['created_utc'])
+            st.caption(f"📅 {created_date.strftime('%Y-%m-%d %H:%M')}")
+
+        with col2:
+            if post_data['flair_text']:
+                st.caption(f"🏷️ {post_data['flair_text']}")
+
+        with col3:
+            if st.button("View Details", key=f"view_{post_data['id']}"):
+                st.session_state.selected_post_id = post_data['id']
+
+        st.markdown("---")
+
+def render_metric_card(title, value, delta=None, help_text=None):
+    """Render a metric card with optional delta and help text."""
+    st.metric(
+        label=title,
+        value=value,
+        delta=delta,
+        help=help_text
+    )
+
+# =====================================
+# Example Page: pages/1_📊_Dashboard.py
+# =====================================
+
+import streamlit as st
+import pandas as pd
+from utils.database import get_subreddit_stats, get_posts_with_filters
+from components.filters import render_common_filters
+from components.cards import render_metric_card
+
+st.set_page_config(
+    page_title="Dashboard - WGU Reddit Monitoring",
+    page_icon="📊",
+    layout="wide"
+)
+
+def main():
+    st.title("📊 WGU Reddit Dashboard")
+    st.markdown("Overview of WGU Reddit community activity and trends")
+
+    # Render common filters
+    filters = render_common_filters()
+
+    # Main content
+    col1, col2, col3, col4 = st.columns(4)
+
+    with col1:
+        render_metric_card("Total Subreddits", "51")
+
+    with col2:
+        render_metric_card("Active Users", "19,404", delta="164", help_text="New users this week")
+
+    with col3:
+        render_metric_card("Total Posts", "17,343", delta="130", help_text="New posts today")
+
+    with col4:
+        render_metric_card("Total Comments", "81,104", delta="333", help_text="New comments today")
+
+    # Subreddit overview
+    st.markdown("## 📊 Subreddit Overview")
+
+    subreddit_df = get_subreddit_stats()
+    if not subreddit_df.empty:
+        st.dataframe(
+            subreddit_df,
+            use_container_width=True,
+            column_config={
+                "name": "Subreddit",
+                "subscribers": st.column_config.NumberColumn("Subscribers", format="%d"),
+                "post_count": st.column_config.NumberColumn("Posts", format="%d"),
+                "comment_count": st.column_config.NumberColumn("Comments", format="%d")
+            }
+        )
+
+if __name__ == "__main__":
+    main()
+
+# =====================================
+# requirements.txt
+# =====================================
+
+"""
+streamlit>=1.28.0
+pandas>=2.0.0
+sqlite3  # Built into Python
+plotly>=5.15.0
+wordcloud>=1.9.0
+scikit-learn>=1.3.0
+vaderSentiment>=3.3.2
+bertopic>=0.15.0
+nltk>=3.8.0
+textblob>=0.17.1
+"""
+
+# =====================================
+# .streamlit/config.toml
+# =====================================
+
+"""
+[theme]
+primaryColor = "#003f7f"  # WGU Blue
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f0f2f6"
+textColor = "#262730"
+
+[server]
+headless = true
+port = 8501
+enableCORS = false
+enableXsrfProtection = false
+
+[browser]
+gatherUsageStats = false
+"""
+
+This streamlined checklist focuses on getting a **beautiful, shareable MVP** using your existing data without getting bogged down in advanced analytics.
+
+## **Key Decisions Made:**
+
+### **🎯 Core Pages (5 total)**:
+1. **Landing** - Project overview and navigation
+2. **Subreddit Overview** - Browse your 51 monitored subreddits
+3. **Posts Browser** - Reddit-style browsing with filters
+4. **User Activity** - User profiles and patterns
+5. **Course Mentions** - Show off your course extraction work
+
+### **📊 Data Requirements**:
+- **No NLP needed yet** - Just basic SQL aggregations
+- **Use existing database** - Posts, comments, users, subreddits tables
+- **Simple regex** - For course code extraction (you already have the mappings)
+
+### **🚀 Development Strategy**:
+1. **Jupyter notebooks first** - Test all SQL queries and data processing
+2. **Component-by-component** - Build reusable UI pieces
+3. **Page-by-page** - Get each page working individually
+4. **Deploy early** - Get feedback while developing
+
+## **Why This Works:**
+
+✅ **Showcases your existing work** - 17K posts, 81K comments, 51 subreddits
+✅ **Demonstrates technical skills** - Multi-page Streamlit app, database queries
+✅ **Visual impact** - Charts, filters, clean UI
+✅ **Shareable immediately** - No need to wait for advanced NLP
+✅ **Foundation for capstone** - Easy to add sentiment analysis, topic modeling later
+
+## **Next Steps:**
+
+1. **Start with Jupyter notebooks** - Test the SQL queries I provided
+2. **Build the file structure** - Create the basic folders and files
+3. **Develop page by page** - Landing → Subreddit Overview → Posts Browser
+4. **Deploy when 3 pages work** - Get feedback early
+5. **Polish and add remaining pages**
+
+This gives you a **professional-looking demo** in 2-3 weeks that showcases your data pipeline work and sets up the foundation for your advanced capstone features!
+
+# 🚀 Streamlit MVP - Core Pages Development Checklist
+
+*Goal: Beautiful, shareable GUI using existing data - no advanced NLP required yet*
+
+---
+
+## 📋 Development Priority Order
+
+### **Phase 1: Foundation (Week 1)**
+Get basic structure working and deployable
+
+### **Phase 2: Core Content (Week 2)**
+Add the essential pages with real data
+
+### **Phase 3: Polish & Deploy (Week 3)**
+Make it beautiful and share-ready
+
+---
+
+## 🗂️ Required Pages (Simplified)
+
+### **✅ 1. Landing Page** (`app.py`)
+**Purpose**: Welcome + navigation overview
+**Complexity**: ⭐ Easy
+**Data Required**: Static metrics from database
+
+**Checklist**:
+- [ ] Clean welcome message explaining the project
+- [ ] 4 key metric cards (total posts, comments, users, subreddits)
+- [ ] Navigation guide with page descriptions
+- [ ] Last updated timestamp
+- [ ] Link to GitHub repo
+
+**Jupyter Prep**:
+```python
+# Get basic counts from database
+SELECT COUNT(*) FROM posts;
+SELECT COUNT(*) FROM comments;
+SELECT COUNT(*) FROM users;
+SELECT COUNT(*) FROM subreddits;
+```
+
+---
+
+### **✅ 2. Subreddit Overview** (`pages/1_📊_Subreddit_Overview.py`)
+**Purpose**: Browse the 51 monitored subreddits
+**Complexity**: ⭐⭐ Medium
+**Data Required**: Subreddit stats aggregation
+
+**Checklist**:
+- [ ] Sortable table of all 51 subreddits
+- [ ] Columns: Name, Subscribers, Posts, Comments, Activity Score
+- [ ] Click subreddit → filter to that subreddit's content
+- [ ] Simple bar chart: Top 10 subreddits by activity
+- [ ] Search/filter subreddits by name
+
+**Jupyter Prep**:
+```sql
+-- Create subreddit summary view
+SELECT
+    s.display_name,
+    s.subscribers,
+    COUNT(DISTINCT p.id) as total_posts,
+    COUNT(DISTINCT c.id) as total_comments,
+    (COUNT(DISTINCT p.id) + COUNT(DISTINCT c.id)) as activity_score,
+    MAX(p.created_utc) as last_post_date
+FROM subreddits s
+LEFT JOIN posts p ON s.id = p.subreddit_id
+LEFT JOIN comments c ON p.id = c.post_id
+GROUP BY s.id
+ORDER BY activity_score DESC;
+```
+
+---
+
+### **✅ 3. Posts Browser** (`pages/2_📝_Posts_Browser.py`)
+**Purpose**: Reddit-style post browsing with filters
+**Complexity**: ⭐⭐⭐ Hard
+**Data Required**: Posts with metadata
+
+**Checklist**:
+- [ ] **Filters sidebar**: Subreddit, Date range, Min score, Author
+- [ ] **Post cards**: Title, author, subreddit, score, comments, date
+- [ ] **Pagination**: 25 posts per page
+- [ ] **Sorting**: New, Top, Most Commented
+- [ ] **Post preview**: First 200 chars of selftext
+- [ ] **External links**: "View on Reddit" button
+
+**Jupyter Prep**:
+```sql
+-- Test posts query with filters
+SELECT
+    p.title,
+    p.author,
+    p.score,
+    p.num_comments,
+    p.created_utc,
+    p.selftext,
+    p.url,
+    p.flair_text,
+    s.display_name as subreddit
+FROM posts p
+JOIN subreddits s ON p.subreddit_id = s.id
+WHERE p.created_utc > strftime('%s', 'now', '-30 days')
+ORDER BY p.score DESC
+LIMIT 25;
+```
+
+---
+
+### **✅ 4. User Activity** (`pages/3_👥_User_Activity.py`)
+**Purpose**: User profiles and activity patterns
+**Complexity**: ⭐⭐ Medium
+**Data Required**: User stats and activity timelines
+
+**Checklist**:
+- [ ] **User search**: Lookup by username
+- [ ] **User profile card**: Total posts, comments, karma, join date
+- [ ] **Activity timeline**: Posts/comments over time (simple line chart)
+- [ ] **Top users table**: Most active, highest karma
+- [ ] **Participation map**: Which subreddits they're active in
+
+**Jupyter Prep**:
+```sql
+-- User activity summary
+SELECT
+    u.username,
+    COUNT(DISTINCT p.id) as total_posts,
+    COUNT(DISTINCT c.id) as total_comments,
+    u.post_karma + u.comment_karma as total_karma,
+    MIN(p.created_utc) as first_post_date
+FROM users u
+LEFT JOIN posts p ON u.username = p.author
+LEFT JOIN comments c ON u.username = c.author
+GROUP BY u.username
+ORDER BY total_karma DESC
+LIMIT 50;
+```
+
+---
+
+### **✅ 5. Course Mentions** (`pages/4_🎓_Course_Mentions.py`)
+**Purpose**: Show your course code extraction working
+**Complexity**: ⭐⭐ Medium
+**Data Required**: Posts with course codes extracted
+
+**Checklist**:
+- [ ] **Course search**: Find posts mentioning specific courses
+- [ ] **Course info card**: Course name, college, description
+- [ ] **Posts mentioning course**: Filtered post list
+- [ ] **Popular courses**: Bar chart of most mentioned courses
+- [ ] **College breakdown**: Pie chart of posts by college
+
+**Jupyter Prep**:
+```python
+# Extract course codes from post titles/text using regex
+import re
+
+course_pattern = r'\b[A-Z]{1,4}\d{3,4}\b'  # Matches C950, IT315, etc.
+
+# Test on sample posts
+posts_with_courses = []
+for post in sample_posts:
+    courses = re.findall(course_pattern, post['title'] + ' ' + post['selftext'])
+    if courses:
+        posts_with_courses.append({
+            'post_id': post['id'],
+            'courses': courses,
+            'title': post['title']
+        })
+```
+
+---
+
+## 🎨 UI Components Needed
+
+### **📊 Charts & Visualizations**
+- [ ] **Metric cards** (4 key stats)
+- [ ] **Bar charts** (subreddit activity, popular courses)
+- [ ] **Pie charts** (college distribution)
+- [ ] **Line charts** (user activity over time)
+- [ ] **Data tables** (sortable, filterable)
+
+### **🔧 Reusable Components**
+- [ ] **Post card** component
+- [ ] **User card** component
+- [ ] **Filter sidebar** component
+- [ ] **Pagination** component
+- [ ] **Search box** component
+
+---
+
+## 📁 File Structure (Minimal)
+
+```
+WGU-Reddit/
+├── app.py                          # Landing page
+├── requirements.txt
+├── .streamlit/config.toml
+├── pages/
+│   ├── 1_📊_Subreddit_Overview.py
+│   ├── 2_📝_Posts_Browser.py
+│   ├── 3_👥_User_Activity.py
+│   └── 4_🎓_Course_Mentions.py
+├── utils/
+│   ├── database.py                 # DB queries
+│   ├── processing.py               # Data cleaning
+│   └── config.py                   # Settings
+├── components/
+│   ├── charts.py                   # Chart functions
+│   ├── cards.py                    # UI components
+│   └── filters.py                  # Filter widgets
+└── db/
+    └── WGU-Reddit.db              # Your existing DB
+```
+
+---
+
+## 🚀 Deployment Checklist
+
+### **📦 Pre-Deploy**
+- [ ] Test all pages load without errors
+- [ ] Add `requirements.txt` with exact versions
+- [ ] Create `.streamlit/config.toml` with theme
+- [ ] Add GitHub repository link in app
+- [ ] Test with sample/subset of data if DB is too large
+
+### **🌐 GitHub & Streamlit Cloud**
+- [ ] Push to GitHub repository
+- [ ] Connect Streamlit Cloud to GitHub repo
+- [ ] Deploy and test live URL
+- [ ] Share URL for feedback
+
+---
+
+## 💡 Quick Wins for Visual Appeal
+
+### **🎨 Styling**
+- [ ] Use WGU blue color scheme (`#003f7f`)
+- [ ] Add emojis to page titles and metrics
+- [ ] Consistent spacing and containers
+- [ ] Loading spinners for slow queries
+
+### **📱 User Experience**
+- [ ] Mobile-responsive layouts
+- [ ] Helpful tooltips and descriptions
+- [ ] Error handling for empty data
+- [ ] "Last updated" timestamps
+
+---
+
+## ⚡ Development Tips
+
+1. **Start with static data** - Hard-code some values first, then connect to DB
+2. **One page at a time** - Get each page working before moving to next
+3. **Use st.cache_data** - Cache expensive database queries
+4. **Test locally first** - `streamlit run app.py` before deploying
+5. **Keep it simple** - No advanced NLP needed for MVP
+
+---
+
+## 🎯 Success Criteria
+
+**MVP is ready when**:
+- ✅ All 5 pages load without errors
+- ✅ Real data displays correctly
+- ✅ Filters and navigation work
+- ✅ Looks professional and polished
+- ✅ Deploys successfully to Streamlit Cloud
+- ✅ Shareable URL works for feedback
+
+**Estimated Timeline**: 2-3 weeks for full MVP
+
+
+
+How to organize current project:
+
+Here’s a clean and organized directory structure recommendation for your WGU-Reddit project. It separates source code, notebooks, reports, data, and deployment assets while aligning with Streamlit app best practices.
+
+⸻
+
+✅ Suggested Clean Directory Structure
+
+WGU-Reddit/
+├── app.py
+├── requirements.txt
+├── README.md
+├── .streamlit/
+│   └── config.toml
+│
+├── pages/                         # Streamlit pages
+│   ├── 1_📊_Subreddit_Overview.py
+│   ├── 2_📝_Posts_Browser.py
+│   └── ...
+│
+├── components/                    # Reusable UI pieces
+│   ├── cards.py
+│   ├── charts.py
+│   ├── filters.py
+│   └── __init__.py
+│
+├── utils/                         # App-level helper functions
+│   ├── config.py
+│   ├── database.py
+│   ├── processing.py
+│   └── __init__.py
+│
+├── data/                          # Static data files
+│   ├── wgu_subreddits.csv
+│   ├── college_keywords.json
+│   ├── course_mappings.csv
+│   └── WGU_catalog/              # All catalog/code logic
+│       ├── all_course_codes.csv
+│       ├── catalog_*.txt
+│       ├── course_lists_by_year.json
+│       ├── *.py                  # Catalog parsing scripts
+│
+├── db/                            # DB + DB-related scripts
+│   ├── WGU-Reddit.db
+│   ├── schema.sql
+│   ├── inspect_db.py
+│   └── setup.py
+│
+├── reports/                       # Visual reports & CSVs
+│   ├── *.csv
+│   ├── *.png
+│   ├── *.py                      # Scripts generating reports
+│
+├── fetchers/                      # Reddit data fetching scripts
+│   ├── fetch_*.py
+│   ├── helpers.py
+│   └── __init__.py
+│
+├── scripts/                       # Scheduled or CLI scripts
+│   ├── daily_update.py
+│   ├── delete_24hr_posts.py
+│   ├── combine_files.py
+│   └── cron_job.txt
+│
+├── notebooks/                     # Exploratory notebooks
+│   ├── explore_*.ipynb
+│   └── update_course_codes.ipynb
+│
+├── dev/                           # Planning, logs, and drafts
+│   ├── *.txt
+│   ├── GUI_Dev/
+│
+├── logs/
+│   └── daily_update.log
+│
+└── generate_dir_tree.py           # Tree generator (keep or move to scripts/)
+
+
+⸻
+
+🧹 Move Recommendations
+
+Current File/Folder	Move To
+Reports/	reports/
+Claude_inspect.py in db/	Move to scripts/ or dev/
+app copy.py	Delete or archive in dev/
+log.md	logs/ or dev/
+dev/	Clean: move anything essential to root, else archive
+GUI Design Claude.txt in gui/	Move to dev/GUI_Dev/
+generate_dir_tree.py	scripts/ or root
+
+
+⸻
+
+🧠 Tips
+	•	🔒 Avoid pushing large .db files to GitHub. Add to .gitignore unless you’re sharing a demo DB.
+	•	💾 Back up all .txt, .md, .csv, and .db files before reorganizing.
+	•	🔗 Use Path in config.py to abstract all file paths (already partially done).
+	•	✅ After reorganizing, test app with streamlit run app.py.
+
+Totally normal — everyone does this at some point during big projects. But piling up /.old/ folders can become a mess fast.
+
+Here’s a cleaner, safer way to manage that instinct without cluttering your project root:
+
+⸻
+
+✅ Recommended Approach: Create a Single Archive Folder
+
+Instead of multiple .old/, create:
+
+WGU-Reddit/
+└── archive/
+    ├── app_old_versions/
+    ├── deprecated_scripts/
+    ├── unused_notebooks/
+    └── notes_unused/
+
+Then:
+
+🔁 Move Your Old Stuff There
+	•	app copy.py → archive/app_old_versions/app_copy.py
+	•	Claude_inspect.py → archive/deprecated_scripts/Claude_inspect.py
+	•	generate_dir_tree.py (if no longer used) → archive/deprecated_scripts/
+	•	Random text drafts (e.g. cron_job.txt, GUI notes) → archive/notes_unused/
+
+⸻
+
+🧹 Benefits
+	•	✅ Keeps root clean
+	•	✅ Still safe — nothing is deleted
+	•	✅ Git-friendly — you can ignore/archive it easily
+
+⸻
+
+🛡 Optional: Add to .gitignore
+
+To avoid pushing it to GitHub:
+
+# .gitignore
+/archive/
+
+Or track it separately in a backup branch.
+
+⸻
+
+Would you like a quick script to move .old folders and rename/move their contents to archive/?
+
+
+
+
+

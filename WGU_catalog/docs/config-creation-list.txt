@@ -1,0 +1,125 @@
+Here’s your updated checklist with all gaps filled and everything organized for clarity:
+
+⸻
+
+✅ Config Refactor Checklist
+
+1. Hardcoded Paths → Config Imports
+
+Replace hardcoded paths with constants from lib.config, including:
+	•	TEXT_DIR, TEST_FILE
+	•	SNAPSHOT_COLLEGES_PATH, DEGREE_DUPLICATES_FILE
+	•	PROGRAM_NAMES_DIR, HELPERS_DIR, RAW_ROWS_OUTPUT_DIR, ANOMALY_DIR
+	•	SECTION_INDEX_PATH, DEGREE_SNAPSHOTS_OUT_FILE, COURSE_INDEX_PATH
+	•	COURSES_FLAT_CSV, COURSES_WITH_COLLEGE_CSV
+
+⸻
+
+2. Manual File Loads → Use Preloaded Variables
+
+Instead of:
+
+with open(SNAPSHOT_COLLEGES_PATH) as f:
+    college_snapshots = json.load(f)
+
+Use:
+
+from lib.config import COLLEGE_SNAPSHOTS
+
+Same for:
+
+from lib.config import DEGREE_DUPLICATES
+
+
+⸻
+
+3. Remove Manual Directory Creation
+
+Delete any usage of:
+
+Path(HELPERS_DIR).mkdir(parents=True, exist_ok=True)
+
+These are now ensured in lib.config.
+
+⸻
+
+4. Use Anchors, Filters, Patterns from lib.anchors
+
+Do not redefine regexes like:
+
+ANCHOR_CCN_HEADER = re.compile(...)
+
+Instead, use:
+
+from lib.anchors import ANCHORS, FILTERS, COURSE_PATTERNS
+
+
+⸻
+
+5. No More plumber_parsed/ Paths
+
+Replace:
+
+TEXT_DIR / "plumber_parsed" / ...
+
+With:
+
+TEXT_DIR / "catalog_YYYY_MM.txt"
+
+
+⸻
+
+6. Snapshot Dictionary Logic
+
+Use the preloaded shared dictionary:
+
+from lib.config import COLLEGE_SNAPSHOTS
+
+Then:
+
+valid_colleges = pick_snapshot(date_str, COLLEGE_SNAPSHOTS)
+
+
+⸻
+
+7. Use TEST_FILE Constant
+
+Replace:
+
+TEXT_DIR / "catalog_2017_01.txt"
+
+With:
+
+from lib.config import TEST_FILE
+
+
+⸻
+
+8. Use Config Path for Output Saves
+
+Replace raw saves like:
+
+with open("course_index_v10.json", "w") as f:
+
+With:
+
+from lib.config import COURSE_INDEX_PATH
+with open(COURSE_INDEX_PATH, "w") as f:
+
+
+⸻
+
+9. Use Config Directories for Derived Filepaths
+
+When dynamically building input paths, use config directories:
+
+# Instead of:
+os.path.join("../WGU_catalog/outputs/program_names", file)
+
+# Use:
+from lib.config import PROGRAM_NAMES_DIR
+PROGRAM_NAMES_DIR / f"{date}_program_names_v10.json"
+
+
+⸻
+

@@ -1,0 +1,47 @@
+Here’s the labeled CSV snippet, summary of pain-point density, and recommendation:
+
+Labeled Data (Snippet):
+
+sentiment_band	vader	title	is_pain_point
+<= -0.5	-0.8224	Do I need to worry about the labs for D488	❌
+<= -0.5	-0.7725	I can’t access the college starter	✅
+<= -0.5	-0.7747	MSN program	❌
+<= -0.5	-0.8501	D675 -Elementary Literacy Methods Task 2 Literacy Block	✅
+<= -0.5	-0.5538	Is this degree worth it?	❌
+-0.5 to -0.3	-0.4678	Does the MS CS have a thesis?	❌
+-0.5 to -0.3	-0.4215	Computer recommendations	❌
+-0.5 to -0.3	-0.4098	6 Classes Left with term ending July 31st	❌
+-0.5 to -0.3	-0.3744	Professional Communication	✅
+-0.5 to -0.3	-0.4137	IA 2 PA 1 marking things wrong that aren’t there?	✅
+-0.3 to -0.2	-0.2960	D333	❌
+-0.3 to -0.2	-0.2462	IT Capstone Task 3 Submitted!	❌
+-0.3 to -0.2	-0.2243	CA CPA - requirements question	✅
+-0.3 to -0.2	-0.2732	Ugh I just want my capstone to be graded 😅😩	❌
+-0.3 to -0.2	-0.2168	Student Teaching Application	✅
+-0.2 to -0.1	-0.1689	Is it possible to choose the order you accelerate classes in?	❌
+-0.2 to -0.1	-0.1134	Data analytics	❌
+-0.2 to -0.1	-0.1695	Mentor	❌
+-0.2 to -0.1	-0.1803	D459 task 3	✅
+-0.2 to -0.1	-0.1431	Financial aid - How quickly did you get your refund?	❌
+
+
+⸻
+
+Pain-point Density by Band:
+
+band	pain-points / posts	%
+<= -0.5	2/5	40%
+-0.5 to -0.3	2/5	40%
+-0.3 to -0.2	2/5	40%
+-0.2 to -0.1	1/5	20%
+-0.1 to 0.0	0/5	0%
+> 0.0	0/5	0%
+
+
+⸻
+
+Recommendation:
+
+The bands -0.5 to -0.3, -0.3 to -0.2, and <= -0.5 each have equal pain-point density (40%),
+ while the -0.2 to -0.1 band drops significantly (20%). Thus, keeping the VADER threshold
+ at -0.2 is appropriate for isolating pain-point posts clearly.
