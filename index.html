@@ -364,7 +364,9 @@ function getFilterState() {
         category: document.getElementById('category').value,
         intent: document.getElementById('intent').value,
         sentimentOp: document.getElementById('sentimentOp').value,
-        sentimentValue: parseFloat(document.getElementById('sentimentValue').value) || null,
+        sentimentValue: Number.isFinite(parseFloat(document.getElementById('sentimentValue').value))
+            ? parseFloat(document.getElementById('sentimentValue').value)
+            : null,
         dateRange: document.getElementById('dateRange').value,
         sortBy: document.getElementById('sortBy').value
     };
