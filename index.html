@@ -502,7 +502,8 @@ async function init() {
             return posts.filter(post => {
                 // Search filter
                 if (filters.search) {
-                    const searchText = `${post.title} ${post.selftext}`.toLowerCase();
+                    const safeSelftext = post.selftext || '';
+                    const searchText = `${post.title} ${safeSelftext}`.toLowerCase();
                     if (!searchText.includes(filters.search)) return false;
                 }
 
