@@ -600,10 +600,11 @@ async function init() {
             card.setAttribute('data-post-id', post.post_id);
 
             const searchQuery = document.getElementById('search').value.toLowerCase();
+            const safeSelftext = post.selftext || '';
             const highlightedTitle = highlightSearch(post.title, searchQuery);
-            const highlightedSelftext = highlightSearch(post.selftext, searchQuery);
+            const highlightedSelftext = highlightSearch(safeSelftext, searchQuery);
 
-            const isLongText = post.selftext.length > 200;
+            const isLongText = safeSelftext.length > 200;
             const selftextClass = isLongText ? 'selftext-collapsed' : '';
 
             card.innerHTML = `
