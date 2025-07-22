@@ -4,7 +4,7 @@
 **Submission Date**: July 2025  
 **Project Type**: Prototype – static, client-side GUI built on curated Reddit data  
 **Author**: Buddy Owens  
-
+**Live Demo**:  [Launch Dashboard](https://wgudataninja.github.io/wgu-reddit-monitoring-pipeline/)
 ---
 
 ## Project Overview

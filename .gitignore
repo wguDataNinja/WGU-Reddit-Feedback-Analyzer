@@ -51,3 +51,10 @@ fetchers/fetch_comments_custom.py
 fetchers/fetch_user_stats.py
 fetchers/fetch_users_daily.py
 fetchers/helpers.py
+/gui/
+/gui/
+
+/gui/
+/requirements.txt
+
+/app.py
