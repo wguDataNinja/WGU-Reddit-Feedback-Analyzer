@@ -1,4 +1,4 @@
-# WGU Reddit Feedback Analyzer
+## WGU Reddit Feedback Analyzer
 
 **Project Title:** WGU Reddit Monitoring and Feedback Clustering Tool  
 **Purpose:** Analyze unsolicited student feedback on Reddit to surface and cluster course-related *pain points*  
