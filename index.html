@@ -138,7 +138,6 @@
         </div>
     </div>
 <script>
-    let mergedData = {};
     let coursesData = [];
 
     window.onload = init;
@@ -158,21 +157,18 @@
         console.log("📦 Loading merged course feedback...");
         const res = await fetch('data/merged_course_feedback.json');
         if (!res.ok) throw new Error("Failed to fetch merged data");
-        mergedData = await res.json();
-        coursesData = mergedData.courses;
+        coursesData = await res.json();
         console.log("✅ Loaded", coursesData.length, "courses from merged data");
     }
 
     function getCourseMetrics(code) {
-        const course = mergedData.courses.find(c => c.CourseCode === code);
+        const course = coursesData.find(c => c.CourseCode === code);
         if (!course || !course.clusters) return { feedbackTopics: 0, painPoints: 0 };
         const confirmed = course.clusters.filter(c => !c.is_potential).length;
         let totalPP = 0;
         course.clusters.forEach(c => { totalPP += (c.pain_point_ids || []).length; });
         return { feedbackTopics: confirmed, painPoints: totalPP };
     }
-
-
 
     function renderCoursesTable() {
         const tbody = document.getElementById('courses-tbody');
@@ -200,7 +196,7 @@
         const college = document.getElementById('college-filter').value.toLowerCase();
         const codeF = document.getElementById('course-code-filter').value.toLowerCase();
         const titleF = document.getElementById('course-title-filter').value.toLowerCase();
-        return mergedData.filter(c => {
+        return coursesData.filter(c => {
             const okCollege = !college || (c.Colleges || "").toLowerCase().includes(college);
             const okCode = !codeF || c.CourseCode.toLowerCase().includes(codeF);
             const okTitle = !titleF || c.Title.toLowerCase().includes(titleF);
@@ -211,7 +207,7 @@
     function setupFilters() {
         ['college-filter','course-code-filter','course-title-filter'].forEach(id => {
             const el = document.getElementById(id);
-            el.addEventListener('input', () => debounce(renderCoursesTable,300)());
+            el.addEventListener('input', () => debounce(renderCoursesTable, 300)());
             el.addEventListener('change', renderCoursesTable);
         });
     }
@@ -222,7 +218,7 @@
     }
 
     function showCourseDetail(code) {
-        const course = mergedData.find(c => c.CourseCode === code);
+        const course = coursesData.find(c => c.CourseCode === code);
         if (!course) { showError(`No data for ${code}`); return; }
 
         document.getElementById('homepage').style.display = 'none';
@@ -240,10 +236,10 @@
         course.clusters.forEach(c => { ppCount += (c.pain_points?.length || 0); });
         document.getElementById('detail-pain-points').textContent = ppCount;
 
-        renderFeedbackTopics(confirmed,'confirmed-topics');
-        renderEmergingTopics(emerging,'emerging-topics');
-        document.getElementById('confirmed-topics-container').style.display = confirmed.length?'block':'none';
-        document.getElementById('emerging-topics-container').style.display = emerging.length?'block':'none';
+        renderFeedbackTopics(confirmed, 'confirmed-topics');
+        renderEmergingTopics(emerging, 'emerging-topics');
+        document.getElementById('confirmed-topics-container').style.display = confirmed.length ? 'block' : 'none';
+        document.getElementById('emerging-topics-container').style.display = emerging.length ? 'block' : 'none';
     }
 
     function renderFeedbackTopics(topics, cid) {
@@ -294,6 +290,6 @@
         const e = document.createElement('div');
         e.className='error'; e.textContent = msg;
         cont.insertBefore(e, cont.firstChild);
-        setTimeout(()=>e.remove(),5000);
+        setTimeout(() => e.remove(), 5000);
     }
 </script>
