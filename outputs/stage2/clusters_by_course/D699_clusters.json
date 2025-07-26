@@ -1,0 +1,25 @@
+{
+  "course": "D699",
+  "clusters": [
+    {
+      "cluster_id": "D699_1",
+      "title": "Lack of Guidance and Support",
+      "root_cause_summary": "Students feel unprepared due to insufficient guidance from instructors and mentors.",
+      "pain_point_ids": [
+        "1kt7t2j_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D699_2",
+      "title": "Overwhelming Course Content",
+      "root_cause_summary": "Students feel overwhelmed and struggle to understand complex content, such as math.",
+      "pain_point_ids": [
+        "1l7k2ax_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

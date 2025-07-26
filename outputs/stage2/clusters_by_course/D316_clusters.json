@@ -1,0 +1,34 @@
+{
+  "course": "D316",
+  "clusters": [
+    {
+      "cluster_id": "D316_1",
+      "title": "Exam Difficulty and Time Management",
+      "root_cause_summary": "Students are struggling with managing their time effectively during exams, particularly with difficult question types.",
+      "pain_point_ids": [
+        "1iekem0_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D316_2",
+      "title": "Course Requirement Conflicts",
+      "root_cause_summary": "Concerns regarding course recognition and potential failure due to conflicting course requirements and upcoming changes.",
+      "pain_point_ids": [
+        "1kvypg5_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D316_3",
+      "title": "Uncertainty After Exam Failure",
+      "root_cause_summary": "Students feel uncertain about their academic progress and the process of reattempting exams after failure.",
+      "pain_point_ids": [
+        "1kq4gg6_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

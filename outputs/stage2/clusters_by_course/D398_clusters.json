@@ -1,0 +1,25 @@
+{
+  "course": "D398",
+  "clusters": [
+    {
+      "cluster_id": "D398_1",
+      "title": "Instructor and Support Responsiveness",
+      "root_cause_summary": "Students are frustrated due to delays and a lack of communication from instructors and support services.",
+      "pain_point_ids": [
+        "1eh3hyn_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D398_2",
+      "title": "Assessment Pressure and Feedback",
+      "root_cause_summary": "Students are facing challenges with assessments, experiencing repeated failure, and are under time constraints to succeed.",
+      "pain_point_ids": [
+        "1ed69s7_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

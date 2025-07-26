@@ -1,0 +1,34 @@
+{
+  "course": "D485",
+  "clusters": [
+    {
+      "cluster_id": "D485_1",
+      "title": "Submission and Resubmission Policies",
+      "root_cause_summary": "Students are uncertain about submission policies and options for relaunching labs.",
+      "pain_point_ids": [
+        "1jg98hc_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D485_2",
+      "title": "Technical Guidance on Best Practices",
+      "root_cause_summary": "Students are struggling to implement technical best practices and configurations in Azure.",
+      "pain_point_ids": [
+        "1h7q3lk_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D485_3",
+      "title": "Administrative Role Assignment Issues",
+      "root_cause_summary": "Students are experiencing difficulties in role assignment despite having appropriate privileges.",
+      "pain_point_ids": [
+        "1h76k4m_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

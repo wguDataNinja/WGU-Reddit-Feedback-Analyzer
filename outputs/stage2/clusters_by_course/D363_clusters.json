@@ -1,0 +1,16 @@
+{
+  "course": "D363",
+  "clusters": [
+    {
+      "cluster_id": "D363_1",
+      "title": "Assessment Accuracy Issues",
+      "root_cause_summary": "The pre-assessment contains incorrect answers which lead to student confusion and frustration.",
+      "pain_point_ids": [
+        "1kupx3x_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

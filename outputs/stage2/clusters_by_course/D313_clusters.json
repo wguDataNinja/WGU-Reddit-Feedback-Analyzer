@@ -1,0 +1,16 @@
+{
+  "course": "D313",
+  "clusters": [
+    {
+      "cluster_id": "D313_1",
+      "title": "Assessment Anxiety and Performance",
+      "root_cause_summary": "Students experience anxiety and a sense of defeat when their assessment performance does not reflect their preparation and improvement efforts.",
+      "pain_point_ids": [
+        "1kcvako_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

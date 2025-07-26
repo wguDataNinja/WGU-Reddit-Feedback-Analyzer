@@ -1,0 +1,25 @@
+{
+  "course": "C816",
+  "clusters": [
+    {
+      "cluster_id": "C816_1",
+      "title": "Vague Feedback and Clarification Issues",
+      "root_cause_summary": "Feedback provided lacks clarity on key issues, leaving students feeling overwhelmed and discouraged.",
+      "pain_point_ids": [
+        "1b4ghw4_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C816_2",
+      "title": "Lack of Clear Guidance on Assignments",
+      "root_cause_summary": "Students experience anxiety and confusion due to unclear requirements and expectations for assignments.",
+      "pain_point_ids": [
+        "1lc6uem_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

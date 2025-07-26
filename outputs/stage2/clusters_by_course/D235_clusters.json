@@ -1,0 +1,16 @@
+{
+  "course": "D235",
+  "clusters": [
+    {
+      "cluster_id": "D235_1",
+      "title": "Lack of Feedback on Practice Assessments",
+      "root_cause_summary": "Students are unable to understand their mistakes on practice exams because detailed explanations are not provided.",
+      "pain_point_ids": [
+        "1gox0qn_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

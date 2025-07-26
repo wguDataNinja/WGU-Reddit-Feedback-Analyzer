@@ -1,0 +1,25 @@
+{
+  "course": "D619",
+  "clusters": [
+    {
+      "cluster_id": "D619_1",
+      "title": "Unclear Instructions",
+      "root_cause_summary": "Students are experiencing confusion due to unclear or insufficient instructions regarding assignment requirements.",
+      "pain_point_ids": [
+        "1i5yw8t_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D619_2",
+      "title": "Citation Formatting Issues",
+      "root_cause_summary": "Students are struggling with understanding and correctly applying citation formatting, resulting in resubmissions.",
+      "pain_point_ids": [
+        "1i5yw8t_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

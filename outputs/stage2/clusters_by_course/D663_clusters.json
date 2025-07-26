@@ -1,0 +1,34 @@
+{
+  "course": "D663",
+  "clusters": [
+    {
+      "cluster_id": "D663_1",
+      "title": "Assessment Expectations",
+      "root_cause_summary": "Students are unclear about what is expected from them in assessments, leading to confusion and uncertainty.",
+      "pain_point_ids": [
+        "1kcui01_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D663_2",
+      "title": "Writing Style Challenges",
+      "root_cause_summary": "Students struggle to adapt to the formal writing style required by the course, affecting their ability to express themselves authentically.",
+      "pain_point_ids": [
+        "1kcui01_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D663_3",
+      "title": "Resource Utilization Anxiety",
+      "root_cause_summary": "Students are uncertain about how to appropriately use resources for assessments, leading to fears of academic dishonesty.",
+      "pain_point_ids": [
+        "1m1lbec_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

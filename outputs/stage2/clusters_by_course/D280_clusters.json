@@ -1,0 +1,111 @@
+{
+  "course": "D280",
+  "clusters": [
+    {
+      "cluster_id": "D280_1",
+      "title": "Outdated Resources for Version Control",
+      "root_cause_summary": "Students face difficulties due to unclear instructions and outdated resources regarding Git and version control.",
+      "pain_point_ids": [
+        "1c46s8f_0",
+        "1bgdq7b_0",
+        "1hc5g1w_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D280_2",
+      "title": "Unclear Assignment Requirements",
+      "root_cause_summary": "Students are confused about specific assignment requirements, leading to frustration and uncertainty.",
+      "pain_point_ids": [
+        "1jw0w87_0",
+        "1fo3usf_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D280_3",
+      "title": "Confusion About Course Features",
+      "root_cause_summary": "Students are unsure about the expected behavior of course features, contributing to confusion.",
+      "pain_point_ids": [
+        "1annx4u_0",
+        "1inkepa_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D280_4",
+      "title": "Lack of Tutoring Support",
+      "root_cause_summary": "Students are feeling discouraged due to the unavailability of tutoring support for the course.",
+      "pain_point_ids": [
+        "1is4rw6_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D280_5",
+      "title": "Git Setup Challenges",
+      "root_cause_summary": "Students are struggling with Git setup and usage, which delays their progress in the course.",
+      "pain_point_ids": [
+        "1ine7ln_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D280_6",
+      "title": "Lack of Instructional Support",
+      "root_cause_summary": "Students feel overwhelmed due to the absence of instructional videos and support for necessary software and tools.",
+      "pain_point_ids": [
+        "1hc5g1w_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D280_7",
+      "title": "SVG Handling Issues",
+      "root_cause_summary": "Students are facing difficulties displaying SVG images, causing frustration.",
+      "pain_point_ids": [
+        "1fo5zlr_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D280_8",
+      "title": "SVG Interactivity Challenges",
+      "root_cause_summary": "Students are struggling to manipulate SVG path tags for interactivity within the course.",
+      "pain_point_ids": [
+        "1ejjp4w_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D280_9",
+      "title": "API Data Retrieval Challenges",
+      "root_cause_summary": "Students are struggling with retrieving data from APIs due to unresolved errors, leading to frustration and hindering progress.",
+      "pain_point_ids": [
+        "1lay8ei_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D280_1",
+      "summary": "Students face difficulties due to unclear instructions and outdated resources regarding Git and version control.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:49:50.178086Z"
+    },
+    {
+      "cluster_id": "D280_2",
+      "summary": "Students are confused about specific assignment requirements, leading to frustration and uncertainty.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:49:50.178109Z"
+    },
+    {
+      "cluster_id": "D280_3",
+      "summary": "Students are unsure about the expected behavior of course features, contributing to confusion.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:49:50.178113Z"
+    }
+  ]
+}

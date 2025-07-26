@@ -1,0 +1,16 @@
+{
+  "course": "D547",
+  "clusters": [
+    {
+      "cluster_id": "D547_1",
+      "title": "Inconsistent Instructions",
+      "root_cause_summary": "Students are confused due to instructions being provided in multiple locations with discrepancies.",
+      "pain_point_ids": [
+        "1kf0lj7_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

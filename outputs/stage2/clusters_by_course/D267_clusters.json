@@ -1,0 +1,16 @@
+{
+  "course": "D267",
+  "clusters": [
+    {
+      "cluster_id": "D267_1",
+      "title": "Timely Feedback and Grading Issues",
+      "root_cause_summary": "Concerns regarding the speed and reliability of grading practices impacting students' academic progression.",
+      "pain_point_ids": [
+        "1idd5cm_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

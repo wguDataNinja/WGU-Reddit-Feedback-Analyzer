@@ -1,0 +1,105 @@
+{
+  "course": "D288",
+  "clusters": [
+    {
+      "cluster_id": "D288_1",
+      "title": "Challenges with Resolving Project Errors",
+      "root_cause_summary": "Students are struggling to resolve persistent errors in their projects despite following provided instructions, highlighting a need for additional support.",
+      "pain_point_ids": [
+        "1ki3ivy_0",
+        "1ad7i6m_0",
+        "1bj6kdn_0",
+        "1ki3ehm_0",
+        "1aiom4o_0",
+        "1eo5j5r_0",
+        "1lok31v_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D288_2",
+      "title": "Difficulty with Course Material",
+      "root_cause_summary": "Students are struggling with the complexity and difficulty of the course material, indicating a need for clearer instruction or resources.",
+      "pain_point_ids": [
+        "1fefvx8_0",
+        "1axq54j_0",
+        "1lnowd1_1",
+        "1lnowd1_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D288_3",
+      "title": "Technical Issues with Local Machine Setup",
+      "root_cause_summary": "Students are facing challenges with running project code on local machines, leading to confusion and frustration.",
+      "pain_point_ids": [
+        "1m5t0bn_0",
+        "1k4uzgm_0",
+        "1gnkpzc_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D288_4",
+      "title": "Unexpected Server Errors",
+      "root_cause_summary": "Students are encountering unexpected server errors that hinder their progress when attempting to run applications.",
+      "pain_point_ids": [
+        "1jfaw2u_0",
+        "1l6nd36_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D288_5",
+      "title": "Access Issues with Requested Information",
+      "root_cause_summary": "Students are experiencing access issues, such as 404 errors, while trying to retrieve important information related to course projects.",
+      "pain_point_ids": [
+        "1eo5j5r_1",
+        "1fyi1im_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D288_6",
+      "title": "Challenges with Transaction Errors",
+      "root_cause_summary": "Students are encountering errors related to transaction processes, indicating a need for better support and resources in understanding cart functionality.",
+      "pain_point_ids": [
+        "1cbonta_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D288_1",
+      "summary": "Students are struggling to resolve persistent errors in their projects despite following provided instructions, highlighting a need for additional support.",
+      "post_count": 7,
+      "detected_on": "2025-07-25T07:30:19.876490Z"
+    },
+    {
+      "cluster_id": "D288_2",
+      "summary": "Students are struggling with the complexity and difficulty of the course material, indicating a need for clearer instruction or resources.",
+      "post_count": 4,
+      "detected_on": "2025-07-25T07:30:19.876505Z"
+    },
+    {
+      "cluster_id": "D288_3",
+      "summary": "Students are facing challenges with running project code on local machines, leading to confusion and frustration.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:30:19.876510Z"
+    },
+    {
+      "cluster_id": "D288_4",
+      "summary": "Students are encountering unexpected server errors that hinder their progress when attempting to run applications.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:30:19.876514Z"
+    },
+    {
+      "cluster_id": "D288_5",
+      "summary": "Students are experiencing access issues, such as 404 errors, while trying to retrieve important information related to course projects.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:30:19.876518Z"
+    }
+  ]
+}

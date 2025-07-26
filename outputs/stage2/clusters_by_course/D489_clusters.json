@@ -1,0 +1,16 @@
+{
+  "course": "D489",
+  "clusters": [
+    {
+      "cluster_id": "D489_1",
+      "title": "Clarity on Assignment Requirements",
+      "root_cause_summary": "Students are unclear about how to approach specific assignments or requirements, leading to confusion and frustration.",
+      "pain_point_ids": [
+        "1kqq8lh_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

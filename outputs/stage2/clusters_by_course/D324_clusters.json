@@ -1,0 +1,25 @@
+{
+  "course": "D324",
+  "clusters": [
+    {
+      "cluster_id": "D324_1",
+      "title": "Exam Clarity Issues",
+      "root_cause_summary": "Exam questions lack clarity, leading to student confusion.",
+      "pain_point_ids": [
+        "191qzx8_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D324_2",
+      "title": "Resource Miscommunication",
+      "root_cause_summary": "Lack of clarity on recommended resources causes students to engage with incorrect materials.",
+      "pain_point_ids": [
+        "1cfjare_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

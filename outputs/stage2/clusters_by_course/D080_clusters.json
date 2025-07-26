@@ -1,0 +1,110 @@
+{
+  "course": "D080",
+  "clusters": [
+    {
+      "cluster_id": "D080_1",
+      "title": "Instructor Workload Requirements",
+      "root_cause_summary": "Students are overwhelmed by excessive requirements set by the instructor to retake assessments.",
+      "pain_point_ids": [
+        "1kfs8jd_0",
+        "1l8asql_1"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D080_2",
+      "title": "Assessment Clarity",
+      "root_cause_summary": "Students find assessment questions misleading or confusing, impacting their performance.",
+      "pain_point_ids": [
+        "1lxpfbj_0",
+        "1lhctl0_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D080_3",
+      "title": "Content Retention Challenges",
+      "root_cause_summary": "Students struggle to retain information after multiple attempts at the course.",
+      "pain_point_ids": [
+        "1l5y40o_0",
+        "1m7gqh3_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D080_4",
+      "title": "Assessment and Anxiety",
+      "root_cause_summary": "Students feel unprepared and anxious about assessments despite studying.",
+      "pain_point_ids": [
+        "1k0yej3_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D080_5",
+      "title": "Scheduling Conflicts",
+      "root_cause_summary": "Students face scheduling conflicts that hinder their ability to complete required sessions.",
+      "pain_point_ids": [
+        "1l8dl83_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D080_6",
+      "title": "Office Hours Accessibility",
+      "root_cause_summary": "Students struggle with limited office hours, making it difficult to seek assistance.",
+      "pain_point_ids": [
+        "1l8asql_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D080_7",
+      "title": "Engagement Issues",
+      "root_cause_summary": "Students find the course content boring and difficult to engage with.",
+      "pain_point_ids": [
+        "1lnqjlm_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D080_8",
+      "title": "Study Resource Effectiveness",
+      "root_cause_summary": "Students find the organizational structure of study materials ineffective for learning.",
+      "pain_point_ids": [
+        "1m3l0he_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D080_9",
+      "title": "Assessment Alignment Issues",
+      "root_cause_summary": "Students are unsure if the Performance Assessments and Objective Assessments are aligned, causing confusion about expectations.",
+      "pain_point_ids": [
+        "1m7gqh3_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D080_1",
+      "summary": "Students are overwhelmed by excessive requirements set by the instructor to retake assessments.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:46:13.435328Z"
+    },
+    {
+      "cluster_id": "D080_2",
+      "summary": "Students find assessment questions misleading or confusing, impacting their performance.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:46:13.435370Z"
+    },
+    {
+      "cluster_id": "D080_3",
+      "summary": "Students struggle to retain information after multiple attempts at the course.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:46:13.435384Z"
+    }
+  ]
+}

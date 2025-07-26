@@ -1,0 +1,43 @@
+{
+  "course": "D596",
+  "clusters": [
+    {
+      "cluster_id": "D596_1",
+      "title": "Unclear Assignment Expectations",
+      "root_cause_summary": "Students are confused about assignment expectations due to unclear requirements.",
+      "pain_point_ids": [
+        "1j845qm_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D596_2",
+      "title": "AI Flagging Concerns",
+      "root_cause_summary": "Students are worried their well-written work is being misidentified as AI-generated due to technical language.",
+      "pain_point_ids": [
+        "1ihc4it_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D596_3",
+      "title": "Lack of Preparedness",
+      "root_cause_summary": "Students feel unprepared for the course due to insufficient background knowledge in relevant subjects.",
+      "pain_point_ids": [
+        "1hxud3z_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D596_4",
+      "title": "Vague Assessment Questions",
+      "root_cause_summary": "Students struggle with performance assessments due to vague questions, causing confusion and wasted time.",
+      "pain_point_ids": [
+        "1f1t8kb_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,34 @@
+{
+  "course": "D072",
+  "clusters": [
+    {
+      "cluster_id": "D072_1",
+      "title": "Vocabulary Retention Issues",
+      "root_cause_summary": "Students are having difficulty retaining vocabulary, negatively affecting their performance in assessments.",
+      "pain_point_ids": [
+        "1ihzaqz_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D072_2",
+      "title": "Instructor Support Concerns",
+      "root_cause_summary": "Students feel unsupported by instructors after failing assessments, leading to frustration over additional homework requirements.",
+      "pain_point_ids": [
+        "1k7zfk3_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D072_3",
+      "title": "Assessment Anxiety and Fear of Failure",
+      "root_cause_summary": "Students are experiencing significant anxiety and fear of failure regarding assessment attempts, impacting their motivation and confidence.",
+      "pain_point_ids": [
+        "1ki9hum_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

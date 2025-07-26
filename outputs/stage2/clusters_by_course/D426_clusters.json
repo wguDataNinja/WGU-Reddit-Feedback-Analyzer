@@ -1,0 +1,94 @@
+{
+  "course": "D426",
+  "clusters": [
+    {
+      "cluster_id": "D426_1",
+      "title": "Insufficient Learning Materials",
+      "root_cause_summary": "Students believe that existing course materials do not support their learning and exam preparation adequately.",
+      "pain_point_ids": [
+        "1k9kn2d_0",
+        "1kmuvmi_0",
+        "1lw1wmx_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D426_2",
+      "title": "Information Overload",
+      "root_cause_summary": "Students are facing challenges due to the large amount of new information presented in the course.",
+      "pain_point_ids": [
+        "1kbqp7b_0",
+        "1kmuvmi_1",
+        "1m1ibcn_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D426_3",
+      "title": "Assessment Difficulty and Study Requirements",
+      "root_cause_summary": "Students are struggling to meet assessment expectations, leading to extensive study demands.",
+      "pain_point_ids": [
+        "1lw1wmx_2",
+        "1k452io_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D426_4",
+      "title": "Course Complexity and Time Commitment",
+      "root_cause_summary": "Students feel overwhelmed by the complexity and time requirements of the course, especially with new content.",
+      "pain_point_ids": [
+        "1k6v6g9_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D426_5",
+      "title": "Lack of Course Updates and Resources",
+      "root_cause_summary": "Students are finding outdated resources and lacking access to essential course materials, leading to frustration.",
+      "pain_point_ids": [
+        "1lw1wmx_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D426_6",
+      "title": "Technical Issues During Exams",
+      "root_cause_summary": "Students are encountering technical issues that disrupt their exam experience and negatively impact performance.",
+      "pain_point_ids": [
+        "1lxbjqi_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D426_7",
+      "title": "Distractions During Exams",
+      "root_cause_summary": "Students are facing distractions during exams that hinder their focus and concentration.",
+      "pain_point_ids": [
+        "1lxbjqi_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D426_1",
+      "summary": "Students believe that existing course materials do not support their learning and exam preparation adequately.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:31:07.494703Z"
+    },
+    {
+      "cluster_id": "D426_2",
+      "summary": "Students are facing challenges due to the large amount of new information presented in the course.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:31:07.494725Z"
+    },
+    {
+      "cluster_id": "D426_3",
+      "summary": "Students are struggling to meet assessment expectations, leading to extensive study demands.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:31:07.494732Z"
+    }
+  ]
+}

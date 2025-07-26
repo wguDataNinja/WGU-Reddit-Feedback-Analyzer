@@ -1,0 +1,52 @@
+{
+  "course": "C957",
+  "clusters": [
+    {
+      "cluster_id": "C957_1",
+      "title": "Excessive Workload and Redundancy",
+      "root_cause_summary": "Students are required to redo extensive work which leads to frustration and wasted time.",
+      "pain_point_ids": [
+        "1lgnjdw_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C957_2",
+      "title": "Lack of Support for Course Success",
+      "root_cause_summary": "Despite utilizing resources, students struggle to pass the course, indicating a gap between provided materials and actual understanding.",
+      "pain_point_ids": [
+        "1lahbzo_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C957_3",
+      "title": "Demoralization from Assessment Outcomes",
+      "root_cause_summary": "Students experience a loss of confidence and demoralization after failing assessments, impacting future motivation.",
+      "pain_point_ids": [
+        "1lrvz5a_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C957_4",
+      "title": "Concerns about Retake Procedures",
+      "root_cause_summary": "Students express apprehension regarding the extensive study plans required for retaking assessments, leading to anxiety and potential disengagement.",
+      "pain_point_ids": [
+        "1lrvz5a_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C957_5",
+      "title": "Confusion with Key Concepts",
+      "root_cause_summary": "Students find specific concepts difficult to understand, impacting their performance and perceived competence in the course.",
+      "pain_point_ids": [
+        "1m7m75g_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

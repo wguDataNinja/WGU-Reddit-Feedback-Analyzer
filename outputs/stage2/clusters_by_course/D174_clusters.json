@@ -1,0 +1,43 @@
+{
+  "course": "D174",
+  "clusters": [
+    {
+      "cluster_id": "D174_1",
+      "title": "Course Engagement Issues",
+      "root_cause_summary": "The course content is perceived as boring and unengaging, leading to a lack of interest.",
+      "pain_point_ids": [
+        "xc1gjc_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D174_2",
+      "title": "Lack of Guidance and Resources",
+      "root_cause_summary": "Students need more available course reviews and tips to aid their study and decision-making.",
+      "pain_point_ids": [
+        "owvbew_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D174_3",
+      "title": "Resource Clarity Issues",
+      "root_cause_summary": "Students struggle with identifying effective resources for passing the OA due to mixed messages.",
+      "pain_point_ids": [
+        "1kn2h0v_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D174_4",
+      "title": "Assessment Relationship Confusion",
+      "root_cause_summary": "Students are confused about the relationship between the PA and OA, resulting in uncertainty about preparation.",
+      "pain_point_ids": [
+        "1kn2h0v_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

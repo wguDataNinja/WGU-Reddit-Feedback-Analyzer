@@ -1,0 +1,43 @@
+{
+  "course": "C204",
+  "clusters": [
+    {
+      "cluster_id": "C204_1",
+      "title": "Delays in Grading",
+      "root_cause_summary": "Students are experiencing stress due to prolonged delays in grading assignments.",
+      "pain_point_ids": [
+        "1j53l15_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C204_2",
+      "title": "Technical Challenges in Presentations",
+      "root_cause_summary": "Students are encountering difficulties with technology during presentation recordings.",
+      "pain_point_ids": [
+        "1gp8c9x_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C204_3",
+      "title": "Lack of Communication on Task Processing",
+      "root_cause_summary": "Students feel anxious due to insufficient updates on the status of task submissions.",
+      "pain_point_ids": [
+        "1genf6f_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C204_4",
+      "title": "Access Issues to Course Resources",
+      "root_cause_summary": "Students are unable to access crucial course materials because of broken links.",
+      "pain_point_ids": [
+        "1kozkrg_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

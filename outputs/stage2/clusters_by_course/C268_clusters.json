@@ -1,0 +1,43 @@
+{
+  "course": "C268",
+  "clusters": [
+    {
+      "cluster_id": "C268_1",
+      "title": "Technical Issues with Software",
+      "root_cause_summary": "Students are experiencing technical errors related to software, inhibiting their ability to engage with course materials.",
+      "pain_point_ids": [
+        "1k222xm_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C268_2",
+      "title": "Lack of Feedback and Guidance",
+      "root_cause_summary": "Students feel unsupported due to the absence of feedback and clear performance indicators in assessments.",
+      "pain_point_ids": [
+        "1jtwp2h_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C268_3",
+      "title": "Security Concerns with Course Materials",
+      "root_cause_summary": "Students are facing security warnings when accessing course resources, raising concerns about safety and trust.",
+      "pain_point_ids": [
+        "1h0ukdz_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C268_4",
+      "title": "Confusion in Course Content",
+      "root_cause_summary": "Students are struggling to understand specific concepts or tools in the course, leading to frustration and uncertainty.",
+      "pain_point_ids": [
+        "1ebk7an_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

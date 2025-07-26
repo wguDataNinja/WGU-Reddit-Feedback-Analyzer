@@ -1,0 +1,77 @@
+{
+  "course": "C960",
+  "clusters": [
+    {
+      "cluster_id": "C960_1",
+      "title": "Understanding and Comprehension",
+      "root_cause_summary": "Students struggle with comprehending the questioning styles used in assessments.",
+      "pain_point_ids": [
+        "1f2sw8t_0",
+        "1lint0z_0",
+        "1adhho2_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C960_2",
+      "title": "Assessment Difficulty",
+      "root_cause_summary": "Students find certain assessments unexpectedly difficult and stressful.",
+      "pain_point_ids": [
+        "1ld5omq_0",
+        "1adhho2_1",
+        "1f13env_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C960_3",
+      "title": "Course Material Effectiveness",
+      "root_cause_summary": "Students perceive that course materials like textbooks are unhelpful compared to other resources.",
+      "pain_point_ids": [
+        "1lint0z_1",
+        "1amzuda_0",
+        "1ap13r6_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C960_4",
+      "title": "Curriculum Alignment",
+      "root_cause_summary": "Students feel unprepared for assessments due to a lack of alignment between course content and exam topics.",
+      "pain_point_ids": [
+        "1domuol_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C960_5",
+      "title": "Time Management Issues",
+      "root_cause_summary": "Students encounter challenges with managing their time effectively during assessments.",
+      "pain_point_ids": [
+        "1kca10a_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "C960_1",
+      "summary": "Students struggle with comprehending the questioning styles used in assessments.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:51:24.080522Z"
+    },
+    {
+      "cluster_id": "C960_2",
+      "summary": "Students find certain assessments unexpectedly difficult and stressful.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:51:24.080565Z"
+    },
+    {
+      "cluster_id": "C960_3",
+      "summary": "Students perceive that course materials like textbooks are unhelpful compared to other resources.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:51:24.080578Z"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "course": "D554",
+  "clusters": [
+    {
+      "cluster_id": "D554_1",
+      "title": "Insufficient Course Resources",
+      "root_cause_summary": "Students feel frustrated by the lack of additional resources provided in the course.",
+      "pain_point_ids": [
+        "1jmyvmq_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D554_2",
+      "title": "Delayed Instructor Responses",
+      "root_cause_summary": "Students are struggling to receive timely responses from instructors regarding their questions.",
+      "pain_point_ids": [
+        "1jmyvmq_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

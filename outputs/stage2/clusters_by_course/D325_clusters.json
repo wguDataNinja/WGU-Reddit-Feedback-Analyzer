@@ -1,0 +1,34 @@
+{
+  "course": "D325",
+  "clusters": [
+    {
+      "cluster_id": "D325_1",
+      "title": "Excessive Study Requirements",
+      "root_cause_summary": "The requirements for retaking the exam are perceived as overly demanding and time-consuming.",
+      "pain_point_ids": [
+        "1k5qft9_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D325_2",
+      "title": "Exam Retake Anxiety",
+      "root_cause_summary": "Students feel unprepared and anxious about retaking the exam, despite their preparation efforts.",
+      "pain_point_ids": [
+        "1hw7nev_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D325_3",
+      "title": "Administrative Process Confusion",
+      "root_cause_summary": "Students experience confusion with the administrative processes related to sending exam scores.",
+      "pain_point_ids": [
+        "1kvhwna_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

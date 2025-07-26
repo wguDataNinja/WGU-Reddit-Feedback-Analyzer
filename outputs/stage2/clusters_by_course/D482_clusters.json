@@ -1,0 +1,16 @@
+{
+  "course": "D482",
+  "clusters": [
+    {
+      "cluster_id": "D482_1",
+      "title": "Conflict in Understanding Course Expectations",
+      "root_cause_summary": "Students are unsure of how to approach assignments and expectations within the course.",
+      "pain_point_ids": [
+        "1gkiavq_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

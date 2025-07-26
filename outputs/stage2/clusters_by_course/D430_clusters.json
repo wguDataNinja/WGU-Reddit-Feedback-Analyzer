@@ -1,0 +1,43 @@
+{
+  "course": "D430",
+  "clusters": [
+    {
+      "cluster_id": "D430_1",
+      "title": "Study Resources and Exam Preparation",
+      "root_cause_summary": "Students are struggling to pass exams due to the difficulty of questions and lack of effective study resources.",
+      "pain_point_ids": [
+        "1d4dhp8_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D430_2",
+      "title": "Assessment Consistency",
+      "root_cause_summary": "Students are uncertain about the consistency of assessment questions between attempts.",
+      "pain_point_ids": [
+        "1e6l2hg_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D430_3",
+      "title": "Learning Material Format",
+      "root_cause_summary": "Students find the new book format with reference links unhelpful.",
+      "pain_point_ids": [
+        "1iwgodh_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D430_4",
+      "title": "Engagement of Learning Materials",
+      "root_cause_summary": "Students find the books generally unengaging and difficult to learn from.",
+      "pain_point_ids": [
+        "1iwgodh_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

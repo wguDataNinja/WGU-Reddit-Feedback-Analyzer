@@ -1,0 +1,25 @@
+{
+  "course": "D484",
+  "clusters": [
+    {
+      "cluster_id": "D484_1",
+      "title": "Practice-Based Questions Challenges",
+      "root_cause_summary": "Students are struggling with the practice-based questions (PBQs) in the course.",
+      "pain_point_ids": [
+        "1fsl8e3_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D484_2",
+      "title": "Study Material Adequacy Concerns",
+      "root_cause_summary": "Students feel unprepared for the Security+ certification due to uncertainty about the adequacy of their study materials.",
+      "pain_point_ids": [
+        "1fsl8e3_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

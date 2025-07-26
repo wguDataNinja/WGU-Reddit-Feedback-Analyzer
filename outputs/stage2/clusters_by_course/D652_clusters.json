@@ -1,0 +1,16 @@
+{
+  "course": "D652",
+  "clusters": [
+    {
+      "cluster_id": "D652_1",
+      "title": "Feedback Quality Issues",
+      "root_cause_summary": "Students are receiving unclear and unhelpful feedback from evaluators, leading to confusion and frustration.",
+      "pain_point_ids": [
+        "1l2m727_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

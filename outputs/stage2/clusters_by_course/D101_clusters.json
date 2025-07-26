@@ -1,0 +1,48 @@
+{
+  "course": "D101",
+  "clusters": [
+    {
+      "cluster_id": "D101_1",
+      "title": "Inadequate Learning Resources",
+      "root_cause_summary": "Students feel the course resources are insufficient for understanding the material.",
+      "pain_point_ids": [
+        "1lz26g7_1",
+        "1lz26g7_0",
+        "1kvxwes_0",
+        "1lrkoa1_0",
+        "1kr6du0_0",
+        "1kq49wb_1",
+        "1lnmizo_0",
+        "1ju8li0_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D101_2",
+      "title": "Uncertainty about Assignment Time Requirements",
+      "root_cause_summary": "Students feel anxious about completing assignments due to uncertainty in the expected time commitment.",
+      "pain_point_ids": [
+        "1kzgwse_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D101_3",
+      "title": "Technical Issues During Assessments",
+      "root_cause_summary": "Students face significant technical problems during proctored assessments that impact their performance and time.",
+      "pain_point_ids": [
+        "1kq49wb_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D101_1",
+      "summary": "Students feel the course resources are insufficient for understanding the material.",
+      "post_count": 8,
+      "detected_on": "2025-07-25T07:47:06.277783Z"
+    }
+  ]
+}

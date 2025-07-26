@@ -1,0 +1,43 @@
+{
+  "course": "C715",
+  "clusters": [
+    {
+      "cluster_id": "C715_1",
+      "title": "E-book Usability Issues",
+      "root_cause_summary": "Students are encountering significant usability problems with the E-book, impacting their learning experience.",
+      "pain_point_ids": [
+        "1lchbko_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C715_2",
+      "title": "Proctoring Process Delays",
+      "root_cause_summary": "Students are facing significant delays and issues during the proctoring process, causing frustration and disruption.",
+      "pain_point_ids": [
+        "1lchbko_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C715_3",
+      "title": "Issues with Guardian Browser",
+      "root_cause_summary": "Students find the Guardian browser problematic, impacting their ability to complete assessments effectively.",
+      "pain_point_ids": [
+        "1lchbko_2"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C715_4",
+      "title": "Discrepancy Between Practice Tests and OAs",
+      "root_cause_summary": "Students are frustrated by the significant differences between practice tests and the Online Assessments (OAs), leading to confusion and repeated failures.",
+      "pain_point_ids": [
+        "1m4etiv_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

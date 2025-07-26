@@ -1,0 +1,25 @@
+{
+  "course": "C845",
+  "clusters": [
+    {
+      "cluster_id": "C845_1",
+      "title": "Inconsistent Study Materials",
+      "root_cause_summary": "The study materials contain contradictions and unclear guidelines, leading to confusion about exam preparation.",
+      "pain_point_ids": [
+        "1h0euq3_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C845_2",
+      "title": "Difficulty Understanding Course Material",
+      "root_cause_summary": "Students are struggling to comprehend the course content despite seeking help and putting in the effort.",
+      "pain_point_ids": [
+        "1kapu60_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,16 @@
+{
+  "course": "D434",
+  "clusters": [
+    {
+      "cluster_id": "D434_1",
+      "title": "Delayed Feedback",
+      "root_cause_summary": "Students feel frustrated by prolonged wait times for task reviews, impacting their learning progress.",
+      "pain_point_ids": [
+        "1afszai_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

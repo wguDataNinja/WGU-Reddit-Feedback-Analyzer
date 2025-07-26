@@ -1,0 +1,34 @@
+{
+  "course": "D658",
+  "clusters": [
+    {
+      "cluster_id": "D658_1",
+      "title": "Assessment Anxiety",
+      "root_cause_summary": "Students feel unprepared for tests despite using resources, indicating a disconnect between perceived understanding and assessment performance.",
+      "pain_point_ids": [
+        "1kh1qog_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D658_2",
+      "title": "Clarity of Expectations",
+      "root_cause_summary": "Students are confused about assignment requirements, highlighting a need for clearer communication of expectations.",
+      "pain_point_ids": [
+        "1l4a91z_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D658_3",
+      "title": "Feedback Availability",
+      "root_cause_summary": "Delays in receiving feedback from instructors hinder student progress and understanding of assignments.",
+      "pain_point_ids": [
+        "1m38h63_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

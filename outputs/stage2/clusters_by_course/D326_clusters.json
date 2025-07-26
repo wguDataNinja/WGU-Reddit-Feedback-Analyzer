@@ -1,0 +1,16 @@
+{
+  "course": "D326",
+  "clusters": [
+    {
+      "cluster_id": "D326_1",
+      "title": "Timely Feedback Issues",
+      "root_cause_summary": "Students feel they do not receive timely feedback from instructors, impacting their ability to improve and submit revisions promptly.",
+      "pain_point_ids": [
+        "1ddqku9_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

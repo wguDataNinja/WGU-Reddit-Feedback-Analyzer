@@ -1,0 +1,43 @@
+{
+  "course": "D664",
+  "clusters": [
+    {
+      "cluster_id": "D664_1",
+      "title": "Conflicting Guidance and Learning Principles",
+      "root_cause_summary": "Students are confused by inconsistent information from instructors regarding learning science principles.",
+      "pain_point_ids": [
+        "1ji1r9l_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D664_2",
+      "title": "Frustration with Retake Process",
+      "root_cause_summary": "Students are feeling stuck due to strict requirements for retaking assessments.",
+      "pain_point_ids": [
+        "1jcvff1_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D664_3",
+      "title": "Defeat and Need for Support",
+      "root_cause_summary": "Students are feeling defeated after multiple failures and are seeking additional resources or alternatives.",
+      "pain_point_ids": [
+        "1kyukbe_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D664_4",
+      "title": "Nervousness Due to Feedback",
+      "root_cause_summary": "Students are experiencing anxiety about the course based on negative feedback they have read.",
+      "pain_point_ids": [
+        "1lq8f5a_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

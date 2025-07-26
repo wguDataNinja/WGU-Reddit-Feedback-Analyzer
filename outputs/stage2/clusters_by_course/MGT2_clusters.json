@@ -1,0 +1,25 @@
+{
+  "course": "MGT2",
+  "clusters": [
+    {
+      "cluster_id": "MGT2_1",
+      "title": "Clarification on Assignment Requirements",
+      "root_cause_summary": "Students are confused about specific requirements for assignments, leading to uncertainty and errors.",
+      "pain_point_ids": [
+        "1iacz5q_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "MGT2_2",
+      "title": "Issues with Assignment Resources",
+      "root_cause_summary": "Students are struggling with assignments due to incorrect or unclear formulas and resources provided.",
+      "pain_point_ids": [
+        "1kno1fw_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

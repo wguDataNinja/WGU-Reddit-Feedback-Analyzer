@@ -1,0 +1,25 @@
+{
+  "course": "C963",
+  "clusters": [
+    {
+      "cluster_id": "C963_1",
+      "title": "Lack of Clarity on Course Assessments",
+      "root_cause_summary": "Students express confusion regarding assessment types and availability, indicating unclear communication around course evaluations.",
+      "pain_point_ids": [
+        "1l39kva_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C963_2",
+      "title": "Concerns Over Academic Integrity",
+      "root_cause_summary": "Students are expressing anxiety and confusion about similarity scores and their implications on academic integrity, highlighting a need for clearer guidelines.",
+      "pain_point_ids": [
+        "1liz9y4_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}
