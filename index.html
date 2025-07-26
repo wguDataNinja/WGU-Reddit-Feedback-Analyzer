@@ -1,5 +1,9 @@
 <!-- index.html -->
+
+
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -64,7 +68,10 @@
         <div id="homepage">
             <div class="header">
                 <h1>WGU Course Feedback Dashboard</h1>
-                <p>Browse and understand Reddit-sourced feedback patterns for WGU courses</p>
+                <p>
+                  Browse and understand Reddit-sourced feedback patterns for WGU courses —
+                  <a href="https://github.com/wguDataNinja/WGU-Reddit-Feedback-Analyzer/blob/main/README.md" target="_blank" style="color:#3498db;text-decoration:none;font-weight:500;">View README</a>
+                </p>
             </div>
             <div class="filters">
                 <div class="filter-group">
@@ -126,6 +133,7 @@
                         <div class="stat-label">Pain Points</div>
                     </div>
                 </div>
+                <a id="detail-download-link" class="download-link" style="display:inline-block;margin:12px 0 0 4px;" target="_blank" download>⬇️ Download as PDF</a>
             </div>
             <div class="feedback-topics" id="confirmed-topics-container">
                 <div class="section-header">Confirmed Feedback Topics</div>
@@ -140,156 +148,179 @@
 <script>
     let coursesData = [];
 
-    window.onload = init;
 
-    async function init() {
-        try {
-            await loadData();
-            renderCoursesTable();
-            setupFilters();
-        } catch (e) {
-            console.error(e);
-            showError('Failed to load merged data.');
-        }
+window.onload = init;
+
+async function init() {
+    try {
+        await loadData();
+        renderCoursesTable();
+        setupFilters();
+    } catch (e) {
+        console.error(e);
+        showError('Failed to load merged data.');
     }
+}
 
-    async function loadData() {
-        console.log("Loading merged course feedback...");
-        const res = await fetch('data/merged_course_feedback.json');
-        if (!res.ok) throw new Error("Failed to fetch merged data");
-        coursesData = await res.json();
-        console.log("Loaded", coursesData.length, "courses from merged data");
+async function loadData() {
+    console.log("Loading merged course feedback...");
+    const res = await fetch('data/merged_course_feedback.json');
+    if (!res.ok) throw new Error("Failed to fetch merged data");
+    coursesData = await res.json();
+    console.log("Loaded", coursesData.length, "courses from merged data");
+}
+
+function getCourseMetrics(code) {
+    const course = coursesData.find(c => c.CourseCode === code);
+    if (!course || !course.clusters) return { feedbackTopics: 0, painPoints: 0 };
+    const confirmed = course.clusters.filter(c => !c.is_potential).length;
+    let totalPP = 0;
+    course.clusters.forEach(c => { totalPP += (c.pain_point_ids || []).length; });
+    return { feedbackTopics: confirmed, painPoints: totalPP };
+}
+
+function renderCoursesTable() {
+    const tbody = document.getElementById('courses-tbody');
+    const filtered = getFilteredCourses().sort((a, b) => {
+        const aConfirmed = a.clusters.filter(c => !c.is_potential).length;
+        const bConfirmed = b.clusters.filter(c => !c.is_potential).length;
+        const aPain = a.clusters.reduce((sum, c) => sum + (c.pain_points?.length || 0), 0);
+        const bPain = b.clusters.reduce((sum, c) => sum + (c.pain_points?.length || 0), 0);
+        if (bConfirmed !== aConfirmed) return bConfirmed - aConfirmed;
+        return bPain - aPain;
+    });
+    if (!filtered.length) {
+        tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#7f8c8d;padding:40px;">No courses match the filters</td></tr>';
+        return;
     }
+    tbody.innerHTML = filtered.map(c => {
+        const confirmed = c.clusters.filter(cl => !cl.is_potential);
+        const painPoints = c.clusters.reduce((sum, cl) => sum + (cl.pain_points?.length || 0), 0);
+        return `
+            <tr class="course-row">
+                <td onclick="showCourseDetail('${c.CourseCode}')"><strong>${c.CourseCode}</strong></td>
+                <td onclick="showCourseDetail('${c.CourseCode}')">${c.Title}</td>
+                <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${confirmed.length}</span></td>
+                <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${painPoints}</span></td>
+                <td><a href="outputs/course_feedback_files/pdf/${c.CourseCode}_Reddit_Feedback.pdf" download class="download-link">⬇️</a></td>
+            </tr>
+        `;
+    }).join('');
+}
 
-    function getCourseMetrics(code) {
-        const course = coursesData.find(c => c.CourseCode === code);
-        if (!course || !course.clusters) return { feedbackTopics: 0, painPoints: 0 };
-        const confirmed = course.clusters.filter(c => !c.is_potential).length;
-        let totalPP = 0;
-        course.clusters.forEach(c => { totalPP += (c.pain_point_ids || []).length; });
-        return { feedbackTopics: confirmed, painPoints: totalPP };
+function getFilteredCourses() {
+    const college = document.getElementById('college-filter').value.toLowerCase();
+    const codeF = document.getElementById('course-code-filter').value.toLowerCase();
+    const titleF = document.getElementById('course-title-filter').value.toLowerCase();
+    return coursesData.filter(c => {
+        const okCollege = !college || (c.Colleges || "").toLowerCase().includes(college);
+        const okCode = !codeF || c.CourseCode.toLowerCase().includes(codeF);
+        const okTitle = !titleF || c.Title.toLowerCase().includes(titleF);
+        return okCollege && okCode && okTitle;
+    });
+}
+
+function setupFilters() {
+    ['college-filter','course-code-filter','course-title-filter'].forEach(id => {
+        const el = document.getElementById(id);
+        el.addEventListener('input', () => debounce(renderCoursesTable, 300)());
+        el.addEventListener('change', renderCoursesTable);
+    });
+}
+
+function debounce(fn, wait) {
+    let t;
+    return function() { clearTimeout(t); t = setTimeout(fn, wait); };
+}
+
+function showCourseDetail(code) {
+    const course = coursesData.find(c => c.CourseCode === code);
+    if (!course) { showError(`No data for ${code}`); return; }
+
+    document.getElementById('homepage').style.display = 'none';
+    document.getElementById('course-detail').style.display = 'block';
+    document.getElementById('detail-course-title').textContent = `${course.CourseCode}: ${course.Title}`;
+    document.getElementById('detail-course-meta').textContent = `College: ${course.Colleges}`;
+    document.getElementById('detail-download-link').href = `outputs/course_feedback_files/pdf/${course.CourseCode}_Reddit_Feedback.pdf`;
+
+    const confirmed = course.clusters.filter(c => !c.is_potential);
+    const emerging = course.clusters.filter(c => c.is_potential);
+    document.getElementById('detail-total-topics').textContent = course.clusters.length;
+    document.getElementById('detail-confirmed-topics').textContent = confirmed.length;
+    document.getElementById('detail-emerging-topics').textContent = emerging.length;
+
+    let ppCount = 0;
+    course.clusters.forEach(c => { ppCount += (c.pain_points?.length || 0); });
+    document.getElementById('detail-pain-points').textContent = ppCount;
+
+    renderFeedbackTopics(confirmed, 'confirmed-topics');
+    renderEmergingTopics(emerging, 'emerging-topics');
+    document.getElementById('confirmed-topics-container').style.display = confirmed.length ? 'block' : 'none';
+    document.getElementById('emerging-topics-container').style.display = emerging.length ? 'block' : 'none';
+}
+
+function renderFeedbackTopics(topics, cid) {
+    const cont = document.getElementById(cid);
+    if (!topics.length) {
+        cont.innerHTML = '<div style="padding:24px;text-align:center;color:#7f8c8d;">No confirmed feedback topics</div>';
+        return;
     }
-
-    function renderCoursesTable() {
-        const tbody = document.getElementById('courses-tbody');
-        const filtered = getFilteredCourses();
-        if (!filtered.length) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#7f8c8d;padding:40px;">No courses match the filters</td></tr>';
-            return;
-        }
-        tbody.innerHTML = filtered.map(c => {
-            const confirmed = c.clusters.filter(cl => !cl.is_potential);
-            const painPoints = c.clusters.reduce((sum, cl) => sum + (cl.pain_points?.length || 0), 0);
-            return `
-                <tr class="course-row">
-                    <td onclick="showCourseDetail('${c.CourseCode}')"><strong>${c.CourseCode}</strong></td>
-                    <td onclick="showCourseDetail('${c.CourseCode}')">${c.Title}</td>
-                    <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${confirmed.length}</span></td>
-                    <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${painPoints}</span></td>
-                    <td><a href="outputs/course_feedback_files/pdf/${c.CourseCode}_Reddit_Feedback.pdf" download class="download-link">⬇️</a></td>
-                </tr>
-            `;
-        }).join('');
-    }
-
-    function getFilteredCourses() {
-        const college = document.getElementById('college-filter').value.toLowerCase();
-        const codeF = document.getElementById('course-code-filter').value.toLowerCase();
-        const titleF = document.getElementById('course-title-filter').value.toLowerCase();
-        return coursesData.filter(c => {
-            const okCollege = !college || (c.Colleges || "").toLowerCase().includes(college);
-            const okCode = !codeF || c.CourseCode.toLowerCase().includes(codeF);
-            const okTitle = !titleF || c.Title.toLowerCase().includes(titleF);
-            return okCollege && okCode && okTitle;
-        });
-    }
-
-    function setupFilters() {
-        ['college-filter','course-code-filter','course-title-filter'].forEach(id => {
-            const el = document.getElementById(id);
-            el.addEventListener('input', () => debounce(renderCoursesTable, 300)());
-            el.addEventListener('change', renderCoursesTable);
-        });
-    }
-
-    function debounce(fn, wait) {
-        let t;
-        return function() { clearTimeout(t); t = setTimeout(fn, wait); };
-    }
-
-    function showCourseDetail(code) {
-        const course = coursesData.find(c => c.CourseCode === code);
-        if (!course) { showError(`No data for ${code}`); return; }
-
-        document.getElementById('homepage').style.display = 'none';
-        document.getElementById('course-detail').style.display = 'block';
-        document.getElementById('detail-course-title').textContent = `${course.CourseCode}: ${course.Title}`;
-        document.getElementById('detail-course-meta').textContent = `College: ${course.Colleges}`;
-
-        const confirmed = course.clusters.filter(c => !c.is_potential);
-        const emerging = course.clusters.filter(c => c.is_potential);
-        document.getElementById('detail-total-topics').textContent = course.clusters.length;
-        document.getElementById('detail-confirmed-topics').textContent = confirmed.length;
-        document.getElementById('detail-emerging-topics').textContent = emerging.length;
-
-        let ppCount = 0;
-        course.clusters.forEach(c => { ppCount += (c.pain_points?.length || 0); });
-        document.getElementById('detail-pain-points').textContent = ppCount;
-
-        renderFeedbackTopics(confirmed, 'confirmed-topics');
-        renderEmergingTopics(emerging, 'emerging-topics');
-        document.getElementById('confirmed-topics-container').style.display = confirmed.length ? 'block' : 'none';
-        document.getElementById('emerging-topics-container').style.display = emerging.length ? 'block' : 'none';
-    }
-
-    function renderFeedbackTopics(topics, cid) {
-        const cont = document.getElementById(cid);
-        if (!topics.length) {
-            cont.innerHTML = '<div style="padding:24px;text-align:center;color:#7f8c8d;">No confirmed feedback topics</div>';
-            return;
-        }
-        cont.innerHTML = topics.map(t => `
-            <div class="feedback-topic">
-                <div class="topic-info">
-                    <div class="topic-title">${t.title}</div>
-                    <div class="topic-description">${t.root_cause_summary}</div>
-                </div>
-                <div class="pain-points">
-                    ${(t.pain_points || []).map(p => `
-                        <div class="pain-point">
-                            <div class="pain-quote">"${p.quoted_text}"</div>
-                            <a href="https://reddit.com/comments/${p.post_id}" target="_blank" class="pain-link">[link]</a>
-                        </div>
-                    `).join('')}
-                </div>
+    cont.innerHTML = topics.map(t => `
+        <div class="feedback-topic">
+            <div class="topic-info">
+                <div class="topic-title">${t.title}</div>
+                <div class="topic-description">${t.root_cause_summary}</div>
             </div>
-        `).join('');
-    }
-
-    function renderEmergingTopics(topics, cid) {
-        const cont = document.getElementById(cid);
-        if (!topics.length) {
-            cont.innerHTML = '<div style="padding:24px;text-align:center;color:#7f8c8d;">No emerging feedback topics</div>';
-            return;
-        }
-        cont.innerHTML = topics.map(t => `
-            <div class="potential-topic">
-                <div class="potential-title">${t.title}</div>
-                <div class="potential-description">${t.root_cause_summary}</div>
+            <div class="pain-points">
+                ${(t.pain_points || []).map(p => `
+                    <div class="pain-point">
+                        <div class="pain-quote">"${p.quoted_text}"</div>
+                        <a href="https://reddit.com/comments/${p.post_id}" target="_blank" class="pain-link">[link]</a>
+                    </div>
+                `).join('')}
             </div>
-        `).join('');
+        </div>
+    `).join('');
+}
+
+function renderEmergingTopics(topics, cid) {
+    const cont = document.getElementById(cid);
+    if (!topics.length) {
+        cont.innerHTML = '<div style="padding:24px;text-align:center;color:#7f8c8d;">No emerging feedback topics</div>';
+        return;
     }
 
-    function showHomepage() {
-        document.getElementById('course-detail').style.display = 'none';
-        document.getElementById('homepage').style.display = 'block';
-    }
+    cont.innerHTML = topics.map(t => `
+        <div class="potential-topic" style="flex-direction:column;">
+            <div class="topic-info">
+                <div class="topic-title">${t.title}</div>
+                <div class="topic-description">${t.root_cause_summary}</div>
+            </div>
+            <div class="pain-points" style="margin-left:24px;margin-top:12px;">
+                ${(t.pain_points || []).map(p => `
+                    <div class="pain-point">
+                        <div class="pain-quote">"${p.quoted_text}"</div>
+                        <a href="https://reddit.com/comments/${p.post_id}" target="_blank" class="pain-link">[link]</a>
+                    </div>
+                `).join('')}
+            </div>
+        </div>
+    `).join('');
+}
 
-    function showError(msg) {
-        const cont = document.querySelector('.container');
-        const e = document.createElement('div');
-        e.className='error'; e.textContent = msg;
-        cont.insertBefore(e, cont.firstChild);
-        setTimeout(() => e.remove(), 5000);
-    }
+function showHomepage() {
+    document.getElementById('course-detail').style.display = 'none';
+    document.getElementById('homepage').style.display = 'block';
+}
+
+function showError(msg) {
+    const cont = document.querySelector('.container');
+    const e = document.createElement('div');
+    e.className='error'; e.textContent = msg;
+    cont.insertBefore(e, cont.firstChild);
+    setTimeout(() => e.remove(), 5000);
+}
+
 </script>
+</body>
+</html>
