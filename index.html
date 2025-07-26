@@ -137,9 +137,9 @@
             </div>
         </div>
     </div>
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
 <script>
-    let mergedData = [];
+    let mergedData = {};
+    let coursesData = [];
 
     window.onload = init;
 
@@ -150,17 +150,29 @@
             setupFilters();
         } catch (e) {
             console.error(e);
-            showError('Failed to load data.');
+            showError('Failed to load merged data.');
         }
     }
 
     async function loadData() {
-        console.log("💡 Fetching merged data...");
+        console.log("📦 Loading merged course feedback...");
         const res = await fetch('data/merged_course_feedback.json');
-        if (!res.ok) throw new Error("Failed to fetch merged JSON");
+        if (!res.ok) throw new Error("Failed to fetch merged data");
         mergedData = await res.json();
-        console.log("✅ Merged data loaded:", mergedData.length, "courses");
+        coursesData = mergedData.courses;
+        console.log("✅ Loaded", coursesData.length, "courses from merged data");
     }
+
+    function getCourseMetrics(code) {
+        const course = mergedData.courses.find(c => c.CourseCode === code);
+        if (!course || !course.clusters) return { feedbackTopics: 0, painPoints: 0 };
+        const confirmed = course.clusters.filter(c => !c.is_potential).length;
+        let totalPP = 0;
+        course.clusters.forEach(c => { totalPP += (c.pain_point_ids || []).length; });
+        return { feedbackTopics: confirmed, painPoints: totalPP };
+    }
+
+
 
     function renderCoursesTable() {
         const tbody = document.getElementById('courses-tbody');
