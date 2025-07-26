@@ -154,11 +154,11 @@
     }
 
     async function loadData() {
-        console.log("📦 Loading merged course feedback...");
+        console.log("Loading merged course feedback...");
         const res = await fetch('data/merged_course_feedback.json');
         if (!res.ok) throw new Error("Failed to fetch merged data");
         coursesData = await res.json();
-        console.log("✅ Loaded", coursesData.length, "courses from merged data");
+        console.log("Loaded", coursesData.length, "courses from merged data");
     }
 
     function getCourseMetrics(code) {
@@ -186,7 +186,7 @@
                     <td onclick="showCourseDetail('${c.CourseCode}')">${c.Title}</td>
                     <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${confirmed.length}</span></td>
                     <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${painPoints}</span></td>
-                    <td><a href="outputs/course_feedback_files/${c.CourseCode}_Reddit_Feedback.md" download class="download-link">⬇️</a></td>
+                    <td><a href="outputs/course_feedback_files/pdf/${c.CourseCode}_Reddit_Feedback.pdf" download class="download-link">⬇️</a></td>
                 </tr>
             `;
         }).join('');

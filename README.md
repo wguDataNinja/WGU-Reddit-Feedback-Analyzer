@@ -1,19 +1,25 @@
-# WGU Reddit Monitoring Pipeline
+# WGU Reddit Feedback Analyzer
 
-Unsolicited student feedback can reveal critical insights into course design, support, and content delivery.  
-This project analyzes Reddit posts mentioning WGU courses to extract and cluster student *pain points* —  
-negative experiences linked to specific root causes — using ChatGPT-4o and JSON structured output  
-as explained in the [OpenAI Documentation here](https://platform.openai.com/docs/guides/structured-outputs).
+**Project Title**: *WGU Reddit Monitoring and Feedback Clustering Tool*  
+**Purpose**: Analyze unsolicited student feedback on Reddit to surface and cluster course-related *pain points*  
+**Project Type**: Interactive web app built on curated Reddit data using NLP and sentiment classification. 
+Includes downloadable (PDF) course-level feedback sheets.  
+**Author**: Buddy Owens  
+**Live Demo**: [Launch Dashboard](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/index.html)  
+**Notes**: Developed in support of WGU Data Analytics Capstone work  
+---
+
 
 ## Project Goals
-- Extract relevant posts from our custom .db of over 20k posts from WGU-related subreddits.
+- Extract relevant posts from our custom database of over 20k posts from WGU-related subreddits.
 - Identify *pain points* expressed by the user, about the course.
 - Cluster similar pain points by root cause to reveal common issues by course.
 - Deliver structured, quote-backed, course-level summaries for curriculum designers, instructors and mentors.
 
 ## Motivation
 
-While WGU conducts formal feedback surveys, students also post candidly on Reddit. These unfiltered posts often highlight pain points not captured by traditional surveys. This project aims to harness those insights for potential course improvement.
+While WGU conducts formal feedback surveys, students also post candidly on Reddit. These unfiltered posts often highlight 
+pain points not captured by traditional surveys. This project aims to harness those insights for potential course improvement.
 
 ---
 
@@ -46,8 +52,25 @@ While WGU conducts formal feedback surveys, students also post candidly on Reddi
 ```
 ### Prototype
 The first version of this project was a single-pass LLM categorization of Reddit posts, 
-and is still available in [the prototype dashboard](https://wgudataninja.github.io/wgu-reddit-monitoring-pipeline/prototype/index.html).
+and is still available in [the prototype dashboard](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/prototype/index.html).
 
+## LLM Classification Methodology
+
+This project uses **GPT-4o-mini** in a *guided zero-shot* configuration — with carefully defined roles, terminology, and instructions — to extract and cluster student pain points from Reddit posts.
+
+Inspired by Guo et al. (2023) [JAMIA](https://journals.aai.org/jamia/article/31/10/2181/7731085), we follow their **LLM-as-classifier** framework (see graphic below). Rather than providing labeled examples, we guide the model using:
+
+- Clear role assignment (e.g., “You are a course designer...”)
+- Domain-specific definitions (*pain point*, *root cause*)
+- JSON schema constraints for structured output
+- Explicit instructions to merge similar issues under a single root cause
+
+In the clustering stage, the LLM is also allowed to **rename clusters** to avoid fragmentation — broadening cluster titles and summaries to include edge cases when appropriate.
+
+<p align="center">
+  <img src="visuals/source-1-method-diagram.png.png" alt="LLM Classification Strategies" width="350" align="left" style="margin-right: 20px;"/>
+</p>
+<br clear="all"/>
 
 ## Project Overview
 
@@ -150,11 +173,11 @@ Use the exact `pain_point_id` from the input. Do not rename, abbreviate, or simp
 
 ```json
 {
-  "pain_point_id": "...",
-  "action": "assign" | "new",
-  "cluster_id": "COURSE_#" | null,
-  "cluster_title": "..." | null,
-  "root_cause_summary": "..." | null
+  "pain_point_id": "string",
+  "action": "assign", 
+  "cluster_id": "C949_3", 
+  "cluster_title": null,
+  "root_cause_summary": "Mentor feedback delays are a recurring issue."
 }
 ```
 
