@@ -1,372 +1,75 @@
+<!-- index.html -->
+
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WGU Course Feedback Dashboard</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background-color: #f5f7fa;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .header {
-            background: white;
-            padding: 24px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 24px;
-        }
-
-        .header h1 {
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 28px;
-        }
-
-        .header p {
-            color: #7f8c8d;
-            font-size: 16px;
-        }
-
-        .filters {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 24px;
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-            min-width: 200px;
-        }
-
-        .filter-group label {
-            font-weight: 600;
-            color: #555;
-            font-size: 14px;
-        }
-
-        .filter-group select,
-        .filter-group input {
-            padding: 8px 12px;
-            border: 2px solid #e1e8ed;
-            border-radius: 4px;
-            font-size: 14px;
-            transition: border-color 0.2s;
-        }
-
-        .filter-group select:focus,
-        .filter-group input:focus {
-            outline: none;
-            border-color: #3498db;
-        }
-
-        .courses-table {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #f8f9fa;
-            padding: 16px;
-            text-align: left;
-            font-weight: 600;
-            color: #555;
-            border-bottom: 2px solid #e1e8ed;
-        }
-
-        td {
-            padding: 16px;
-            border-bottom: 1px solid #e1e8ed;
-        }
-
-        .course-row {
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .course-row:hover {
-            background-color: #f8f9fa;
-        }
-
-        .alert-badge {
-            background: #e74c3c;
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 600;
-        }
-
-        .no-alert {
-            color: #95a5a6;
-            font-size: 12px;
-        }
-
-        .metric {
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .course-detail {
-            display: none;
-        }
-
-        .course-detail.active {
-            display: block;
-        }
-
-        .back-button {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 14px;
-            margin-bottom: 20px;
-            transition: background-color 0.2s;
-        }
-
-        .back-button:hover {
-            background: #2980b9;
-        }
-
-        .course-header {
-            background: white;
-            padding: 24px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 24px;
-        }
-
-        .course-title {
-            font-size: 24px;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .course-meta {
-            color: #7f8c8d;
-            margin-bottom: 16px;
-        }
-
-        .course-stats {
-            display: flex;
-            gap: 24px;
-            flex-wrap: wrap;
-        }
-
-        .stat {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: 700;
-            color: #2c3e50;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: #7f8c8d;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .feedback-topics {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            margin-bottom: 24px;
-        }
-
-        .section-header {
-            background: #f8f9fa;
-            padding: 16px 24px;
-            border-bottom: 2px solid #e1e8ed;
-            font-weight: 600;
-            color: #2c3e50;
-        }
-
-        .feedback-topic {
-            padding: 24px;
-            border-bottom: 1px solid #e1e8ed;
-            display: flex;
-            gap: 24px;
-        }
-
-        .feedback-topic:last-child {
-            border-bottom: none;
-        }
-
-        .topic-info {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .topic-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-
-        .topic-description {
-            color: #555;
-            margin-bottom: 16px;
-            line-height: 1.5;
-        }
-
-        .pain-points {
-            flex: 2;
-            min-width: 400px;
-        }
-
-        .pain-point {
-            background: #f8f9fa;
-            border-left: 4px solid #3498db;
-            padding: 16px;
-            margin-bottom: 12px;
-            border-radius: 0 4px 4px 0;
-        }
-
-        .pain-point:last-child {
-            margin-bottom: 0;
-        }
-
-        .pain-quote {
-            font-style: italic;
-            color: #555;
-            margin-bottom: 8px;
-            line-height: 1.4;
-        }
-
-        .pain-link {
-            display: inline-block;
-            color: #3498db;
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .pain-link:hover {
-            text-decoration: underline;
-        }
-
-        .potential-topics {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .potential-topic {
-            padding: 16px 24px;
-            border-bottom: 1px solid #e1e8ed;
-            display: flex;
-            gap: 16px;
-            align-items: flex-start;
-        }
-
-        .potential-topic:last-child {
-            border-bottom: none;
-        }
-
-        .potential-title {
-            font-size: 16px;
-            font-weight: 500;
-            color: #555;
-            margin-bottom: 4px;
-            flex: 1;
-        }
-
-        .potential-description {
-            color: #777;
-            font-size: 14px;
-            flex: 2;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 40px;
-            color: #7f8c8d;
-        }
-
-        .error {
-            background: #ffeaea;
-            color: #e74c3c;
-            padding: 16px;
-            border-radius: 4px;
-            margin-bottom: 20px;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #f5f7fa; color: #333; line-height: 1.6; }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+        .header { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 24px; }
+        .header h1 { color: #2c3e50; margin-bottom: 8px; font-size: 28px; }
+        .header p { color: #7f8c8d; font-size: 16px; }
+        .filters { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 24px; display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+        .filter-group { display: flex; flex-direction: column; gap: 4px; min-width: 200px; }
+        .filter-group label { font-weight: 600; color: #555; font-size: 14px; }
+        .filter-group select, .filter-group input { padding: 8px 12px; border: 2px solid #e1e8ed; border-radius: 4px; font-size: 14px; transition: border-color 0.2s; }
+        .filter-group select:focus, .filter-group input:focus { outline: none; border-color: #3498db; }
+        .courses-table { background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); overflow: hidden; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #f8f9fa; padding: 16px; text-align: left; font-weight: 600; color: #555; border-bottom: 2px solid #e1e8ed; }
+        td { padding: 16px; border-bottom: 1px solid #e1e8ed; }
+        .course-row { cursor: pointer; transition: background-color 0.2s; }
+        .course-row:hover { background-color: #f8f9fa; }
+        .alert-badge { background: #e74c3c; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+        .no-alert { color: #95a5a6; font-size: 12px; }
+        .metric { font-weight: 600; color: #2c3e50; }
+        .download-link { font-size: 18px; text-decoration: none; }
+        .loading { text-align: center; padding: 40px; color: #7f8c8d; }
+        .error { background: #ffeaea; color: #e74c3c; padding: 16px; border-radius: 4px; margin-bottom: 20px; }
+        .course-detail { display: none; }
+        .back-button { background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-bottom: 20px; transition: background-color 0.2s; }
+        .back-button:hover { background: #2980b9; }
+        .course-header { background: white; padding: 24px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 24px; }
+        .course-title { font-size: 24px; color: #2c3e50; margin-bottom: 8px; }
+        .course-meta { color: #7f8c8d; margin-bottom: 16px; }
+        .course-stats { display: flex; gap: 24px; flex-wrap: wrap; }
+        .stat { display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .stat-number { font-size: 24px; font-weight: 700; color: #2c3e50; }
+        .stat-label { font-size: 12px; color: #7f8c8d; text-transform: uppercase; letter-spacing: 0.5px; }
+        .feedback-topics, .potential-topics { background: white; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 24px; }
+        .section-header { background: #f8f9fa; padding: 16px 24px; border-bottom: 2px solid #e1e8ed; font-weight: 600; color: #2c3e50; }
+        .feedback-topic, .potential-topic { padding: 24px; border-bottom: 1px solid #e1e8ed; display: flex; gap: 24px; }
+        .feedback-topic:last-child, .potential-topic:last-child { border-bottom: none; }
+        .topic-info { flex: 1; min-width: 300px; }
+        .topic-title { font-size: 18px; font-weight: 600; color: #2c3e50; margin-bottom: 8px; }
+        .topic-description { color: #555; margin-bottom: 16px; line-height: 1.5; }
+        .pain-points { flex: 2; min-width: 400px; }
+        .pain-point { background: #f8f9fa; border-left: 4px solid #3498db; padding: 16px; margin-bottom: 12px; border-radius: 0 4px 4px 0; }
+        .pain-point:last-child { margin-bottom: 0; }
+        .pain-quote { font-style: italic; color: #555; margin-bottom: 8px; line-height: 1.4; }
+        .pain-link { display: inline-block; color: #3498db; text-decoration: none; font-size: 14px; font-weight: 500; }
+        .pain-link:hover { text-decoration: underline; }
         @media (max-width: 768px) {
-            .filters {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .filter-group {
-                min-width: auto;
-            }
-
-            .feedback-topic {
-                flex-direction: column;
-                gap: 16px;
-            }
-
-            .topic-info,
-            .pain-points {
-                min-width: auto;
-            }
-
-            .course-stats {
-                justify-content: center;
-            }
+            .filters { flex-direction: column; align-items: stretch; }
+            .filter-group { min-width: auto; }
+            .feedback-topic, .potential-topic { flex-direction: column; gap: 16px; }
+            .topic-info, .pain-points { min-width: auto; }
+            .course-stats { justify-content: center; }
         }
     </style>
 </head>
-<body>
+<body onload="init()">
     <div class="container">
-        <!-- Homepage View -->
-        <div id="homepage" class="homepage-view">
+        <div id="homepage">
             <div class="header">
                 <h1>WGU Course Feedback Dashboard</h1>
                 <p>Browse and understand Reddit-sourced feedback patterns for WGU courses</p>
             </div>
-
             <div class="filters">
                 <div class="filter-group">
                     <label for="college-filter">College</label>
@@ -387,7 +90,6 @@
                     <input type="text" id="course-title-filter" placeholder="Search course titles...">
                 </div>
             </div>
-
             <div class="courses-table">
                 <table>
                     <thead>
@@ -395,24 +97,18 @@
                             <th>Course Code</th>
                             <th>Course Title</th>
                             <th>Feedback Topics</th>
-                            <th>Potential Topics</th>
                             <th>Pain Points</th>
-                            <th>Alert</th>
+                            <th>Download</th>
                         </tr>
                     </thead>
                     <tbody id="courses-tbody">
-                        <tr>
-                            <td colspan="6" class="loading">Loading courses...</td>
-                        </tr>
+                        <tr><td colspan="5" class="loading">Loading courses...</td></tr>
                     </tbody>
                 </table>
             </div>
         </div>
-
-        <!-- Course Detail View -->
-        <div id="course-detail" class="course-detail">
+        <div id="course-detail" style="display:none">
             <button class="back-button" onclick="showHomepage()">← Back to All Courses</button>
-
             <div class="course-header">
                 <div class="course-title" id="detail-course-title"></div>
                 <div class="course-meta" id="detail-course-meta"></div>
@@ -435,12 +131,10 @@
                     </div>
                 </div>
             </div>
-
             <div class="feedback-topics" id="confirmed-topics-container">
                 <div class="section-header">Confirmed Feedback Topics</div>
                 <div id="confirmed-topics"></div>
             </div>
-
             <div class="potential-topics" id="emerging-topics-container">
                 <div class="section-header">Emerging Feedback Topics</div>
                 <div id="emerging-topics"></div>
@@ -448,420 +142,161 @@
         </div>
     </div>
 
-    <script>
-        // Global data storage
-        let coursesData = [];
-        let clustersData = {};
-        let painPointsData = {};
-        let currentCourse = null;
+```
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+<script>
+    let coursesData = [];
+    let clustersData = {};
+    let painPointsData = {};
 
-        // Initialize the application
-        async function init() {
+    async function init() {
+        try {
+            await loadData();
+            renderCoursesTable();
+            setupFilters();
+        } catch (e) {
+            console.error(e);
+            showError('Failed to load data.');
+        }
+    }
+
+    async function loadData() {
+        // Load courses CSV
+        const csvRes = await fetch('data/2025_06_course_list_with_college.csv');
+        const csvText = await csvRes.text();
+        coursesData = Papa.parse(csvText, { header: true }).data;
+
+        // Load pain points JSONL
+        const ppRes = await fetch('outputs/stage1/pain_points_stage1.jsonl');
+        const ppText = await ppRes.text();
+        painPointsData = {};
+        ppText.trim().split('\n').forEach(line => {
+            if (!line) return;
+            const pp = JSON.parse(line);
+            painPointsData[pp.pain_point_id] = pp;
+        });
+
+        // Load clusters per course
+        for (const c of coursesData) {
             try {
-                await loadData();
-                renderCoursesTable();
-                setupFilters();
-            } catch (error) {
-                console.error('Initialization error:', error);
-                showError('Failed to load data. Please check console for details.');
+                const res = await fetch(`outputs/stage2/clusters_by_course/${c.CourseCode}_clusters.json`);
+                if (!res.ok) throw new Error();
+                clustersData[c.CourseCode] = await res.json();
+            } catch {
+                console.warn(`No cluster data for ${c.CourseCode}`);
             }
         }
+    }
 
-        // Load all required data
-        async function loadData() {
-            // For demo purposes, using sample data
-            // In production, you would load from actual files
+    function getCourseMetrics(code) {
+        const data = clustersData[code];
+        if (!data) return { feedbackTopics: 0, painPoints: 0 };
+        const confirmed = data.clusters.filter(c => !c.is_potential).length;
+        let totalPP = 0;
+        data.clusters.forEach(c => { totalPP += (c.pain_point_ids||[]).length; });
+        return { feedbackTopics: confirmed, painPoints: totalPP };
+    }
 
-            // Sample course data (replace with actual CSV loading)
-            coursesData = [
-                { CourseCode: 'C715', Title: 'Organizational Behavior', Colleges: 'Leavitt School of Health; School of Business; School of Technology' },
-                { CourseCode: 'D072', Title: 'Fundamentals for Success in Business', Colleges: 'School of Business' },
-                { CourseCode: 'D196', Title: 'Principles of Financial and Managerial Accounting', Colleges: 'School of Business' },
-                { CourseCode: 'C949', Title: 'Data Structures and Algorithms I', Colleges: 'School of Technology' },
-                { CourseCode: 'AFT2', Title: 'Organizational Systems', Colleges: 'School of Business' },
-                { CourseCode: 'D197', Title: 'Software Development Capstone', Colleges: 'School of Technology' }
-            ];
-
-            // Sample cluster data (replace with actual file loading)
-            clustersData = {
-                'C949': {
-                    course: 'C949',
-                    clusters: [
-                        {
-                            cluster_id: 'C949_1',
-                            title: 'Course Approval and Failures',
-                            root_cause_summary: 'Students consistently fail courses despite meeting predefined requirements.',
-                            post_ids: ['1ewa9ww', '1k6e9jx', '1k6eaph'],
-                            is_potential: false
-                        },
-                        {
-                            cluster_id: 'C949_2',
-                            title: 'Assessment Complexity Understanding',
-                            root_cause_summary: 'Students are uncertain about the depth of understanding required for assessment topics.',
-                            post_ids: ['1id36nl', '1itr62r', '1ga245o'],
-                            is_potential: false
-                        },
-                        {
-                            cluster_id: 'C949_5',
-                            title: 'Test Anxiety and Performance',
-                            root_cause_summary: 'Students experience significant anxiety during tests, impacting their performance.',
-                            post_ids: ['1aiwpnx'],
-                            is_potential: true
-                        }
-                    ],
-                    alert_threshold: 2,
-                    alerts: [
-                        {
-                            cluster_id: 'C949_1',
-                            event: 'EMERGING_CLUSTER_ALERT',
-                            detected_on: '2025-07-24T15:50:17.487780Z',
-                            summary: 'Students consistently fail courses despite meeting predefined requirements.',
-                            post_count: 3
-                        }
-                    ]
-                },
-                'AFT2': {
-                    course: 'AFT2',
-                    clusters: [
-                        {
-                            cluster_id: 'AFT2_1',
-                            title: 'Citation and Resubmission Confusion',
-                            root_cause_summary: 'Students are unclear about the requirements for citation and what is necessary for resubmissions.',
-                            post_ids: ['1c0qqf5'],
-                            is_potential: true
-                        }
-                    ],
-                    alert_threshold: 2,
-                    alerts: []
-                },
-                'D197': {
-                    course: 'D197',
-                    clusters: [
-                        {
-                            cluster_id: 'D197_1',
-                            title: 'GitLab Interface Issues',
-                            root_cause_summary: 'Screenshots in course materials do not match current GitLab interface.',
-                            post_ids: ['1lqxp9w'],
-                            is_potential: false
-                        }
-                    ],
-                    alert_threshold: 2,
-                    alerts: []
-                }
-            };
-
-            // Sample pain points data (replace with actual JSONL loading)
-            painPointsData = {
-                '1ewa9ww': {
-                    post_id: '1ewa9ww',
-                    course: 'C949',
-                    num_pain_points: 1,
-                    pain_points: [
-                        {
-                            pain_point_summary: 'Course failure despite meeting requirements',
-                            root_cause: 'Unclear grading criteria and inconsistent feedback.',
-                            quoted_text: 'I followed all the requirements but still failed the course...'
-                        }
-                    ]
-                },
-                '1k6e9jx': {
-                    post_id: '1k6e9jx',
-                    course: 'C949',
-                    num_pain_points: 1,
-                    pain_points: [
-                        {
-                            pain_point_summary: 'Confusing assessment expectations',
-                            root_cause: 'Assessment rubric is not aligned with course materials.',
-                            quoted_text: 'The test questions were nothing like what we studied...'
-                        }
-                    ]
-                },
-                '1lqxp9w': {
-                    post_id: '1lqxp9w',
-                    course: 'D197',
-                    num_pain_points: 1,
-                    pain_points: [
-                        {
-                            pain_point_summary: 'Instructions are outdated',
-                            root_cause: 'Screenshots in the guide do not match GitLab interface.',
-                            quoted_text: 'the instructions are a little outdated and the screenshots don\'t match what I see in GitLab...'
-                        }
-                    ]
-                },
-                '1c0qqf5': {
-                    post_id: '1c0qqf5',
-                    course: 'AFT2',
-                    num_pain_points: 1,
-                    pain_points: [
-                        {
-                            pain_point_summary: 'Citation requirements unclear',
-                            root_cause: 'Inconsistent guidance on citation format and requirements.',
-                            quoted_text: 'I\'m confused about what citation style to use and how many sources I need...'
-                        }
-                    ]
-                },
-                '1aiwpnx': {
-                    post_id: '1aiwpnx',
-                    course: 'C949',
-                    num_pain_points: 2,
-                    pain_points: [
-                        {
-                            pain_point_summary: 'Test anxiety affecting performance',
-                            root_cause: 'High-stakes testing environment creates stress.',
-                            quoted_text: 'I get so nervous during tests that I forget everything I studied...'
-                        },
-                        {
-                            pain_point_summary: 'Pressure affecting recall',
-                            root_cause: 'Time constraints make it difficult to think clearly.',
-                            quoted_text: 'Under pressure, I can\'t remember the concepts properly...'
-                        }
-                    ]
-                }
-            };
+    function renderCoursesTable() {
+        const tbody = document.getElementById('courses-tbody');
+        const filtered = getFilteredCourses();
+        if (!filtered.length) {
+            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#7f8c8d;padding:40px;">No courses match the filters</td></tr>';
+            return;
         }
+        tbody.innerHTML = filtered.map(c => {
+            const m = getCourseMetrics(c.CourseCode);
+            return `
+                <tr class="course-row">
+                    <td onclick="showCourseDetail('${c.CourseCode}')"><strong>${c.CourseCode}</strong></td>
+                    <td onclick="showCourseDetail('${c.CourseCode}')">${c.Title}</td>
+                    <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${m.feedbackTopics}</span></td>
+                    <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${m.painPoints}</span></td>
+                    <td><a href="outputs/course_feedback_files/${c.CourseCode}_Reddit_Feedback.md" download class="download-link">⬇️</a></td>
+                </tr>
+            `;
+        }).join('');
+    }
 
-        // Get course metrics
-        function getCourseMetrics(courseCode) {
-            const clusters = clustersData[courseCode];
-            if (!clusters) {
-                return { feedbackTopics: 0, potentialTopics: 0, painPoints: 0, hasAlert: false };
-            }
+    function getFilteredCourses() {
+        const college = document.getElementById('college-filter').value.toLowerCase();
+        const codeF = document.getElementById('course-code-filter').value.toLowerCase();
+        const titleF = document.getElementById('course-title-filter').value.toLowerCase();
+        return coursesData.filter(c => {
+            const okCollege = !college || c.Colleges.toLowerCase().includes(college);
+            const okCode = !codeF || c.CourseCode.toLowerCase().includes(codeF);
+            const okTitle = !titleF || c.Title.toLowerCase().includes(titleF);
+            return okCollege && okCode && okTitle;
+        });
+    }
 
-            const confirmedTopics = clusters.clusters.filter(c => !c.is_potential).length;
-            const potentialTopics = clusters.clusters.filter(c => c.is_potential).length;
-            const hasAlert = clusters.alerts && clusters.alerts.length > 0;
+    function setupFilters() {
+        ['college-filter','course-code-filter','course-title-filter'].forEach(id => {
+            const el = document.getElementById(id);
+            el.addEventListener('input', () => debounce(renderCoursesTable,300)());
+            el.addEventListener('change', renderCoursesTable);
+        });
+    }
 
-            // Count unique pain points for this course
-            const allPostIds = new Set();
-            clusters.clusters.forEach(cluster => {
-                cluster.post_ids.forEach(postId => allPostIds.add(postId));
-            });
+    function debounce(fn, wait) {
+        let t;
+        return function() { clearTimeout(t); t = setTimeout(fn, wait); };
+    }
 
-            let totalPainPoints = 0;
-            allPostIds.forEach(postId => {
-                if (painPointsData[postId]) {
-                    totalPainPoints += painPointsData[postId].num_pain_points;
-                }
-            });
+    function showCourseDetail(code) {
+        const course = coursesData.find(c => c.CourseCode===code);
+        const data = clustersData[code];
+        if (!course || !data) { showError(`No data for ${code}`); return; }
+        document.getElementById('homepage').style.display = 'none';
+        document.getElementById('course-detail').style.display = 'block';
+        document.getElementById('detail-course-title').textContent = `${course.CourseCode}: ${course.Title}`;
+        document.getElementById('detail-course-meta').textContent = `College: ${course.Colleges}`;
+        const confirmed = data.clusters.filter(c=>!c.is_potential);
+        const emerging = data.clusters.filter(c=>c.is_potential);
+        document.getElementById('detail-total-topics').textContent = data.clusters.length;
+        document.getElementById('detail-confirmed-topics').textContent = confirmed.length;
+        document.getElementById('detail-emerging-topics').textContent = emerging.length;
+        let ppCount=0;
+        data.clusters.forEach(c=>{ppCount+= (c.pain_point_ids||[]).length;});
+        document.getElementById('detail-pain-points').textContent = ppCount;
+        renderFeedbackTopics(confirmed,'confirmed-topics');
+        renderEmergingTopics(emerging,'emerging-topics');
+        document.getElementById('confirmed-topics-container').style.display = confirmed.length?'block':'none';
+        document.getElementById('emerging-topics-container').style.display = emerging.length?'block':'none';
+    }
 
-            return {
-                feedbackTopics: confirmedTopics,
-                potentialTopics: potentialTopics,
-                painPoints: totalPainPoints,
-                hasAlert: hasAlert
-            };
-        }
+    function renderFeedbackTopics(topics, cid) {
+        const cont = document.getElementById(cid);
+        if (!topics.length) return cont.innerHTML='<div style="padding:24px;text-align:center;color:#7f8c8d;">No confirmed feedback topics</div>';
+        cont.innerHTML = topics.map(t=>`<div class="feedback-topic"><div class="topic-info"><div class="topic-title">${t.title}</div><div class="topic-description">${t.root_cause_summary}</div></div><div class="pain-points">${renderPainPointsForTopic(t)}</div></div>`).join('');
+    }
 
-        // Render courses table
-        function renderCoursesTable() {
-            const tbody = document.getElementById('courses-tbody');
-            const filteredCourses = getFilteredCourses();
+    function renderEmergingTopics(topics, cid) {
+        const cont = document.getElementById(cid);
+        if (!topics.length) return cont.innerHTML='<div style="padding:24px;text-align:center;color:#7f8c8d;">No emerging feedback topics</div>';
+        cont.innerHTML = topics.map(t=>`<div class="potential-topic"><div class="potential-title">${t.title}</div><div class="potential-description">${t.root_cause_summary}</div></div>`).join('');
+    }
 
-            if (filteredCourses.length === 0) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #7f8c8d; padding: 40px;">No courses match the current filters</td></tr>';
-                return;
-            }
+    function renderPainPointsForTopic(topic) {
+        const pts = (topic.pain_point_ids||[]).map(id=>painPointsData[id]).filter(Boolean);
+        if (!pts.length) return '<div style="color:#7f8c8d;font-style:italic;">No associated pain points found</div>';
+        return pts.map(p=>`<div class="pain-point"><div class="pain-quote">"${p.quoted_text}"</div><a href="https://reddit.com/comments/${p.post_id}" target="_blank" class="pain-link">[link]</a></div>`).join('');
+    }
 
-            tbody.innerHTML = filteredCourses.map(course => {
-                const metrics = getCourseMetrics(course.CourseCode);
-                return `
-                    <tr class="course-row" onclick="showCourseDetail('${course.CourseCode}')">
-                        <td><strong>${course.CourseCode}</strong></td>
-                        <td>${course.Title}</td>
-                        <td><span class="metric">${metrics.feedbackTopics}</span></td>
-                        <td><span class="metric">${metrics.potentialTopics}</span></td>
-                        <td><span class="metric">${metrics.painPoints}</span></td>
-                        <td>${metrics.hasAlert ? '<span class="alert-badge">Yes</span>' : '<span class="no-alert">No</span>'}</td>
-                    </tr>
-                `;
-            }).join('');
-        }
+    function showHomepage() {
+        document.getElementById('course-detail').style.display = 'none';
+        document.getElementById('homepage').style.display = 'block';
+    }
 
-        // Get filtered courses based on current filter values
-        function getFilteredCourses() {
-            const collegeFilter = document.getElementById('college-filter').value.toLowerCase();
-            const courseCodeFilter = document.getElementById('course-code-filter').value.toLowerCase();
-            const courseTitleFilter = document.getElementById('course-title-filter').value.toLowerCase();
+    function showError(msg) {
+        const cont = document.querySelector('.container');
+        const e = document.createElement('div');
+        e.className='error'; e.textContent = msg;
+        cont.insertBefore(e, cont.firstChild);
+        setTimeout(()=>e.remove(),5000);
+    }
+</script>
+```
 
-            return coursesData.filter(course => {
-                const matchesCollege = !collegeFilter || course.Colleges.toLowerCase().includes(collegeFilter);
-                const matchesCourseCode = !courseCodeFilter || course.CourseCode.toLowerCase().includes(courseCodeFilter);
-                const matchesTitle = !courseTitleFilter || course.Title.toLowerCase().includes(courseTitleFilter);
-
-                return matchesCollege && matchesCourseCode && matchesTitle;
-            });
-        }
-
-        // Setup filter event listeners
-        function setupFilters() {
-            const filters = ['college-filter', 'course-code-filter', 'course-title-filter'];
-            filters.forEach(filterId => {
-                const element = document.getElementById(filterId);
-                element.addEventListener('input', debounce(renderCoursesTable, 300));
-                element.addEventListener('change', renderCoursesTable);
-            });
-        }
-
-        // Debounce function for search inputs
-        function debounce(func, wait) {
-            let timeout;
-            return function executedFunction(...args) {
-                const later = () => {
-                    clearTimeout(timeout);
-                    func(...args);
-                };
-                clearTimeout(timeout);
-                timeout = setTimeout(later, wait);
-            };
-        }
-
-        // Show course detail view
-        function showCourseDetail(courseCode) {
-            currentCourse = courseCode;
-            const course = coursesData.find(c => c.CourseCode === courseCode);
-            const clusters = clustersData[courseCode];
-
-            if (!course || !clusters) {
-                showError(`No data found for course ${courseCode}`);
-                return;
-            }
-
-            // Update course header
-            document.getElementById('detail-course-title').textContent = `${course.CourseCode}: ${course.Title}`;
-            document.getElementById('detail-course-meta').textContent = `College: ${course.Colleges}`;
-
-            // Calculate and display metrics
-            const confirmedTopics = clusters.clusters.filter(c => !c.is_potential);
-            const emergingTopics = clusters.clusters.filter(c => c.is_potential);
-            const totalTopics = clusters.clusters.length;
-
-            // Count total pain points
-            const allPostIds = new Set();
-            clusters.clusters.forEach(cluster => {
-                cluster.post_ids.forEach(postId => allPostIds.add(postId));
-            });
-
-            let totalPainPoints = 0;
-            allPostIds.forEach(postId => {
-                if (painPointsData[postId]) {
-                    totalPainPoints += painPointsData[postId].num_pain_points;
-                }
-            });
-
-            document.getElementById('detail-total-topics').textContent = totalTopics;
-            document.getElementById('detail-confirmed-topics').textContent = confirmedTopics.length;
-            document.getElementById('detail-emerging-topics').textContent = emergingTopics.length;
-            document.getElementById('detail-pain-points').textContent = totalPainPoints;
-
-            // Render confirmed topics
-            renderFeedbackTopics(confirmedTopics, 'confirmed-topics');
-
-            // Render emerging topics
-            renderEmergingTopics(emergingTopics, 'emerging-topics');
-
-            // Show/hide containers based on content
-            document.getElementById('confirmed-topics-container').style.display =
-                confirmedTopics.length > 0 ? 'block' : 'none';
-            document.getElementById('emerging-topics-container').style.display =
-                emergingTopics.length > 0 ? 'block' : 'none';
-
-            // Switch views
-            document.getElementById('homepage').classList.remove('active');
-            document.getElementById('course-detail').classList.add('active');
-        }
-
-        // Render feedback topics (confirmed)
-        function renderFeedbackTopics(topics, containerId) {
-            const container = document.getElementById(containerId);
-
-            if (topics.length === 0) {
-                container.innerHTML = '<div style="padding: 24px; text-align: center; color: #7f8c8d;">No confirmed feedback topics</div>';
-                return;
-            }
-
-            container.innerHTML = topics.map(topic => {
-                const painPointsHtml = renderPainPointsForTopic(topic);
-
-                return `
-                    <div class="feedback-topic">
-                        <div class="topic-info">
-                            <div class="topic-title">${topic.title}</div>
-                            <div class="topic-description">${topic.root_cause_summary}</div>
-                        </div>
-                        <div class="pain-points">
-                            ${painPointsHtml}
-                        </div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Render emerging topics (potential)
-        function renderEmergingTopics(topics, containerId) {
-            const container = document.getElementById(containerId);
-
-            if (topics.length === 0) {
-                container.innerHTML = '<div style="padding: 24px; text-align: center; color: #7f8c8d;">No emerging feedback topics</div>';
-                return;
-            }
-
-            container.innerHTML = topics.map(topic => {
-                return `
-                    <div class="potential-topic">
-                        <div class="potential-title">${topic.title}</div>
-                        <div class="potential-description">${topic.root_cause_summary}</div>
-                    </div>
-                `;
-            }).join('');
-        }
-
-        // Render pain points for a specific topic
-        function renderPainPointsForTopic(topic) {
-            const relevantPainPoints = [];
-
-            topic.post_ids.forEach(postId => {
-                if (painPointsData[postId]) {
-                    painPointsData[postId].pain_points.forEach(painPoint => {
-                        relevantPainPoints.push({
-                            ...painPoint,
-                            post_id: postId
-                        });
-                    });
-                }
-            });
-
-            if (relevantPainPoints.length === 0) {
-                return '<div style="color: #7f8c8d; font-style: italic;">No associated pain points found</div>';
-            }
-
-            return relevantPainPoints.map(painPoint => `
-                <div class="pain-point">
-                    <div class="pain-quote">"${painPoint.quoted_text}"</div>
-                    <a href="https://reddit.com/comments/${painPoint.post_id}" target="_blank" class="pain-link">
-                        [link]
-                    </a>
-                </div>
-            `).join('');
-        }
-
-        // Show homepage
-        function showHomepage() {
-            document.getElementById('course-detail').classList.remove('active');
-            document.getElementById('homepage').classList.add('active');
-            currentCourse = null;
-        }
-
-        // Show error message
-        function showError(message) {
-            const container = document.querySelector('.container');
-            const errorDiv = document.createElement('div');
-            errorDiv.className = 'error';
-            errorDiv.textContent = message;
-            container.insertBefore(errorDiv, container.firstChild);
-
-            setTimeout(() => {
-                if (errorDiv.parentNode) {
-                    errorDiv.parentNode.removeChild(errorDiv);
-                }
-            }, 5000);
-        }
+</body>
+</html>
