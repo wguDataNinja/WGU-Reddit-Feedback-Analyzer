@@ -160,33 +160,47 @@
         }
     }
 
-    async function loadData() {
-        // Load courses CSV
-        const csvRes = await fetch('data/2025_06_course_list_with_college.csv');
-        const csvText = await csvRes.text();
-        coursesData = Papa.parse(csvText, { header: true }).data;
+async function loadData() {
+    console.log('loading data...');
 
-        // Load pain points JSONL
-        const ppRes = await fetch('outputs/stage1/pain_points_stage1.jsonl');
-        const ppText = await ppRes.text();
-        painPointsData = {};
-        ppText.trim().split('\n').forEach(line => {
-            if (!line) return;
-            const pp = JSON.parse(line);
-            painPointsData[pp.pain_point_id] = pp;
-        });
+    // 1. Fetch CSV
+    const csvRes = await fetch('data/2025_06_course_list_with_college.csv');
+    console.log('csv fetched', csvRes.status);
 
-        // Load clusters per course
-        for (const c of coursesData) {
-            try {
-                const res = await fetch(`outputs/stage2/clusters_by_course/${c.CourseCode}_clusters.json`);
-                if (!res.ok) throw new Error();
-                clustersData[c.CourseCode] = await res.json();
-            } catch {
-                console.warn(`No cluster data for ${c.CourseCode}`);
-            }
+    const csvText = (await csvRes.text()).trim();
+    console.log('csv text length', csvText.length);
+
+    coursesData = Papa.parse(csvText, { header: true, skipEmptyLines: true }).data;
+    console.log('parsed coursesData', coursesData.length, coursesData[0]);
+
+    // 2. Load pain points
+    const ppRes = await fetch('outputs/stage1/pain_points_stage1.jsonl');
+    console.log('pain points fetched', ppRes.status);
+
+    const ppText = (await ppRes.text()).trim();
+    console.log('pain points text length', ppText.length);
+
+    painPointsData = {};
+    ppText.split('\n').forEach(line => {
+        if (!line) return;
+        const pp = JSON.parse(line);
+        painPointsData[pp.pain_point_id] = pp;
+    });
+    console.log('parsed painPointsData', Object.keys(painPointsData).length);
+
+    // 3. Load clusters per course
+    for (const c of coursesData) {
+        try {
+            const res = await fetch(`outputs/stage2/clusters_by_course/${c.CourseCode}_clusters.json`);
+            if (!res.ok) throw new Error();
+            clustersData[c.CourseCode] = await res.json();
+        } catch {
+            console.warn(`No cluster data for ${c.CourseCode}`);
         }
     }
+
+    console.log('loaded clusters for', Object.keys(clustersData).length, 'courses');
+}
 
     function getCourseMetrics(code) {
         const data = clustersData[code];
