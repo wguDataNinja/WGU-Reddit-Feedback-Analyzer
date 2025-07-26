@@ -1,14 +1,13 @@
 ## WGU Reddit Feedback Analyzer
 
-**Project Title:** WGU Reddit Monitoring and Feedback Clustering Tool  
-**Purpose:** Analyze unsolicited student feedback on Reddit to surface and cluster course-related *pain points*  
-**Project Type:** Interactive web app built on curated Reddit data using NLP and sentiment classification.  
-**Features:** Includes downloadable (PDF) course-level feedback sheets  
-**Author:** Buddy Owens (<jowe160@wgu.edu>)
-**Live Demo:** [Launch Dashboard](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/index.html)  
-**Notes:** Developed in support of WGU Data Analytics Capstone work    
+- **Project Title:** WGU Reddit Monitoring and Feedback Clustering Tool  
+- **Purpose:** Analyze unsolicited student feedback on Reddit to surface and cluster course-related *pain points*  
+- **Project Type:** Interactive web app built on curated Reddit data using NLP and sentiment classification  
+- **Features:** Includes downloadable (PDF) course-level feedback sheets  
+- **Author:** Buddy Owens (<jowe160@wgu.edu>)  
+- **Live Demo:** [Launch Dashboard](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/index.html)  
+- **Notes:** Developed in support of WGU Data Analytics Capstone work  
 ---
-
 
 ## Project Goals
 - Extract relevant posts from our custom database of over 20k posts from WGU-related subreddits.
@@ -68,7 +67,7 @@ Inspired by Guo et al. (2023) [JAMIA](https://journals.aai.org/jamia/article/31/
 In the clustering stage, the LLM is also allowed to **rename clusters** to avoid fragmentation — broadening cluster titles and summaries to include edge cases when appropriate.
 
 <p align="center">
-  <img src="visuals/source-1-method-diagram.png.png" alt="LLM Classification Strategies" width="350" align="left" style="margin-right: 20px;"/>
+  <img src="visuals/source-1-method-diagram.png" alt="LLM Classification Strategies" width="350" align="left" style="margin-right: 20px;"/>
 </p>
 <br clear="all"/>
 
