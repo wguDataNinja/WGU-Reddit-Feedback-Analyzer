@@ -1,11 +1,9 @@
 <!-- index.html -->
-
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>WGU Course Feedback Dashboard</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -25,8 +23,6 @@
         td { padding: 16px; border-bottom: 1px solid #e1e8ed; }
         .course-row { cursor: pointer; transition: background-color 0.2s; }
         .course-row:hover { background-color: #f8f9fa; }
-        .alert-badge { background: #e74c3c; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: 600; }
-        .no-alert { color: #95a5a6; font-size: 12px; }
         .metric { font-weight: 600; color: #2c3e50; }
         .download-link { font-size: 18px; text-decoration: none; }
         .loading { text-align: center; padding: 40px; color: #7f8c8d; }
@@ -63,7 +59,7 @@
         }
     </style>
 </head>
-<body onload="init()">
+<body>
     <div class="container">
         <div id="homepage">
             <div class="header">
@@ -142,175 +138,52 @@
         </div>
     </div>
 
-```
-<script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
-<script>
-    let coursesData = [];
-    let clustersData = {};
-    let painPointsData = {};
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.3.2/papaparse.min.js"></script>
+    <script>
+        let coursesData = [];
+        let clustersData = {};
+        let painPointsData = {};
 
-    async function init() {
-        try {
-            await loadData();
-            renderCoursesTable();
-            setupFilters();
-        } catch (e) {
-            console.error(e);
-            showError('Failed to load data.');
+        window.onload = init;
+
+        async function init() {
+            try {
+                await loadData();
+                renderCoursesTable();
+                setupFilters();
+            } catch (e) {
+                console.error(e);
+                showError('Failed to load data.');
+            }
         }
-    }
 
-async function loadData() {
-    console.log('loading data...');
+        async function loadData() {
+            console.log('loading data...');
+            const csvRes = await fetch('data/2025_06_course_list_with_college.csv');
+            const csvText = (await csvRes.text()).trim();
+            coursesData = Papa.parse(csvText, { header: true, skipEmptyLines: true }).data;
 
-    // 1. Fetch CSV
-    const csvRes = await fetch('data/2025_06_course_list_with_college.csv');
-    console.log('csv fetched', csvRes.status);
+            const ppRes = await fetch('outputs/stage1/pain_points_stage1.jsonl');
+            const ppText = (await ppRes.text()).trim();
+            painPointsData = {};
+            ppText.split('\n').forEach(line => {
+                if (!line) return;
+                const pp = JSON.parse(line);
+                painPointsData[pp.pain_point_id] = pp;
+            });
 
-    const csvText = (await csvRes.text()).trim();
-    console.log('csv text length', csvText.length);
-
-    coursesData = Papa.parse(csvText, { header: true, skipEmptyLines: true }).data;
-    console.log('parsed coursesData', coursesData.length, coursesData[0]);
-
-    // 2. Load pain points
-    const ppRes = await fetch('outputs/stage1/pain_points_stage1.jsonl');
-    console.log('pain points fetched', ppRes.status);
-
-    const ppText = (await ppRes.text()).trim();
-    console.log('pain points text length', ppText.length);
-
-    painPointsData = {};
-    ppText.split('\n').forEach(line => {
-        if (!line) return;
-        const pp = JSON.parse(line);
-        painPointsData[pp.pain_point_id] = pp;
-    });
-    console.log('parsed painPointsData', Object.keys(painPointsData).length);
-
-    // 3. Load clusters per course
-    for (const c of coursesData) {
-        try {
-            const res = await fetch(`outputs/stage2/clusters_by_course/${c.CourseCode}_clusters.json`);
-            if (!res.ok) throw new Error();
-            clustersData[c.CourseCode] = await res.json();
-        } catch {
-            console.warn(`No cluster data for ${c.CourseCode}`);
+            for (const c of coursesData) {
+                try {
+                    const res = await fetch(`outputs/stage2/clusters_by_course/${c.CourseCode}_clusters.json`);
+                    if (!res.ok) throw new Error();
+                    clustersData[c.CourseCode] = await res.json();
+                } catch {
+                    console.warn(`No cluster data for ${c.CourseCode}`);
+                }
+            }
         }
-    }
 
-    console.log('loaded clusters for', Object.keys(clustersData).length, 'courses');
-}
-
-    function getCourseMetrics(code) {
-        const data = clustersData[code];
-        if (!data) return { feedbackTopics: 0, painPoints: 0 };
-        const confirmed = data.clusters.filter(c => !c.is_potential).length;
-        let totalPP = 0;
-        data.clusters.forEach(c => { totalPP += (c.pain_point_ids||[]).length; });
-        return { feedbackTopics: confirmed, painPoints: totalPP };
-    }
-
-    function renderCoursesTable() {
-        const tbody = document.getElementById('courses-tbody');
-        const filtered = getFilteredCourses();
-        if (!filtered.length) {
-            tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:#7f8c8d;padding:40px;">No courses match the filters</td></tr>';
-            return;
-        }
-        tbody.innerHTML = filtered.map(c => {
-            const m = getCourseMetrics(c.CourseCode);
-            return `
-                <tr class="course-row">
-                    <td onclick="showCourseDetail('${c.CourseCode}')"><strong>${c.CourseCode}</strong></td>
-                    <td onclick="showCourseDetail('${c.CourseCode}')">${c.Title}</td>
-                    <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${m.feedbackTopics}</span></td>
-                    <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${m.painPoints}</span></td>
-                    <td><a href="outputs/course_feedback_files/${c.CourseCode}_Reddit_Feedback.md" download class="download-link">⬇️</a></td>
-                </tr>
-            `;
-        }).join('');
-    }
-
-    function getFilteredCourses() {
-        const college = document.getElementById('college-filter').value.toLowerCase();
-        const codeF = document.getElementById('course-code-filter').value.toLowerCase();
-        const titleF = document.getElementById('course-title-filter').value.toLowerCase();
-        return coursesData.filter(c => {
-            const okCollege = !college || c.Colleges.toLowerCase().includes(college);
-            const okCode = !codeF || c.CourseCode.toLowerCase().includes(codeF);
-            const okTitle = !titleF || c.Title.toLowerCase().includes(titleF);
-            return okCollege && okCode && okTitle;
-        });
-    }
-
-    function setupFilters() {
-        ['college-filter','course-code-filter','course-title-filter'].forEach(id => {
-            const el = document.getElementById(id);
-            el.addEventListener('input', () => debounce(renderCoursesTable,300)());
-            el.addEventListener('change', renderCoursesTable);
-        });
-    }
-
-    function debounce(fn, wait) {
-        let t;
-        return function() { clearTimeout(t); t = setTimeout(fn, wait); };
-    }
-
-    function showCourseDetail(code) {
-        const course = coursesData.find(c => c.CourseCode===code);
-        const data = clustersData[code];
-        if (!course || !data) { showError(`No data for ${code}`); return; }
-        document.getElementById('homepage').style.display = 'none';
-        document.getElementById('course-detail').style.display = 'block';
-        document.getElementById('detail-course-title').textContent = `${course.CourseCode}: ${course.Title}`;
-        document.getElementById('detail-course-meta').textContent = `College: ${course.Colleges}`;
-        const confirmed = data.clusters.filter(c=>!c.is_potential);
-        const emerging = data.clusters.filter(c=>c.is_potential);
-        document.getElementById('detail-total-topics').textContent = data.clusters.length;
-        document.getElementById('detail-confirmed-topics').textContent = confirmed.length;
-        document.getElementById('detail-emerging-topics').textContent = emerging.length;
-        let ppCount=0;
-        data.clusters.forEach(c=>{ppCount+= (c.pain_point_ids||[]).length;});
-        document.getElementById('detail-pain-points').textContent = ppCount;
-        renderFeedbackTopics(confirmed,'confirmed-topics');
-        renderEmergingTopics(emerging,'emerging-topics');
-        document.getElementById('confirmed-topics-container').style.display = confirmed.length?'block':'none';
-        document.getElementById('emerging-topics-container').style.display = emerging.length?'block':'none';
-    }
-
-    function renderFeedbackTopics(topics, cid) {
-        const cont = document.getElementById(cid);
-        if (!topics.length) return cont.innerHTML='<div style="padding:24px;text-align:center;color:#7f8c8d;">No confirmed feedback topics</div>';
-        cont.innerHTML = topics.map(t=>`<div class="feedback-topic"><div class="topic-info"><div class="topic-title">${t.title}</div><div class="topic-description">${t.root_cause_summary}</div></div><div class="pain-points">${renderPainPointsForTopic(t)}</div></div>`).join('');
-    }
-
-    function renderEmergingTopics(topics, cid) {
-        const cont = document.getElementById(cid);
-        if (!topics.length) return cont.innerHTML='<div style="padding:24px;text-align:center;color:#7f8c8d;">No emerging feedback topics</div>';
-        cont.innerHTML = topics.map(t=>`<div class="potential-topic"><div class="potential-title">${t.title}</div><div class="potential-description">${t.root_cause_summary}</div></div>`).join('');
-    }
-
-    function renderPainPointsForTopic(topic) {
-        const pts = (topic.pain_point_ids||[]).map(id=>painPointsData[id]).filter(Boolean);
-        if (!pts.length) return '<div style="color:#7f8c8d;font-style:italic;">No associated pain points found</div>';
-        return pts.map(p=>`<div class="pain-point"><div class="pain-quote">"${p.quoted_text}"</div><a href="https://reddit.com/comments/${p.post_id}" target="_blank" class="pain-link">[link]</a></div>`).join('');
-    }
-
-    function showHomepage() {
-        document.getElementById('course-detail').style.display = 'none';
-        document.getElementById('homepage').style.display = 'block';
-    }
-
-    function showError(msg) {
-        const cont = document.querySelector('.container');
-        const e = document.createElement('div');
-        e.className='error'; e.textContent = msg;
-        cont.insertBefore(e, cont.firstChild);
-        setTimeout(()=>e.remove(),5000);
-    }
-</script>
-```
-
+        // (Keep your remaining JS functions as-is: getCourseMetrics, renderCoursesTable, etc.)
+    </script>
 </body>
 </html>
