@@ -1,565 +1,867 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>WGU Reddit Monitoring Dashboard</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WGU Course Feedback Dashboard</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-<style>
-    /* Reset and base styles */
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-        font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
-        line-height:1.6;color:#333;background:#f5f5f5;
-    }
-    .container{max-width:1200px;margin:0 auto;padding:20px}
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
 
-    /* Header */
-    .header{
-        background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;
-        box-shadow:0 2px 4px rgba(0,0,0,.1);
-    }
-    .header h1{color:#ff4500;margin-bottom:10px;font-size:1.8rem}
-    .readme-link{
-        margin-left:10px;color:#007BFF;text-decoration:underline;font-weight:500;cursor:pointer;
-    }
-    .readme-link:hover{color:#0056b3}
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-    /* Filter Bar */
-    .filter-bar{
-        background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;
-        box-shadow:0 2px 4px rgba(0,0,0,.1);
-    }
-    .filter-row{
-        display:flex;gap:15px;margin-bottom:15px;flex-wrap:wrap;align-items:end;
-    }
-    .filter-group{
-        display:flex;flex-direction:column;min-width:120px;
-    }
-    .filter-group label{
-        font-size:.9rem;font-weight:500;margin-bottom:5px;color:#555;
-    }
-    .filter-group input,
-    .filter-group select{
-        padding:8px 12px;border:1px solid #ddd;border-radius:4px;font-size:.9rem;
-    }
-    .filter-group input:focus,
-    .filter-group select:focus{
-        outline:none;border-color:#ff4500;box-shadow:0 0 0 2px rgba(255,69,0,.1);
-    }
-    .sentiment-filter{display:flex;gap:8px;align-items:end}
+        .header {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+        }
 
-    /* Buttons */
-    .reset-btn{
-        background:#eee;border:1px solid #ccc;padding:8px 16px;border-radius:4px;
-        cursor:pointer;font-size:.9rem;margin-top:10px;
-    }
-    .reset-btn:hover{background:#ddd}
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 28px;
+        }
 
-    /* Post List */
-    .post-list{
-        background:#fff;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,.1);overflow:hidden;
-    }
-    .post-card{
-        border-bottom:1px solid #eee;padding:20px;transition:background-color .2s;
-    }
-    .post-card:hover{background:#fafafa}
-    .post-card:last-child{border-bottom:none}
+        .header p {
+            color: #7f8c8d;
+            font-size: 16px;
+        }
 
-    .post-row-1{display:flex;gap:15px;margin-bottom:12px}
-    .post-title{font-weight:600;color:#333;min-width:200px;max-width:300px;flex-shrink:0}
-    .post-selftext{flex:1;color:#555;line-height:1.5}
-    .selftext-collapsed{max-height:60px;overflow:hidden;position:relative}
-    .selftext-collapsed::after{
-        content:'';position:absolute;bottom:0;right:0;width:100%;height:20px;
-        background:linear-gradient(transparent,#fafafa);
-    }
-    .expand-btn{
-        background:none;border:none;color:#ff4500;cursor:pointer;font-size:.9rem;margin-top:5px;
-    }
-    .expand-btn:hover{text-decoration:underline}
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
 
-    .post-row-2{
-        display:flex;
-        gap:15px;
-        font-size:.85rem;
-        color:#666;
-        align-items:flex-start;
-        flex-wrap:wrap;
-    }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            min-width: 200px;
+        }
 
-    .post-meta{
-        margin-left:auto;display:flex;gap:15px;align-items:center;flex-wrap:wrap;justify-content:flex-end;
-    }
+        .filter-group label {
+            font-weight: 600;
+            color: #555;
+            font-size: 14px;
+        }
 
-    .course-info{
-        font-weight:500;
-        color:#006400;
-        width:250px;
-        flex-shrink:0;
-        flex-grow:0;
-        word-wrap:break-word;
-    }
+        .filter-group select,
+        .filter-group input {
+            padding: 8px 12px;
+            border: 2px solid #e1e8ed;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: border-color 0.2s;
+        }
 
-    .categories,.intent-tags{display:flex;gap:5px}
-    .tag{
-        background:#e8f4f8;color:#0c7b93;padding:2px 8px;border-radius:12px;font-size:.8rem;
-    }
-    .intent-tag{background:#fff2e6;color:#cc8400}
+        .filter-group select:focus,
+        .filter-group input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
 
-    .sentiment-score{font-weight:500}
-    .sentiment-bold-red{color:#c0392b;font-weight:bold}
-    .sentiment-red{color:#e74c3c}
-    .sentiment-grey{color:#888}
-    .sentiment-green{color:#2ecc71}
-    .sentiment-bold-green{color:#27ae60;font-weight:bold}
+        .courses-table {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
 
-    .post-link{color:#ff4500;text-decoration:none}
-    .post-link:hover{text-decoration:underline}
-    .date{color:#999}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
 
-    mark{background:#ffeb3b;padding:0}
+        th {
+            background: #f8f9fa;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #555;
+            border-bottom: 2px solid #e1e8ed;
+        }
 
-    .no-text-placeholder{color:#aaa;font-style:italic}
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #e1e8ed;
+        }
 
-    /* Load more */
-    .load-more-container{text-align:center;padding:20px;background:#fff}
-    .load-more-btn{
-        background:#ff4500;color:#fff;border:none;padding:12px 24px;border-radius:6px;
-        font-size:1rem;cursor:pointer;transition:background-color .2s;
-    }
-    .load-more-btn:hover{background:#cc3700}
-    .load-more-btn:disabled{background:#ccc;cursor:not-allowed}
+        .course-row {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
 
-    /* Status */
-    .status{
-        text-align:center;padding:20px;color:#666;background:#fff;border-radius:8px;margin-bottom:20px;
-    }
+        .course-row:hover {
+            background-color: #f8f9fa;
+        }
 
-    /* Responsive */
-    @media (max-width:768px){
-        .filter-row{flex-direction:column;align-items:stretch}
-        .filter-group{min-width:auto}
-        .post-row-1{flex-direction:column;gap:10px}
-        .post-title{min-width:auto;max-width:none}
-        .post-row-2{flex-direction:column;align-items:flex-start;gap:8px}
-        .post-meta{margin-left:0;justify-content:flex-start}
-    }
-</style>
+        .alert-badge {
+            background: #e74c3c;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .no-alert {
+            color: #95a5a6;
+            font-size: 12px;
+        }
+
+        .metric {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .course-detail {
+            display: none;
+        }
+
+        .course-detail.active {
+            display: block;
+        }
+
+        .back-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 20px;
+            transition: background-color 0.2s;
+        }
+
+        .back-button:hover {
+            background: #2980b9;
+        }
+
+        .course-header {
+            background: white;
+            padding: 24px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+        }
+
+        .course-title {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .course-meta {
+            color: #7f8c8d;
+            margin-bottom: 16px;
+        }
+
+        .course-stats {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .feedback-topics {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 24px;
+        }
+
+        .section-header {
+            background: #f8f9fa;
+            padding: 16px 24px;
+            border-bottom: 2px solid #e1e8ed;
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .feedback-topic {
+            padding: 24px;
+            border-bottom: 1px solid #e1e8ed;
+            display: flex;
+            gap: 24px;
+        }
+
+        .feedback-topic:last-child {
+            border-bottom: none;
+        }
+
+        .topic-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .topic-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .topic-description {
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .pain-points {
+            flex: 2;
+            min-width: 400px;
+        }
+
+        .pain-point {
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 0 4px 4px 0;
+        }
+
+        .pain-point:last-child {
+            margin-bottom: 0;
+        }
+
+        .pain-quote {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .pain-link {
+            display: inline-block;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .pain-link:hover {
+            text-decoration: underline;
+        }
+
+        .potential-topics {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .potential-topic {
+            padding: 16px 24px;
+            border-bottom: 1px solid #e1e8ed;
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+        }
+
+        .potential-topic:last-child {
+            border-bottom: none;
+        }
+
+        .potential-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            margin-bottom: 4px;
+            flex: 1;
+        }
+
+        .potential-description {
+            color: #777;
+            font-size: 14px;
+            flex: 2;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+            color: #7f8c8d;
+        }
+
+        .error {
+            background: #ffeaea;
+            color: #e74c3c;
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .filter-group {
+                min-width: auto;
+            }
+
+            .feedback-topic {
+                flex-direction: column;
+                gap: 16px;
+            }
+
+            .topic-info,
+            .pain-points {
+                min-width: auto;
+            }
+
+            .course-stats {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <h1>WGU Reddit Monitoring Dashboard</h1>
-        <p>
-            View Posts by category, sentiment, course or college
-            <a href="https://github.com/wguDataNinja/wgu-reddit-monitoring-pipeline/blob/main/README.md"
-               class="readme-link" target="_blank" rel="noopener">View Readme</a>
-        </p>
-    </div>
-
-    <div class="filter-bar">
-        <div class="filter-row">
-            <div class="filter-group">
-                <label for="search">Search</label>
-                <input type="text" id="search" placeholder="Search title & content...">
+    <div class="container">
+        <!-- Homepage View -->
+        <div id="homepage" class="homepage-view">
+            <div class="header">
+                <h1>WGU Course Feedback Dashboard</h1>
+                <p>Browse and understand Reddit-sourced feedback patterns for WGU courses</p>
             </div>
 
-            <div class="filter-group">
-                <label for="course">Course</label>
-                <input id="course" list="courseList" placeholder="Start typing course code...">
-                <datalist id="courseList"></datalist>
-            </div>
-
-            <div class="filter-group">
-                <label for="college">College</label>
-                <select id="college">
-                    <option value="">All Colleges</option>
-                    <option>School of Business</option>
-                    <option>Leavitt School of Health</option>
-                    <option>School of Technology</option>
-                    <option>School of Education</option>
-                </select>
-            </div>
-
-            <div class="filter-group">
-                <label for="category">Category</label>
-                <select id="category">
-                    <option value="">All Categories</option>
-                </select>
-            </div>
-
-            <div class="filter-group">
-                <label for="intent">Intent</label>
-                <select id="intent">
-                    <option value="">All Intents</option>
-                </select>
-            </div>
-
-            <div class="filter-group">
-                <label>Sentiment</label>
-                <div class="sentiment-filter">
-                    <select id="sentimentOp">
-                        <option value="">Any</option>
-                        <option value="<">Less than</option>
-                        <option value=">">Greater than</option>
+            <div class="filters">
+                <div class="filter-group">
+                    <label for="college-filter">College</label>
+                    <select id="college-filter">
+                        <option value="">All Colleges</option>
+                        <option value="School of Business">School of Business</option>
+                        <option value="Leavitt School of Health">Leavitt School of Health</option>
+                        <option value="School of Technology">School of Technology</option>
+                        <option value="School of Education">School of Education</option>
                     </select>
-                    <input type="number" id="sentimentValue" step="0.1" min="-1" max="1" placeholder="0.0">
+                </div>
+                <div class="filter-group">
+                    <label for="course-code-filter">Course Code</label>
+                    <input type="text" id="course-code-filter" placeholder="e.g., C715, D072">
+                </div>
+                <div class="filter-group">
+                    <label for="course-title-filter">Course Title Keywords</label>
+                    <input type="text" id="course-title-filter" placeholder="Search course titles...">
                 </div>
             </div>
 
-            <div class="filter-group">
-                <label for="dateRange">Date Range</label>
-                <select id="dateRange">
-                    <option value="all">All Time</option>
-                    <option value="24h">Last 24 Hours</option>
-                    <option value="7d">Last 7 Days</option>
-                    <option value="30d">Last 30 Days</option>
-                </select>
-            </div>
-
-            <div class="filter-group">
-                <label for="sortBy">Sort By</label>
-                <select id="sortBy">
-                    <option value="recent">Date (Most Recent)</option>
-                    <option value="sentiment_low">Sentiment (Lowest First)</option>
-                    <option value="sentiment_high">Sentiment (Highest First)</option>
-                    <option value="length_short">Length (Shortest First)</option>
-                    <option value="length_long">Length (Longest First)</option>
-                </select>
+            <div class="courses-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Course Code</th>
+                            <th>Course Title</th>
+                            <th>Feedback Topics</th>
+                            <th>Potential Topics</th>
+                            <th>Pain Points</th>
+                            <th>Alert</th>
+                        </tr>
+                    </thead>
+                    <tbody id="courses-tbody">
+                        <tr>
+                            <td colspan="6" class="loading">Loading courses...</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
-        <button id="forceRefresh" class="reset-btn">Refresh / Reset All Filters</button>
-    </div>
+        <!-- Course Detail View -->
+        <div id="course-detail" class="course-detail">
+            <button class="back-button" onclick="showHomepage()">← Back to All Courses</button>
 
-    <div id="displayCount" class="status" style="margin-top:-10px;"></div>
-
-    <div id="status" class="status">Loading posts...</div>
-
-    <div id="postList" class="post-list" style="display:none;"></div>
-
-    <div id="loadMoreContainer" class="load-more-container" style="display:none;">
-        <button id="loadMoreBtn" class="load-more-btn">Load More Posts</button>
-        <div id="loadMoreStatus"></div>
-    </div>
-</div>
-
-<script>
-// index.html
-
-// Global state
-let allPosts = [];
-let filteredPosts = [];
-let displayedCount = 0;
-let maxCreatedUtc = 0;
-const POSTS_PER_PAGE = 20;
-
-// Initialize the application
-async function init() {
-    try {
-        const response = await fetch('data/gui_prototype_posts_merged.json');
-        const text = await response.text();
-        allPosts = JSON.parse(text);
-
-        normalizePosts();
-        populateFilterOptions();
-        renderFilters();
-        updateView();
-
-        document.getElementById('status').style.display = 'none';
-        document.getElementById('postList').style.display = 'block';
-        document.getElementById('loadMoreContainer').style.display = 'block';
-    } catch (error) {
-        console.error('Error initializing app:', error);
-        document.getElementById('status').textContent =
-            'Error loading posts. Please check if gui_prototype_posts_merged.json is available.';
-    }
-}
-
-// Preprocess posts data
-function normalizePosts() {
-    // Ensure colleges is an array
-    allPosts = allPosts.map(p => ({
-        ...p,
-        colleges: Array.isArray(p.colleges) ? p.colleges : (p.colleges ? [p.colleges] : [])
-    }));
-    maxCreatedUtc = Math.max(...allPosts.map(post => post.created_utc));
-}
-
-// Populate filter dropdown options + course datalist
-function populateFilterOptions() {
-    const categories = new Set();
-    const intents = new Set();
-
-    allPosts.forEach(post => {
-        (post.categories || []).forEach(cat => categories.add(cat));
-        (post.intent_tags || []).forEach(intent => intents.add(intent));
-    });
-
-    const categorySelect = document.getElementById('category');
-    [...categories].sort().forEach(cat => {
-        const option = document.createElement('option');
-        option.value = cat;
-        option.textContent = cat;
-        categorySelect.appendChild(option);
-    });
-
-    const intentSelect = document.getElementById('intent');
-    [...intents].sort().forEach(intent => {
-        const option = document.createElement('option');
-        option.value = intent;
-        option.textContent = intent.replace(/_/g, ' ');
-        intentSelect.appendChild(option);
-    });
-
-    // Courses datalist (up to 100 uniques, with label)
-    const courseSet = [...new Set(allPosts.map(p => p.course_code))].filter(Boolean).slice(0, 100);
-    const datalist = document.getElementById('courseList');
-    datalist.innerHTML = '';
-    courseSet.forEach(code => {
-        const post = allPosts.find(p => p.course_code === code);
-        const label = `${code} - ${post?.course_title || ''}`.slice(0, 60);
-        const option = document.createElement('option');
-        option.value = code;
-        option.label = label;
-        datalist.appendChild(option);
-    });
-}
-
-// Set up filter event listeners
-function renderFilters() {
-    const filterInputs = [
-        'search','category','intent','sentimentOp','sentimentValue','dateRange','sortBy','course','college'
-    ];
-
-    filterInputs.forEach(id => {
-        const element = document.getElementById(id);
-        element.addEventListener('input', debounce(updateView, 300));
-        element.addEventListener('change', updateView);
-    });
-
-    document.getElementById('loadMoreBtn').addEventListener('click', loadMore);
-
-    // 🔁 Replaced Reset Filters with Refresh
-    document.getElementById('forceRefresh').addEventListener('click', () => {
-        location.reload();
-    });
-}
-
-// Get current filter state
-function getFilterState() {
-    return {
-        search: document.getElementById('search').value.toLowerCase(),
-        course: document.getElementById('course').value.trim(),
-        college: document.getElementById('college').value,
-        category: document.getElementById('category').value,
-        intent: document.getElementById('intent').value,
-        sentimentOp: document.getElementById('sentimentOp').value,
-        sentimentValue: Number.isFinite(parseFloat(document.getElementById('sentimentValue').value))
-            ? parseFloat(document.getElementById('sentimentValue').value)
-            : null,
-        dateRange: document.getElementById('dateRange').value,
-        sortBy: document.getElementById('sortBy').value
-    };
-}
-
-// Apply all filters
-function filterPosts(posts, filters) {
-    return posts.filter(post => {
-        // Search
-        if (filters.search) {
-            const safeSelftext = post.selftext || '';
-            const searchText = `${post.title} ${safeSelftext}`.toLowerCase();
-            if (!searchText.includes(filters.search)) return false;
-        }
-
-        // Course
-        if (filters.course && post.course_code !== filters.course) return false;
-
-        // College (fixed)
-        if (filters.college && (!post.colleges || !post.colleges.includes(filters.college))) return false;
-
-        // Category
-        if (filters.category && (!post.categories || !post.categories.includes(filters.category))) return false;
-
-        // Intent
-        if (filters.intent && (!post.intent_tags || !post.intent_tags.includes(filters.intent))) return false;
-
-        // Sentiment
-        if (filters.sentimentOp && filters.sentimentValue !== null) {
-            const sentiment = post.VADER_Compound;
-            if (filters.sentimentOp === '<' && sentiment >= filters.sentimentValue) return false;
-            if (filters.sentimentOp === '>' && sentiment <= filters.sentimentValue) return false;
-        }
-
-        // Date
-        if (filters.dateRange !== 'all') {
-            const cutoff = filterByCreatedDate(filters.dateRange, maxCreatedUtc);
-            if (post.created_utc < cutoff) return false;
-        }
-
-        return true;
-    });
-}
-
-// Date cutoff
-function filterByCreatedDate(range, maxUtc) {
-    const secondsIn = { '24h': 86400, '7d': 604800, '30d': 2592000 };
-    return maxUtc - (secondsIn[range] || 0);
-}
-
-// Sort posts
-function sortPosts(posts, sortOption) {
-    const sorted = [...posts];
-    switch (sortOption) {
-        case 'sentiment_low':   return sorted.sort((a,b)=>a.VADER_Compound-b.VADER_Compound);
-        case 'sentiment_high':  return sorted.sort((a,b)=>b.VADER_Compound-a.VADER_Compound);
-        case 'length_short':    return sorted.sort((a,b)=>a.text_length-b.text_length);
-        case 'length_long':     return sorted.sort((a,b)=>b.text_length-a.text_length);
-        case 'recent':
-        default:                return sorted.sort((a,b)=>b.created_utc-a.created_utc);
-    }
-}
-
-// Main view update
-function updateView() {
-    const filters = getFilterState();
-    filteredPosts = sortPosts(filterPosts(allPosts, filters), filters.sortBy);
-    displayedCount = 0;
-    renderPostList(POSTS_PER_PAGE);
-    document.getElementById('displayCount').textContent = `Displaying ${filteredPosts.length} posts`;
-}
-
-// Render list
-function renderPostList(count) {
-    const postList = document.getElementById('postList');
-    const postsToShow = filteredPosts.slice(displayedCount, displayedCount + count);
-
-    if (displayedCount === 0) postList.innerHTML = '';
-
-    postsToShow.forEach(post => {
-        const postCard = renderPostCard(post);
-        postList.appendChild(postCard);
-    });
-
-    displayedCount += postsToShow.length;
-    updateLoadMoreButton();
-}
-
-// Single card
-function renderPostCard(post) {
-    const card = document.createElement('div');
-    card.className = 'post-card';
-    card.dataset.postId = post.post_id;
-
-    const searchQuery = document.getElementById('search').value.toLowerCase();
-    const isEmpty = !post.selftext || post.selftext.trim() === '';
-    const safeSelftext = isEmpty
-        ? '<span class="no-text-placeholder">[no post text]</span>'
-        : highlightSearch(post.selftext, searchQuery);
-
-    const highlightedTitle = highlightSearch(post.title, searchQuery);
-    const isLongText = !isEmpty && post.selftext.length > 200;
-    const selftextClass = isLongText ? 'selftext-collapsed' : '';
-
-    card.innerHTML = `
-        <div class="post-row-1">
-            <div class="post-title">${highlightedTitle}</div>
-            <div class="post-selftext">
-                <div class="${selftextClass}" id="selftext-${post.post_id}">
-                    ${safeSelftext}
+            <div class="course-header">
+                <div class="course-title" id="detail-course-title"></div>
+                <div class="course-meta" id="detail-course-meta"></div>
+                <div class="course-stats">
+                    <div class="stat">
+                        <div class="stat-number" id="detail-total-topics">0</div>
+                        <div class="stat-label">Total Topics</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="detail-confirmed-topics">0</div>
+                        <div class="stat-label">Confirmed Topics</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="detail-emerging-topics">0</div>
+                        <div class="stat-label">Emerging Topics</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number" id="detail-pain-points">0</div>
+                        <div class="stat-label">Pain Points</div>
+                    </div>
                 </div>
-                ${(!isEmpty && isLongText) ? `<button class="expand-btn" onclick="toggleExpand('${post.post_id}')">Show more</button>` : ''}
-                ${isEmpty ? `<a href="https://reddit.com${post.permalink}" target="_blank" class="post-link">View Full Post</a>` : ''}
+            </div>
+
+            <div class="feedback-topics" id="confirmed-topics-container">
+                <div class="section-header">Confirmed Feedback Topics</div>
+                <div id="confirmed-topics"></div>
+            </div>
+
+            <div class="potential-topics" id="emerging-topics-container">
+                <div class="section-header">Emerging Feedback Topics</div>
+                <div id="emerging-topics"></div>
             </div>
         </div>
-        <div class="post-row-2">
-            <span class="course-info">${post.course_code || ''} - ${post.course_title || ''}</span>
-            <div class="categories">
-                ${(post.categories || []).map(cat => `<span class="tag">${cat}</span>`).join('')}
-            </div>
-            <div class="intent-tags">
-                ${(post.intent_tags || []).map(tag => `<span class="tag intent-tag">${tag.replace(/_/g,' ')}</span>`).join('')}
-            </div>
+    </div>
 
-            <div class="post-meta">
-                <span class="sentiment-score ${getSentimentClass(post.VADER_Compound)}">
-                    Sentiment: ${post.VADER_Compound.toFixed(3)}
-                </span>
-                <span class="date">${formatDate(post.created_utc)}</span>
-                <a href="https://reddit.com${post.permalink}" target="_blank" class="post-link">View Post</a>
-            </div>
-        </div>
-    `;
-    return card;
-}
+    <script>
+        // Global data storage
+        let coursesData = [];
+        let clustersData = {};
+        let painPointsData = {};
+        let currentCourse = null;
 
-// Expand/collapse
-function toggleExpand(postId){
-    const selftext = document.getElementById(`selftext-${postId}`);
-    const btn = selftext.nextElementSibling;
-    if(selftext.classList.contains('selftext-collapsed')){
-        selftext.classList.remove('selftext-collapsed');
-        btn.textContent='Show less';
-    }else{
-        selftext.classList.add('selftext-collapsed');
-        btn.textContent='Show more';
-    }
-}
+        // Initialize the application
+        async function init() {
+            try {
+                await loadData();
+                renderCoursesTable();
+                setupFilters();
+            } catch (error) {
+                console.error('Initialization error:', error);
+                showError('Failed to load data. Please check console for details.');
+            }
+        }
 
-// Highlight search term
-function highlightSearch(text, query){
-    if(!query || !text) return text;
-    const regex = new RegExp(`(${escapeRegExp(query)})`,'gi');
-    return text.replace(regex,'<mark>$1</mark>');
-}
+        // Load all required data
+        async function loadData() {
+            // For demo purposes, using sample data
+            // In production, you would load from actual files
 
-// Sentiment CSS
-function getSentimentClass(score){
-    if(score < -0.5) return 'sentiment-bold-red';
-    if(score < -0.1) return 'sentiment-red';
-    if(score <  0.1) return 'sentiment-grey';
-    if(score <  0.5) return 'sentiment-green';
-    return 'sentiment-bold-green';
-}
+            // Sample course data (replace with actual CSV loading)
+            coursesData = [
+                { CourseCode: 'C715', Title: 'Organizational Behavior', Colleges: 'Leavitt School of Health; School of Business; School of Technology' },
+                { CourseCode: 'D072', Title: 'Fundamentals for Success in Business', Colleges: 'School of Business' },
+                { CourseCode: 'D196', Title: 'Principles of Financial and Managerial Accounting', Colleges: 'School of Business' },
+                { CourseCode: 'C949', Title: 'Data Structures and Algorithms I', Colleges: 'School of Technology' },
+                { CourseCode: 'AFT2', Title: 'Organizational Systems', Colleges: 'School of Business' },
+                { CourseCode: 'D197', Title: 'Software Development Capstone', Colleges: 'School of Technology' }
+            ];
 
-// Load more
-function loadMore(){ renderPostList(POSTS_PER_PAGE); }
+            // Sample cluster data (replace with actual file loading)
+            clustersData = {
+                'C949': {
+                    course: 'C949',
+                    clusters: [
+                        {
+                            cluster_id: 'C949_1',
+                            title: 'Course Approval and Failures',
+                            root_cause_summary: 'Students consistently fail courses despite meeting predefined requirements.',
+                            post_ids: ['1ewa9ww', '1k6e9jx', '1k6eaph'],
+                            is_potential: false
+                        },
+                        {
+                            cluster_id: 'C949_2',
+                            title: 'Assessment Complexity Understanding',
+                            root_cause_summary: 'Students are uncertain about the depth of understanding required for assessment topics.',
+                            post_ids: ['1id36nl', '1itr62r', '1ga245o'],
+                            is_potential: false
+                        },
+                        {
+                            cluster_id: 'C949_5',
+                            title: 'Test Anxiety and Performance',
+                            root_cause_summary: 'Students experience significant anxiety during tests, impacting their performance.',
+                            post_ids: ['1aiwpnx'],
+                            is_potential: true
+                        }
+                    ],
+                    alert_threshold: 2,
+                    alerts: [
+                        {
+                            cluster_id: 'C949_1',
+                            event: 'EMERGING_CLUSTER_ALERT',
+                            detected_on: '2025-07-24T15:50:17.487780Z',
+                            summary: 'Students consistently fail courses despite meeting predefined requirements.',
+                            post_count: 3
+                        }
+                    ]
+                },
+                'AFT2': {
+                    course: 'AFT2',
+                    clusters: [
+                        {
+                            cluster_id: 'AFT2_1',
+                            title: 'Citation and Resubmission Confusion',
+                            root_cause_summary: 'Students are unclear about the requirements for citation and what is necessary for resubmissions.',
+                            post_ids: ['1c0qqf5'],
+                            is_potential: true
+                        }
+                    ],
+                    alert_threshold: 2,
+                    alerts: []
+                },
+                'D197': {
+                    course: 'D197',
+                    clusters: [
+                        {
+                            cluster_id: 'D197_1',
+                            title: 'GitLab Interface Issues',
+                            root_cause_summary: 'Screenshots in course materials do not match current GitLab interface.',
+                            post_ids: ['1lqxp9w'],
+                            is_potential: false
+                        }
+                    ],
+                    alert_threshold: 2,
+                    alerts: []
+                }
+            };
 
-// Load more button state
-function updateLoadMoreButton(){
-    const btn = document.getElementById('loadMoreBtn');
-    const status = document.getElementById('loadMoreStatus');
+            // Sample pain points data (replace with actual JSONL loading)
+            painPointsData = {
+                '1ewa9ww': {
+                    post_id: '1ewa9ww',
+                    course: 'C949',
+                    num_pain_points: 1,
+                    pain_points: [
+                        {
+                            pain_point_summary: 'Course failure despite meeting requirements',
+                            root_cause: 'Unclear grading criteria and inconsistent feedback.',
+                            quoted_text: 'I followed all the requirements but still failed the course...'
+                        }
+                    ]
+                },
+                '1k6e9jx': {
+                    post_id: '1k6e9jx',
+                    course: 'C949',
+                    num_pain_points: 1,
+                    pain_points: [
+                        {
+                            pain_point_summary: 'Confusing assessment expectations',
+                            root_cause: 'Assessment rubric is not aligned with course materials.',
+                            quoted_text: 'The test questions were nothing like what we studied...'
+                        }
+                    ]
+                },
+                '1lqxp9w': {
+                    post_id: '1lqxp9w',
+                    course: 'D197',
+                    num_pain_points: 1,
+                    pain_points: [
+                        {
+                            pain_point_summary: 'Instructions are outdated',
+                            root_cause: 'Screenshots in the guide do not match GitLab interface.',
+                            quoted_text: 'the instructions are a little outdated and the screenshots don\'t match what I see in GitLab...'
+                        }
+                    ]
+                },
+                '1c0qqf5': {
+                    post_id: '1c0qqf5',
+                    course: 'AFT2',
+                    num_pain_points: 1,
+                    pain_points: [
+                        {
+                            pain_point_summary: 'Citation requirements unclear',
+                            root_cause: 'Inconsistent guidance on citation format and requirements.',
+                            quoted_text: 'I\'m confused about what citation style to use and how many sources I need...'
+                        }
+                    ]
+                },
+                '1aiwpnx': {
+                    post_id: '1aiwpnx',
+                    course: 'C949',
+                    num_pain_points: 2,
+                    pain_points: [
+                        {
+                            pain_point_summary: 'Test anxiety affecting performance',
+                            root_cause: 'High-stakes testing environment creates stress.',
+                            quoted_text: 'I get so nervous during tests that I forget everything I studied...'
+                        },
+                        {
+                            pain_point_summary: 'Pressure affecting recall',
+                            root_cause: 'Time constraints make it difficult to think clearly.',
+                            quoted_text: 'Under pressure, I can\'t remember the concepts properly...'
+                        }
+                    ]
+                }
+            };
+        }
 
-    if(displayedCount >= filteredPosts.length){
-        btn.style.display='none';
-        status.textContent=`Showing all ${filteredPosts.length} posts`;
-    }else{
-        btn.style.display='inline-block';
-        btn.textContent=`Load More Posts (${displayedCount}/${filteredPosts.length})`;
-        status.textContent='';
-    }
-}
+        // Get course metrics
+        function getCourseMetrics(courseCode) {
+            const clusters = clustersData[courseCode];
+            if (!clusters) {
+                return { feedbackTopics: 0, potentialTopics: 0, painPoints: 0, hasAlert: false };
+            }
 
-// Date format
-function formatDate(ts){
-    return new Date(ts*1000).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
-}
+            const confirmedTopics = clusters.clusters.filter(c => !c.is_potential).length;
+            const potentialTopics = clusters.clusters.filter(c => c.is_potential).length;
+            const hasAlert = clusters.alerts && clusters.alerts.length > 0;
 
-// Utils
-function debounce(func,wait){
-    let timeout;
-    return function(...args){
-        clearTimeout(timeout);
-        timeout=setTimeout(()=>func(...args),wait);
-    };
-}
-function escapeRegExp(str){return str.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&');}
+            // Count unique pain points for this course
+            const allPostIds = new Set();
+            clusters.clusters.forEach(cluster => {
+                cluster.post_ids.forEach(postId => allPostIds.add(postId));
+            });
 
-// Start
-init();
-</script>
-</body>
-</html>
+            let totalPainPoints = 0;
+            allPostIds.forEach(postId => {
+                if (painPointsData[postId]) {
+                    totalPainPoints += painPointsData[postId].num_pain_points;
+                }
+            });
+
+            return {
+                feedbackTopics: confirmedTopics,
+                potentialTopics: potentialTopics,
+                painPoints: totalPainPoints,
+                hasAlert: hasAlert
+            };
+        }
+
+        // Render courses table
+        function renderCoursesTable() {
+            const tbody = document.getElementById('courses-tbody');
+            const filteredCourses = getFilteredCourses();
+
+            if (filteredCourses.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; color: #7f8c8d; padding: 40px;">No courses match the current filters</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filteredCourses.map(course => {
+                const metrics = getCourseMetrics(course.CourseCode);
+                return `
+                    <tr class="course-row" onclick="showCourseDetail('${course.CourseCode}')">
+                        <td><strong>${course.CourseCode}</strong></td>
+                        <td>${course.Title}</td>
+                        <td><span class="metric">${metrics.feedbackTopics}</span></td>
+                        <td><span class="metric">${metrics.potentialTopics}</span></td>
+                        <td><span class="metric">${metrics.painPoints}</span></td>
+                        <td>${metrics.hasAlert ? '<span class="alert-badge">Yes</span>' : '<span class="no-alert">No</span>'}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Get filtered courses based on current filter values
+        function getFilteredCourses() {
+            const collegeFilter = document.getElementById('college-filter').value.toLowerCase();
+            const courseCodeFilter = document.getElementById('course-code-filter').value.toLowerCase();
+            const courseTitleFilter = document.getElementById('course-title-filter').value.toLowerCase();
+
+            return coursesData.filter(course => {
+                const matchesCollege = !collegeFilter || course.Colleges.toLowerCase().includes(collegeFilter);
+                const matchesCourseCode = !courseCodeFilter || course.CourseCode.toLowerCase().includes(courseCodeFilter);
+                const matchesTitle = !courseTitleFilter || course.Title.toLowerCase().includes(courseTitleFilter);
+
+                return matchesCollege && matchesCourseCode && matchesTitle;
+            });
+        }
+
+        // Setup filter event listeners
+        function setupFilters() {
+            const filters = ['college-filter', 'course-code-filter', 'course-title-filter'];
+            filters.forEach(filterId => {
+                const element = document.getElementById(filterId);
+                element.addEventListener('input', debounce(renderCoursesTable, 300));
+                element.addEventListener('change', renderCoursesTable);
+            });
+        }
+
+        // Debounce function for search inputs
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Show course detail view
+        function showCourseDetail(courseCode) {
+            currentCourse = courseCode;
+            const course = coursesData.find(c => c.CourseCode === courseCode);
+            const clusters = clustersData[courseCode];
+
+            if (!course || !clusters) {
+                showError(`No data found for course ${courseCode}`);
+                return;
+            }
+
+            // Update course header
+            document.getElementById('detail-course-title').textContent = `${course.CourseCode}: ${course.Title}`;
+            document.getElementById('detail-course-meta').textContent = `College: ${course.Colleges}`;
+
+            // Calculate and display metrics
+            const confirmedTopics = clusters.clusters.filter(c => !c.is_potential);
+            const emergingTopics = clusters.clusters.filter(c => c.is_potential);
+            const totalTopics = clusters.clusters.length;
+
+            // Count total pain points
+            const allPostIds = new Set();
+            clusters.clusters.forEach(cluster => {
+                cluster.post_ids.forEach(postId => allPostIds.add(postId));
+            });
+
+            let totalPainPoints = 0;
+            allPostIds.forEach(postId => {
+                if (painPointsData[postId]) {
+                    totalPainPoints += painPointsData[postId].num_pain_points;
+                }
+            });
+
+            document.getElementById('detail-total-topics').textContent = totalTopics;
+            document.getElementById('detail-confirmed-topics').textContent = confirmedTopics.length;
+            document.getElementById('detail-emerging-topics').textContent = emergingTopics.length;
+            document.getElementById('detail-pain-points').textContent = totalPainPoints;
+
+            // Render confirmed topics
+            renderFeedbackTopics(confirmedTopics, 'confirmed-topics');
+
+            // Render emerging topics
+            renderEmergingTopics(emergingTopics, 'emerging-topics');
+
+            // Show/hide containers based on content
+            document.getElementById('confirmed-topics-container').style.display =
+                confirmedTopics.length > 0 ? 'block' : 'none';
+            document.getElementById('emerging-topics-container').style.display =
+                emergingTopics.length > 0 ? 'block' : 'none';
+
+            // Switch views
+            document.getElementById('homepage').classList.remove('active');
+            document.getElementById('course-detail').classList.add('active');
+        }
+
+        // Render feedback topics (confirmed)
+        function renderFeedbackTopics(topics, containerId) {
+            const container = document.getElementById(containerId);
+
+            if (topics.length === 0) {
+                container.innerHTML = '<div style="padding: 24px; text-align: center; color: #7f8c8d;">No confirmed feedback topics</div>';
+                return;
+            }
+
+            container.innerHTML = topics.map(topic => {
+                const painPointsHtml = renderPainPointsForTopic(topic);
+
+                return `
+                    <div class="feedback-topic">
+                        <div class="topic-info">
+                            <div class="topic-title">${topic.title}</div>
+                            <div class="topic-description">${topic.root_cause_summary}</div>
+                        </div>
+                        <div class="pain-points">
+                            ${painPointsHtml}
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render emerging topics (potential)
+        function renderEmergingTopics(topics, containerId) {
+            const container = document.getElementById(containerId);
+
+            if (topics.length === 0) {
+                container.innerHTML = '<div style="padding: 24px; text-align: center; color: #7f8c8d;">No emerging feedback topics</div>';
+                return;
+            }
+
+            container.innerHTML = topics.map(topic => {
+                return `
+                    <div class="potential-topic">
+                        <div class="potential-title">${topic.title}</div>
+                        <div class="potential-description">${topic.root_cause_summary}</div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Render pain points for a specific topic
+        function renderPainPointsForTopic(topic) {
+            const relevantPainPoints = [];
+
+            topic.post_ids.forEach(postId => {
+                if (painPointsData[postId]) {
+                    painPointsData[postId].pain_points.forEach(painPoint => {
+                        relevantPainPoints.push({
+                            ...painPoint,
+                            post_id: postId
+                        });
+                    });
+                }
+            });
+
+            if (relevantPainPoints.length === 0) {
+                return '<div style="color: #7f8c8d; font-style: italic;">No associated pain points found</div>';
+            }
+
+            return relevantPainPoints.map(painPoint => `
+                <div class="pain-point">
+                    <div class="pain-quote">"${painPoint.quoted_text}"</div>
+                    <a href="https://reddit.com/comments/${painPoint.post_id}" target="_blank" class="pain-link">
+                        [link]
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Show homepage
+        function showHomepage() {
+            document.getElementById('course-detail').classList.remove('active');
+            document.getElementById('homepage').classList.add('active');
+            currentCourse = null;
+        }
+
+        // Show error message
+        function showError(message) {
+            const container = document.querySelector('.container');
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error';
+            errorDiv.textContent = message;
+            container.insertBefore(errorDiv, container.firstChild);
+
+            setTimeout(() => {
+                if (errorDiv.parentNode) {
+                    errorDiv.parentNode.removeChild(errorDiv);
+                }
+            }, 5000);
+        }
