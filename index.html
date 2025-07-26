@@ -158,32 +158,60 @@
         }
 
         async function loadData() {
-            console.log('loading data...');
-            const csvRes = await fetch('data/2025_06_course_list_with_college.csv');
-            const csvText = (await csvRes.text()).trim();
-            coursesData = Papa.parse(csvText, { header: true, skipEmptyLines: true }).data;
+    console.log("💡 loadData() started");
 
-            const ppRes = await fetch('outputs/stage1/pain_points_stage1.jsonl');
-            const ppText = (await ppRes.text()).trim();
-            painPointsData = {};
-            ppText.split('\n').forEach(line => {
-                if (!line) return;
-                const pp = JSON.parse(line);
-                painPointsData[pp.pain_point_id] = pp;
-            });
+    // Load courses CSV
+    try {
+        const csvRes = await fetch('data/2025_06_course_list_with_college.csv');
+        console.log("📄 CSV status:", csvRes.status);
+        if (!csvRes.ok) throw new Error("CSV fetch failed");
+        const csvText = (await csvRes.text()).trim();
+        coursesData = Papa.parse(csvText, { header: true, skipEmptyLines: true }).data;
+        console.log("✅ Parsed coursesData:", coursesData.length, coursesData[0]);
+    } catch (e) {
+        console.error("❌ Failed loading or parsing CSV:", e);
+        showError("Could not load course list CSV.");
+        return;
+    }
 
-            for (const c of coursesData) {
-                try {
-                    const res = await fetch(`outputs/stage2/clusters_by_course/${c.CourseCode}_clusters.json`);
-                    if (!res.ok) throw new Error();
-                    clustersData[c.CourseCode] = await res.json();
-                } catch {
-                    console.warn(`No cluster data for ${c.CourseCode}`);
-                }
+    // Load pain points JSONL
+    try {
+        const ppRes = await fetch('outputs/stage1/pain_points_stage1.jsonl');
+        console.log("📝 Pain points JSONL status:", ppRes.status);
+        if (!ppRes.ok) throw new Error("PP JSONL fetch failed");
+        const ppText = (await ppRes.text()).trim();
+        painPointsData = {};
+        ppText.split('\n').forEach(line => {
+            if (!line) return;
+            const pp = JSON.parse(line);
+            painPointsData[pp.pain_point_id] = pp;
+        });
+        console.log("✅ Parsed painPoints:", Object.keys(painPointsData).length);
+    } catch (e) {
+        console.error("❌ Failed loading or parsing pain points:", e);
+        showError("Could not load pain points.");
+        return;
+    }
+
+    // Load cluster JSONs
+    let clusterCount = 0;
+    for (const c of coursesData) {
+        try {
+            const url = `outputs/stage2/clusters_by_course/${c.CourseCode}_clusters.json`;
+            const res = await fetch(url);
+            if (!res.ok) {
+                console.warn(`⚠️ No cluster JSON for ${c.CourseCode}`);
+                continue;
             }
+            clustersData[c.CourseCode] = await res.json();
+            clusterCount++;
+        } catch (e) {
+            console.warn(`❌ Error loading cluster for ${c.CourseCode}:`, e);
         }
+    }
 
-        // (Keep your remaining JS functions as-is: getCourseMetrics, renderCoursesTable, etc.)
+    console.log(`✅ Loaded clusters for ${clusterCount} courses`);
+}
     </script>
 </body>
 </html>
