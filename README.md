@@ -1,12 +1,12 @@
 # WGU Reddit Feedback Analyzer
 
-**Project Title**: *WGU Reddit Monitoring and Feedback Clustering Tool*  
-**Purpose**: Analyze unsolicited student feedback on Reddit to surface and cluster course-related *pain points*  
-**Project Type**: Interactive web app built on curated Reddit data using NLP and sentiment classification. 
-Includes downloadable (PDF) course-level feedback sheets.  
-**Author**: Buddy Owens  
-**Live Demo**: [Launch Dashboard](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/index.html)  
-**Notes**: Developed in support of WGU Data Analytics Capstone work  
+**Project Title:** WGU Reddit Monitoring and Feedback Clustering Tool  
+**Purpose:** Analyze unsolicited student feedback on Reddit to surface and cluster course-related *pain points*  
+**Project Type:** Interactive web app built on curated Reddit data using NLP and sentiment classification.  
+**Features:** Includes downloadable (PDF) course-level feedback sheets  
+**Author:** Buddy Owens (<jowe160@wgu.edu>)
+**Live Demo:** [Launch Dashboard](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/index.html)  
+**Notes:** Developed in support of WGU Data Analytics Capstone work    
 ---
 
 
