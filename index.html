@@ -202,7 +202,7 @@ function renderCoursesTable() {
                 <td onclick="showCourseDetail('${c.CourseCode}')">${c.Title}</td>
                 <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${confirmed.length}</span></td>
                 <td onclick="showCourseDetail('${c.CourseCode}')"><span class="metric">${painPoints}</span></td>
-                <td><a href="outputs/course_feedback_files/pdf/${c.CourseCode}_Reddit_Feedback.pdf" download class="download-link">⬇️</a></td>
+                <td><a href="outputs/course_feedback_files/pdf/2025-07-28/${c.CourseCode}_Reddit_Feedback.pdf" download class="download-link">⬇️</a></td>
             </tr>
         `;
     }).join('');
@@ -241,7 +241,7 @@ function showCourseDetail(code) {
     document.getElementById('course-detail').style.display = 'block';
     document.getElementById('detail-course-title').textContent = `${course.CourseCode}: ${course.Title}`;
     document.getElementById('detail-course-meta').textContent = `College: ${course.Colleges}`;
-    document.getElementById('detail-download-link').href = `outputs/course_feedback_files/pdf/${course.CourseCode}_Reddit_Feedback.pdf`;
+    document.getElementById('detail-download-link').href = `outputs/course_feedback_files/pdf/2025-07-28/${course.CourseCode}_Reddit_Feedback.pdf`;
 
     const confirmed = course.clusters.filter(c => !c.is_potential);
     const emerging = course.clusters.filter(c => c.is_potential);
