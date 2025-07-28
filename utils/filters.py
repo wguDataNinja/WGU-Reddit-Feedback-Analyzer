@@ -6,7 +6,7 @@ from datetime import datetime
 from utils.paths import DATA_DIR
 
 # Load and normalize course list
-course_df = pd.read_csv(DATA_DIR / "2025_06_course_list.csv")
+course_df = pd.read_csv(DATA_DIR / "2025_06_course_list_with_college.csv")
 course_codes_default = set(course_df["CourseCode"].astype(str).str.upper().str.replace(r"[\s\-]", "", regex=True))
 
 def filter_by_course_codes(df, course_codes=None, exact_match_count=1):
@@ -34,7 +34,7 @@ def filter_by_course_codes(df, course_codes=None, exact_match_count=1):
 
     if course_codes is None:
         from utils.paths import DATA_DIR
-        course_path = DATA_DIR / "2025_06_course_list.csv"
+        course_path = DATA_DIR / "2025_06_course_list_with_college.csv"
         course_codes_raw = pd.read_csv(course_path, usecols=["CourseCode"])["CourseCode"]
         course_codes_set = {normalize_code(code) for code in course_codes_raw.dropna()}
     else:

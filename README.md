@@ -1,26 +1,25 @@
 ## WGU Reddit Feedback Analyzer
 
-- **Project Title:** WGU Reddit Monitoring and Feedback Clustering Tool  
+- **Project Title:** WGU Reddit Monitoring and Feedback Clustering Tool v1.1 
 - **Purpose:** Analyze unsolicited student feedback on Reddit to surface and cluster course-related *pain points*  
 - **Project Type:** Interactive web app built on curated Reddit data using NLP and sentiment classification  
 - **Features:** Includes downloadable (PDF) course-level feedback sheets  
 - **Author:** Buddy Owens (<jowe160@wgu.edu>)  
 - **Live Demo:** [Launch Dashboard](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/index.html)  
 - **Notes:** Developed in support of WGU Data Analytics Capstone work  
----
 
 ## Project Goals
+
 - Extract relevant posts from our custom database of over 20k posts from WGU-related subreddits.
 - Identify *pain points* expressed by the user, about the course.
 - Cluster similar pain points by root cause to reveal common issues by course.
 - Deliver structured, quote-backed, course-level summaries for curriculum designers, instructors and mentors.
+- Ensure reproducible, full-course analysis using schema-enforced LLM outputs.
 
 ## Motivation
 
 While WGU conducts formal feedback surveys, students also post candidly on Reddit. These unfiltered posts often highlight 
 pain points not captured by traditional surveys. This project aims to harness those insights for potential course improvement.
-
----
 
 ## Project Structure
 
@@ -31,8 +30,8 @@ pain points not captured by traditional surveys. This project aims to harness th
 │   └── WGU-Reddit.db                          # SQLite database 
 ├── fetchers/                                  # Daily Reddit API fetch scripts
 ├── outputs/
-│   ├── stage1_pain_points/                    # Extracted pain points (JSONL)
-│   └── stage2_clusters/                       # Clustered pain points by course (JSON)
+│   ├── stage1_pain_points/                    # v1.1: Filtered, classified pain points (JSONL)
+│   └── stage2_clusters/                       # v1.1: Structured, clustered output with schema enforcement
 ├── scripts/
 │   ├── stage1/                                # LLM Loop 1: Extract Pain Points
 │   │   ├── step01_fetch_filtered_posts.py     
@@ -50,14 +49,37 @@ pain points not captured by traditional surveys. This project aims to harness th
 └── README.md                                  # You are here
 ```
 ### Prototype
-The first version of this project was a single-pass LLM categorization of Reddit posts, 
-and is still available in [the prototype dashboard](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/prototype/index.html).
+
+The first version of this project was a single-pass LLM categorization of Reddit posts,
+and is still available in the prototype dashboard.
+
+
+## Pipeline Redesign (v1.1)
+
+The v1.1 redesign improves both LLM loops for reproducibility, efficiency, and structure.
+
+### Stage 1
+
+- Adds `TITLE:` and `BODY:` markers for LLM clarity.
+- Improves prompt guidance to exclude emotional venting from tagging.
+- Logs and snapshots all inputs per run for full reproducibility.
+- Verbose logging with timestamps and run tagging.
+
+### Stage 2
+
+- Uses full-batch LLM calls gated by token length.
+- Enforces a strict JSON schema using Pydantic for consistent structure.
+- Dedupes and finalizes cluster definitions post-LLM.
+- Regenerated all course PDF reports with validated cluster structure and tighter groupings.
+
+**Note:** Media-awareness tagging (`[MEDIA ATTACHED]`) is prototyped but not yet live.  
+All prompt inputs are currently well below GPT-4o-mini’s token window; chunking logic is present but not triggered. Token size is reviewed monthly.
 
 ## LLM Classification Methodology
 
 This project uses **GPT-4o-mini** in a *guided zero-shot* configuration — with carefully defined roles, terminology, and instructions — to extract and cluster student pain points from Reddit posts.
 
-Inspired by Guo et al. (2023) [JAMIA](https://journals.aai.org/jamia/article/31/10/2181/7731085), we follow their **LLM-as-classifier** framework (see graphic below). Rather than providing labeled examples, we guide the model using:
+Inspired by Guo et al. (2023) [JAMIA](https://journals.aai.org/jamia/article/31/10/2181/7731085), we follow their **LLM-as-classifier** framework. Rather than providing labeled examples, we guide the model using:
 
 - Clear role assignment (e.g., “You are a course designer...”)
 - Domain-specific definitions (*pain point*, *root cause*)
@@ -91,48 +113,41 @@ Reddit Post Schema:
   "permalink": "https://www.reddit.com/r/WGU/comments/abc123/some_title"
 }
 ```
-
 <details>
 <summary><strong>Stage 1 Prompt: Pain Point Extraction</strong></summary>
-
-<br>
+        <br>
 
 **Definitions:**
 
-A 'pain point' is a negative user experience that a student encounters in a course,  
+A ‘pain point’ is a negative user experience that a student encounters in a course,
 traceable to how the course is designed, delivered, or supported.
 
-A pain point must be directly tied to the course, with a potential 'root cause'.
+A pain point must be directly tied to the course, with a potential ‘root cause’.
 
-A 'root cause' is the stated or implied fixable deficiency in the course  
+A ‘root cause’ is the stated or implied fixable deficiency in the course
 that contributed to the student’s negative experience. It must be something the course designer could reasonably improve.
 
----
+⸻
 
-**Your Task**
+Your Task
 
-You are a course designer reviewing Reddit posts about course `{course_code}`.
+You are a course designer reviewing Reddit posts about course {course_code}.
+	1.	Decide if the post contains one or more distinct pain points.
+	2.	For each pain point:
+	•	Summarize the student’s struggle in one sentence.
+	•	Identify the root cause.
+	•	Include a short, relevant, quoted snippet from the post that captures the issue in their own words.
 
-1. Decide if the post contains one or more distinct pain points.  
-2. For each pain point:
-   - Summarize the student’s struggle in one sentence.
-   - Identify the root cause.
-   - Include a short, relevant, quoted snippet from the post that captures the issue in their own words.
+Merge multiple complaints into a single pain point if they share the same root cause.
 
-> Merge multiple complaints into a single pain point if they share the same root cause.
-
----
+⸻
 
 If no course-related pain points are present:
 
-```json
 {
   "num_pain_points": 0
 }
-```
 </details>
-        
-***
 
 
 ### Stage 2 – Clustering Pain Points by Root Cause
@@ -141,7 +156,6 @@ Each course’s pain points are grouped into clusters based on root cause, using
 
 **Input:**  
 `outputs/stage1_pain_points/pain_points_stage1.jsonl`
-
 <details>
 <summary><strong>Stage 2 Prompt: Cluster Assignment</strong></summary>
 
@@ -179,15 +193,14 @@ Use the exact `pain_point_id` from the input. Do not rename, abbreviate, or simp
   "root_cause_summary": "Mentor feedback delays are a recurring issue."
 }
 ```
-
 </details>
 
-**Output:**  
-`outputs/stage2_clusters/C949_clusters.json`
 
-Each ***[course_code]clusters.json*** contains a list the clusters (Feedback Topics) their pain_point_ids. 
+Output:
+outputs/stage2_clusters/C949_clusters.json
 
-```json
+Each [course_code]_clusters.json contains a list of clusters and their associated pain_point_ids:
+```json 
 {
   "course": "C949",
   "clusters": [
@@ -195,95 +208,30 @@ Each ***[course_code]clusters.json*** contains a list the clusters (Feedback Top
       "cluster_id": "C949_1",
       "title": "Unclear OA expectations",
       "root_cause_summary": "OA instructions lack clarity on requirements",
-      "pain_point_ids": ["abc123_0", "def456_1"],
-      "is_potential": false
+      "pain_point_ids": ["abc123_0", "def456_1"]
     },
     {
       "cluster_id": "C949_2",
       "title": "Mentor unavailable for help",
       "root_cause_summary": "Students report that mentors were unresponsive or unable to help",
-      "pain_point_ids": ["ghi789_0"],
-      "is_potential": false
+      "pain_point_ids": ["ghi789_0"]
     }
-  ],
-  "alert_threshold": 5,
-  "alerts": []
+  ]
 }
 ```
-### Sample Course Feedback Output
-
-The final GUI or markdown generator will combine:
-
-- **Cluster titles** from `*_clusters.json`
-- **Quoted pain points** from `pain_points_stage1.jsonl`
-- **Reddit post links** from the original post metadata
-
-to produce a readable course feedback document for curriculum reviewers.
-
----
-
-#### D335 – Introduction to Programming in Python  
-**School of Technology** • **10 Discussion Topics** • **23 Student Pain Points**
-
----
-
-### Discussion Topics
-
-The following topics represent common themes and pain points discussed by students in relation to this course on Reddit.
-
----
-
-### Assessment Difficulty  
-*Students perceive inconsistency in difficulty levels between practice tests and actual assessments.*
-
-**Student Feedback:**
-
-> "I had solved every problem except the csv files, and try-except problem."  
-[View on Reddit →](https://reddit.com/comments/example1)
-
-> "There were two long, difficult problems in chapter 28... There wasn't anything approaching those on the OA."  
-[View on Reddit →](https://reddit.com/comments/example2)
-
-> "Is the OA for D335 more similar to practice test 1 or 2?"  
-[View on Reddit →](https://reddit.com/comments/example3)
-
----
-
-### Course Material Comprehension  
-*Students feel overwhelmed by the complexity of course material, leading to confusion around key concepts.*
-
-**Student Feedback:**
-
-> "I feel like I'm losing my mind with this course."  
-[View on Reddit →](https://reddit.com/comments/example4)
-
-> "I've stared at this for 10 minutes...........what am I missing?"  
-[View on Reddit →](https://reddit.com/comments/example5)
-
-> "I just don't understand this course... zybooks THEY DO NOT HELP!, Angela's 100 days course - NO HELP!"  
-[View on Reddit →](https://reddit.com/comments/example6)
-
-
----
-
 ## Planned Expansion
 
 ### 1. Open-Source LLMs with Ollama
 
-We plan explore local models via Ollama for private, token-free processing using models like LLaMA 2 and Mistral.
+We plan to explore local models via Ollama for private, token-free processing using models like LLaMA 2 and Mistral.
 
 ### 2. Including Reddit Comments
 
-Comments are important for help-seeking and advice.  
-Currently, we fetch up to 3 comments per level (2 levels deep), captured only if posted before the main post was fetched.
+- Comments are important for help-seeking and advice.  
+- Currently, we fetch up to 3 comments per level (2 levels deep), captured only if posted before the main post was fetched.
+- Re-fetch selected posts (based on `num_comments`, classification, sentiment) to include full comment threads and support deeper analysis. Possible to expand toward tracking "advice" as well as "pain points".
 
-**Planned**:  
-Re-fetch selected posts (based on `num_comments`, classification, sentiment) to include full comment threads and support deeper analysis. Possible to expand toward 
-tracking "advice" as well as "pain-points"
-
----
-
-## Possible Expansion
+## Possible Expansions (not planned)
 
 ### 1. Feedback by Institutional Area
 
@@ -295,21 +243,20 @@ In addition to course-level feedback, posts may be grouped by broader WGU areas 
 - Advising and mentoring  
 - Student support services  
 
-
 ### 2. Beyond Known Subreddits
 
-Analyzing posts from keyword search from ***outside*** the known wgu-related subreddits could provide insight 
+Analyzing posts from keyword search from outside the known WGU-related subreddits could provide insight 
 into what non-students are saying about WGU. This would allow visibility into brand perception and prospective student sentiment.
 Posts would come from any subreddits, including:
+
 - r/college  
 - r/gradadmissions  
 - r/personalfinance  
 - Other topic-specific communities  
 
-
 ### 3. Sentiment Filter Adjustment
 
-Current filtering emphasizes **negative sentiment (VADER < -0.2)** to surface pain points.  
+Current filtering emphasizes negative sentiment (VADER < -0.2) to surface pain points.  
 We may later include neutral and positive posts to:
 
 - Detect hidden pain points in seemingly positive experiences  

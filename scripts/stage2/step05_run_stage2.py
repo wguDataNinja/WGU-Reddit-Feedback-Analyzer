@@ -1,128 +1,73 @@
-# filename: scripts/stage2/step05_run_stage2.py
 #!/usr/bin/env python3
-import sys
-from pathlib import Path
-import time
 
-# Fix imports for CLI
+import sys
+import json
+import time
+from pathlib import Path
+from typing import List, Dict
+from pydantic import ValidationError
+
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
-import json
-from typing import List, Dict
-from datetime import datetime
-from pydantic import BaseModel, ValidationError
-
 from utils.logger import setup_logger, get_timestamp_str
-from utils.jsonl_io import read_jsonl, write_jsonl
-from utils.archive_ops import move_to_archive
+from utils.jsonl_io import read_jsonl
 from utils.paths import project_path
-
-from scripts.stage2.step03_call_llm import call_llm
-from scripts.stage2.step04_apply_actions import apply_actions, deduplicate_and_reindex, check_alerts
-from scripts.stage2.config_stage2 import BATCH_SIZE, ALERT_THRESHOLD, STAGE1_FLAT_FILE, STAGE2_INPUT_DIR
-
 from scripts.stage2.step01_group_by_course import group_by_course
+from scripts.stage2.config_stage2 import (
+    STAGE1_FLAT_FILE,
+    STAGE2_INPUT_DIR,
+    STAGE2_OUTPUT_DIR,
+    FULL_BATCH_TOKEN_LIMIT,
+)
+from utils.token_utils import count_tokens
+from scripts.stage2.step03_call_llm import call_llm_full, FinalOutput
 
-# Setup
 logger = setup_logger("run_stage2", filename="stage2.log", to_console=True)
-PROJECT_ROOT = project_path
-INPUT_DIR = PROJECT_ROOT / "outputs" / "stage2" / "pain_points_by_course"
-OUTPUT_DIR = PROJECT_ROOT / "outputs" / "stage2" / "clusters_by_course"
-ARCHIVE_DIR = PROJECT_ROOT / "outputs" / "stage2" / "archive" / "clusters_by_course"
-STAGE1_ARCHIVE_DIR = PROJECT_ROOT / "outputs" / "stage2" / "archive" / "pain_points_stage1"
+INPUT_DIR = STAGE2_INPUT_DIR
+OUTPUT_DIR = STAGE2_OUTPUT_DIR
 
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
-STAGE1_ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
 
 # Group the Stage 1 flat file before processing
-group_by_course(STAGE1_FLAT_FILE, STAGE2_INPUT_DIR)
-
-# Pydantic models
-class Cluster(BaseModel):
-    cluster_id: str
-    title: str
-    root_cause_summary: str
-    pain_point_ids: List[str]
-    is_potential: bool
-
-class Alert(BaseModel):
-    cluster_id: str
-    summary: str
-    post_count: int
-    detected_on: str
-
-class FinalOutput(BaseModel):
-    course: str
-    clusters: List[Cluster]
-    alert_threshold: int
-    alerts: List[Alert]
-
-def load_clusters(path: Path, course: str) -> Dict:
-    if not path.exists():
-        return {"course": course, "clusters": [], "alerts": [], "alert_threshold": ALERT_THRESHOLD}
-    with path.open("r", encoding="utf-8") as f:
-        data = json.load(f)
-    return data
+group_by_course(STAGE1_FLAT_FILE, INPUT_DIR)
 
 def save_json(obj: Dict, path: Path) -> None:
-    with path.open("w", encoding="utf-8") as f:
-        json.dump(obj, f, ensure_ascii=False, indent=2)
+    path.write_text(json.dumps(obj, ensure_ascii=False, indent=2), encoding="utf-8")
 
 def run_course(course: str) -> None:
     start = time.time()
-
     in_path = INPUT_DIR / f"{course}.jsonl"
     out_path = OUTPUT_DIR / f"{course}_clusters.json"
     logger.info(json.dumps({
         "event": "run_course_start",
         "course": course,
-        "input": str(in_path.name),
-        "output": str(out_path.name),
+        "input": in_path.name,
+        "output": out_path.name,
         "start_time": get_timestamp_str()
     }))
-
+    pain_points = list(read_jsonl(in_path))
+    raw_text = "\n---\n".join(f"{p['pain_point_summary']}\n{p['quoted_text']}" for p in pain_points)
+    if count_tokens(raw_text) > FULL_BATCH_TOKEN_LIMIT:
+        logger.error(json.dumps({
+            "event": "token_limit_exceeded",
+            "course": course,
+            "tokens": count_tokens(raw_text),
+            "limit": FULL_BATCH_TOKEN_LIMIT,
+            "timestamp": get_timestamp_str()
+        }))
+        return
     try:
-        pain_points = list(read_jsonl(in_path))
+        result = call_llm_full(course, clusters=[], pain_points=pain_points, verbose=True)
     except Exception as e:
         logger.error(json.dumps({
-            "event": "read_input_error",
+            "event": "llm_call_failed",
             "course": course,
             "error": str(e),
             "timestamp": get_timestamp_str()
         }))
         return
-
-    state = load_clusters(out_path, course)
-
-    for i in range(0, len(pain_points), BATCH_SIZE):
-        batch = pain_points[i:i + BATCH_SIZE]
-        try:
-            actions = call_llm(course, state["clusters"], batch)
-            apply_actions(course, state, actions)
-            save_json(state, out_path)
-        except Exception as e:
-            logger.error(json.dumps({
-                "event": "batch_processing_error",
-                "course": course,
-                "batch_index": i // BATCH_SIZE,
-                "error": str(e),
-                "timestamp": get_timestamp_str()
-            }))
-            continue
-
-    deduplicate_and_reindex(course, state["clusters"])
-    check_alerts(state, threshold=ALERT_THRESHOLD)
-
-    final_output = {
-        "course": course,
-        "clusters": state["clusters"],
-        "alert_threshold": ALERT_THRESHOLD,
-        "alerts": state.get("alerts", [])
-    }
-
     try:
-        FinalOutput.parse_obj(final_output)
+        FinalOutput.model_validate(result)
     except ValidationError as e:
         logger.error(json.dumps({
             "event": "validation_error",
@@ -131,26 +76,56 @@ def run_course(course: str) -> None:
             "timestamp": get_timestamp_str()
         }))
         return
-
-    save_json(final_output, out_path)
-
+    save_json(result, out_path)
     elapsed = time.time() - start
     logger.info(json.dumps({
         "event": "run_course_complete",
         "course": course,
-        "clusters": len(final_output["clusters"]),
-        "alerts": len(final_output["alerts"]),
+        "clusters": len(result['clusters']),
         "elapsed_seconds": round(elapsed, 1),
         "end_time": get_timestamp_str()
     }))
 
 def run_all() -> None:
-    for file in INPUT_DIR.glob("*.jsonl"):
-        run_course(file.stem)
+    from scripts.stage2.config_stage2 import MODEL_NAME, MAX_RETRIES, RETRY_SLEEP_SECONDS
 
-def run_subset(course_list: List[str]) -> None:
+    start_time = time.time()
+    logger.info(json.dumps({
+        "event": "run_stage2_start",
+        "model": MODEL_NAME,
+        "token_limit": FULL_BATCH_TOKEN_LIMIT,
+        "max_retries": MAX_RETRIES,
+        "retry_sleep_seconds": RETRY_SLEEP_SECONDS,
+        "start_time": get_timestamp_str()
+    }))
+
+    summary = []
+    for file in INPUT_DIR.glob("*.jsonl"):
+        result = run_course(file.stem)
+        if result:
+            summary.append(result)
+
+    elapsed = round(time.time() - start_time, 1)
+    logger.info(json.dumps({
+        "event": "run_all_summary",
+        "total_courses": len(summary),
+        "total_clusters": sum(c["clusters"] for c in summary),
+        "total_seconds": sum(c["seconds"] for c in summary),
+        "elapsed_wallclock": elapsed,
+        "end_time": get_timestamp_str(),
+        "details": summary
+    }))
+
+# Filename: step05_run_stage2.py (add below existing functions)
+
+def run_courses(course_list: List[str]) -> None:
+    available_files = {file.stem for file in INPUT_DIR.glob("*.jsonl")}
+    missing = [course for course in course_list if course not in available_files]
+    if missing:
+        raise FileNotFoundError(f"Missing input files for course(s): {', '.join(missing)}")
     for course in course_list:
         run_course(course)
 
 if __name__ == "__main__":
     run_all()
+    # run_courses(["D335"])

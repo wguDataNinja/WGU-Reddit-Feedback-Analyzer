@@ -8,29 +8,27 @@ from utils.paths import OUTPUT_DIR
 def render_table(df, title="Preview Table"):
     df = df.copy()
 
-    # Shorten selftext for readability
-    df['selftext'] = df['selftext'].str.slice(0, 300) + '...'
-
-    # Add clickable Reddit permalink
-    df['permalink'] = df['permalink'].apply(
-        lambda x: f'<a href="https://www.reddit.com{x}" target="_blank">link</a>' if pd.notna(x) else ''
-    )
-
-    # Include columns only if they exist
-    base_columns = [
-        'post_id', 'title', 'selftext', 'text_length',
-        'matched_course_codes', 'VADER_Compound', 'permalink'
-    ]
-    columns = [col for col in base_columns if col in df.columns]
-    df = df[columns]
+    # Make Reddit permalink clickable
+    if "permalink" in df.columns:
+        df["permalink"] = df["permalink"].apply(
+            lambda x: f'<a href="https://www.reddit.com{x}" target="_blank">link</a>' if pd.notna(x) else ""
+        )
 
     print(f"[render_table]  Showing {min(len(df), 100)} of {len(df)} total posts")
 
     styles = """
     <style>
         table { table-layout: auto; width: 100%; }
-        td:nth-child(3) { min-width: 300px; max-width: 600px; }
-        td:nth-child(4), td:nth-child(5), td:nth-child(6) { white-space: nowrap; width: 1%; }
+        td {
+            max-width: 500px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            vertical-align: top;
+        }
+        th {
+            background: #f0f0f0;
+            text-align: left;
+        }
     </style>
     """
 
@@ -39,11 +37,10 @@ def render_table(df, title="Preview Table"):
     display(HTML(f"""
         {styles}
         <h4>{title}</h4>
-        <div style="max-height:500px; overflow:auto; border:1px solid #ccc; padding:10px; font-family:monospace; font-size:12px">
+        <div style="max-height:600px; overflow:auto; border:1px solid #ccc; padding:10px; font-family:monospace; font-size:12px">
         {html}
         </div>
     """))
-
 
 def generate_sentiment_spotlight(df, title="Sentiment Spotlight", max_posts=10, sentiment_threshold=-0.3):
     """

@@ -58,6 +58,23 @@ def lemmatize(tokens):
 
 # --- Full Cleaning Pipelines ---
 
+def cleaning_vader_llm(df):
+    df = df.copy()
+
+    # Format for LLM clarity
+    df["text_clean"] = df.apply(
+        lambda row: f"Title: {row['title'].strip()}\n\nSelftext: {row['selftext'].strip()}",
+        axis=1
+    )
+
+    df["text_clean"] = df["text_clean"].apply(remove_urls)
+    df["text_clean"] = df["text_clean"].str.replace(r"\bu\/\w+", "", regex=True)
+    df["text_clean"] = df["text_clean"].str.replace(r"\br\/\w+", "", regex=True)
+    df["text_clean"] = df["text_clean"].str.replace(r"\s+", " ", regex=True).str.strip()
+    df["text_length"] = df["text_clean"].str.len()
+
+    return df
+
 def cleaning_vader(df):
     df = df.copy()
     df['text_clean'] = df.apply(merge_title_selftext, axis=1)

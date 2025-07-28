@@ -12,8 +12,7 @@ from scripts.stage1.config_stage1 import INPUT_PATH, OUTPUT_PATH
 from utils.logger import setup_logger, get_timestamp_str
 from utils.jsonl_io import read_jsonl, write_jsonl
 
-logger = setup_logger("stage1_file")
-
+logger = setup_logger("stage1_file", filename="stage1.log", to_console=True, verbose=True)
 def truncate(text: str, max_len: int) -> str:
     return text[:max_len] if text else ""
 
@@ -49,11 +48,6 @@ def classify_file(limit: int | None = None) -> None:
     success = errors = 0
     seen_texts = set()
 
-    # Some posts are copy-pasted into multiple subreddits with only minor changes
-    # (e.g. punctuation differences like a trailing period).
-    # We deduplicate by normalized `text_clean` content.
-    # Example duplicates: post_id "1k6eaph" vs "1k6e9jx"
-
     for i, post in enumerate(posts, 1):
         post_id = post.get("post_id", f"idx_{i}")
         courses = post.get("matched_course_codes") or []
@@ -72,6 +66,7 @@ def classify_file(limit: int | None = None) -> None:
         seen_texts.add(norm)
 
         print(f"[{i}] Classifying post_id={post_id}, course={course}")
+        post_start = time.time()
 
         try:
             res = classify_post(post_id, course, text)
@@ -100,6 +95,16 @@ def classify_file(limit: int | None = None) -> None:
                 "pain_point_ids": [r["pain_point_id"] for r in flat],
                 "quoted_texts": [r["quoted_text"] for r in flat]
             }))
+
+            if n == -1:
+                logger.warning(json.dumps({
+                    "post_id": post_id,
+                    "course": course,
+                    "warning": "classification failed, num_pain_points=-1"
+                }))
+
+            logger.debug(f"post_id={post_id} completed in {time.time() - post_start:.2f}s")
+
         except Exception as e:
             print(f"[{i}] Error on post_id={post_id}: {e}")
             errors += 1
@@ -107,6 +112,9 @@ def classify_file(limit: int | None = None) -> None:
                 "post_id": post_id,
                 "error": str(e)
             }))
+
+        if i % 25 == 0:
+            logger.info(f"Processed {i}/{len(posts)} posts so far...")
 
     write_jsonl(output_records, OUTPUT_PATH)
     elapsed = time.time() - start_time

@@ -12,8 +12,10 @@ def format_clusters(clusters: List[Dict]) -> str:
         for i, c in enumerate(clusters)
     )
 
-def format_pain_points(batch: List[Dict]) -> str:
+def format_pain_points(pain_points: List[Dict]) -> str:
     return "\n---\n".join(
-        f"pain_point_id: {p['pain_point_id']}\nsummary: {p['pain_point_summary']}\nsnippet: {p['quoted_text']}"
-        for p in batch
+        f"pain_point_id: {p.get('pain_point_id')}\n"
+        f"summary: {p.get('pain_point_summary')}\n"
+        f"snippet: {p.get('quoted_text')}"
+        for p in pain_points
     )
