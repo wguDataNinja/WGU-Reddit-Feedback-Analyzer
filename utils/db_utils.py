@@ -13,7 +13,11 @@ def get_db_connection(row_factory=None):
 def load_posts_dataframe():
     db = get_db_connection()
     query = """
-        SELECT p.post_id, p.title, p.selftext,  p.permalink
+        SELECT p.post_id,
+               p.title,
+               p.selftext,
+               p.permalink,
+               p.created_utc   -- new field
         FROM posts p
     """
     df = pd.read_sql_query(query, db)

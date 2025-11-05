@@ -1,4 +1,6 @@
-#!/usr/bin/env python3
+# step05_run_stage2.py
+
+# #!/usr/bin/env python3
 
 import sys
 import json
@@ -127,5 +129,18 @@ def run_courses(course_list: List[str]) -> None:
         run_course(course)
 
 if __name__ == "__main__":
-    run_all()
-    # run_courses(["D335"])
+    import argparse
+
+    parser = argparse.ArgumentParser(description="Run Stage 2 clustering")
+    parser.add_argument("--output_dir", required=True, help="Base output dir (outputs/runs/YYYY-MM-DD)")
+    parser.add_argument("--courses_file", help="Optional: text file listing courses to process (one per line)")
+    args = parser.parse_args()
+
+    out_base = Path(args.output_dir)
+    courses_file = Path(args.courses_file) if args.courses_file else None
+
+    if courses_file and courses_file.exists():
+        courses = [c.strip() for c in courses_file.read_text().splitlines() if c.strip()]
+        run_courses(courses)
+    else:
+        run_all()

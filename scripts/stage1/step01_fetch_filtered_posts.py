@@ -76,7 +76,8 @@ def fetch_filtered_posts() -> None:
         {
             "post_id": row["post_id"],
             "text_clean": row["text_clean"],
-            "matched_course_codes": row["matched_course_codes"]
+            "matched_course_codes": row["matched_course_codes"],
+            "created_utc": row["created_utc"],  # keep it
         }
         for _, row in df.iterrows()
     ]
