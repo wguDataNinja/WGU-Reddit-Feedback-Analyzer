@@ -59,3 +59,7 @@ fetchers/helpers.py
 
 /app.py
 utils/token_utils.py
+.env
+
+# local legacy archive
+.utils/

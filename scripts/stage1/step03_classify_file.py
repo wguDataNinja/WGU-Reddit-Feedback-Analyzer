@@ -10,7 +10,7 @@ import time
 from scripts.stage1.step02_classify_post import classify_post
 from scripts.stage1.config_stage1 import INPUT_PATH, OUTPUT_PATH
 from utils.logger import setup_logger, get_timestamp_str
-from utils.jsonl_io import read_jsonl, write_jsonl
+from utils.jsonl_io import read_jsonl, append_jsonl
 
 logger = setup_logger("stage1_file", filename="stage1.log", to_console=True, verbose=True)
 def truncate(text: str, max_len: int) -> str:
@@ -34,6 +34,12 @@ def classify_file(limit: int | None = None) -> None:
     print(f"Starting Stage 1 classification")
     print(f"Loaded {len(posts)} posts from {INPUT_PATH.name}")
 
+    # Load existing post_ids + timestamps from the master file for idempotency
+    existing_ids = set()
+    if OUTPUT_PATH.exists():
+        for line in read_jsonl(OUTPUT_PATH):
+            existing_ids.add((line.get("post_id"), line.get("created_utc")))
+
     logger.info(json.dumps({
         "event": "stage1_start",
         "model": "gpt-4o-mini",
@@ -41,22 +47,29 @@ def classify_file(limit: int | None = None) -> None:
         "output": str(OUTPUT_PATH),
         "max_chars": 2000,
         "total_posts": len(posts),
+        "existing_ids": len(existing_ids),
         "start_time": get_timestamp_str()
     }))
 
-    output_records = []
-    success = errors = 0
+    success = errors = skipped_existing = skipped_dupe_text = 0
     seen_texts = set()
+    new_records = []
 
     for i, post in enumerate(posts, 1):
         post_id = post.get("post_id", f"idx_{i}")
+        created_utc = post.get("created_utc")
         courses = post.get("matched_course_codes") or []
         course = courses[0] if courses else "UNKNOWN"
         text = truncate(get_text(post), 2000)
         norm = normalize_text(text)
 
+        # Deduplication based on (post_id, created_utc)
+        if (post_id, created_utc) in existing_ids:
+            skipped_existing += 1
+            continue
+
         if norm in seen_texts:
-            print(f"[{i}] Skipped duplicate post_id={post_id}")
+            skipped_dupe_text += 1
             logger.info(json.dumps({
                 "post_id": post_id,
                 "course": course,
@@ -72,18 +85,20 @@ def classify_file(limit: int | None = None) -> None:
             res = classify_post(post_id, course, text)
             n = res.get("num_pain_points", 0)
             pain_points = res.get("pain_points", [])
+
             flat = [
                 {
                     "pain_point_id": f"{post_id}_{j}",
                     "post_id": post_id,
                     "course": course,
+                    "created_utc": created_utc,  # propagate timestamp
                     "pain_point_summary": p["pain_point_summary"],
                     "root_cause": p["root_cause"],
                     "quoted_text": p["quoted_text"]
                 }
                 for j, p in enumerate(pain_points)
             ]
-            output_records.extend(flat)
+            new_records.extend(flat)
             success += 1
 
             print(f"[{i}] Extracted {n} pain points")
@@ -116,17 +131,24 @@ def classify_file(limit: int | None = None) -> None:
         if i % 25 == 0:
             logger.info(f"Processed {i}/{len(posts)} posts so far...")
 
-    write_jsonl(output_records, OUTPUT_PATH)
+    # Append new records instead of overwriting
+    appended = 0
+    if new_records:
+        appended = append_jsonl(new_records, OUTPUT_PATH)
+
     elapsed = time.time() - start_time
 
-    print(f"Finished Stage 1. Wrote {len(output_records)} pain points to {OUTPUT_PATH.name}")
-    print(f"Success: {success} | Errors: {errors}")
+    print(f"Finished Stage 1. Appended {appended} pain points to {OUTPUT_PATH.name}")
+    print(f"Success: {success} | Errors: {errors} | Skipped existing: {skipped_existing} | Skipped duplicate text: {skipped_dupe_text}")
     print(f"Elapsed time: {elapsed:.1f} seconds")
 
     logger.info(json.dumps({
         "event": "stage1_complete",
         "success": success,
         "errors": errors,
+        "skipped_existing": skipped_existing,
+        "skipped_dupe_text": skipped_dupe_text,
+        "appended": appended,
         "output": str(OUTPUT_PATH),
         "elapsed_seconds": round(elapsed, 1),
         "end_time": get_timestamp_str()
