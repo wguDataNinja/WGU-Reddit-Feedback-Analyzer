@@ -1,61 +1,53 @@
-# Byte-compiled / cache
-__pycache__/
-*.py[cod]
-
-# Logs and system files
-*.log
-.DS_Store
-
-# IDE / environment
-.idea/
 .venv/
 env/
 venv/
 .vscode/
+.idea/
+.DS_Store
+*.swp
 
-# Jupyter
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+dist/
+build/
+
+*.log
+logs/
+artifacts/
+src/artifacts/
+db/
+*.db
+*.sqlite
+
+archive_legacy/
+scripts/
+notebooks/
+visuals/
+dev/
+.utils/
+pytest_cache/
 .ipynb_checkpoints/
+prototype/
+site/
+site/public/
+site/.git/
+site/.hugo_build.lock
+site/resources/
 
-# Secrets
+**/.old/
+
+data/*
+!data/college_snapshots.json
+!data/course_list_with_college.csv
+!data/wgu_subreddits.txt
+
+outputs/
+
+.env
+.env.*
 *.key
 *.pem
-
-# Data files — allow specific includes later
-*.json
-*.csv
-*.sqlite
-*.db
-*.pkl
-
-# Log and output dirs
-logs/
-outputs/
-notebooks/outputs/
-data/output/
-
-# Old/unused dirs
-WGU_catalog copy/
-old/
-
-# Allow-listed dirs (don't ignore)
-!fetchers/
-!WGU_catalog/
-!notebooks/
-
-data/.old/
-data/stopwords/
-
-db/
-dev/
-fetchers/fetch_comments_custom.py
-fetchers/fetch_user_stats.py
-fetchers/fetch_users_daily.py
-fetchers/helpers.py
-/gui/
-/gui/
-
-/gui/
-/requirements.txt
-
-/app.py
-utils/token_utils.py
