@@ -1,0 +1,97 @@
+from pathlib import Path
+import time, json, sqlite3, sys
+import pandas as pd
+from wgu_reddit_analyzer.pipeline.io_layout import data_path, output_path
+from wgu_reddit_analyzer.utils.logger import get_logger
+from wgu_reddit_analyzer.utils.jsonl_io import write_jsonl
+from wgu_reddit_analyzer.utils.sentiment_vader import calculate_vader_sentiment
+from wgu_reddit_analyzer.utils.filters import filter_by_course_exact, filter_by_vader
+
+def _load_course_codes(course_csv: Path | None):
+    if course_csv is None or not course_csv.exists():
+        return None
+    df = pd.read_csv(course_csv)
+    col = "CourseCode" if "CourseCode" in df.columns else df.columns[0]
+    return df[col].dropna().astype(str).tolist()
+
+def fetch_filtered_posts(output_rel: str, course_csv: Path | None, vader_threshold: float = -0.2, skip_course_filter: bool = False, with_subreddit: bool = False, limit: int = 0):
+    logger = get_logger("pipeline")
+    out_path = output_path(output_rel)
+    db = data_path("WGU-Reddit.db")
+    if not db.exists():
+        raise FileNotFoundError(f"DB missing at {db}")
+    with sqlite3.connect(db) as conn:
+        limit_clause = f" LIMIT {limit}" if limit and limit > 0 else ""
+        if with_subreddit:
+            sql = (
+                """
+                SELECT
+                  p.post_id AS post_id,
+                  p.title   AS title,
+                  p.selftext AS text,
+                  p.created_utc AS created_utc,
+                  p.subreddit_id AS subreddit_id,
+                  s.name AS subreddit
+                FROM posts p
+                LEFT JOIN subreddits s ON s.subreddit_id = p.subreddit_id
+                """
+            )
+        else:
+            sql = "SELECT post_id as post_id, title, selftext as text, created_utc FROM posts"
+        df = pd.read_sql_query(sql + limit_clause, conn)
+    logger.info(f"Loaded {len(df)} posts from DB")
+    if df.empty:
+        return 0
+    df["text"] = df["text"].fillna("").astype(str)
+    if vader_threshold is None:
+        df["vader_compound"] = 0.0
+    else:
+        df["vader_compound"] = df["text"].map(calculate_vader_sentiment)
+    if not skip_course_filter:
+        # compute course_code (first match) and count of matches
+        import re as _re
+        codes = _load_course_codes(course_csv)
+        if not codes:
+            logger.warning("No course codes loaded; skipping course filter")
+        else:
+            pat = _re.compile(r"\b(" + "|".join(map(_re.escape, codes)) + r")\b", flags=_re.I)
+            s = df["text"].fillna("").astype(str)
+            df["course_code"] = s.str.extract(pat, expand=False)
+            df["course_code_count"] = s.str.count(pat)
+            # keep only rows that matched at least once
+            df = df[df["course_code_count"] > 0]
+
+        codes = _load_course_codes(course_csv)
+        if not codes:
+            logger.warning("No course codes loaded; skipping course filter")
+        else:
+            df = filter_by_course_exact(df, text_col="text", course_codes=set(codes))
+    if vader_threshold is not None:
+        df = filter_by_vader(df, score_col="vader_compound", threshold=vader_threshold)
+    records = df.to_dict("records")
+    wrote = write_jsonl(records, out_path)
+    logger.info(f"Wrote {wrote} records to {out_path}")
+    print(f"✅ wrote {wrote} → {out_path}")
+    return wrote
+
+def main():
+    import argparse
+    p = argparse.ArgumentParser()
+    p.add_argument("--output_rel", type=str, default="stage1/filtered_posts_stage1.jsonl")
+    p.add_argument("--course_csv", type=str, default="")
+    p.add_argument("--vader", type=float, default=-0.2)
+    p.add_argument("--no-vader", action="store_true")
+    p.add_argument("--with-subreddit", action="store_true")
+    p.add_argument("--limit", type=int, default=0)
+    p.add_argument("--skip-course-filter", action="store_true")
+    a = p.parse_args()
+    course_csv = Path(a.course_csv) if a.course_csv else None
+    vader_value = None if a.no_vader else a.vader
+    fetch_filtered_posts(a.output_rel, course_csv, vader_threshold=vader_value, skip_course_filter=a.skip_course_filter, with_subreddit=a.with_subreddit, limit=a.limit)
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        print(f"[extract_filtered_posts] ERROR: {e}", file=sys.stderr)
+        raise
