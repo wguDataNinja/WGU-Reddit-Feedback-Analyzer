@@ -1,263 +1,153 @@
-## WGU Reddit Feedback Analyzer
+# WGU Reddit Analyzer Pipeline
 
-- **Project Title:** WGU Reddit Monitoring and Feedback Clustering Tool v1.1 
-- **Purpose:** Analyze unsolicited student feedback on Reddit to surface and cluster course-related *pain points*  
-- **Project Type:** Interactive web app built on curated Reddit data using NLP and sentiment classification  
-- **Features:** Includes downloadable (PDF) course-level feedback sheets  
-- **Author:** Buddy Owens (<jowe160@wgu.edu>)  
-- **Live Demo:** [Launch Dashboard](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/index.html)  
-- **Notes:** Developed in support of WGU Data Analytics Capstone work  
+_Last updated: 2025-11-10_
 
-## Project Goals
+---
 
-- Extract relevant posts from our custom database of over 20k posts from WGU-related subreddits.
-- Identify *pain points* expressed by the user, about the course.
-- Cluster similar pain points by root cause to reveal common issues by course.
-- Deliver structured, quote-backed, course-level summaries for curriculum designers, instructors and mentors.
-- Ensure reproducible, full-course analysis using schema-enforced LLM outputs.
+## Purpose
+The **WGU Reddit Analyzer** is a reproducible, auditable LLM pipeline for extracting actionable student pain points from Reddit discussions.  
+It replaces the legacy sentiment-monitoring prototype with a structured benchmark framework focused on **cost**, **accuracy**, and **reproducibility**.
 
-## Motivation
+---
 
-While WGU conducts formal feedback surveys, students also post candidly on Reddit. These unfiltered posts often highlight 
-pain points not captured by traditional surveys. This project aims to harness those insights for potential course improvement.
+## System Architecture
 
-## Project Structure
-
-```text
-├── data/                                      
-│   └── 2025_06_course_list_with_college.csv   # current course list (July 2025 WGU Catalog)
-├── db/
-│   └── WGU-Reddit.db                          # SQLite database 
-├── fetchers/                                  # Daily Reddit API fetch scripts
-├── outputs/
-│   ├── stage1_pain_points/                    # v1.1: Filtered, classified pain points (JSONL)
-│   └── stage2_clusters/                       # v1.1: Structured, clustered output with schema enforcement
-├── scripts/
-│   ├── stage1/                                # LLM Loop 1: Extract Pain Points
-│   │   ├── step01_fetch_filtered_posts.py     
-│   │   ├── step02_classify_post.py            
-│   │   ├── step03_classify_file.py            
-│   │   └── step04_run_stage1.py               
-│   └── stage2/                                # LLM Loop 2: Cluster Pain Points
-│       ├── step01_group_by_course.py          
-│       ├── step02_prepare_prompt_data.py      
-│       ├── step03_call_llm.py                 
-│       ├── step04_apply_actions.py            
-│       └── step05_run_stage2.py               
-├── utils/                                     # Cleaning functions, etc.
-├── docs/                                      # Project documentation and prompts
-└── README.md                                  # You are here
+### Core Package Layout
 ```
-### Prototype
-
-The first version of this project was a single-pass LLM categorization of Reddit posts,
-and is still available in the prototype dashboard.
-
-
-## Pipeline Redesign (v1.1)
-
-The v1.1 redesign improves both LLM loops for reproducibility, efficiency, and structure.
-
-### Stage 1
-
-- Adds `TITLE:` and `BODY:` markers for LLM clarity.
-- Improves prompt guidance to exclude emotional venting from tagging.
-- Logs and snapshots all inputs per run for full reproducibility.
-- Verbose logging with timestamps and run tagging.
-
-### Stage 2
-
-- Uses full-batch LLM calls gated by token length.
-- Enforces a strict JSON schema using Pydantic for consistent structure.
-- Dedupes and finalizes cluster definitions post-LLM.
-- Regenerated all course PDF reports with validated cluster structure and tighter groupings.
-
-**Note:** Media-awareness tagging (`[MEDIA ATTACHED]`) is prototyped but not yet live.  
-All prompt inputs are currently well below GPT-4o-mini’s token window; chunking logic is present but not triggered. Token size is reviewed monthly.
-
-## LLM Classification Methodology
-
-This project uses **GPT-4o-mini** in a *guided zero-shot* configuration — with carefully defined roles, terminology, and instructions — to extract and cluster student pain points from Reddit posts.
-
-Inspired by Guo et al. (2023) [JAMIA](https://journals.aai.org/jamia/article/31/10/2181/7731085), we follow their **LLM-as-classifier** framework. Rather than providing labeled examples, we guide the model using:
-
-- Clear role assignment (e.g., “You are a course designer...”)
-- Domain-specific definitions (*pain point*, *root cause*)
-- JSON schema constraints for structured output
-- Explicit instructions to merge similar issues under a single root cause
-
-In the clustering stage, the LLM is also allowed to **rename clusters** to avoid fragmentation — broadening cluster titles and summaries to include edge cases when appropriate.
-
-<p align="center">
-  <img src="visuals/source-1-method-diagram.png" alt="LLM Classification Strategies" width="350" align="left" style="margin-right: 20px;"/>
-</p>
-<br clear="all"/>
-
-## Project Overview
-
-### Stage 1 – Pain Point Extraction
-
-Reddit posts filtered for low sentiment ( < -0.2 ) and single course mention
-
-**Input:**  
-`data/filtered_posts_stage1.jsonl`
-
-Reddit Post Schema:
-```json
-{
-  "post_id": "abc123",
-  "course_code": "C949",
-  "title": "OA instructions unclear for C949",
-  "selftext": "I’m struggling with C949 because the OA instructions are really unclear.",
-  "subreddit": "WGU",
-  "permalink": "https://www.reddit.com/r/WGU/comments/abc123/some_title"
-}
+src/wgu_reddit_analyzer/
+│
+├── fetchers/       → Reddit ingest (PRAW collectors)
+├── utils/          → config loader, DB helpers, logging, token utilities
+├── pipeline/       → Stage 0 dataset build
+├── benchmark/      → Stage 1 sampling, labeling, cost & model utilities
+└── llm_pipeline/   → Stage 2–3 evaluation (future)
 ```
-<details>
-<summary><strong>Stage 1 Prompt: Pain Point Extraction</strong></summary>
-        <br>
 
-**Definitions:**
+### Supporting Folders
 
-A ‘pain point’ is a negative user experience that a student encounters in a course,
-traceable to how the course is designed, delivered, or supported.
+| Folder | Purpose |
+|---------|----------|
+| `configs/` | YAML job configs |
+| `prompts/` | Prompt templates |
+| `artifacts/` | Generated data and logs |
+| `docs/` | Markdown technical documentation |
+| `archive_legacy/` | Deprecated code |
+| `site/` | Hugo PaperMod static site (source only) |
 
-A pain point must be directly tied to the course, with a potential ‘root cause’.
+---
 
-A ‘root cause’ is the stated or implied fixable deficiency in the course
-that contributed to the student’s negative experience. It must be something the course designer could reasonably improve.
+## Daily Ingest Pipeline
 
-⸻
+**Script:** `wgu_reddit_analyzer.daily.daily_update`  
+Automates Reddit ingest and database updates for all WGU subreddits.
 
-Your Task
+- Reads canonical list from `data/wgu_subreddits.txt`  
+- Uses credentials from `.env` and `configs/config.yaml`  
+- Writes logs to `logs/daily_update.log` and data to `db/WGU-Reddit.db`  
+- Outputs run manifests under `artifacts/runs/<timestamp>/`  
 
-You are a course designer reviewing Reddit posts about course {course_code}.
-	1.	Decide if the post contains one or more distinct pain points.
-	2.	For each pain point:
-	•	Summarize the student’s struggle in one sentence.
-	•	Identify the root cause.
-	•	Include a short, relevant, quoted snippet from the post that captures the issue in their own words.
-
-Merge multiple complaints into a single pain point if they share the same root cause.
-
-⸻
-
-If no course-related pain points are present:
-
-{
-  "num_pain_points": 0
-}
-</details>
-
-
-### Stage 2 – Clustering Pain Points by Root Cause
-
-Each course’s pain points are grouped into clusters based on root cause, using a second GPT prompt.
-
-**Input:**  
-`outputs/stage1_pain_points/pain_points_stage1.jsonl`
-<details>
-<summary><strong>Stage 2 Prompt: Cluster Assignment</strong></summary>
-
-<br>
-
-You are organizing student pain points from social media posts to present to the course design team for course `{course}`.
-
-You will receive a small batch of pain points. Your task is to group them into distinct clusters based on root cause — the underlying issue that the course team could address.
-
-If clusters already exist, they are listed below. Each includes:
-  - cluster_id  
-  - title  
-  - root cause summary  
-  - number of posts  
-
-For each pain point:
-- Assign it to an existing cluster if the root cause matches  
-- If it nearly fits, you may assign it and optionally suggest a new title and summary to better reflect the updated scope  
-- If it doesn’t fit any, propose a new cluster  
-
-Avoid fragmentation by reusing clusters when possible. Every pain point must be clustered.  
-Avoid creating unnecessary new clusters. Favor assignment and renaming existing clusters if the issue is broadly related.
-
-Return ONE compact JSON object per pain point.  
-Use the exact `pain_point_id` from the input. Do not rename, abbreviate, or simplify it.
-
-**Format:**
-
-```json
-{
-  "pain_point_id": "string",
-  "action": "assign", 
-  "cluster_id": "C949_3", 
-  "cluster_title": null,
-  "root_cause_summary": "Mentor feedback delays are a recurring issue."
-}
+Run manually:
+```bash
+python -m wgu_reddit_analyzer.daily.daily_update
 ```
-</details>
 
+---
 
-Output:
-outputs/stage2_clusters/C949_clusters.json
+## Analytical Flow
 
-Each [course_code]_clusters.json contains a list of clusters and their associated pain_point_ids:
-```json 
-{
-  "course": "C949",
-  "clusters": [
-    {
-      "cluster_id": "C949_1",
-      "title": "Unclear OA expectations",
-      "root_cause_summary": "OA instructions lack clarity on requirements",
-      "pain_point_ids": ["abc123_0", "def456_1"]
-    },
-    {
-      "cluster_id": "C949_2",
-      "title": "Mentor unavailable for help",
-      "root_cause_summary": "Students report that mentors were unresponsive or unable to help",
-      "pain_point_ids": ["ghi789_0"]
-    }
-  ]
-}
+### Stage 0 — Data Collection & Filtering
+Collect Reddit posts via PRAW, filter for valid WGU course codes and negative VADER sentiment (< –0.2).  
+**Outputs:** `artifacts/stage0_filtered_posts.jsonl`, `db/WGU-Reddit.db`
+
+### Stage 1A — Length Profile & Trim Analysis
+Token distribution computed with `benchmark/build_length_profile.py`.  
+Cutoffs of 20–600 tokens cover > 99% of posts.  
+**Artifacts:** `length_profile.json`, `length_histogram_tokens.png`, and `docs/STAGE1A_SAMPLING_STRATEGY.md`
+
+### Stage 1B — Stratified Sampling
+Script `benchmark/build_stratified_sample.py` creates deterministic, balanced DEV/TEST splits (200 posts total, seed 20251107).  
+**Outputs:** `DEV_candidates.jsonl`, `TEST_candidates.jsonl`, `manifest.json`
+
+### Stage 1C — Manual Labeling (Gold Dataset)
+Script `benchmark/label_posts.py` provides an interactive CLI (`y n u q`).  
+**Output:** `artifacts/benchmark/gold/gold_labels.csv`
+
+---
+
+### Benchmark Utilities
+
+| Module | Role |
+|---------|------|
+| `benchmark/model_registry.py` | Defines model metadata and per-1K-token rates (OpenAI GPT-5, Llama 3). |
+| `benchmark/cost_latency.py` | Computes token cost and latency from registry values. |
+| `benchmark/hello_llm.py` | Connectivity and cost validation. |
+
+---
+
+## Future Work
+- **Stage 2 – Root-Cause Clustering:** LLM groups posts by course and summarizes recurring issues.  
+- **Stage 3 – Benchmark Evaluation:** Computes F1, precision, recall, and cost–accuracy Pareto fronts.  
+- **Prompt Benchmarking:** Compare zero-shot and few-shot templates from `prompts/`.  
+- **Cost Estimation:** `benchmark/estimate_benchmark_cost.py` projects runtime and API costs.
+
+---
+
+## Datasets & Artifacts
+
+| File | Description |
+|-------|--------------|
+| `stage0_filtered_posts.jsonl` | Locked negative-only dataset |
+| `DEV_candidates.jsonl` | 70% DEV subset |
+| `TEST_candidates.jsonl` | 30% TEST subset |
+| `gold_labels.csv` | Final labeled benchmark set |
+
+All outputs live under `artifacts/` and are **immutable once published**.
+
+---
+
+## Repository Policy
+- **Active:** `src/`, `configs/`, `prompts/`, `artifacts/`, `docs/`  
+- **Legacy:** `archive_legacy/` *(ignored)*  
+- Each script writes logs and manifests under `artifacts/runs/`.
+
+---
+
+## Environment and Secrets
+All credentials are managed via `wgu_reddit_analyzer.utils.config_loader`.
+
+**Environment Variables**
 ```
-## Planned Expansion
+REDDIT_CLIENT_ID
+REDDIT_CLIENT_SECRET
+REDDIT_USER_AGENT
+REDDIT_USERNAME
+REDDIT_PASSWORD
+OPENAI_API_KEY
+```
+No secrets are committed to source control.
 
-### 1. Open-Source LLMs with Ollama
+---
 
-We plan to explore local models via Ollama for private, token-free processing using models like LLaMA 2 and Mistral.
+## Install and Run
+```bash
+pip install -e .
+python -m wgu_reddit_analyzer.daily.daily_update
+python -m wgu_reddit_analyzer.benchmark.build_stratified_sample
+python -m wgu_reddit_analyzer.benchmark.label_posts
+```
 
-### 2. Including Reddit Comments
+**Imports use the package namespace:**
+```python
+from wgu_reddit_analyzer.utils.logging_utils import get_logger
+```
 
-- Comments are important for help-seeking and advice.  
-- Currently, we fetch up to 3 comments per level (2 levels deep), captured only if posted before the main post was fetched.
-- Re-fetch selected posts (based on `num_comments`, classification, sentiment) to include full comment threads and support deeper analysis. Possible to expand toward tracking "advice" as well as "pain points".
+---
 
-## Possible Expansions (not planned)
+## References
+- Rao et al. (2025) – *QuaLLM Framework for Reddit Feedback Extraction*  
+- De Santis et al. (2025) – *LLM Robustness on Noisy Social Text*  
+- Koltcov et al. (2024) – *Class Imbalance Methods for Short Social Data*
 
-### 1. Feedback by Institutional Area
+---
 
-In addition to course-level feedback, posts may be grouped by broader WGU areas such as:
-
-- Degree programs (e.g., MBA, IT)  
-- Financial aid, tuition  
-- Admissions, transfers  
-- Advising and mentoring  
-- Student support services  
-
-### 2. Beyond Known Subreddits
-
-Analyzing posts from keyword search from outside the known WGU-related subreddits could provide insight 
-into what non-students are saying about WGU. This would allow visibility into brand perception and prospective student sentiment.
-Posts would come from any subreddits, including:
-
-- r/college  
-- r/gradadmissions  
-- r/personalfinance  
-- Other topic-specific communities  
-
-### 3. Sentiment Filter Adjustment
-
-Current filtering emphasizes negative sentiment (VADER < -0.2) to surface pain points.  
-We may later include neutral and positive posts to:
-
-- Detect hidden pain points in seemingly positive experiences  
-- Balance insights with strengths and success stories
+✅ **Status:** Stage 0 locked · Stage 1A/1B complete · Stage 1C ready · Benchmark modules verified · Prompt benchmarking pending

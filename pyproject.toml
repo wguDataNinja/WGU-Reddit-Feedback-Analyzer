@@ -1,0 +1,13 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "wgu_reddit_analyzer"
+version = "0.1.0"
+description = "WGU Reddit Analyzer Benchmark and Labeling Pipeline"
+authors = [{ name = "AI1 Project Manager" }]
+requires-python = ">=3.9"
+
+[tool.setuptools.packages.find]
+where = ["src"]
