@@ -1,35 +1,51 @@
-# fetchers/fetch_posts_daily.py
-
+# filename: fetchers/fetch_posts_daily.py
 import praw
 import pandas as pd
 from datetime import datetime
 from time import time
-from config import REDDIT_CREDENTIALS
-from utils.paths import project_path
+import os
+import yaml
+from pathlib import Path
+from dotenv import load_dotenv
 from utils.db_connection import get_db_connection
+
+# === Load environment and config ===
+load_dotenv()
+
+CONFIG_PATH = Path(__file__).resolve().parents[1] / "configs" / "config.yaml"
+with open(CONFIG_PATH) as f:
+    config = yaml.safe_load(f)
+
+reddit_cfg = config["reddit"]
+paths_cfg = config["paths"]
+
+# === Resolve important paths ===
+PROJECT_ROOT = Path(paths_cfg["project_root"]).resolve()
+DATA_DIR = PROJECT_ROOT / paths_cfg["data_dir"]
+OUTPUT_DIR = PROJECT_ROOT / paths_cfg["output_dir"]
+LOGS_DIR = PROJECT_ROOT / paths_cfg["logs_dir"]
+SUBREDDITS_CSV_PATH = DATA_DIR / "wgu_subreddits.csv"
+
+# === Reddit client ===
+reddit = praw.Reddit(
+    client_id=os.getenv(reddit_cfg["client_id_env"]),
+    client_secret=os.getenv(reddit_cfg["client_secret_env"]),
+    user_agent=os.getenv(reddit_cfg["user_agent_env"]),
+    username=os.getenv(reddit_cfg["username_env"]),
+    password=os.getenv(reddit_cfg["password_env"])
+)
 
 # === CONFIG ===
 SORT_METHOD = 'new'
 MAX_POSTS = 1000
-SUBREDDITS_CSV_PATH = project_path / 'data/wgu_subreddits.csv'
-
-reddit = praw.Reddit(
-    client_id=REDDIT_CREDENTIALS['client_id'],
-    client_secret=REDDIT_CREDENTIALS['client_secret'],
-    user_agent=REDDIT_CREDENTIALS['user_agent'],
-    username=REDDIT_CREDENTIALS['username'],
-    password=REDDIT_CREDENTIALS['password']
-)
-
+# === END CONFIG ===
 
 def load_subreddits(csv_path):
     df = pd.read_csv(csv_path, header=None)
     return df[0].dropna().unique().tolist()
 
-
 def normalize_subreddit_id(subreddit_id):
     return subreddit_id.removeprefix('t5_')
-
 
 def fetch_latest_post_time(cursor, subreddit_id):
     subreddit_id = normalize_subreddit_id(subreddit_id)
@@ -38,7 +54,6 @@ def fetch_latest_post_time(cursor, subreddit_id):
     ''', (subreddit_id,))
     result = cursor.fetchone()
     return result[0] if result and result[0] else 0
-
 
 def fetch_posts():
     start_time = time()
@@ -58,6 +73,7 @@ def fetch_posts():
 
             fetch_func = getattr(subreddit, SORT_METHOD, subreddit.new)
             count = 0
+
             for post in fetch_func(limit=MAX_POSTS):
                 if post.created_utc <= latest_known_post_time:
                     break
