@@ -1,25 +1,43 @@
 # filename: fetchers/fetch_subreddits_daily.py
-
 import praw
 import json
 import pandas as pd
 from time import time, sleep
-from config import REDDIT_CREDENTIALS
+import os
+import yaml
+from pathlib import Path
+from dotenv import load_dotenv
 from utils.db_connection import get_db_connection
-from utils.paths import project_path
+
+# === Load environment and config ===
+load_dotenv()
+
+CONFIG_PATH = Path(__file__).resolve().parents[1] / "configs" / "config.yaml"
+with open(CONFIG_PATH) as f:
+    config = yaml.safe_load(f)
+
+reddit_cfg = config["reddit"]
+paths_cfg = config["paths"]
+
+# === Resolve paths ===
+PROJECT_ROOT = Path(paths_cfg["project_root"]).resolve()
+DATA_DIR = PROJECT_ROOT / paths_cfg["data_dir"]
+OUTPUT_DIR = PROJECT_ROOT / paths_cfg["output_dir"]
+LOGS_DIR = PROJECT_ROOT / paths_cfg["logs_dir"]
+SUBREDDITS_CSV_PATH = DATA_DIR / "wgu_subreddits.csv"
+
+# === Reddit client ===
+reddit = praw.Reddit(
+    client_id=os.getenv(reddit_cfg["client_id_env"]),
+    client_secret=os.getenv(reddit_cfg["client_secret_env"]),
+    user_agent=os.getenv(reddit_cfg["user_agent_env"]),
+    username=os.getenv(reddit_cfg["username_env"]),
+    password=os.getenv(reddit_cfg["password_env"])
+)
 
 # === CONFIG ===
-SUBREDDITS_CSV_PATH = project_path / 'data/wgu_subreddits.csv'
 SLEEP_SECONDS = 2
 # === END CONFIG ===
-
-reddit = praw.Reddit(
-    client_id=REDDIT_CREDENTIALS['client_id'],
-    client_secret=REDDIT_CREDENTIALS['client_secret'],
-    user_agent=REDDIT_CREDENTIALS['user_agent'],
-    username=REDDIT_CREDENTIALS['username'],
-    password=REDDIT_CREDENTIALS['password']
-)
 
 def load_subreddits(csv_path):
     df = pd.read_csv(csv_path, header=None)
@@ -43,40 +61,39 @@ def fetch_subreddits():
                 {'short_name': rule.short_name, 'description': rule.description}
                 for rule in subreddit.rules
             ])
-            cursor.execute(
-                '''
+
+            cursor.execute('''
                 INSERT OR REPLACE INTO subreddits (
                     subreddit_id, name, description, is_nsfw, created_utc, rules, sidebar_text
                 ) VALUES (?, ?, ?, ?, ?, ?, ?)
-                ''', (
-                    subreddit.id,
-                    subreddit.display_name,
-                    subreddit.public_description,
-                    subreddit.over18,
-                    int(subreddit.created_utc),
-                    rules_json,
-                    subreddit.description
-                )
-            )
+            ''', (
+                subreddit.id,
+                subreddit.display_name,
+                subreddit.public_description,
+                subreddit.over18,
+                int(subreddit.created_utc),
+                rules_json,
+                subreddit.description
+            ))
 
             # Insert subscriber stats
-            cursor.execute(
-                '''
+            cursor.execute('''
                 INSERT INTO subreddit_stats (
                     subreddit_id, captured_at, subscriber_count, active_users, posts_per_day, total_posts
                 ) VALUES (?, ?, ?, ?, ?, ?)
-                ''', (
-                    subreddit.id,
-                    int(time()),
-                    subreddit.subscribers,
-                    subreddit.accounts_active or 0,
-                    None,
-                    None
-                )
-            )
+            ''', (
+                subreddit.id,
+                int(time()),
+                subreddit.subscribers,
+                subreddit.accounts_active or 0,
+                None,
+                None
+            ))
+
             conn.commit()
             fetched_stats += 1
             sleep(SLEEP_SECONDS)
+
         except Exception as e:
             print(f"❌ Error fetching subreddit {subreddit_name}: {e}")
             failures += 1
