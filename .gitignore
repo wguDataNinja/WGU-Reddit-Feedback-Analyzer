@@ -1,6 +1,3 @@
-# -------------------------
-# Environments / IDE
-# -------------------------
 .venv/
 env/
 venv/
@@ -9,9 +6,6 @@ venv/
 .DS_Store
 *.swp
 
-# -------------------------
-# Python build / cache
-# -------------------------
 __pycache__/
 *.py[cod]
 *.pyo
@@ -21,9 +15,6 @@ __pycache__/
 dist/
 build/
 
-# -------------------------
-# Logs / run artifacts
-# -------------------------
 *.log
 logs/
 artifacts/
@@ -32,9 +23,6 @@ db/
 *.db
 *.sqlite
 
-# -------------------------
-# Local / legacy directories
-# -------------------------
 archive_legacy/
 scripts/
 notebooks/
@@ -43,37 +31,23 @@ dev/
 .utils/
 pytest_cache/
 .ipynb_checkpoints/
+prototype/
+site/
 site/public/
 site/.git/
 site/.hugo_build.lock
 site/resources/
 
-# -------------------------
-# Old directories (anywhere)
-# -------------------------
 **/.old/
 
-# -------------------------
-# Data
-# -------------------------
 data/*
 !data/college_snapshots.json
 !data/course_list_with_college.csv
 !data/wgu_subreddits.txt
 
-# -------------------------
-# Secrets
-# -------------------------
+outputs/
+
 .env
 .env.*
 *.key
 *.pem
-
-# -------------------------
-# Misc
-# -------------------------
-.DS_Storesite/
-site/
-**/.old/
-configs/config.yaml
-configs/common.py
