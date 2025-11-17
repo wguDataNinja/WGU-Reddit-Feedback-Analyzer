@@ -1,250 +1,379 @@
-# WGU Reddit Analyzer Pipeline – Technical Overview
+WGU Reddit Analyzer — Unified Internal Developer Specification
 
-_Last updated: 2025-11-10_
+Last updated: 2025-11-17
 
----
+⸻
 
-## Purpose
+0. Overview
 
-The WGU Reddit Analyzer is a reproducible LLM-based pipeline for extracting actionable student pain-points from Reddit discussions.  
-It supersedes the legacy sentiment-monitoring prototype with a structured, auditable benchmark framework emphasizing transparency in cost, accuracy, and reproducibility.
+This document consolidates all project details across the full pipeline: Stage 0 ingestion, Stage 1 sampling and benchmarking, model registry, LLM stack, smoke tests, artifacts, dev logs, and future roadmap. It is the authoritative internal reference for implementation, debugging, and onboarding.
 
----
+⸻
 
-## 1 · System Architecture
+1. Repository Layout & Execution
 
-### 1.1 Core Package Layout
+1.1 Repo & Package
+	•	Repo root: /Users/buddy/Desktop/WGU-Reddit
+	•	Package name: wgu_reddit_analyzer (src layout)
+	•	Module execution:
 
-```
+PYTHONPATH=src python -m wgu_reddit_analyzer.<module>
+
+
+
+1.2 Key Directories
+	•	src/wgu_reddit_analyzer/pipeline/ — Stage 0 build
+	•	src/wgu_reddit_analyzer/benchmark/ — Stage 1 sampling, LLM client, smoke tests
+	•	prompts/ — prompt templates
+	•	artifacts/ — datasets, labels, benchmark outputs
+	•	docs/ — markdown documentation
+	•	site/ — static site
+
+1.3 High-Level Folder Roles
+
 src/wgu_reddit_analyzer/
-│
-├── fetchers/       → Reddit ingest (PRAW collectors)
-├── utils/          → config loader, DB helpers, logging, token utilities
-├── pipeline/       → Stage 0 dataset build
-├── benchmark/      → Stage 1 sampling, labeling, cost & model utilities
-└── llm_pipeline/   → Stage 2–3 model evaluation (future)
-```
+├── fetchers/          Reddit ingest
+├── utils/             config, db, logging, tokens
+├── pipeline/          Stage 0 build
+├── benchmark/         Stage 1 sampling, LLM utils
+└── llm_pipeline/      Stage 2–3 (future)
 
----
+Supporting top-level dirs:
+	•	configs/ YAML configs
+	•	prompts/ Templates
+	•	artifacts/ All generated data
+	•	docs/ Notes
+	•	archive_legacy/ Deprecated
 
-### 1.2 Supporting Folders
+⸻
 
-| Folder | Purpose |
-|---------|----------|
-| configs/ | YAML job configs |
-| prompts/ | prompt templates |
-| artifacts/ | all generated data, metrics, and logs |
-| docs/ | markdown technical docs |
-| archive_legacy/ | deprecated or prototype code |
-| site/ | Hugo PaperMod static site |
+2. Stage 0 — Dataset Build
 
----
+2.1 Data Source
+	•	Daily Reddit ingest (already configured).
 
-### 1.3 Daily Ingest Pipeline
+2.2 Main Output
+	•	artifacts/stage0_filtered_posts.jsonl
+	•	Locked negative-only base dataset
+	•	Sole source for Stage 1 sampling
 
-**Script:** `wgu_reddit_analyzer.daily.daily_update`  
-**Purpose:** automated Reddit ingest and DB update for all WGU subreddits.
+2.3 Stage 0 Run Artifacts
 
-- Reads canonical list from `data/wgu_subreddits.txt`
-- Uses credentials from `.env` and `configs/config.yaml`
-- Writes logs to `logs/daily_update.log` and data to `db/WGU-Reddit.db`
-- Outputs run manifests under `artifacts/runs/<timestamp>/`
-- Invoked via:
-  ```bash
-  python -m wgu_reddit_analyzer.daily.daily_update
-  ```
-- **Status:** Operational (as of 2025-11-10, Failures = 0)
+Under: artifacts/runs/stage0_<timestamp>/
+	•	manifest.json
+	•	stage0.log
 
----
+Stage 1 does not modify Stage 0 artifacts.
 
-## 2 · Analytical Flow
+⸻
 
-### 2.1 Stage 0 — Data Collection & Filtering
+3. Stage 1 — Sampling, Labeling, Benchmarking
 
-Collect Reddit posts (PRAW), filter for single valid WGU course code and negative VADER sentiment (< –0.2).  
-**Output →** `artifacts/stage0_filtered_posts.jsonl`  
-**Database mirror →** `db/WGU-Reddit.db`
+3.1 Candidate Generation (Sampling)
 
----
+Artifacts:
+	•	artifacts/benchmark/DEV_candidates.jsonl
+	•	artifacts/benchmark/TEST_candidates.jsonl
 
-### 2.2 Stage 1A — Length Profile & Trim Analysis
+JSONL schema (per line):
+	•	post_id: str
+	•	course_code: str
+	•	title: str
+	•	selftext: str
+	•	optional metadata
 
-Token distribution computed with `dev/build_length_profile.py`.  
-Empirical cutoffs `20 ≤ tokens ≤ 600` cover >99% of posts.
+Stage 1 classifier input (Stage1PredictionInput):
+	•	post_id: str
+	•	course_code: str
+	•	text: str (title + blank line + selftext if available)
 
-**Artifacts:**
-- `artifacts/analysis/length_profile.json`
-- `artifacts/analysis/length_histogram_tokens.png`
-- `docs/STAGE1A_SAMPLING_STRATEGY.md`
+smoke_test_stage1 reconstructs inputs from these candidates.
 
----
+⸻
 
-### 2.3 Stage 1B — Stratified Sampling (DEV / TEST)
+4. Gold Labels (Ground Truth)
 
-**Script:** `benchmark/build_stratified_sample.py`  
-**Purpose:** deterministic, balanced 200-post subset for manual labeling.
+4.1 Current Gold File
+	•	Path: artifacts/benchmark/gold/gold_labels.csv
+	•	Only DEV is labeled at present.
 
-**Parameters**
-- Focus course D335 (retained in full)
-- Buckets: 20–149 / 150–299 / 300–600 tokens
-- Global target = 200 posts (70 / 30 DEV:TEST)
-- Seed = 20251107
+Columns:
+	•	post_id
+	•	split (DEV only for now)
+	•	course_code
+	•	contains_painpoint {y, n, blank}
+	•	root_cause_summary (free text)
+	•	ambiguity_flag {0, 1}
+	•	labeler_id (“AI1”)
+	•	notes
 
-**Outputs**
-- `artifacts/benchmark/DEV_candidates.jsonl`
-- `artifacts/benchmark/TEST_candidates.jsonl`
-- `artifacts/runs/sample_<timestamp>/manifest.json`
+4.2 Scoring Filter
 
----
+Evaluated rows must satisfy:
+	•	split == "DEV"
+	•	ambiguity_flag != "1"
+	•	contains_painpoint ∈ {"y", "n"}
 
-### 2.4 Stage 1C — Manual Labeling (Gold Dataset)
+Filtering implemented in load_gold_labels inside smoke_test_stage1.py.
 
-**Script:** `benchmark/label_posts.py`  
-Interactive console tool for labeling DEV/TEST candidates.
+4.3 Intersection Logic
 
-**Commands:**  
-`y` pain-point · `n` none · `u` ambiguous · `q` quit
+Gold and candidate IDs are intersected.
+	•	Missing gold IDs logged, not fatal.
+	•	Only overlapping IDs evaluated.
 
-**Output →** `artifacts/benchmark/gold/gold_labels.csv`  
-All labels logged and manifest-tracked under `artifacts/runs/`.
+Current: 8 DEV labels; 2 overlap with DEV candidates.
 
----
+⸻
 
-### 2.5 Benchmark Utilities and Model Metadata
+5. Model Registry & LLM Client
 
-| Module | Role |
-|---------|------|
-| `benchmark/model_registry.py` | Defines model metadata and per-1K-token rates (OpenAI GPT-5 tiers and local Llama 3). |
-| `benchmark/cost_latency.py` | Computes token-based cost and latency estimates using registry values. |
-| `benchmark/hello_llm.py` | Minimal connectivity and cost test; validates LLM environment setup. |
+5.1 Model Registry (model_registry.py)
 
----
+ModelInfo fields:
+	•	name: str
+	•	provider: str (openai | ollama)
+	•	input_per_1k: float
+	•	output_per_1k: float
+	•	cached_input_per_1k: float = 0.0
+	•	is_local: bool = False
 
-### 2.6 Stage 2 — Root-Cause Clustering (Future)
+5.2 Current Models
+	•	llama3 — provider=ollama, local CPU, cost=0
+	•	gpt-5-nano — openai, baseline
+	•	gpt-5-mini — openai
+	•	gpt-5 — openai, flagship
+	•	gpt-4o-mini — openai, cheap+fast recommended
 
-LLM groups positive posts by course and summarizes recurring issues.
+OpenAI pricing is per-1M converted to per-1K.
 
----
+Entry point: get_model_info(name).
 
-### 2.7 Stage 3 — Benchmark & Evaluation (Future)
+5.3 LLM Client (model_client.py)
 
-Computes accuracy metrics (F1, precision, recall) plus token cost and latency via `cost_latency.py`.  
-Plots cost-accuracy Pareto fronts for OpenAI and Ollama models.
+generate(model_name, prompt) -> LlmCallResult
+	•	OpenAI provider → client.chat.completions.create
+	•	Ollama provider → local POST /api/generate
+	•	Computes token usage, cost, latency
 
----
+Returned fields:
+	•	model name, provider
+	•	raw text
+	•	input/output tokens
+	•	cost
+	•	elapsed seconds
 
-### 2.8 Prompt Benchmarking (Upcoming)
+5.4 Sanity Checker
 
-The benchmark framework supports configurable prompt templates stored in `prompts/`:
+benchmark/llm_sanity_check.py
+	•	Validates model is in registry
+	•	Produces output with tokens, latency, cost
 
-```
-prompts/
-  ├── zero_shot.txt
-  ├── few_shot_simple.txt
-  └── few_shot_optimized.txt
-```
+All models currently pass.
 
-Each run specifies a template via `prompt.template_path` in the benchmark YAML config.  
-This enables reproducible comparison of zero-shot, few-shot, and optimized prompts across models while tracking accuracy, latency, and token cost.
+5.5 Stable OpenAI Path
 
----
+GPT-5 Responses API was unstable; all Stage 1 calls use Chat Completions for reliability.
 
-### 2.9 Cost Estimation and Runtime Projection
+⸻
 
-**Script:** `benchmark/estimate_benchmark_cost.py`  
-Projects per-model / prompt / dataset costs using length profiles and model pricing.  
-**Outputs:**  
-- `artifacts/benchmark/cost_estimates.csv`  
-- Logs total API cost and local runtime (~1000 posts/hour for Llama 3)
+6. Stage 1 Classifier
 
-**Planned enhancement (to-do):**  
-Add post-run cost aggregation (`final_cost_summary.json`) to record actual token usage and latency after benchmarks are executed.
+Files:
+	•	benchmark/stage1_types.py
+	•	benchmark/stage1_classifier.py
 
----
+6.1 Types
 
-## 3 · Datasets
+Stage1PredictionInput:
+	•	post_id, course_code, text
 
-| File | Description |
-|------|--------------|
-| stage0_filtered_posts.jsonl | Locked negative-only dataset |
-| DEV_candidates.jsonl | Stratified 70% DEV subset |
-| TEST_candidates.jsonl | Stratified 30% TEST subset |
-| gold_labels.csv | Manual labels for Stage 1 benchmark |
+Stage1PredictionOutput:
+	•	post_id
+	•	course_code
+	•	contains_painpoint {y, n, u}
+	•	root_cause_summary (optional)
+	•	ambiguity_flag (optional)
+	•	raw_response (full LLM text)
 
-All Stage 0 and 1 artifacts are immutable once published.
+6.2 Classification Flow
 
----
+classify_post(model_name, example, prompt_template):
+	1.	Load template
+	2.	Render prompt
+	3.	Call LLM client
+	4.	Extract first JSON object
+	5.	Parse + validate
+	6.	On failure: fallback regex for y/n/u
 
-## 4 · Key Outputs
+Returns both prediction + LlmCallResult.
 
-| Artifact | Description |
-|-----------|-------------|
-| manifest.json | Run metadata (seed, bounds, counts) |
-| length_profile.json | Token distribution summary |
-| DEV/TEST *.jsonl | Stratified benchmark sets |
-| gold_labels.csv | Final gold dataset |
-| leaderboard.csv | Model performance summary |
-| pareto_points.csv | Cost-accuracy Pareto front |
-| reports/*.pdf | Course-level insight summaries |
+⸻
 
-All outputs reside under `artifacts/`.
+7. Stage 1 Smoke Test
 
----
+File: benchmark/smoke_test_stage1.py
 
-## 5 · Repository Policy
+CLI:
 
-- Active dirs: `src/`, `configs/`, `prompts/`, `artifacts/`, `docs/`  
-- Legacy code: `archive_legacy/` (ignored at runtime)  
-- `dev/` holds verification scripts only  
-- Every executable writes a log and manifest under `artifacts/runs/`
+PYTHONPATH=src python -m wgu_reddit_analyzer.benchmark.smoke_test_stage1 \
+  --model gpt-5-nano \
+  --prompt prompts/s1_optimal.txt \
+  --split DEV
 
----
+Arguments:
+	•	--model (required)
+	•	--prompt (default: prompts/s1_optimal.txt)
+	•	--split DEV|TEST (default DEV)
+	•	--gold-path default gold CSV
+	•	--candidates-path optional override
 
-## 6 · Environment and Secrets
+7.1 Evaluation Steps
+	1.	Load gold
+	2.	Load candidates
+	3.	Compute ID intersection
+	4.	For each matching ID:
+	•	build prediction input
+	•	classify via model
+	•	compare with gold
+	5.	Compute metrics: tp, fp, fn, tn, precision, recall, f1, accuracy
+	6.	Aggregate timing + cost
 
-All credentials loaded via `wgu_reddit_analyzer.utils.config_loader`.
+7.2 Current Behavior
+	•	8 gold DEV labels
+	•	Only 2 intersect with DEV candidates
+	•	All models benchmark only on these 2 examples
 
-**Environment Variables:**
-- Reddit API: `REDDIT_CLIENT_ID`, `REDDIT_CLIENT_SECRET`, `REDDIT_USER_AGENT`, `REDDIT_USERNAME`, `REDDIT_PASSWORD`
-- LLM API: `OPENAI_API_KEY`
+Performance snapshot:
+	•	gpt-5: 1 TP, 0 FP, 0 FN, 1 TN → f1=1.0
+	•	others: 1 TP, 1 FP, 0 FN, 0 TN → f1≈0.67
 
-No other secret files used.
+⸻
 
----
+8. Stage 1 Run Artifacts
 
-## 7 · Python Package / CLI Layout
+Directory pattern:
 
-This repository uses an installable `src/` layout.  
-- **Package:** `wgu_reddit_analyzer`  
-- **Source root:** `src/wgu_reddit_analyzer/`  
-- **Config:** `pyproject.toml` at repo root
+artifacts/benchmark/runs/stage1_/<model>_<split>_<YYYYMMDD_HHMMSS>/
 
-**Install locally:**
-```bash
+Contents:
+	1.	predictions_<split>.csv
+	2.	metrics_<split>.json
+	3.	manifest.json with:
+	•	model, provider, prompt, split
+	•	gold path, candidates path
+	•	num examples
+	•	file paths
+	•	timestamps
+
+Existing run dirs include:
+	•	gpt-5-nano_DEV_20251117_121029
+	•	gpt-5-mini_DEV_20251117_131021
+	•	gpt-5_DEV_20251117_131038
+	•	gpt-4o-mini_DEV_20251117_131108
+	•	llama3_DEV_20251117_131114
+
+⸻
+
+9. Development Log (Milestone Summary)
+
+Completed
+	1.	Verified and extended MODEL_REGISTRY
+	2.	Validated all OpenAI models via sanity check
+	3.	Fixed Ollama llama3 (CPU-only config)
+	4.	Upgraded smoke test to full CLI
+	5.	Implemented Stage 1 run directory and artifact system
+	6.	Ran smoke test on all models successfully
+	7.	Measured initial performance snapshot
+
+Current Status
+	•	Stage 1 stack fully implements end-to-end benchmarking
+	•	Artifacts clean, reproducible, and structured
+
+⸻
+
+10. Updated High-Level Technical Overview
+
+10.1 System Architecture Summary
+	•	Ingest → Stage 0 → Stage 1 sampling → Gold labeling → LLM benchmarking
+	•	Future: clustering + final evaluation
+
+10.2 Daily Ingest
+	•	Script: daily_update under fetchers/
+	•	Reads subreddit list, authenticates, writes DB + logs
+
+10.3 Stage 1A Length Profile
+	•	Token coverage 20–600
+	•	Artifacts: histogram + JSON
+
+10.4 Stratified Sampling
+	•	Deterministic seed
+	•	Balanced DEV/TEST
+
+10.5 Manual Labeling
+	•	CLI tool, produces gold CSV
+
+10.6 Prompt Benchmarking
+	•	Templates under prompts/
+
+10.7 Cost Projection
+	•	Script estimate_benchmark_cost.py
+
+10.8 Datasets
+	•	Locked artifacts under artifacts/
+
+⸻
+
+11. Environment & CLI
+
+11.1 Secrets (env vars)
+	•	Reddit API keys
+	•	OPENAI_API_KEY
+
+11.2 Local Install
+
 pip install -e .
-```
+python -m wgu_reddit_analyzer.<module>
 
-**Usage examples:**
-```bash
-python -m wgu_reddit_analyzer.benchmark.build_stratified_sample
-python -m wgu_reddit_analyzer.benchmark.label_posts
-```
 
-**Imports use the package namespace:**
-```python
-from wgu_reddit_analyzer.utils.logging_utils import get_logger
-```
+⸻
 
-Ensures stable imports and reproducible CLI runs.
+12. Git Workflow (Internal)
+	•	Feature branches
+	•	main stays stable
+	•	Check remotes with git remote -v
+	•	Standard commit cycle
+	•	Guidance for nested .git cleanup + submodule removal
 
----
+⸻
 
-## 8 · References
+13. To-Do Roadmap
 
-- Rao et al. (2025) – QuaLLM Framework for Reddit Feedback Extraction  
-- De Santis et al. (2025) – LLM Robustness on Noisy Social Text  
-- Koltcov et al. (2024) – Class Imbalance Methods for Short Social Data
+Short Term
+	1.	Documentation cleanup (Stage 1 overview, registry doc)
+	2.	Prompt notes + edge-case documentation
+	3.	Utility scripts (latest runs, model diffs)
 
----
+Medium Term
+	1.	Full gold-label completion
+	2.	Rerun full benchmarks on DEV/TEST
+	3.	Clean-slate benchmark sweep, produce leaderboard + Pareto data
 
-✅ **Status:** Stage 0 locked · Stage 1A / 1B complete · Stage 1C ready · Benchmark modules verified · Prompt benchmarking and post-run cost summary pending
+Long Term
+	1.	Dedicated benchmark runner (config-driven)
+	2.	Stage 2 clustering integration
+	3.	Cleanup / archival utilities
+
+⸻
+
+14. Status Summary
+	•	Stage 0 complete
+	•	Stage 1A/B complete
+	•	Stage 1C ready
+	•	LLM stack stable
+	•	Benchmark runner next
+	•	Cost summary pending
+
+⸻
+
+End of unified internal specification.

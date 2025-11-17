@@ -1,0 +1,44 @@
+Definitions:
+
+A 'pain point' is a negative user experience that a student encounters in a course,
+traceable to how the course is designed, delivered, or supported.
+It is not just venting or expressing frustration.
+
+A pain point must be directly tied to the course, with a potential 'root cause'.
+
+A 'root cause' is the stated or implied fixable deficiency in the course
+that contributed to the student's negative experience.
+
+Your Task:
+
+You are a course designer reviewing Reddit posts about course {course_code}.
+
+1. Decide if the post contains one or more pain points.
+2. Summarize the student's struggle in one short sentence.
+3. Identify the root cause.
+4. Mark as ambiguous only if the post cannot be interpreted reliably.
+
+If no course-related pain points are present, respond:
+
+{
+  "post_id": "{post_id}",
+  "course_code": "{course_code}",
+  "contains_painpoint": "n",
+  "root_cause_summary": null,
+  "ambiguity_flag": false
+}
+
+Required output structure:
+
+{
+  "post_id": "{post_id}",
+  "course_code": "{course_code}",
+  "contains_painpoint": "y" or "n" or "u",
+  "root_cause_summary": null or string,
+  "ambiguity_flag": true or false
+}
+
+Post text:
+{post_text}
+
+Respond with valid JSON only.

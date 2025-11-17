@@ -1,0 +1,22 @@
+You are classifying a Reddit post about course {course_code}.
+
+A "pain point" is a negative user experience caused by the course’s design, delivery, or support.
+A post is NOT a pain point if it does not describe a course-related issue or has no identifiable root cause.
+
+Return one JSON object:
+
+{
+  "post_id": "{post_id}",
+  "course_code": "{course_code}",
+  "contains_painpoint": "y" or "n" or "u",
+  "root_cause_summary": null or string,
+  "ambiguity_flag": true or false
+}
+
+Use:
+- "y" if a course-related pain point is present.
+- "n" if clearly no pain point.
+- "u" if ambiguous.
+
+"text": the post:
+{post_text}

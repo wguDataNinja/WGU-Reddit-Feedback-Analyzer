@@ -1,20 +1,21 @@
 """
-Hello LLM Benchmark
+LLM Sanity Check
 
 Purpose:
     Minimal connectivity and configuration sanity check for the benchmark
     environment. Confirms that the selected LLM can be called using the
-    model registry configuration.
+    model registry configuration and that cost estimation works.
 
 Inputs:
     Model name and prompt text, typically from CLI arguments or defaults.
 
 Outputs:
     Prints the model name and short response to stdout.
-    Writes a manifest and log file under artifacts/runs/<timestamp>/.
+    May write additional logs and run metadata under artifacts/runs/<timestamp>/.
 
 Usage:
-    python -m wgu_reddit_analyzer.benchmark.hello_llm --model my_model
+    python -m wgu_reddit_analyzer.benchmark.llm_sanity_check gpt-5-nano
+    python -m wgu_reddit_analyzer.benchmark.llm_sanity_check --all
 
 Notes:
     This module is intended as a fast, side-effect-free connectivity check.
@@ -38,6 +39,9 @@ from wgu_reddit_analyzer.benchmark.cost_latency import estimate_cost
 def _extract_from_output_list(output: Any) -> str:
     """
     Best-effort extraction of human-readable text from a responses.output-style list.
+
+    Kept for potential future use; the current implementation uses Chat Completions
+    directly and does not rely on this.
     """
     if not output:
         return ""
@@ -49,7 +53,6 @@ def _extract_from_output_list(output: Any) -> str:
         if isinstance(item, dict):
             item_type = item.get("type", item_type)
 
-        # Look for text-like items
         if item_type in ("message", "output_text", "text"):
             content = getattr(item, "content", None)
             if isinstance(item, dict) and content is None:
@@ -75,8 +78,16 @@ def _extract_from_output_list(output: Any) -> str:
 
 def _call_openai_responses(model_name: str, prompt: str, api_key: str) -> str:
     """
-    Call OpenAI Responses API for models configured in MODEL_REGISTRY.
-    Aims to avoid reasoning-only partial outputs.
+    Call OpenAI via Chat Completions for models configured in MODEL_REGISTRY.
+
+    This intentionally uses the simplest possible pattern, mirroring the
+    previous working project:
+
+      - chat.completions.create
+      - messages=[{"role":"user","content":prompt}]
+      - no temperature / token / reasoning params
+
+    This avoids the Responses API and any reasoning-token quirks for GPT-5 models.
     """
     from openai import OpenAI
 
@@ -85,33 +96,37 @@ def _call_openai_responses(model_name: str, prompt: str, api_key: str) -> str:
 
     client = OpenAI(api_key=api_key)
 
-    resp = client.responses.create(
+    resp = client.chat.completions.create(
         model=model_name,
-        input=prompt,
-        max_output_tokens=256,
-        reasoning={"effort": "low"},
+        messages=[
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+        # Deliberately no temperature / max_* / reasoning options.
     )
 
-    # Preferred: direct text accessor if available.
-    text = getattr(resp, "output_text", None)
-    if isinstance(text, str) and text.strip():
-        return text.strip()
+    if not resp.choices:
+        return ""
 
-    # Fallback: reconstruct from output list.
-    output = getattr(resp, "output", None)
-    alt = _extract_from_output_list(output)
-    if alt:
-        return alt
+    msg = resp.choices[0].message
+    content = getattr(msg, "content", None)
 
-    # Final debug dump if nothing usable was found.
-    try:
-        dumped = resp.model_dump_json(indent=2)
-    except Exception:
-        dumped = repr(resp)
+    if isinstance(content, str):
+        return content.strip()
 
-    print("DEBUG: No text extracted from Responses API. Raw response:\n")
-    print(dumped)
-    print("\nEND DEBUG\n")
+    if isinstance(content, list):
+        parts: List[str] = []
+        for c in content:
+            if isinstance(c, str) and c.strip():
+                parts.append(c.strip())
+            elif isinstance(c, dict):
+                t = c.get("text") or c.get("content")
+                if isinstance(t, str) and t.strip():
+                    parts.append(t.strip())
+        if parts:
+            return "\n".join(parts).strip()
 
     return ""
 
@@ -129,9 +144,9 @@ def _call_ollama(model_name: str, prompt: str) -> str:
     return (data.get("response") or "").strip()
 
 
-def run_hello_for_model(model_name: str) -> Dict[str, Any]:
+def run_check_for_model(model_name: str) -> Dict[str, Any]:
     """
-    Run a single hello test for the given model and return metrics dict.
+    Run a single sanity check for the given model and return metrics dict.
     """
     cfg = get_config()
     info = get_model_info(model_name)
@@ -148,7 +163,6 @@ def run_hello_for_model(model_name: str) -> Dict[str, Any]:
     else:
         raise RuntimeError(f"Unsupported provider for model '{model_name}': {info.provider}")
 
-    # estimate_cost is expected to return an object with .to_dict()
     cost = estimate_cost(prompt, output, model_name, start_time=start)
 
     result = cost.to_dict()
@@ -158,37 +172,37 @@ def run_hello_for_model(model_name: str) -> Dict[str, Any]:
 
 def run_single(model_name: str) -> None:
     """
-    Run hello test for a single model and print JSON result.
+    Run sanity check for a single model and print JSON result.
     """
     print(f"\n=== Testing {model_name} ===")
     try:
-        result = run_hello_for_model(model_name)
+        result = run_check_for_model(model_name)
     except Exception as e:
         print(f"X {model_name} failed: {e}")
         return
 
     print(json.dumps(result, indent=2))
     if not result.get("output"):
-        print("Result has empty output; see any DEBUG block above.")
+        print("Result has empty output; check API key / model name.")
     else:
         print("OK")
 
 
 def run_all() -> None:
     """
-    Run hello tests for all models in MODEL_REGISTRY and print a brief summary.
+    Run sanity checks for all models in MODEL_REGISTRY and print a brief summary.
     """
     models: List[str] = list(MODEL_REGISTRY.keys())
     summary: List[Dict[str, Any]] = []
 
-    print("Running hello test for all registered models (sequential)...")
+    print("Running sanity check for all registered models (sequential)...")
     for m in models:
         print(f"\n=== {m} ===")
         try:
-            r = run_hello_for_model(m)
+            r = run_check_for_model(m)
             print(json.dumps(r, indent=2))
             if not r.get("output"):
-                print("Empty output; see any DEBUG block above.")
+                print("Empty output; check API key / model name.")
             summary.append(
                 {
                     "model_name": r.get("model_name", m),
@@ -210,7 +224,6 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         default_model = "gpt-5-nano"
         if default_model not in MODEL_REGISTRY and MODEL_REGISTRY:
-            # fallback to first registered model if default is absent
             default_model = next(iter(MODEL_REGISTRY.keys()))
         run_single(default_model)
     elif sys.argv[1] == "--all":

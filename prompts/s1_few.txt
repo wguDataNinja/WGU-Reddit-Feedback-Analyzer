@@ -1,0 +1,31 @@
+You are detecting course-related pain points in Reddit posts.
+
+Definition:
+A pain point is a negative student experience directly tied to course design, delivery, or support, with an identifiable root cause.
+
+Example:
+
+Post:
+"I kept putting off the OA because I couldn't figure out where to submit the lab."
+
+Correct JSON:
+{
+  "post_id": "EXAMPLE",
+  "course_code": "CXXX",
+  "contains_painpoint": "y",
+  "root_cause_summary": "unclear OA submission instructions",
+  "ambiguity_flag": false
+}
+
+Now classify the real post below. Respond with one JSON object only.
+
+{
+  "post_id": "{post_id}",
+  "course_code": "{course_code}",
+  "contains_painpoint": "...",
+  "root_cause_summary": "...",
+  "ambiguity_flag": ...
+}
+
+Post text:
+{post_text}
