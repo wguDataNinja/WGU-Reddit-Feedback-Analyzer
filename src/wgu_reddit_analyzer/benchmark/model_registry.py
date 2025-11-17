@@ -1,101 +1,71 @@
 from __future__ import annotations
-"""
-Benchmark Model Registry
-
-Purpose:
-    Central registry of benchmark model configurations and lightweight
-    client wrappers for evaluation scripts.
-
-Inputs:
-    Model names requested by benchmark scripts.
-
-Outputs:
-    ModelSpec objects and compatible BenchmarkModelClient instances.
-
-Usage:
-    from wgu_reddit_analyzer.benchmark.model_registry import (
-        get_model_spec, get_model_client
-    )
-"""
-
 from dataclasses import dataclass
-from typing import Any, Dict, Iterable, List
+from typing import Dict
 
 
 @dataclass(frozen=True)
-class ModelSpec:
-    """Static configuration for a benchmark model."""
-
+class ModelInfo:
     name: str
     provider: str
-    max_input_tokens: int
-    max_output_tokens: int
-    input_cost_per_1k: float
-    output_cost_per_1k: float
-    rpm_limit: int | None = None
-    metadata: Dict[str, Any] | None = None
+    input_per_1k: float
+    output_per_1k: float
+    cached_input_per_1k: float = 0.0
+    is_local: bool = False
 
 
-class BenchmarkModelClient:
-    """Minimal interface expected by benchmark scripts."""
+MODEL_REGISTRY: Dict[str, ModelInfo] = {
+    # Local model via Ollama (no API cost accounting)
+    "llama3": ModelInfo(
+        name="llama3",
+        provider="ollama",
+        input_per_1k=0.0,
+        output_per_1k=0.0,
+        cached_input_per_1k=0.0,
+        is_local=True,
+    ),
 
-    def __init__(self, spec: ModelSpec) -> None:
-        self.spec = spec
+    # Prices derived from official per-1M rates (divide by 1000 to get per-1K)
 
-    def complete(self, prompt: str, max_tokens: int) -> str:
-        raise NotImplementedError
+    # gpt-5-nano: $0.05 / 1M input, $0.40 / 1M output, $0.005 / 1M cached
+    "gpt-5-nano": ModelInfo(
+        name="gpt-5-nano",
+        provider="openai",
+        input_per_1k=0.05 / 1000.0,          # 0.00005
+        cached_input_per_1k=0.005 / 1000.0,  # 0.000005
+        output_per_1k=0.40 / 1000.0,         # 0.0004
+    ),
 
-    def complete_structured(self, prompt: str) -> Dict[str, Any]:
-        raise NotImplementedError
+    # gpt-5-mini: $0.25 / 1M input, $2.00 / 1M output, $0.025 / 1M cached
+    "gpt-5-mini": ModelInfo(
+        name="gpt-5-mini",
+        provider="openai",
+        input_per_1k=0.25 / 1000.0,          # 0.00025
+        cached_input_per_1k=0.025 / 1000.0,  # 0.000025
+        output_per_1k=2.00 / 1000.0,         # 0.002
+    ),
 
-    def build_label_prompt(self, post: Dict[str, Any]) -> str:
-        raise NotImplementedError
+    # gpt-5 (flagship): $1.25 / 1M input, $10.00 / 1M output, $0.125 / 1M cached
+    "gpt-5": ModelInfo(
+        name="gpt-5",
+        provider="openai",
+        input_per_1k=1.25 / 1000.0,          # 0.00125
+        cached_input_per_1k=0.125 / 1000.0,  # 0.000125
+        output_per_1k=10.00 / 1000.0,        # 0.01
+    ),
 
-
-# Registry definitions
-_MODEL_REGISTRY: Dict[str, ModelSpec] = {
-    "example-model": ModelSpec(
-        name="example-model",
-        provider="example",
-        max_input_tokens=8000,
-        max_output_tokens=512,
-        input_cost_per_1k=0.0,
-        output_cost_per_1k=0.0,
-        metadata={"description": "Local mock client for development."},
+    # gpt-4o-mini: $0.15 / 1M input, $0.60 / 1M output, $0.075 / 1M cached
+    "gpt-4o-mini": ModelInfo(
+        name="gpt-4o-mini",
+        provider="openai",
+        input_per_1k=0.15 / 1000.0,          # 0.00015
+        cached_input_per_1k=0.075 / 1000.0,  # 0.000075
+        output_per_1k=0.60 / 1000.0,         # 0.0006
     ),
 }
 
 
-def list_models() -> List[ModelSpec]:
-    """Return all registered models."""
-    return list(_MODEL_REGISTRY.values())
-
-
-def get_model_spec(name: str) -> ModelSpec:
-    """Return the ModelSpec for the given name."""
-    if name not in _MODEL_REGISTRY:
-        raise KeyError(f"Unknown model: {name}")
-    return _MODEL_REGISTRY[name]
-
-
-def get_model_client(spec: ModelSpec) -> BenchmarkModelClient:
-    """Return a lightweight client wrapper for the given model spec."""
-
-    class _NoopClient(BenchmarkModelClient):
-        def complete(self, prompt: str, max_tokens: int) -> str:
-            return f"[noop: {self.spec.name}]"
-
-        def complete_structured(self, prompt: str) -> Dict[str, Any]:
-            return {"label": "noop", "confidence": None, "rationale": None}
-
-        def build_label_prompt(self, post: Dict[str, Any]) -> str:
-            return f"Classify the following post:\n\n{post.get('body') or post}"
-
-    return _NoopClient(spec)
-
-
-def iter_model_specs(names: Iterable[str] | None = None) -> Iterable[ModelSpec]:
-    """Yield selected model specs, or all if none provided."""
-    if names is None:
-        return list_models()
-    return (get_model_spec(name) for name in names)
+def get_model_info(name: str) -> ModelInfo:
+    try:
+        return MODEL_REGISTRY[name]
+    except KeyError as e:
+        raise KeyError(f"Unknown model: {name}") from e
