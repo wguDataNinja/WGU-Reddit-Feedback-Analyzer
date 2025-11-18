@@ -14,8 +14,8 @@ Outputs:
     May write additional logs and run metadata under artifacts/runs/<timestamp>/.
 
 Usage:
-    python -m wgu_reddit_analyzer.benchmark.llm_sanity_check gpt-5-nano
-    python -m wgu_reddit_analyzer.benchmark.llm_sanity_check --all
+    python -m wgu_reddit_analyzer.benchmark.llm_connectivity_check gpt-5-nano
+    python -m wgu_reddit_analyzer.benchmark.llm_connectivity_check --all
 
 Notes:
     This module is intended as a fast, side-effect-free connectivity check.

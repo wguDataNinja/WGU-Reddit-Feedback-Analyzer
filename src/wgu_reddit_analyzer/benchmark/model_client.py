@@ -22,7 +22,7 @@ from wgu_reddit_analyzer.utils.config_loader import get_config
 from wgu_reddit_analyzer.benchmark.model_registry import get_model_info
 from wgu_reddit_analyzer.benchmark.cost_latency import estimate_cost
 from wgu_reddit_analyzer.benchmark.stage1_types import LlmCallResult
-from wgu_reddit_analyzer.benchmark.llm_sanity_check import (
+from wgu_reddit_analyzer.benchmark.llm_connectivity_check import (
     _call_openai_responses,
     _call_ollama,
 )
