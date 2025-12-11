@@ -1,5 +1,3 @@
-# src/wgu_reddit_analyzer/stage2/stage2_types.py
-
 from __future__ import annotations
 
 """
@@ -18,6 +16,8 @@ Defines:
 from typing import Dict, List, Optional
 
 from pydantic import BaseModel, Field
+
+from wgu_reddit_analyzer.core.schema_definitions import SCHEMA_VERSION
 
 
 class PainpointRecord(BaseModel):
@@ -114,6 +114,12 @@ class Stage2RunManifest(BaseModel):
 
     Parallels the Stage 1 full-corpus manifest, but focused on clustering.
     """
+
+    # Schema
+    schema_version: str = Field(
+        default=SCHEMA_VERSION,
+        description="Canonical schema version for Stage 0–4 artifacts.",
+    )
 
     # Run identity and structure
     stage2_run_dir: str

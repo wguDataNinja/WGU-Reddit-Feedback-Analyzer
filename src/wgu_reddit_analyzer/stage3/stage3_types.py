@@ -13,6 +13,8 @@ from typing import List
 
 from pydantic import BaseModel, Field
 
+from wgu_reddit_analyzer.core.schema_definitions import SCHEMA_VERSION
+
 
 class LlmGlobalCluster(BaseModel):
     """
@@ -55,6 +57,12 @@ class Stage3RunManifest(BaseModel):
     """
     Run-level manifest for Stage 3 global clustering.
     """
+
+    # Schema
+    schema_version: str = Field(
+        default=SCHEMA_VERSION,
+        description="Canonical schema version for Stage 0–4 artifacts.",
+    )
 
     # Run identity
     run_id: str

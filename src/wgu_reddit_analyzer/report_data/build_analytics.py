@@ -23,6 +23,8 @@ from typing import List, Dict, Any
 
 import pandas as pd
 
+from wgu_reddit_analyzer.core.schema_definitions import SCHEMA_VERSION
+
 
 # ---------------------------------------------------------------------------
 # Path helpers
@@ -471,10 +473,12 @@ def main() -> None:
 
     # Collapse to true post-level master for reporting
     df_master = collapse_to_post_level(df_post_cluster)
+    df_master["schema_version"] = SCHEMA_VERSION
     df_master.to_csv(report_data_dir / "post_master.csv", index=False)
 
     # Build course_summary (uses post×cluster for clusters, distinct posts for counts)
     course_summary = build_course_summary(df_post_cluster)
+    course_summary["schema_version"] = SCHEMA_VERSION
     course_summary.to_csv(report_data_dir / "course_summary.csv", index=False)
 
     # Build course_cluster_detail from post×cluster table
@@ -487,10 +491,12 @@ def main() -> None:
 
     # Build global_issues
     df_global_issues = build_global_issues(global_clusters_raw)
+    df_global_issues["schema_version"] = SCHEMA_VERSION
     df_global_issues.to_csv(report_data_dir / "global_issues.csv", index=False)
 
     # Build issue_course_matrix from post×cluster table
     df_issue_course = build_issue_course_matrix(df_post_cluster)
+    df_issue_course["schema_version"] = SCHEMA_VERSION
     df_issue_course.to_csv(report_data_dir / "issue_course_matrix.csv", index=False)
 
     print("Report data build complete. Outputs written to:", report_data_dir)

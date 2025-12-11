@@ -167,11 +167,10 @@ class Stage1PredictionOutput(BaseModel):
     )
     confidence_pred: float = Field(
         0.0,
-        ge=0.0,
-        le=1.0,
         description=(
             "Model-reported confidence in the predicted pain-point label, "
-            "normalized to [0.0, 1.0]."
+            "normalized to [0.0, 1.0]. Values outside this range are "
+            "coerced to 0.0 by the model validator."
         ),
     )
     root_cause_summary: str | None = Field(
@@ -206,7 +205,7 @@ class Stage1PredictionOutput(BaseModel):
         ),
     )
 
-    @root_validator
+    @root_validator(skip_on_failure=True)
     def enforce_invariants(cls, values: Dict[str, object]) -> Dict[str, object]:
         """Apply Stage 1 invariants for pain-point flag and confidence."""
         parse_error = bool(values.get("parse_error_flag"))

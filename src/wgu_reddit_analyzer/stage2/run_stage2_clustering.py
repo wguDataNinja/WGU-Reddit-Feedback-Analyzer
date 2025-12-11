@@ -1,4 +1,3 @@
-
 from __future__ import annotations
 
 """
@@ -38,6 +37,7 @@ from wgu_reddit_analyzer.stage2.stage2_types import (
     Stage2CourseClusterSummary,
     Stage2RunManifest,
 )
+from wgu_reddit_analyzer.core.schema_definitions import SCHEMA_VERSION
 
 logger = get_logger("stage2.run_clustering")
 
@@ -354,6 +354,7 @@ def run_stage2_clustering(
 
     # Build and write manifest
     manifest = Stage2RunManifest(
+        schema_version=SCHEMA_VERSION,
         stage2_run_dir=str(run_dir),
         stage2_run_slug=run_slug,
         painpoints_csv_path=str(painpoints_csv),

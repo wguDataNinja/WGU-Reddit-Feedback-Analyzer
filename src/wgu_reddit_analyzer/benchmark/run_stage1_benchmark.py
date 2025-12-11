@@ -26,7 +26,7 @@ from wgu_reddit_analyzer.benchmark.stage1_types import (
 )
 from wgu_reddit_analyzer.benchmark.stage1_classifier import classify_post, build_prompt
 from wgu_reddit_analyzer.utils.logging_utils import get_logger
-
+from wgu_reddit_analyzer.core.schema_definitions import SCHEMA_VERSION
 
 logger = get_logger(__name__)
 
@@ -424,6 +424,7 @@ def run_stage1_benchmark(
         json.dump(metrics, f, indent=2)
 
     manifest = {
+        "schema_version": SCHEMA_VERSION,
         "model_name": model_name,
         "provider": info.provider,
         "run_slug": run_slug,

@@ -1,5 +1,3 @@
-# src/wgu_reddit_analyzer/benchmark/run_stage1_full_corpus.py
-
 """
 Stage 1 full-corpus runner.
 
@@ -40,7 +38,7 @@ from wgu_reddit_analyzer.benchmark.stage1_classifier import (
     build_prompt,
 )
 from wgu_reddit_analyzer.utils.logging_utils import get_logger
-
+from wgu_reddit_analyzer.core.schema_definitions import SCHEMA_VERSION
 logger = get_logger("stage1.run_stage1_full_corpus")
 
 def ensure_full_corpus_run_dir(run_slug: str) -> Path:
@@ -247,6 +245,7 @@ def run_stage1_full_corpus(
         writer.writerows(rows_for_csv)
 
     manifest = {
+        "schema_version": SCHEMA_VERSION,
         "model_name": model_name,
         "provider": info.provider,
         "run_slug": run_slug,
