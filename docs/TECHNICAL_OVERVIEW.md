@@ -1,379 +1,308 @@
-WGU Reddit Analyzer — Unified Internal Developer Specification
+WGU Reddit Analyzer – Technical Overview  
+Public-Facing Architecture Guide  
+Last updated: 2025-11-30
 
-Last updated: 2025-11-17
+---
 
-⸻
+# Purpose
 
-0. Overview
+This document explains how the WGU Reddit Analyzer works at a high level.
 
-This document consolidates all project details across the full pipeline: Stage 0 ingestion, Stage 1 sampling and benchmarking, model registry, LLM stack, smoke tests, artifacts, dev logs, and future roadmap. It is the authoritative internal reference for implementation, debugging, and onboarding.
+It describes:
 
-⸻
+- how data moves through the system  
+- what each stage is responsible for  
+- how the project maintains clarity, traceability, and reproducible results  
 
-1. Repository Layout & Execution
+It is meant for stakeholders, reviewers, and collaborators who want to understand the architecture without diving into implementation details.
 
-1.1 Repo & Package
-	•	Repo root: /Users/buddy/Desktop/WGU-Reddit
-	•	Package name: wgu_reddit_analyzer (src layout)
-	•	Module execution:
+---
 
-PYTHONPATH=src python -m wgu_reddit_analyzer.<module>
+# 1. System Summary
 
+The WGU Reddit Analyzer processes Reddit posts about WGU courses to identify course-related pain points, group similar issues, and produce structured tables used for insights and reports.
 
+The system has four main stages:
 
-1.2 Key Directories
-	•	src/wgu_reddit_analyzer/pipeline/ — Stage 0 build
-	•	src/wgu_reddit_analyzer/benchmark/ — Stage 1 sampling, LLM client, smoke tests
-	•	prompts/ — prompt templates
-	•	artifacts/ — datasets, labels, benchmark outputs
-	•	docs/ — markdown documentation
-	•	site/ — static site
+1. **Stage 1 – Pain Point Classification**  
+   Identifies whether a post contains a fixable, course-side issue, and if so, summarizes it.
 
-1.3 High-Level Folder Roles
+2. **Stage 2 – Course-Level Clustering**  
+   Groups similar pain points within each course.
 
+3. **Stage 3 – Global Issue Normalization**  
+   Merges course-level clusters across all courses into a shared set of global issue types.
+
+4. **Stage 4 – Report Data Layer**  
+   Produces clean tables for reports, dashboards, and future web tools.
+
+All stages read from the same frozen Stage 0 dataset to keep results stable and repeatable.
+
+The system values:
+
+- transparent data transformations  
+- clear artifacts at every step  
+- the ability to reproduce results exactly  
+
+---
+
+# 2. Repository Structure (High-Level)
+
+```
 src/wgu_reddit_analyzer/
-├── fetchers/          Reddit ingest
-├── utils/             config, db, logging, tokens
-├── pipeline/          Stage 0 build
-├── benchmark/         Stage 1 sampling, LLM utils
-└── llm_pipeline/      Stage 2–3 (future)
+    fetchers/        # Reddit ingestion (source of Stage 0 data)
+    pipeline/        # Stage 0 filtering and dataset building
+    benchmark/       # Stage 1 benchmarking and sampling
+    stage1/          # Full-corpus Stage 1 classification
+    stage2/          # Stage 2 course-level clustering
+    stage3/          # Stage 3 global normalization
+    report_data/     # Stage 4 merged tables for reporting
+    utils/           # Logging, token counting, helpers
+```
 
-Supporting top-level dirs:
-	•	configs/ YAML configs
-	•	prompts/ Templates
-	•	artifacts/ All generated data
-	•	docs/ Notes
-	•	archive_legacy/ Deprecated
+Supporting folders:
 
-⸻
+- `prompts/` – all versioned prompts  
+- `artifacts/` – all generated datasets and run folders  
+- `docs/` – project documentation  
+- `archive_legacy/` – older experiments and unused code  
 
-2. Stage 0 — Dataset Build
+---
 
-2.1 Data Source
-	•	Daily Reddit ingest (already configured).
+# 3. Stage 0 – Dataset Build (Inputs to All Stages)
 
-2.2 Main Output
-	•	artifacts/stage0_filtered_posts.jsonl
-	•	Locked negative-only base dataset
-	•	Sole source for Stage 1 sampling
+Stage 0 collects Reddit posts and turns them into a clean, consistent dataset.
 
-2.3 Stage 0 Run Artifacts
+It:
 
-Under: artifacts/runs/stage0_<timestamp>/
-	•	manifest.json
-	•	stage0.log
+- reads posts from WGU-related subreddits  
+- removes spam, deleted content, and empty posts  
+- detects valid WGU course codes  
+- computes sentiment (e.g., VADER) and keeps only strongly negative posts  
+- normalizes all fields (IDs, titles, text, timestamps)
 
-Stage 1 does not modify Stage 0 artifacts.
+Key file:
 
-⸻
+- `artifacts/stage0_filtered_posts.jsonl` – the fixed dataset used by all later stages  
 
-3. Stage 1 — Sampling, Labeling, Benchmarking
+This file is treated as unchanging so that results stay consistent.
 
-3.1 Candidate Generation (Sampling)
+---
 
-Artifacts:
-	•	artifacts/benchmark/DEV_candidates.jsonl
-	•	artifacts/benchmark/TEST_candidates.jsonl
+# 4. Stage 1 – Pain Point Classification
 
-JSONL schema (per line):
-	•	post_id: str
-	•	course_code: str
-	•	title: str
-	•	selftext: str
-	•	optional metadata
+## Goal
+Decide whether each post contains a **fixable course-side pain point** and, if so, generate:
 
-Stage 1 classifier input (Stage1PredictionInput):
-	•	post_id: str
-	•	course_code: str
-	•	text: str (title + blank line + selftext if available)
+- a short root-cause summary  
+- a concise snippet anchored in the post  
 
-smoke_test_stage1 reconstructs inputs from these candidates.
+Stage 1 has two modes:
 
-⸻
+1. **Benchmark Mode (DEV/TEST)**  
+   Tests different prompts and models, compares accuracy, and measures cost.
 
-4. Gold Labels (Ground Truth)
+2. **Full-Corpus Mode**  
+   Runs the selected model/prompt on the full Stage 0 dataset.
 
-4.1 Current Gold File
-	•	Path: artifacts/benchmark/gold/gold_labels.csv
-	•	Only DEV is labeled at present.
+### 4.1 Benchmark Mode
 
-Columns:
-	•	post_id
-	•	split (DEV only for now)
-	•	course_code
-	•	contains_painpoint {y, n, blank}
-	•	root_cause_summary (free text)
-	•	ambiguity_flag {0, 1}
-	•	labeler_id (“AI1”)
-	•	notes
+Stage 1 benchmarking focuses on:
 
-4.2 Scoring Filter
+- precision, recall, F1  
+- cost per post  
+- latency  
+- behavior on noisy writing  
+- schema stability  
+- prompt and model comparison  
 
-Evaluated rows must satisfy:
-	•	split == "DEV"
-	•	ambiguity_flag != "1"
-	•	contains_painpoint ∈ {"y", "n"}
+This work lives in `src/wgu_reddit_analyzer/benchmark/`.
 
-Filtering implemented in load_gold_labels inside smoke_test_stage1.py.
+### 4.2 Full-Corpus Mode
 
-4.3 Intersection Logic
+Once a model/prompt combination is chosen, Stage 1 is run across all Stage 0 posts.
 
-Gold and candidate IDs are intersected.
-	•	Missing gold IDs logged, not fatal.
-	•	Only overlapping IDs evaluated.
+Each output row includes:
 
-Current: 8 DEV labels; 2 overlap with DEV candidates.
+- whether the post contains a pain point  
+- a root-cause summary  
+- a snippet  
+- flags for parser or model errors  
+- basic metadata such as model name and run ID
 
-⸻
+Important:
 
-5. Model Registry & LLM Client
+- Stage 2 **does not** filter using confidence scores.  
+- Stage 2 simply keeps rows where:
+  - `pred_contains_painpoint == "y"`  
+  - no parse/schema/LLM error occurred  
 
-5.1 Model Registry (model_registry.py)
+Key reshaped output:
 
-ModelInfo fields:
-	•	name: str
-	•	provider: str (openai | ollama)
-	•	input_per_1k: float
-	•	output_per_1k: float
-	•	cached_input_per_1k: float = 0.0
-	•	is_local: bool = False
+- `artifacts/stage2/painpoints_llm_friendly.csv`
 
-5.2 Current Models
-	•	llama3 — provider=ollama, local CPU, cost=0
-	•	gpt-5-nano — openai, baseline
-	•	gpt-5-mini — openai
-	•	gpt-5 — openai, flagship
-	•	gpt-4o-mini — openai, cheap+fast recommended
+---
 
-OpenAI pricing is per-1M converted to per-1K.
+# 5. Stage 2 – Course-Level Clustering
 
-Entry point: get_model_info(name).
+## Goal
+Turn individual pain points into course-level themes that instructors or curriculum teams can act on.
 
-5.3 LLM Client (model_client.py)
+Inputs:
 
-generate(model_name, prompt) -> LlmCallResult
-	•	OpenAI provider → client.chat.completions.create
-	•	Ollama provider → local POST /api/generate
-	•	Computes token usage, cost, latency
+- Stage 1 pain-point rows  
+- course metadata  
+- an LLM clustering prompt for each course  
 
-Returned fields:
-	•	model name, provider
-	•	raw text
-	•	input/output tokens
-	•	cost
-	•	elapsed seconds
+Process:
 
-5.4 Sanity Checker
+1. Load all pain points.  
+2. Add course titles and college information.  
+3. Group posts by `course_code`.  
+4. For each course, send its pain points to an LLM to create meaningful clusters.  
+5. Validate each cluster file with strict schema rules.  
+6. Store prompts, inputs, and outputs to guarantee consistency.
 
-benchmark/llm_sanity_check.py
-	•	Validates model is in registry
-	•	Produces output with tokens, latency, cost
+Typical cluster fields:
 
-All models currently pass.
+- `cluster_id` (e.g., `C214_1`)  
+- a short `issue_summary`  
+- number of posts  
+- the list of member `post_id` values  
 
-5.5 Stable OpenAI Path
+Stage 2 allows posts to appear in more than one cluster for the same course.
 
-GPT-5 Responses API was unstable; all Stage 1 calls use Chat Completions for reliability.
+Key outputs:
 
-⸻
+- `artifacts/stage3/preprocessed/<run_id>/clusters_llm.csv`  
+- per-course cluster JSON files  
+- a Stage 2 manifest describing the run  
 
-6. Stage 1 Classifier
+---
 
-Files:
-	•	benchmark/stage1_types.py
-	•	benchmark/stage1_classifier.py
+# 6. Stage 3 – Global Issue Normalization
 
-6.1 Types
+## Goal
+Merge course-level clusters into a shared set of **global issue types** so that problems can be compared across courses and colleges.
 
-Stage1PredictionInput:
-	•	post_id, course_code, text
+Inputs:
 
-Stage1PredictionOutput:
-	•	post_id
-	•	course_code
-	•	contains_painpoint {y, n, u}
-	•	root_cause_summary (optional)
-	•	ambiguity_flag (optional)
-	•	raw_response (full LLM text)
+- `clusters_llm.csv` from Stage 2  
+- all cluster JSON files  
+- Stage 2 run metadata  
 
-6.2 Classification Flow
+Process:
 
-classify_post(model_name, example, prompt_template):
-	1.	Load template
-	2.	Render prompt
-	3.	Call LLM client
-	4.	Extract first JSON object
-	5.	Parse + validate
-	6.	On failure: fallback regex for y/n/u
+1. Load all course-level cluster summaries.  
+2. Use an LLM to group similar clusters together across courses.  
+3. Assign each cluster a `global_cluster_id` and `normalized_issue_label`.  
+4. Map these normalized labels back to the post level.
 
-Returns both prediction + LlmCallResult.
+Key outputs:
 
-⸻
+- `cluster_global_index.csv` – maps cluster → global issue  
+- `post_global_index.csv` – maps post → cluster → global issue  
+- `global_clusters.json` – list of global issues with labels, descriptions, and membership
 
-7. Stage 1 Smoke Test
+Examples of normalized issue labels:
 
-File: benchmark/smoke_test_stage1.py
+- `assessment_material_misalignment`  
+- `unclear_or_ambiguous_instructions`  
+- `evaluator_inconsistency_or_poor_feedback`  
 
-CLI:
+These labels allow stakeholders to track problems that appear across multiple courses.
 
-PYTHONPATH=src python -m wgu_reddit_analyzer.benchmark.smoke_test_stage1 \
-  --model gpt-5-nano \
-  --prompt prompts/s1_optimal.txt \
-  --split DEV
+---
 
-Arguments:
-	•	--model (required)
-	•	--prompt (default: prompts/s1_optimal.txt)
-	•	--split DEV|TEST (default DEV)
-	•	--gold-path default gold CSV
-	•	--candidates-path optional override
+# 7. Stage 4 – Report Data Layer
 
-7.1 Evaluation Steps
-	1.	Load gold
-	2.	Load candidates
-	3.	Compute ID intersection
-	4.	For each matching ID:
-	•	build prediction input
-	•	classify via model
-	•	compare with gold
-	5.	Compute metrics: tp, fp, fn, tn, precision, recall, f1, accuracy
-	6.	Aggregate timing + cost
+## Goal
+Produce a clean set of merged tables that pull together everything from the earlier stages.
 
-7.2 Current Behavior
-	•	8 gold DEV labels
-	•	Only 2 intersect with DEV candidates
-	•	All models benchmark only on these 2 examples
+These files are used for:
 
-Performance snapshot:
-	•	gpt-5: 1 TP, 0 FP, 0 FN, 1 TN → f1=1.0
-	•	others: 1 TP, 1 FP, 0 FN, 0 TN → f1≈0.67
+- course-level PDF reports  
+- cross-course comparisons  
+- future web dashboards  
 
-⸻
+Implementation:
 
-8. Stage 1 Run Artifacts
+- `src/wgu_reddit_analyzer/report_data/build_analytics.py`  
+- outputs stored under `artifacts/report_data/`
 
-Directory pattern:
+Inputs:
 
-artifacts/benchmark/runs/stage1_/<model>_<split>_<YYYYMMDD_HHMMSS>/
+- Stage 0 posts  
+- Stage 2 pain-point CSV  
+- Stage 3 cluster + global files  
+- course metadata  
 
-Contents:
-	1.	predictions_<split>.csv
-	2.	metrics_<split>.json
-	3.	manifest.json with:
-	•	model, provider, prompt, split
-	•	gold path, candidates path
-	•	num examples
-	•	file paths
-	•	timestamps
+Main outputs:
 
-Existing run dirs include:
-	•	gpt-5-nano_DEV_20251117_121029
-	•	gpt-5-mini_DEV_20251117_131021
-	•	gpt-5_DEV_20251117_131038
-	•	gpt-4o-mini_DEV_20251117_131108
-	•	llama3_DEV_20251117_131114
+1. **post_master.csv**  
+   - one row per post  
+   - includes pain-point flags, summaries, snippets, cluster IDs, global labels, course metadata  
 
-⸻
+2. **course_summary.csv**  
+   - one row per course  
+   - includes negative post counts, pain-point counts, top issues, course title, college  
 
-9. Development Log (Milestone Summary)
+3. **course_cluster_detail.jsonl**  
+   - one record per cluster per course  
+   - includes cluster summaries, normalized labels, post counts, and examples  
 
-Completed
-	1.	Verified and extended MODEL_REGISTRY
-	2.	Validated all OpenAI models via sanity check
-	3.	Fixed Ollama llama3 (CPU-only config)
-	4.	Upgraded smoke test to full CLI
-	5.	Implemented Stage 1 run directory and artifact system
-	6.	Ran smoke test on all models successfully
-	7.	Measured initial performance snapshot
+4. **global_issues.csv**  
+   - one row per global issue type  
+   - includes labels, descriptions, and counts  
 
-Current Status
-	•	Stage 1 stack fully implements end-to-end benchmarking
-	•	Artifacts clean, reproducible, and structured
+5. **issue_course_matrix.csv**  
+   - one row per (issue, course) pair  
+   - includes number of posts and clusters contributing to that issue in that course  
 
-⸻
+These tables are the working dataset for all human-facing outputs.
 
-10. Updated High-Level Technical Overview
+---
 
-10.1 System Architecture Summary
-	•	Ingest → Stage 0 → Stage 1 sampling → Gold labeling → LLM benchmarking
-	•	Future: clustering + final evaluation
+# 8. Model Registry and LLM Client
 
-10.2 Daily Ingest
-	•	Script: daily_update under fetchers/
-	•	Reads subreddit list, authenticates, writes DB + logs
+The system uses a shared LLM client and model registry.
 
-10.3 Stage 1A Length Profile
-	•	Token coverage 20–600
-	•	Artifacts: histogram + JSON
+This layer handles:
 
-10.4 Stratified Sampling
-	•	Deterministic seed
-	•	Balanced DEV/TEST
+- choosing the right model provider  
+- setting up retry and timeout rules  
+- logging input/output token usage  
+- tracking per-call cost and latency  
+- offering a consistent interface across stages  
 
-10.5 Manual Labeling
-	•	CLI tool, produces gold CSV
+This keeps behavior consistent whether you're benchmarking, clustering, or normalizing.
 
-10.6 Prompt Benchmarking
-	•	Templates under prompts/
+---
 
-10.7 Cost Projection
-	•	Script estimate_benchmark_cost.py
+# 9. Prompts and Versioning
 
-10.8 Datasets
-	•	Locked artifacts under artifacts/
+All prompt templates live under `prompts/`.
 
-⸻
+During any run (Stage 1, 2, or 3):
 
-11. Environment & CLI
+- the exact prompt is copied into the run folder  
+- a manifest.json records the model, settings, and important paths  
+- raw LLM responses are saved where relevant  
 
-11.1 Secrets (env vars)
-	•	Reddit API keys
-	•	OPENAI_API_KEY
+This ensures that a run’s results can be recreated later.
 
-11.2 Local Install
+---
 
-pip install -e .
-python -m wgu_reddit_analyzer.<module>
+# 10. Reproducibility
 
+The pipeline maintains repeatable results through:
 
-⸻
+- a frozen Stage 0 dataset  
+- fixed DEV/TEST samples and gold labels for Stage 1 benchmarking  
+- versioned prompts copied into run directories  
+- run manifests describing configuration  
+- raw LLM logs for stages that involve model calls  
+- strict validation of IDs and schema in Stages 2 and 3  
+- deterministic logic in Stage 4 (no randomness, no LLMs)
 
-12. Git Workflow (Internal)
-	•	Feature branches
-	•	main stays stable
-	•	Check remotes with git remote -v
-	•	Standard commit cycle
-	•	Guidance for nested .git cleanup + submodule removal
-
-⸻
-
-13. To-Do Roadmap
-
-Short Term
-	1.	Documentation cleanup (Stage 1 overview, registry doc)
-	2.	Prompt notes + edge-case documentation
-	3.	Utility scripts (latest runs, model diffs)
-
-Medium Term
-	1.	Full gold-label completion
-	2.	Rerun full benchmarks on DEV/TEST
-	3.	Clean-slate benchmark sweep, produce leaderboard + Pareto data
-
-Long Term
-	1.	Dedicated benchmark runner (config-driven)
-	2.	Stage 2 clustering integration
-	3.	Cleanup / archival utilities
-
-⸻
-
-14. Status Summary
-	•	Stage 0 complete
-	•	Stage 1A/B complete
-	•	Stage 1C ready
-	•	LLM stack stable
-	•	Benchmark runner next
-	•	Cost summary pending
-
-⸻
-
-End of unified internal specification.
+Because each run stores its own inputs and metadata, any full-corpus result or report can be recreated—down to the exact posts, clusters, and issue labels involved.

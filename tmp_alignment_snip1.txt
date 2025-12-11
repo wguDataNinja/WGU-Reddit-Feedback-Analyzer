@@ -1,3 +1,4 @@
+== model_client.py ==
 # src/wgu_reddit_analyzer/benchmark/model_client.py
 """
 Model client wrapper for Stage 1 benchmarking.
@@ -158,55 +159,102 @@ def generate(model_name: str, prompt: str) -> LlmCallResult:
     -------
     LlmCallResult
         Structured result including raw text, cost, latency, and failure flags.
+
+== logging_utils.py ==
+from __future__ import annotations
+import logging
+from pathlib import Path
+
+REPO_ROOT = Path(__file__).resolve().parents[3]
+LOG_DIR = REPO_ROOT / "logs"
+LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+
+def get_logger(name: str) -> logging.Logger:
     """
-    cfg = get_config()
-    info = get_model_info(model_name)
-    if info is None:
-        raise RuntimeError(f"Model '{model_name}' not found in MODEL_REGISTRY.")
+    Canonical logger:
+    - Writes to logs/<name>.log
+    - Also logs to stderr
+    - Idempotent (no duplicate handlers)
+    """
+    logger = logging.getLogger(name)
+    if logger.handlers:
+        return logger
 
-    started_at = time.time()
+    logger.setLevel(logging.INFO)
 
-    raw_text, llm_failure, num_retries, error_message = _call_model_with_retry(
-        model_name=model_name,
-        prompt=prompt,
-        provider=info.provider,
-        cfg=cfg,
-        timeout_sec=DEFAULT_TIMEOUT_SEC,
-        max_retries=MAX_RETRIES,
+    fmt = logging.Formatter(
+        "%(asctime)s [%(levelname)s] %(name)s: %(message)s"
     )
 
-    if raw_text is None:
-        raw_text = ""
+    fh = logging.FileHandler(LOG_DIR / f"{name}.log", encoding="utf-8")
+    fh.setFormatter(fmt)
+    logger.addHandler(fh)
 
-    cost = estimate_cost(prompt, raw_text, model_name, start_time=started_at)
-    cdict = cost.to_dict()
-    finished_at = started_at + (cdict.get("elapsed_sec") or 0.0)
+    sh = logging.StreamHandler()
+    sh.setFormatter(fmt)
+    logger.addHandler(sh)
 
-    logger.info(
-        "LLM call finished model=%s provider=%s elapsed=%.3f cost=%.6f "
-        "input_tokens=%s output_tokens=%s llm_failure=%s retries=%d",
-        model_name,
-        info.provider,
-        cdict.get("elapsed_sec"),
-        cdict.get("total_cost_usd"),
-        cdict.get("input_tokens"),
-        cdict.get("output_tokens"),
-        llm_failure,
-        num_retries,
-    )
+    logger.propagate = False
+    return logger
+== gold_labels.csv (first 6 lines) ==
+post_id,split,course_code,contains_painpoint,root_cause_summary,ambiguity_flag,labeler_id,notes
+1c0qqf5,DEV,AFT2,y,AFT2 Task1 requirements unclear,0,001,
+y8ajxy,DEV,C100,n,,0,001,
+1lhtc75,DEV,C165,n,,0,001,
+1jzu8xc,DEV,C168,n,,0,001,
+10xra7v,DEV,C182,n,,0,001,
 
-    return LlmCallResult(
-        model_name=model_name,
-        provider=info.provider,
-        raw_text=raw_text,
-        input_tokens=cdict.get("input_tokens", 0),
-        output_tokens=cdict.get("output_tokens", 0),
-        total_cost_usd=cdict.get("total_cost_usd", 0.0),
-        elapsed_sec=cdict.get("elapsed_sec", 0.0),
-        llm_failure=llm_failure,
-        num_retries=num_retries,
-        error_message=error_message,
-        timeout_sec=DEFAULT_TIMEOUT_SEC,
-        started_at=started_at,
-        finished_at=finished_at,
-    )
+== stage1 manifest: gpt-5-mini_s1_few_fulldev_20251121_045651 ==
+{
+  "model_name": "gpt-5-mini",
+  "provider": "openai",
+  "run_slug": "gpt-5-mini_s1_few_fulldev",
+  "prompt_template_path": "prompts/s1_few.txt",
+  "prompt_filename": "s1_few.txt",
+  "prompt_copied_path": "artifacts/benchmark/stage1/runs/gpt-5-mini_s1_few_fulldev_20251121_045651/s1_few.txt",
+  "split": "DEV",
+  "gold_path": "artifacts/benchmark/gold/gold_labels.csv",
+  "candidates_path": "artifacts/benchmark/DEV_candidates.jsonl",
+  "num_examples": 135,
+  "metrics_path": "artifacts/benchmark/stage1/runs/gpt-5-mini_s1_few_fulldev_20251121_045651/metrics_DEV.json",
+  "predictions_path": "artifacts/benchmark/stage1/runs/gpt-5-mini_s1_few_fulldev_20251121_045651/predictions_DEV.csv",
+  "raw_io_path": "artifacts/benchmark/stage1/runs/gpt-5-mini_s1_few_fulldev_20251121_045651/raw_io_DEV.jsonl",
+  "run_dir": "artifacts/benchmark/stage1/runs/gpt-5-mini_s1_few_fulldev_20251121_045651",
+  "started_at_epoch": 1763719011.3685,
+  "finished_at_epoch": 1763720118.658719
+}
+== stage3 cluster_global_index.csv (gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_4courses_20251126_192835, first 6 lines) ==
+cluster_id,global_cluster_id,course_code,course_title,num_posts,provisional_label,normalized_issue_label
+AFT2_1,G002,AFT2,Accreditation Audit,1,Ambiguous task instructions,unclear_or_ambiguous_instructions
+C165_1,G001,C165,Integrated Physical Sciences,1,Assessment & practice misalignment,assessment_material_misalignment
+C165_2,G005,C165,Integrated Physical Sciences,1,Low-quality or unclear course materials,missing_or_low_quality_materials
+C180_1,G001,C180,Introduction to Psychology,1,Assessment & practice misalignment,assessment_material_misalignment
+C190_1,G003,C190,Introduction to Biology,1,Instructor/support unresponsiveness,instructor_or_support_unresponsiveness
+
+== stage3 manifest (gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_4courses_20251126_192835) ==
+{
+  "stage3_run_dir": "artifacts/stage3/runs/gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_4courses_20251126_192835",
+  "stage3_run_slug": "gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_4courses",
+  "stage2_run_dir": "artifacts/stage2/runs/gpt-5-mini_s2_cluster_4courses_20251126_192631",
+  "stage2_run_slug": "gpt-5-mini_s2_cluster_4courses",
+  "stage2_manifest_path": "artifacts/stage2/runs/gpt-5-mini_s2_cluster_4courses_20251126_192631/manifest.json",
+  "clusters_csv_path": "artifacts/stage3/preprocessed/gpt-5-mini_s2_cluster_4courses/clusters_llm.csv",
+  "global_model_name": "gpt-5-mini",
+  "global_prompt_path": "prompts/s3_normalize_clusters.txt",
+  "num_input_clusters": 7,
+  "num_input_courses": 4,
+  "total_input_posts": 7,
+  "num_batches": 1,
+  "num_global_clusters": 6,
+  "num_unassigned_clusters": 0,
+  "total_assigned_posts": 7,
+  "total_unassigned_posts": 0,
+  "cluster_coverage_fraction": 1.0,
+  "post_coverage_fraction": 1.0,
+  "started_at_epoch": 1764203315.376203,
+  "finished_at_epoch": 1764203338.200313,
+  "wallclock_sec": 22.82411003112793,
+  "total_cost_usd": 0.001234,
+  "total_elapsed_sec_model_calls": 22.822
+}

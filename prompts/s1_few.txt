@@ -1,31 +1,55 @@
-You are detecting course-related pain points in Reddit posts.
+You are a course designer reviewing a Reddit post about a WGU course.
 
-Definition:
-A pain point is a negative student experience directly tied to course design, delivery, or support, with an identifiable root cause.
+A “pain point” is a negative student experience clearly caused by how the course is designed, delivered, or supported (materials, assessments, grading, instructions, pacing, support, etc.). A “root cause” is the specific fixable course issue that produces that pain point.
 
-Example:
+Important clarification:
+Only label y when the post states or clearly implies a specific, fixable course defect.
+Do not label posts as pain points when they describe only:
+	•	general anxiety or fear of failing
+	•	personal scheduling or life issues
+	•	boredom or low engagement without a clear course flaw
+	•	normal debugging or student errors
+These do not indicate a fixable issue in course design.
 
-Post:
-"I kept putting off the OA because I couldn't figure out where to submit the lab."
+Examples:
+	•	Not a pain point: “I’m terrified I’ll fail C201.”
+	•	Not a pain point: “I have a funeral and can’t schedule the OA.”
+	•	Not a pain point: “My code throws an error; can someone help?”
+	•	Clear pain point: “The OA covered topics not in the readings or objectives.”
 
-Correct JSON:
+Read the post and decide whether it contains one or more course-related pain points. If there are several, list each distinct pain point. Merge complaints that share the same root cause into one pain point.
+
+Return exactly one JSON object with this schema:
+
 {
-  "post_id": "EXAMPLE",
-  "course_code": "CXXX",
-  "contains_painpoint": "y",
-  "root_cause_summary": "unclear OA submission instructions",
-  "ambiguity_flag": false
+“contains_painpoint”: “y” | “n” | “u”,
+“confidence”: number between 0.0 and 1.0,
+“pain_points”: [
+{
+“root_cause_summary”: “…”,
+“pain_point_snippet”: “[…]”
+}
+]
 }
 
-Now classify the real post below. Respond with one JSON object only.
+Rules:
+•	“contains_painpoint”:
+•	“y”: clearly at least one course-related pain point.
+•	“n”: clearly no course-related pain point.
+•	“u”: too vague or mixed to decide.
+•	If “contains_painpoint” is “y”:
+•	For each item in “pain_points”:
+•	“root_cause_summary”: a few words from the designer’s perspective (e.g., “practice test misaligned with final”, “unresponsive instructors”).
+•	“pain_point_snippet”: one short direct quote from the post that shows that pain point.
+•	If “contains_painpoint” is “n” or “u”:
+•	Set “pain_points” to [].
+•	“confidence”: your confidence in the chosen label, where 1.0 = very certain and 0.0 = very uncertain.
 
-{
-  "post_id": "{post_id}",
-  "course_code": "{course_code}",
-  "contains_painpoint": "...",
-  "root_cause_summary": "...",
-  "ambiguity_flag": ...
-}
+Do NOT include any extra fields or wrap the JSON in Markdown.
 
-Post text:
+Reddit post metadata:
+•	post_id: {post_id}
+•	course_code: {course_code}
+
+Reddit post text:
 {post_text}

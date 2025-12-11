@@ -1,0 +1,71 @@
+You will receive a flat list of Stage-2 course-level pain point clusters.
+
+Each cluster has:
+	•	cluster_id
+	•	issue_summary
+	•	course_code (input only — do NOT include in output)
+	•	course_title (input only — do NOT include in output)
+	•	num_posts
+
+Your job is to merge these into cross-course global issues.
+
+⸻
+
+ROOT-CAUSE CLASSIFICATION RULES
+	•	Group clusters by the fixable course-side root cause only.
+	•	If a summary includes both a cause and a symptom (e.g., “wrong resource list causing confusion”), classify by the course-side cause, never by the student symptom.
+	•	Student feelings (confusion, stress, frustration, delay) are not categories.
+	•	Exclusive assignment: each cluster_id appears once in the final output.
+
+⸻
+
+USE SEEDED GLOBAL ISSUE TYPES WHEN THEY MATCH
+
+Reuse these labels exactly when applicable:
+
+unclear_or_ambiguous_instructions
+assessment_material_misalignment
+platform_or_environment_failures
+missing_or_low_quality_materials
+evaluator_inconsistency_or_poor_feedback
+workflow_or_policy_barriers
+missing_or_broken_resources
+instructor_or_support_unresponsiveness
+tooling_environment_misconfiguration_or_guidance
+grading_or_answer_key_or_process_issues
+workload_or_scope_issues
+proctoring_or_exam_platform_issues
+scheduling_or_simulation_availability_issues
+ai_detection_confusion_and_false_flags
+prerequisite_gaps_or_unpreparedness
+external_tool_dependency_risks
+
+If a cluster fits one of these meanings, reuse that issue.
+Create a new global issue only if no seeded one matches.
+
+⸻
+
+SORTING RULE
+
+Sort global_clusters by total num_posts per issue (sum across its member clusters), highest first.
+
+⸻
+
+OUTPUT FORMAT (STRICT)
+
+{
+  "global_clusters": [
+    {
+      "provisional_label": "string",
+      "normalized_issue_label": "string",
+      "short_description": "string",
+      "member_cluster_ids": ["id1","id2"]
+    }
+  ],
+  "unassigned_clusters": ["cluster_id_a"]
+}
+
+	•	No text outside JSON
+	•	Do not include course_code or course_title
+	•	Every cluster_id must appear exactly once
+
