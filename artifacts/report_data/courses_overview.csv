@@ -1,0 +1,243 @@
+rank_by_pain_points,course_code,course_title_final,college_list,total_pain_point_posts,total_negative_posts,num_clusters,top_issue_labels
+1,D197,Version Control,School of Technology,11,19,4,"unclear_or_ambiguous_instructions, missing_or_broken_resources, platform_or_environment_failures"
+2,D287,Java Frameworks,School of Technology,11,16,6,"unclear_or_ambiguous_instructions, missing_or_broken_resources, evaluator_inconsistency_or_poor_feedback"
+3,D427,Data Management - Applications,School of Technology,10,29,6,"platform_or_environment_failures, assessment_material_misalignment, grading_or_answer_key_or_process_issues"
+4,C777,Web Development Applications,School of Technology,9,24,6,"assessment_material_misalignment, missing_or_low_quality_materials, platform_or_environment_failures"
+5,D196,Principles of Financial and Managerial Accounting,School of Business,9,22,6,"platform_or_environment_failures, assessment_material_misalignment"
+6,D288,Back-End Programming,School of Technology,9,21,5,"missing_or_broken_resources, tooling_environment_misconfiguration_or_guidance, platform_or_environment_failures"
+7,C214,Financial Management,School of Business,8,26,4,"assessment_material_misalignment, platform_or_environment_failures, missing_or_broken_resources"
+8,D101,Cost and Managerial Accounting,School of Business,7,15,4,"missing_or_low_quality_materials, assessment_material_misalignment, ai_detection_confusion_and_false_flags"
+9,D277,Front-End Web Development,School of Technology,7,14,6,"evaluator_inconsistency_or_poor_feedback, instructor_or_support_unresponsiveness, external_tool_dependency_risks"
+10,D278,Scripting and Programming - Foundations,School of Technology,7,12,5,"assessment_material_misalignment, missing_or_low_quality_materials, proctoring_or_exam_platform_issues"
+11,D335,Introduction to Programming in Python,School of Technology,6,27,4,"unclear_or_ambiguous_instructions, assessment_material_misalignment, evaluator_inconsistency_or_poor_feedback"
+12,D280,JavaScript Programming,School of Technology,6,14,4,"missing_or_broken_resources, unclear_or_ambiguous_instructions, external_tool_dependency_risks"
+13,C211,Global Economics for Managers,School of Business,5,24,4,"instructor_or_support_unresponsiveness, assessment_material_misalignment, platform_or_environment_failures"
+14,D080,Managing in a Global Business Environment,School of Business,5,16,4,"assessment_material_misalignment, scheduling_or_simulation_availability_issues, workflow_or_policy_barriers"
+15,D426,Data Management - Foundations,School of Technology,5,16,3,"assessment_material_misalignment, missing_or_low_quality_materials, platform_or_environment_failures"
+16,D333,Ethics in Technology,School of Business; School of Technology,5,14,2,"assessment_material_misalignment, unclear_or_ambiguous_instructions"
+17,D602,D602 – Deployment,School of Technology,5,12,3,"unclear_or_ambiguous_instructions, missing_or_broken_resources, tooling_environment_misconfiguration_or_guidance"
+18,D276,Web Development Foundations,School of Technology,5,11,4,"platform_or_environment_failures, missing_or_broken_resources, missing_or_low_quality_materials"
+19,D483,Security Operations,School of Technology,5,7,4,"platform_or_environment_failures, unclear_or_ambiguous_instructions, assessment_material_misalignment"
+20,D487,Secure Software Design,School of Technology,4,17,3,"assessment_material_misalignment, proctoring_or_exam_platform_issues, unclear_or_ambiguous_instructions"
+21,C207,Data-Driven Decision Making,School of Business,4,16,2,"evaluator_inconsistency_or_poor_feedback, assessment_material_misalignment"
+22,C213,Accounting for Decision Makers,School of Business,4,15,4,"assessment_material_misalignment, missing_or_broken_resources, proctoring_or_exam_platform_issues"
+23,D597,Data Management,School of Technology,4,10,3,"unclear_or_ambiguous_instructions, missing_or_broken_resources, platform_or_environment_failures"
+24,D385,Software Security and Testing,NOT FOUND,4,8,2,"grading_or_answer_key_or_process_issues, unclear_or_ambiguous_instructions"
+25,C200,Managing Organizations and Leading People,School of Business,4,6,4,"ai_detection_confusion_and_false_flags, evaluator_inconsistency_or_poor_feedback, missing_or_broken_resources"
+26,C716,Business Communication,School of Business,4,5,3,"unclear_or_ambiguous_instructions, workload_or_scope_issues"
+27,D102,Financial Accounting,School of Business,3,18,3,missing_or_low_quality_materials
+28,D103,Intermediate Accounting I,School of Business,3,15,2,"missing_or_low_quality_materials, assessment_material_misalignment"
+29,C949,Data Structures and Algorithms I,School of Technology,3,12,3,"assessment_material_misalignment, missing_or_low_quality_materials"
+30,C960,Discrete Mathematics II,School of Technology,3,11,2,"assessment_material_misalignment, missing_or_low_quality_materials"
+31,D336,Business of IT - Applications,School of Technology,3,11,3,"missing_or_low_quality_materials, proctoring_or_exam_platform_issues, workflow_or_policy_barriers"
+32,D281,Linux Foundations,School of Technology,3,8,2,"proctoring_or_exam_platform_issues, missing_or_low_quality_materials"
+33,D351,Functions of Human Resource Management,School of Business,3,8,2,assessment_material_misalignment
+34,D315,Network and Security - Foundations,School of Technology,3,7,1,assessment_material_misalignment
+35,C190,Introduction to Biology,Leavitt School of Health; School of Business; School of Education; School of Technology,3,6,3,"evaluator_inconsistency_or_poor_feedback, instructor_or_support_unresponsiveness, workflow_or_policy_barriers"
+36,D268,Introduction to Communication: Connecting with Others,Leavitt School of Health; School of Business; School of Education; School of Technology,3,5,3,"unclear_or_ambiguous_instructions, grading_or_answer_key_or_process_issues, instructor_or_support_unresponsiveness"
+37,D363,Personal Finance,School of Business,3,5,3,"assessment_material_misalignment, grading_or_answer_key_or_process_issues"
+38,D388,Fundamentals of Spreadsheets and Data Presentations,School of Business; School of Technology,3,5,2,"platform_or_environment_failures, tooling_environment_misconfiguration_or_guidance"
+39,D464,Managing Operations,School of Business,3,5,3,"assessment_material_misalignment, instructor_or_support_unresponsiveness, platform_or_environment_failures"
+40,D596,The Data Analytics Journey,School of Technology,3,5,2,unclear_or_ambiguous_instructions
+41,C268,Spreadsheets,School of Business; School of Technology,3,4,2,"external_tool_dependency_risks, platform_or_environment_failures"
+42,C843,Managing Information Security,School of Technology,3,4,2,evaluator_inconsistency_or_poor_feedback
+43,D412,Network Analytics and Troubleshooting,School of Technology,3,4,3,"platform_or_environment_failures, unclear_or_ambiguous_instructions"
+44,D330,Data Systems Administration,School of Technology,3,3,2,assessment_material_misalignment
+45,D571,Psychopathology,Leavitt School of Health,3,3,3,"evaluator_inconsistency_or_poor_feedback, assessment_material_misalignment, missing_or_low_quality_materials"
+46,D659,Assessing and Monitoring Student Learning,School of Education,3,3,2,"missing_or_low_quality_materials, scheduling_or_simulation_availability_issues"
+47,D660,Instructional Technology and Online Pedagogy,School of Education,3,3,2,"unclear_or_ambiguous_instructions, evaluator_inconsistency_or_poor_feedback"
+48,C165,Integrated Physical Sciences,Leavitt School of Health; School of Business; School of Education; School of Technology,2,13,2,"assessment_material_misalignment, missing_or_low_quality_materials"
+49,D522,Python for IT Automation,School of Technology,2,11,2,"instructor_or_support_unresponsiveness, platform_or_environment_failures"
+50,D076,Finance Skills for Managers,School of Business,2,10,2,"assessment_material_misalignment, missing_or_low_quality_materials"
+51,D282,Cloud Foundations,School of Technology,2,10,2,"assessment_material_misalignment, missing_or_broken_resources"
+52,C723,Quantitative Analysis For Business,School of Business,2,9,2,"missing_or_broken_resources, workload_or_scope_issues"
+53,D334,Introduction to Cryptography,School of Technology,2,9,2,"assessment_material_misalignment, missing_or_low_quality_materials"
+54,D317,IT Applications,School of Technology,2,8,2,"assessment_material_misalignment, missing_or_low_quality_materials"
+55,D664,Learners and Learning Science,School of Education,2,8,2,"missing_or_low_quality_materials, unclear_or_ambiguous_instructions"
+56,C216,MBA Capstone,School of Business,2,6,2,"platform_or_environment_failures, tooling_environment_misconfiguration_or_guidance"
+57,C483,Principles of Management,Leavitt School of Health; School of Business; School of Technology,2,6,2,"assessment_material_misalignment, missing_or_low_quality_materials"
+58,D072,Fundamentals for Success in Business,School of Business,2,6,2,"grading_or_answer_key_or_process_issues, instructor_or_support_unresponsiveness"
+59,D286,Java Fundamentals,School of Technology,2,6,3,"platform_or_environment_failures, tooling_environment_misconfiguration_or_guidance, unclear_or_ambiguous_instructions"
+60,D322,Introduction to IT,School of Technology,2,6,1,assessment_material_misalignment
+61,C204,Management Communication,School of Business,2,5,2,"missing_or_broken_resources, tooling_environment_misconfiguration_or_guidance"
+62,C717,Business Ethics,Leavitt School of Health; School of Business; School of Technology,2,5,2,ai_detection_confusion_and_false_flags
+63,D564,Theories of Personality,Leavitt School of Health,2,5,2,"platform_or_environment_failures, workflow_or_policy_barriers"
+64,C959,Discrete Mathematics I,School of Technology,2,4,2,assessment_material_misalignment
+65,D279,User Interface Design,School of Technology,2,4,2,"tooling_environment_misconfiguration_or_guidance, unclear_or_ambiguous_instructions"
+66,D324,Business of IT - Project Management,School of Technology,2,4,2,"platform_or_environment_failures, unclear_or_ambiguous_instructions"
+67,D387,Advanced Java,School of Technology,2,4,2,tooling_environment_misconfiguration_or_guidance
+68,C715,Organizational Behavior,Leavitt School of Health; School of Business; School of Technology,2,3,2,"assessment_material_misalignment, missing_or_broken_resources"
+69,C773,User Interface Design,School of Technology,2,3,2,"unclear_or_ambiguous_instructions, workflow_or_policy_barriers"
+70,D078,Business Environment Applications I: Business Structures and Legal Environment,School of Business,2,3,2,"platform_or_environment_failures, unclear_or_ambiguous_instructions"
+71,D398,Introduction to Pharmacology,Leavitt School of Health,2,3,2,"assessment_material_misalignment, instructor_or_support_unresponsiveness"
+72,D486,"Governance, Risk, and Compliance",School of Technology,2,3,2,"missing_or_broken_resources, unclear_or_ambiguous_instructions"
+73,D599,Data Preparation and Exploration,School of Technology,2,3,2,"missing_or_low_quality_materials, unclear_or_ambiguous_instructions"
+74,D600,Statistical Data Mining,School of Technology,2,3,2,"missing_or_low_quality_materials, unclear_or_ambiguous_instructions"
+75,D635,Practices for Inclusive Classrooms,School of Education,2,3,2,"assessment_material_misalignment, unclear_or_ambiguous_instructions"
+76,D675,Elementary Literacy Methods,School of Education,2,3,2,"missing_or_low_quality_materials, unclear_or_ambiguous_instructions"
+77,D676,Early Literacy Methods,School of Education,2,3,2,"platform_or_environment_failures, scheduling_or_simulation_availability_issues"
+78,D774,Introduction to Business Accounting,School of Business,2,3,2,"missing_or_low_quality_materials, unclear_or_ambiguous_instructions"
+79,C816,Healthcare System Applications,Leavitt School of Health,2,2,2,"assessment_material_misalignment, evaluator_inconsistency_or_poor_feedback"
+80,C969,Software II – Advanced C#,School of Technology,2,2,3,tooling_environment_misconfiguration_or_guidance
+81,D100,Introduction to Spreadsheets,School of Business; School of Technology,2,2,2,"missing_or_low_quality_materials, platform_or_environment_failures"
+82,D270,Composition: Successful Self-Expression,Leavitt School of Health; School of Business; School of Education; School of Technology,2,2,2,"missing_or_broken_resources, missing_or_low_quality_materials"
+83,D284,Software Engineering,School of Technology,2,2,2,unclear_or_ambiguous_instructions
+84,D370,IT Leadership Foundations,School of Technology,2,2,2,"missing_or_broken_resources, platform_or_environment_failures"
+85,D663,The Professional Educator,School of Education,2,2,2,unclear_or_ambiguous_instructions
+86,D670,Elementary Literacy Methods,School of Education,2,2,2,"missing_or_low_quality_materials, unclear_or_ambiguous_instructions"
+87,D696,Foundations of Literacy Through Literature,School of Education,2,2,1,unclear_or_ambiguous_instructions
+88,QHT1,Business Management Tasks,School of Business,2,2,1,missing_or_broken_resources
+89,D216,Business Law for Accountants,School of Business,1,14,1,assessment_material_misalignment
+90,D265,Critical Thinking: Reason and Evidence,Leavitt School of Health; School of Business; School of Education; School of Technology,1,12,1,missing_or_low_quality_materials
+91,C957,Applied Algebra,Leavitt School of Health; School of Business; School of Technology,1,10,1,workflow_or_policy_barriers
+92,D099,Sales Management,School of Business,1,7,1,evaluator_inconsistency_or_poor_feedback
+93,D488,Cybersecurity Architecture and Engineering,School of Technology,1,7,1,platform_or_environment_failures
+94,C952,Computer Architecture,School of Technology,1,6,1,assessment_material_misalignment
+95,D075,Information Technology Management Essentials,School of Business,1,6,1,unclear_or_ambiguous_instructions
+96,C867,Scripting and Programming - Applications,School of Technology,1,5,1,unclear_or_ambiguous_instructions
+97,D325,Networks,School of Technology,1,5,2,workflow_or_policy_barriers
+98,D430,Fundamentals of Information Security,School of Technology,1,5,1,missing_or_low_quality_materials
+99,C722,Project Management,School of Business,1,4,1,missing_or_low_quality_materials
+100,C845,Information Systems Security,School of Technology,1,4,1,unclear_or_ambiguous_instructions
+101,C963,American Politics and the US Constitution,Leavitt School of Health; School of Business; School of Education; School of Technology,1,4,2,instructor_or_support_unresponsiveness
+102,D089,Principles of Economics,School of Business,1,4,1,assessment_material_misalignment
+103,C810,Foundations in Healthcare Data Management,Leavitt School of Health; School of Technology,1,3,1,evaluator_inconsistency_or_poor_feedback
+104,C958,Calculus I,School of Technology,1,3,1,workload_or_scope_issues
+105,D077,"Concepts in Marketing, Sales, and Customer Contact",School of Business,1,3,1,assessment_material_misalignment
+106,D184,Standards-Based Assessment,School of Education,1,3,1,assessment_material_misalignment
+107,D485,Cloud Security,School of Technology,1,3,1,platform_or_environment_failures
+108,D658,Planning Instructional Strategies for Meaningful Learning,School of Education,1,3,1,unclear_or_ambiguous_instructions
+109,D662,Personalized Learning for Inclusive Classrooms,School of Education,1,3,1,unclear_or_ambiguous_instructions
+110,D775,Introduction to Business Finance,School of Business,1,3,1,missing_or_low_quality_materials
+111,AFT2,Accreditation Audit,School of Business,1,2,1,unclear_or_ambiguous_instructions
+112,C180,Introduction to Psychology,Leavitt School of Health; School of Business; School of Technology,1,2,1,unclear_or_ambiguous_instructions
+113,C237,Taxation I,School of Business,1,2,1,assessment_material_misalignment
+114,C803,Data Analytics and Information Governance,Leavitt School of Health; School of Technology,1,2,1,unclear_or_ambiguous_instructions
+115,C954,Information Technology Management,School of Technology,1,2,1,assessment_material_misalignment
+116,D081,Innovative and Strategic Thinking,School of Business,1,2,1,external_tool_dependency_risks
+117,D255,Professional Practice Experience I: Technical,School of Business,1,2,1,unclear_or_ambiguous_instructions
+118,D355,Total Rewards,School of Business,1,2,1,platform_or_environment_failures
+119,D389,Learning Strategies in Higher Education,Leavitt School of Health,1,2,2,unclear_or_ambiguous_instructions
+120,D432,HR Compliance and Employee Relations,School of Business,1,2,1,missing_or_broken_resources
+121,D467,Exploring Data,School of Business,1,2,1,assessment_material_misalignment
+122,D481,Security Foundations,School of Technology,1,2,2,workflow_or_policy_barriers
+123,D482,Secure Network Design,School of Technology,1,2,1,missing_or_low_quality_materials
+124,D489,Cybersecurity Management,School of Technology,1,2,1,unclear_or_ambiguous_instructions
+125,D490,Cybersecurity Graduate Capstone,School of Technology,1,2,1,evaluator_inconsistency_or_poor_feedback
+126,D553,Data Analytics for Accountants II,School of Business,1,2,1,grading_or_answer_key_or_process_issues
+127,D598,Analytics Programming,School of Technology,1,2,1,evaluator_inconsistency_or_poor_feedback
+128,D685,Practical Applications of Prompt,School of Technology,1,2,1,platform_or_environment_failures
+129,D688,Foundations of Literacy Through Literature,School of Education,1,2,2,evaluator_inconsistency_or_poor_feedback
+130,MGT2,MGT2 – IT Project Management,School of Business,1,2,1,unclear_or_ambiguous_instructions
+131,C210,Management and Leadership Capstone,School of Business,1,1,1,tooling_environment_misconfiguration_or_guidance
+132,C212,Marketing,School of Business,1,1,1,unclear_or_ambiguous_instructions
+133,C458,"Health, Fitness, and Wellness",Leavitt School of Health; School of Business; School of Education; School of Technology,1,1,1,assessment_material_misalignment
+134,C783,Project Management,School of Technology,1,1,1,evaluator_inconsistency_or_poor_feedback
+135,C927,Managing Technology Operations and Innovation,School of Technology,1,1,1,missing_or_low_quality_materials
+136,C948,Technical Communication,School of Technology,1,1,1,evaluator_inconsistency_or_poor_feedback
+137,D203,Fundamentals of Anatomy and Physiology,Leavitt School of Health,1,1,1,proctoring_or_exam_platform_issues
+138,D313,Anatomy and Physiology II with Lab,Leavitt School of Health,1,1,1,assessment_material_misalignment
+139,D329,Network and Security - Applications,School of Technology,1,1,1,workflow_or_policy_barriers
+140,D378,Digital Marketing Science,School of Business,1,1,1,assessment_material_misalignment
+141,D413,Telecomm and Wireless Communications,School of Technology,1,1,1,assessment_material_misalignment
+142,D422,Discrete Math: Algorithms and Cryptography,School of Technology,1,1,1,missing_or_low_quality_materials
+143,D465,Data Applications,School of Business,1,1,1,assessment_material_misalignment
+144,D479,User Experience Design,School of Technology,1,1,1,workflow_or_policy_barriers
+145,D492,Data Analytics - Applications,School of Technology,1,1,1,platform_or_environment_failures
+146,D493,D493 – Scripting and Programming - Applications,School of Technology,1,1,1,missing_or_low_quality_materials
+147,D546,Healthcare Policy and Governance,School of Business,1,1,1,evaluator_inconsistency_or_poor_feedback
+148,D547,Evidence-Based Healthcare Administration,School of Business,1,1,1,unclear_or_ambiguous_instructions
+149,D554,Advanced Financial Accounting I,School of Business,1,1,1,missing_or_low_quality_materials
+150,D557,Corporate Taxation,School of Business,1,1,1,missing_or_low_quality_materials
+151,D560,Internal Auditing I,School of Business,1,1,1,assessment_material_misalignment
+152,D572,Career and Lifelong Learning,Leavitt School of Health,1,1,1,unclear_or_ambiguous_instructions
+153,D573,Understanding Substance Abuse & Addiction,Leavitt School of Health,1,1,2,"evaluator_inconsistency_or_poor_feedback, unclear_or_ambiguous_instructions"
+154,D577,Team Dynamics,Leavitt School of Health,1,1,1,scheduling_or_simulation_availability_issues
+155,D601,Data Storytelling for Varied Audiences,School of Technology,1,1,1,evaluator_inconsistency_or_poor_feedback
+156,D603,Machine Learning,School of Technology,1,1,1,unclear_or_ambiguous_instructions
+157,D604,Advanced Analytics,School of Technology,1,1,3,"assessment_material_misalignment, tooling_environment_misconfiguration_or_guidance, unclear_or_ambiguous_instructions"
+158,D607,Cloud Databases,School of Technology,1,1,1,unclear_or_ambiguous_instructions
+159,D608,Data Processing,School of Technology,1,1,1,missing_or_broken_resources
+160,D619,Global Health,Leavitt School of Health,1,1,1,missing_or_low_quality_materials
+161,D644,Foundations of Strategic Communications,School of Business,1,1,1,assessment_material_misalignment
+162,D645,Crafting a Communications Strategy Through Research and Data Insights,School of Business,1,1,2,"missing_or_low_quality_materials, unclear_or_ambiguous_instructions"
+163,D652,Design Applications,School of Business,1,1,1,evaluator_inconsistency_or_poor_feedback
+164,D677,Elementary Literacy Curriculum,School of Education,1,1,1,assessment_material_misalignment
+165,D689,Literacy Assessment and Interventions,School of Education,1,1,1,workflow_or_policy_barriers
+166,D697,Literacy Assessment and Interventions,School of Education,1,1,1,missing_or_broken_resources
+167,D756,Individualized Education Plan (IEP) Collaboration and Communication with Parents and School Staff,School of Education,1,1,1,platform_or_environment_failures
+168,D776,Healthcare Leadership and Community Engagement,School of Business,1,1,1,missing_or_low_quality_materials
+169,D848,General Earth Science I Lab,School of Education,1,1,1,external_tool_dependency_risks
+170,D904,Algebra for Secondary Mathematics Teaching,School of Education,1,1,1,proctoring_or_exam_platform_issues
+171,C955,Applied Probability and Statistics,Leavitt School of Health; School of Business; School of Education; School of Technology,0,15,0,
+172,C215,Operations Management,School of Business,0,10,0,
+173,D316,IT Foundations,School of Technology,0,7,0,
+174,D366,Financial Statement Analysis,School of Business,0,6,0,
+175,C182,Introduction to IT,School of Business; School of Technology,0,5,0,
+176,C720,Operations and Supply Chain Management,School of Business,0,5,0,
+177,D431,Digital Forensics in Cybersecurity,School of Technology,0,5,0,
+178,D661,Creating Positive Learning Environments,School of Education,0,4,0,
+179,D699,Elementary Mathematics Curriculum,School of Education,0,4,0,
+180,C202,Managing Human Capital,School of Business,0,3,0,
+181,C724,Information Systems Management,School of Business; School of Technology,0,3,0,
+182,D372,Introduction to Systems Thinking,School of Technology,0,3,0,
+183,D435,HR Technology and People Analytics,School of Business,0,3,0,
+184,D570,Cognitive Psychology,Leavitt School of Health,0,3,0,
+185,D582,Introduction to Statistics for Research,Leavitt School of Health,0,3,0,
+186,D684,Introduction to Computer Science,School of Technology,0,3,0,
+187,D686,Operating Systems for Computer Scientists,School of Technology,0,3,0,
+188,D772,Statistical Data Literacy,School of Education,0,3,0,
+189,C100,Introduction to Humanities,Leavitt School of Health; School of Business; School of Education; School of Technology,0,2,0,
+190,C201,Business Acumen,School of Business,0,2,0,
+191,C218,"MBA, Information Technology Management Capstone",School of Business,0,2,0,
+192,C273,Introduction to Sociology,Leavitt School of Health; School of Business,0,2,0,
+193,C844,Emerging Technologies in Cybersecurity,School of Technology,0,2,0,
+194,D174,Marketing Management,School of Business,0,2,0,
+195,D253,Values-Based Leadership,School of Business,0,2,0,
+196,D491,Introduction to Analytics,School of Technology,0,2,0,
+197,D545,"Healthcare Administration Evolution, Systems, and Leadership",School of Business,0,2,0,
+198,D691,Elementary Mathematics Curriculum,School of Education,0,2,0,
+199,D771,Quantitative Literacy,School of Education,0,2,0,
+200,C168,Critical Thinking and Logic,Leavitt School of Health; School of Business; School of Education; School of Technology,0,1,0,
+201,C172,Network and Security - Foundations,School of Business; School of Technology,0,1,0,
+202,C206,Ethical Leadership,School of Business,0,1,0,
+203,C464,Introduction to Communication,Leavitt School of Health; School of Business; School of Education; School of Technology,0,1,0,
+204,C484,Organizational Behavior and Leadership,School of Technology,0,1,0,
+205,C721,Change Management,School of Business; School of Technology,0,1,0,
+206,C805,Pathophysiology,Leavitt School of Health; School of Technology,0,1,0,
+207,C962,Current and Emerging Technology,School of Technology,0,1,0,
+208,C968,Software I – C#,School of Technology,0,1,0,
+209,D082,Emotional and Cultural Intelligence,School of Business,0,1,0,
+210,D198,Global Arts and Humanities,Leavitt School of Health; School of Business; School of Education; School of Technology,0,1,0,
+211,D235,Interprofessional Communication and Leadership in Healthcare,Leavitt School of Health,0,1,0,
+212,D236,Pathophysiology,Leavitt School of Health,0,1,0,
+213,D246,Influential Communication through Visual Design and Storytelling,Leavitt School of Health; School of Business,0,1,0,
+214,D250,Governmental and Nonprofit Accounting,School of Business,0,1,0,
+215,D251,Advanced Auditing,School of Business,0,1,0,
+216,D267,US History: Stories of American Democracy,School of Business; School of Education,0,1,0,
+217,D269,Composition: Writing with a Strategy,Leavitt School of Health; School of Business; School of Education; School of Technology,0,1,0,
+218,D294,Learning Technology,School of Education; School of Technology,0,1,0,
+219,D318,Cloud Applications,School of Technology,0,1,0,
+220,D320,Managing Cloud Security,School of Technology,0,1,0,
+221,D326,Advanced Data Management,School of Technology,0,1,0,
+222,D337,Internet of Things (IoT) and Infrastructure,School of Technology,0,1,0,
+223,D339,Technical Communication,School of Technology,0,1,0,
+224,D382,Digital Marketing Analytics,School of Business,0,1,0,
+225,D384,Marketing Experiential Capstone,School of Business,0,1,0,
+226,D386,Hardware and Operating Systems Essentials,School of Technology,0,1,0,
+227,D391,Healthcare Ecosystems,Leavitt School of Health,0,1,0,
+228,D414,Cyber Operations Fundamentals,School of Technology,0,1,0,
+229,D421,Discrete Math: Functions and Relations,School of Technology,0,1,0,
+230,D425,Introduction to Chemistry,Leavitt School of Health,0,1,0,
+231,D434,Future Focused Total Rewards,School of Business,0,1,0,
+232,D484,Penetration Testing,School of Technology,0,1,0,
+233,D550,Ethics for Accountants,School of Business,0,1,0,
+234,D551,Fraud and Forensic Accounting,School of Business,0,1,0,
+235,D567,Social Psychology,Leavitt School of Health,0,1,0,
+236,D583,Foundations in Public Health,Leavitt School of Health,0,1,0,
+237,D671,Elementary Science Curriculum,School of Education,0,1,0,
+238,D681,Elementary Social Studies Methods,School of Education,0,1,0,
+239,D692,Early Mathematics Methods and Interventions,School of Education,0,1,0,
+240,D779,Software Product Design and Requirement Engineering,School of Technology,0,1,0,
+241,D802,Deep Learning,School of Technology,0,1,0,
+242,D807,General Secondary Methods,School of Education,0,1,0,

@@ -1,7 +1,30 @@
 # Changelog
 
 All notable updates to the **WGU Reddit Analyzer** project are recorded here.  
-This log documents the evolution from the original prototype through the structured benchmark pipeline.
+This log documents the evolution from the original prototype through the reproducible, benchmarked LLM pipeline.
+
+---
+
+## [v1.4.0] – 2025-12-10  
+### Schema-First Classification and Statistically Gated Prompt Selection
+
+#### Added
+- Strict, versioned schema enforcement at every LLM boundary
+- Centralized schema definitions for Stage 1–3 outputs
+- Explicit error artifacts for schema validation failures, with no silent coercion or drops
+- Paired exact McNemar test module for prompt comparison on frozen DEV and TEST splits
+- Prompt adoption policy treating prompt changes as model changes for evaluation purposes
+- Extended run manifests recording schema version, prompt version, and acceptance decisions for all benchmarked runs
+
+#### Changed
+- Refactored all LLM calls from free-form or semi-structured output to schema-constrained classification
+- Prompt iteration workflow updated to require statistical validation before promotion
+- Benchmarking made fully comparable across runs through frozen splits and enforced label contracts
+- Downstream aggregation hardened against prompt drift and output reinterpretation
+
+#### Notes
+- This refactor formalizes a schema-first, auditable LLM-as-classifier lifecycle
+- Analytical goals did not change; reliability, reproducibility, and auditability were materially improved
 
 ---
 
@@ -53,5 +76,3 @@ This log documents the evolution from the original prototype through the structu
 - Automatic sentiment filtering and course-level feedback summaries
 - Generated downloadable course reports and visuals
 - Core directories: `data/`, `scripts/`, `outputs/`, `utils/`, `visuals/`
-
----

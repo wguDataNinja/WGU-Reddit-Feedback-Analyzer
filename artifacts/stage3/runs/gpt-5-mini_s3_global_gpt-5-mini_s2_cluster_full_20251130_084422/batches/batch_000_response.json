@@ -1,0 +1,149 @@
+{
+  "global_clusters": [
+    {
+      "provisional_label": "assessment_material_misalignment",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Course practice materials, study guides, PAs, or readings are outdated or misaligned with the proctored/Objective Assessment (content, question styles, or scope), causing students to encounter unexpected or out‑of‑scope OA questions.",
+      "member_cluster_ids": [
+        "C214_1",
+        "D426_1",
+        "D196_1",
+        "D315_1",
+        "D330_1",
+        "D333_1",
+        "D427_2",
+        "C777_1",
+        "C949_1",
+        "C959_1",
+        "C960_1",
+        "D080_1",
+        "D101_2",
+        "D278_2",
+        "D322_1",
+        "D335_2",
+        "D351_1",
+        "D487_1"
+      ]
+    },
+    {
+      "provisional_label": "unclear_or_ambiguous_instructions",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Assignment or submission instructions, rubrics, and assessment expectations are vague, inconsistent, or missing examples, leaving students unsure what to deliver or how to format work.",
+      "member_cluster_ids": [
+        "D197_1",
+        "D287_1",
+        "D335_1",
+        "D596_1",
+        "D602_1",
+        "D660_1",
+        "C716_1",
+        "D268_1",
+        "D280_2",
+        "D333_2",
+        "D597_1"
+      ]
+    },
+    {
+      "provisional_label": "platform_or_environment_failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Platform, autograder, proctoring, or system failures (access errors, autograder/test harness bugs, missing displays) prevent launching assessments, submitting work, or cause correct work to be marked incorrect.",
+      "member_cluster_ids": [
+        "D427_1",
+        "C777_3",
+        "D196_2",
+        "D197_2",
+        "D276_1",
+        "D286_1",
+        "D388_1",
+        "D483_1"
+      ]
+    },
+    {
+      "provisional_label": "evaluator_inconsistency_or_poor_feedback",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Human evaluators or course instructors provide inconsistent, contradictory, vague, or unhelpful feedback and apply rubrics unevenly across submissions.",
+      "member_cluster_ids": [
+        "C207_1",
+        "C843_1",
+        "C843_2",
+        "D277_1",
+        "D571_1"
+      ]
+    },
+    {
+      "provisional_label": "missing_or_low_quality_materials",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Core course materials, readings, or embedded media are missing, low quality, poorly organized, or focused narrowly (definitions only) without scenario/examples, reducing student preparedness.",
+      "member_cluster_ids": [
+        "D101_1",
+        "C777_2",
+        "D103_1",
+        "D278_1",
+        "D659_1"
+      ]
+    },
+    {
+      "provisional_label": "tooling_environment_misconfiguration_or_guidance",
+      "normalized_issue_label": "tooling_environment_misconfiguration_or_guidance",
+      "short_description": "Required runtimes, VM/connector configurations, dependencies, or CI/evaluator environment settings are undocumented, incompatible, or insufficiently explained, causing setup and runtime failures.",
+      "member_cluster_ids": [
+        "D288_1",
+        "C969_1",
+        "D387_1",
+        "D387_2"
+      ]
+    },
+    {
+      "provisional_label": "missing_or_broken_resources",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Course-provided resources (starter code, seed data, checkout backends, videos, form files) are missing, broken, or outdated, preventing students from completing tasks as instructed.",
+      "member_cluster_ids": [
+        "D288_2",
+        "D197_3",
+        "D280_1",
+        "D287_3"
+      ]
+    },
+    {
+      "provisional_label": "grading_or_answer_key_or_process_issues",
+      "normalized_issue_label": "grading_or_answer_key_or_process_issues",
+      "short_description": "Answer keys, grading logic, or grader processes are incorrect or outdated, causing correct student answers or code to be marked wrong.",
+      "member_cluster_ids": [
+        "D385_1"
+      ]
+    },
+    {
+      "provisional_label": "instructor_or_support_unresponsiveness",
+      "normalized_issue_label": "instructor_or_support_unresponsiveness",
+      "short_description": "Instructors, approvers, or course support are slow or unresponsive to student requests (approvals, questions), creating blockers and missed deadlines.",
+      "member_cluster_ids": [
+        "C211_1"
+      ]
+    },
+    {
+      "provisional_label": "ai_detection_confusion_and_false_flags",
+      "normalized_issue_label": "ai_detection_confusion_and_false_flags",
+      "short_description": "Similarity/AI-detection tools return inconsistent or unclear metrics and the course provides insufficient guidance on how results are interpreted or used.",
+      "member_cluster_ids": [
+        "C717_1"
+      ]
+    },
+    {
+      "provisional_label": "external_tool_dependency_risks",
+      "normalized_issue_label": "external_tool_dependency_risks",
+      "short_description": "Course files rely on external tool features (e.g., Excel macros) or platform-specific behaviors that trigger antivirus, compatibility, or runtime issues for some student environments.",
+      "member_cluster_ids": [
+        "C268_1"
+      ]
+    },
+    {
+      "provisional_label": "proctoring_or_exam_platform_issues",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Proctoring platform checks, queues, or launch workflows are unreliable or inaccurate, preventing students from starting scheduled exams.",
+      "member_cluster_ids": [
+        "D281_1"
+      ]
+    }
+  ],
+  "unassigned_clusters": []
+}

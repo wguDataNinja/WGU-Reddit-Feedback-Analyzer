@@ -44,6 +44,7 @@ from typing import List, Optional, Tuple
 
 from wgu_reddit_analyzer.utils.logging_utils import get_logger
 from wgu_reddit_analyzer.utils.token_utils import count_tokens
+from wgu_reddit_analyzer.core.schema_definitions import SCHEMA_VERSION
 
 logger = get_logger("length_profile")
 
@@ -255,6 +256,7 @@ def write_run_manifest(
     summary_json: Path,
 ) -> None:
     manifest = {
+        "schema_version": SCHEMA_VERSION,
         "stage": "length_profile",
         "run_id": run_dir.name,
         "timestamp_utc": _now_utc_iso(),

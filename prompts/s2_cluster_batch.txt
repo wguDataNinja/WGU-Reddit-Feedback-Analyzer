@@ -1,0 +1,77 @@
+You will receive social media posts about university course {course_code} – {course_title}.
+
+Your task is to cluster the posts by their underlying, course-related pain points.
+
+A pain point is a specific, actionable issue in the course’s design, delivery, instructions, materials, or support—a friction that WGU can realistically fix or improve.
+Do not group based on general frustration, motivation, or personal struggle.
+Cluster only the actionable, course-side issues described in the summaries/snippets.
+
+Your responsibilities:
+	1.	Cluster posts by shared root-cause issue, from the perspective of WGU course designers.
+	2.	Focus only on actionable pain points (unclear instructions, outdated materials, rubric mismatches, broken tools, missing resources, etc.).
+	3.	Produce clean JSON only, strictly following the structure below.
+	4.	Assign cluster_ids using the format: COURSECODE_INT (example: C211_1).
+	5.	Sort clusters by largest size first.
+	6.	A post may appear in multiple clusters if appropriate.
+	7.	Output raw JSON only — no explanations, no commentary.
+
+⸻
+
+REQUIRED JSON STRUCTURE
+
+{
+  "courses": [
+    {
+      "course_code": "COURSE_CODE",
+      "course_title": "COURSE_TITLE",
+      "total_posts": 0,
+      "clusters": [
+        {
+          "cluster_id": "COURSECODE_1",
+          "issue_summary": "short root-cause description",
+          "num_posts": 0,
+          "post_ids": [
+            "post_id_1",
+            "post_id_2"
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+
+⸻
+
+EXAMPLE OUTPUT
+
+{
+  "courses": [
+    {
+      "course_code": "C211",
+      "course_title": "Scripting and Programming – Applications",
+      "total_posts": 5,
+      "clusters": [
+        {
+          "cluster_id": "C211_1",
+          "issue_summary": "no instructor response for approvals or passwords",
+          "num_posts": 3,
+          "post_ids": ["1ci7efm", "1e12ncu", "1i5z4ev"]
+        },
+        {
+          "cluster_id": "C211_2",
+          "issue_summary": "OA result stuck, blocking progress",
+          "num_posts": 1,
+          "post_ids": ["1lu24vq"]
+        },
+        {
+          "cluster_id": "C211_3",
+          "issue_summary": "PA doesn’t match OAs",
+          "num_posts": 1,
+          "post_ids": ["1m2hl4r"]
+        }
+      ]
+    }
+  ]
+}
+

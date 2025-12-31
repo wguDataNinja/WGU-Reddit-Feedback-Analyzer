@@ -1,0 +1,1025 @@
+{
+  "global_clusters": [
+    {
+      "provisional_label": "assessment_material_misalignment",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Course practice materials, study guides, PAs, or readings are outdated or misaligned with the proctored/Objective Assessment (content, question styles, or scope), causing students to encounter unexpected or out‑of‑scope OA questions.",
+      "member_cluster_ids": [
+        "C214_1",
+        "C777_1",
+        "C949_1",
+        "C959_1",
+        "C960_1",
+        "D080_1",
+        "D101_2",
+        "D196_1",
+        "D278_2",
+        "D282_2",
+        "D313_1",
+        "D315_1",
+        "D317_1",
+        "D322_1",
+        "D330_1",
+        "D330_2",
+        "D333_1",
+        "D334_1",
+        "D335_2",
+        "D351_1",
+        "D351_2",
+        "D363_2",
+        "D363_3",
+        "D378_1",
+        "D398_1",
+        "D413_1",
+        "D426_1",
+        "D427_2",
+        "D487_1"
+      ],
+      "total_num_posts": 57,
+      "num_clusters": 29,
+      "num_courses": 26,
+      "global_cluster_id": "G001"
+    },
+    {
+      "provisional_label": "unclear_or_ambiguous_instructions",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Assignment or submission instructions, rubrics, and assessment expectations are vague, inconsistent, or missing examples, leaving students unsure what to deliver or how to format work.",
+      "member_cluster_ids": [
+        "C716_1",
+        "D197_1",
+        "D268_1",
+        "D279_1",
+        "D280_2",
+        "D284_1",
+        "D284_2",
+        "D286_2",
+        "D287_1",
+        "D288_3",
+        "D324_2",
+        "D333_2",
+        "D335_1",
+        "D385_2",
+        "D389_1",
+        "D389_2",
+        "D412_1",
+        "D427_6",
+        "D596_1",
+        "D597_1",
+        "D602_1",
+        "D660_1"
+      ],
+      "total_num_posts": 44,
+      "num_clusters": 22,
+      "num_courses": 20,
+      "global_cluster_id": "G002"
+    },
+    {
+      "provisional_label": "platform_or_environment_failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Platform, autograder, proctoring, or system failures (access errors, autograder/test harness bugs, missing displays) prevent launching assessments, submitting work, or cause correct work to be marked incorrect.",
+      "member_cluster_ids": [
+        "C777_3",
+        "D196_2",
+        "D197_2",
+        "D276_1",
+        "D286_1",
+        "D288_5",
+        "D324_1",
+        "D355_1",
+        "D370_2",
+        "D388_1",
+        "D412_2",
+        "D412_3",
+        "D426_3",
+        "D427_1",
+        "D427_4",
+        "D483_1"
+      ],
+      "total_num_posts": 25,
+      "num_clusters": 16,
+      "num_courses": 14,
+      "global_cluster_id": "G003"
+    },
+    {
+      "provisional_label": "missing_or_low_quality_materials",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Core course materials, readings, or embedded media are missing, low quality, poorly organized, or focused narrowly (definitions only) without scenario/examples, reducing student preparedness.",
+      "member_cluster_ids": [
+        "C777_2",
+        "D101_1",
+        "D103_1",
+        "D278_1",
+        "D281_2",
+        "D287_4",
+        "D317_2",
+        "D334_2",
+        "D336_3",
+        "D422_1",
+        "D426_2",
+        "D430_1",
+        "D659_1"
+      ],
+      "total_num_posts": 19,
+      "num_clusters": 13,
+      "num_courses": 13,
+      "global_cluster_id": "G004"
+    },
+    {
+      "provisional_label": "Ambiguous or conflicting assignment and assessment instructions",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Instructions, rubrics, and templates are ambiguous, conflicting, or missing detail (scope, required artifacts, formats, or steps), causing students to misinterpret what to submit.",
+      "member_cluster_ids": [
+        "AFT2_1",
+        "C180_1",
+        "C200_3",
+        "C212_1",
+        "C716_2",
+        "C773_1",
+        "C803_1",
+        "C845_1",
+        "C867_1",
+        "D664_1",
+        "D675_1",
+        "D696_1"
+      ],
+      "total_num_posts": 15,
+      "num_clusters": 12,
+      "num_courses": 12,
+      "global_cluster_id": "G005"
+    },
+    {
+      "provisional_label": "Unclear or conflicting instructions and rubrics",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Instructions, rubrics, or task guidance are ambiguous, contradictory, or scattered across locations (including unclear submission formats, scope, required artifacts, or unexplained acronyms), causing students to submit incorrect work or be unsure how to comply.",
+      "member_cluster_ids": [
+        "D483_2",
+        "D483_3",
+        "D486_1",
+        "D487_3",
+        "D489_1",
+        "D547_1",
+        "D572_1",
+        "D573_1",
+        "D596_2",
+        "D599_2",
+        "D600_1",
+        "D603_1",
+        "D604_1",
+        "D607_1",
+        "D635_1"
+      ],
+      "total_num_posts": 15,
+      "num_clusters": 15,
+      "num_courses": 14,
+      "global_cluster_id": "G006"
+    },
+    {
+      "provisional_label": "tooling_environment_misconfiguration_or_guidance",
+      "normalized_issue_label": "tooling_environment_misconfiguration_or_guidance",
+      "short_description": "Required runtimes, VM/connector configurations, dependencies, or CI/evaluator environment settings are undocumented, incompatible, or insufficiently explained, causing setup and runtime failures.",
+      "member_cluster_ids": [
+        "C969_1",
+        "D279_2",
+        "D280_3",
+        "D286_3",
+        "D287_2",
+        "D288_1",
+        "D387_1",
+        "D387_2",
+        "D388_2"
+      ],
+      "total_num_posts": 14,
+      "num_clusters": 9,
+      "num_courses": 8,
+      "global_cluster_id": "G007"
+    },
+    {
+      "provisional_label": "evaluator_inconsistency_or_poor_feedback",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Human evaluators or course instructors provide inconsistent, contradictory, vague, or unhelpful feedback and apply rubrics unevenly across submissions.",
+      "member_cluster_ids": [
+        "C207_1",
+        "C843_1",
+        "C843_2",
+        "D277_1",
+        "D287_5",
+        "D335_3",
+        "D571_1"
+      ],
+      "total_num_posts": 13,
+      "num_clusters": 7,
+      "num_courses": 6,
+      "global_cluster_id": "G008"
+    },
+    {
+      "provisional_label": "missing_or_broken_resources",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Course-provided resources (starter code, seed data, checkout backends, videos, form files) are missing, broken, or outdated, preventing students from completing tasks as instructed.",
+      "member_cluster_ids": [
+        "D197_3",
+        "D280_1",
+        "D282_1",
+        "D287_3",
+        "D288_2",
+        "D288_4",
+        "D370_1",
+        "D427_5"
+      ],
+      "total_num_posts": 13,
+      "num_clusters": 8,
+      "num_courses": 7,
+      "global_cluster_id": "G009"
+    },
+    {
+      "provisional_label": "Assessments not aligned with taught materials or objectives",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Assessment content, practice items, or test versions are inconsistent with course materials or learning objectives, causing unpreparedness or unequal experiences.",
+      "member_cluster_ids": [
+        "C949_3",
+        "C952_1",
+        "C954_1",
+        "C959_2",
+        "D076_1",
+        "D077_1",
+        "D080_2",
+        "D089_1",
+        "D103_2",
+        "D184_1",
+        "D196_3",
+        "D216_1"
+      ],
+      "total_num_posts": 12,
+      "num_clusters": 12,
+      "num_courses": 12,
+      "global_cluster_id": "G010"
+    },
+    {
+      "provisional_label": "Missing, scattered, or low-quality learning materials",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Course readings, videos, practice items, or supplemental resources are missing, disorganized, outdated, or insufficiently detailed to prepare students.",
+      "member_cluster_ids": [
+        "C949_2",
+        "C960_2",
+        "D076_2",
+        "D100_1",
+        "D102_1",
+        "D102_2",
+        "D102_3",
+        "D265_1",
+        "D270_2",
+        "D276_3"
+      ],
+      "total_num_posts": 10,
+      "num_clusters": 10,
+      "num_courses": 8,
+      "global_cluster_id": "G011"
+    },
+    {
+      "provisional_label": "Assessment and materials misalignment (OA/PA/rubric mismatch)",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Assessments, pre-assessments, rubrics, or study materials do not align (OA vs PA, pretest vs OA, rubric vs required tasks), producing unexpected content or criteria on graded assessments.",
+      "member_cluster_ids": [
+        "D464_1",
+        "D465_1",
+        "D467_1",
+        "D483_4",
+        "D560_1",
+        "D571_2",
+        "D604_2",
+        "D635_2",
+        "D644_1"
+      ],
+      "total_num_posts": 9,
+      "num_clusters": 9,
+      "num_courses": 9,
+      "global_cluster_id": "G012"
+    },
+    {
+      "provisional_label": "Broken, missing, or inaccessible required resources",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Required files, links, study guides, or platform-hosted materials are missing, broken, inaccessible, or not provided, preventing completion of tasks.",
+      "member_cluster_ids": [
+        "C200_4",
+        "C204_2",
+        "C213_4",
+        "C214_3",
+        "C715_2",
+        "C723_1",
+        "C777_4",
+        "QHT1_1"
+      ],
+      "total_num_posts": 9,
+      "num_clusters": 8,
+      "num_courses": 8,
+      "global_cluster_id": "G013"
+    },
+    {
+      "provisional_label": "Practice and course materials not aligned to assessments",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Practice items, quizzes, pre-assessments, or study materials are not representative of objective assessments in content, format, or scope, leaving students underprepared.",
+      "member_cluster_ids": [
+        "C165_1",
+        "C207_2",
+        "C211_4",
+        "C213_1",
+        "C237_1",
+        "C458_1",
+        "C483_1",
+        "C715_1",
+        "C816_2"
+      ],
+      "total_num_posts": 9,
+      "num_clusters": 9,
+      "num_courses": 9,
+      "global_cluster_id": "G014"
+    },
+    {
+      "provisional_label": "Ambiguous or incomplete instructions and prompts",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Assignment and assessment instructions, prompts, and expectations are unclear or incomplete (format, required elements, citation rules, scope), causing students to submit incorrectly or be returned.",
+      "member_cluster_ids": [
+        "D645_1",
+        "D658_1",
+        "D662_1",
+        "D663_1",
+        "D663_2",
+        "D670_2",
+        "D774_2",
+        "MGT2_1"
+      ],
+      "total_num_posts": 8,
+      "num_clusters": 8,
+      "num_courses": 7,
+      "global_cluster_id": "G015"
+    },
+    {
+      "provisional_label": "Low-quality or insufficient course materials",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Course content (text, examples, templates) is outdated, poorly written, incomplete, or otherwise insufficient to teach required concepts.",
+      "member_cluster_ids": [
+        "C165_2",
+        "C483_2",
+        "C722_1",
+        "C927_1",
+        "D664_2",
+        "D675_2"
+      ],
+      "total_num_posts": 8,
+      "num_clusters": 6,
+      "num_courses": 6,
+      "global_cluster_id": "G016"
+    },
+    {
+      "provisional_label": "Low-quality, missing, or poorly organized course materials",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Course content or supporting materials are incomplete, low-quality, inconsistent, or poorly organized (including theoretical videos that contradict examples, missing supplemental resources, or unclear placement of attachments).",
+      "member_cluster_ids": [
+        "D482_1",
+        "D493_1",
+        "D554_1",
+        "D557_1",
+        "D571_3",
+        "D599_1",
+        "D600_2",
+        "D619_1"
+      ],
+      "total_num_posts": 8,
+      "num_clusters": 8,
+      "num_courses": 8,
+      "global_cluster_id": "G017"
+    },
+    {
+      "provisional_label": "Platform, lab, and assessment system failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Technical failures or outages in labs, assessment platforms, or course environments (broken labs, slow/unresponsive environments, permission bugs, platform reporting errors, access failures) prevent students from completing or submitting work.",
+      "member_cluster_ids": [
+        "D464_2",
+        "D485_1",
+        "D488_1",
+        "D492_1",
+        "D522_1",
+        "D564_2",
+        "D597_3"
+      ],
+      "total_num_posts": 7,
+      "num_clusters": 7,
+      "num_courses": 7,
+      "global_cluster_id": "G018"
+    },
+    {
+      "provisional_label": "Mentor/evaluator unavailability or poor responsiveness",
+      "normalized_issue_label": "instructor_or_support_unresponsiveness",
+      "short_description": "Mentors, instructors, or support resources fail to communicate, respond, or provide expected help, or evaluators exceed promised turnaround times.",
+      "member_cluster_ids": [
+        "C963_1",
+        "C963_2",
+        "D072_1",
+        "D268_3",
+        "D277_5",
+        "D277_6"
+      ],
+      "total_num_posts": 6,
+      "num_clusters": 6,
+      "num_courses": 4,
+      "global_cluster_id": "G019"
+    },
+    {
+      "provisional_label": "Ambiguous or unclear instructions and assignment wording",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Task or assignment wording, submission instructions, and project guidelines are vague or poorly worded, leaving students unsure what is required.",
+      "member_cluster_ids": [
+        "D075_1",
+        "D078_1",
+        "D255_1",
+        "D276_4",
+        "D277_4"
+      ],
+      "total_num_posts": 5,
+      "num_clusters": 5,
+      "num_courses": 5,
+      "global_cluster_id": "G020"
+    },
+    {
+      "provisional_label": "Inconsistent or non-actionable evaluator feedback / rubric application",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Evaluators misapply rubrics, provide vague or non-actionable feedback, or inconsistently grade/rescore resubmissions, preventing effective revision.",
+      "member_cluster_ids": [
+        "C190_3",
+        "C200_1",
+        "C783_1",
+        "C810_1",
+        "C816_1"
+      ],
+      "total_num_posts": 5,
+      "num_clusters": 5,
+      "num_courses": 5,
+      "global_cluster_id": "G021"
+    },
+    {
+      "provisional_label": "Inconsistent or unhelpful evaluator feedback and grading problems",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Evaluators provide inconsistent, non-actionable, slow, or contradictory feedback (misapplied rubrics, long turnarounds, or blocking workflow requiring meetings), impeding student progress.",
+      "member_cluster_ids": [
+        "D490_1",
+        "D546_1",
+        "D573_2",
+        "D598_1",
+        "D601_1"
+      ],
+      "total_num_posts": 5,
+      "num_clusters": 5,
+      "num_courses": 5,
+      "global_cluster_id": "G022"
+    },
+    {
+      "provisional_label": "Missing or broken required resources and assets",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Required files, starter assets, recordings, or external links are missing, inaccessible, or broken (including missing scripts, cohort recordings, or third‑party links), preventing students from completing tasks.",
+      "member_cluster_ids": [
+        "D432_1",
+        "D486_2",
+        "D597_2",
+        "D602_2",
+        "D608_1"
+      ],
+      "total_num_posts": 5,
+      "num_clusters": 5,
+      "num_courses": 5,
+      "global_cluster_id": "G023"
+    },
+    {
+      "provisional_label": "Missing or insufficient instructional materials and exemplars",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Courses lack required templates, exemplars, multimedia, or sufficient instructional resources and guided materials needed for students to complete assessments correctly.",
+      "member_cluster_ids": [
+        "D645_2",
+        "D670_1",
+        "D774_1",
+        "D775_1",
+        "D776_1"
+      ],
+      "total_num_posts": 5,
+      "num_clusters": 5,
+      "num_courses": 5,
+      "global_cluster_id": "G024"
+    },
+    {
+      "provisional_label": "Platform, exam interface, or system failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Platform bugs, submission/exam software glitches, term-date recording errors, or distracting interface layouts interfere with assessments or course tasks.",
+      "member_cluster_ids": [
+        "D078_2",
+        "D100_2",
+        "D196_4",
+        "D196_5",
+        "D196_6"
+      ],
+      "total_num_posts": 5,
+      "num_clusters": 5,
+      "num_courses": 3,
+      "global_cluster_id": "G025"
+    },
+    {
+      "provisional_label": "Platform, tool, or processing failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Platform or tool malfunctions and processing errors (recording failures, file/feature load errors, score/result processing issues) block task completion or recordkeeping.",
+      "member_cluster_ids": [
+        "C211_3",
+        "C214_2",
+        "C214_4",
+        "C216_1",
+        "C268_2"
+      ],
+      "total_num_posts": 5,
+      "num_clusters": 5,
+      "num_courses": 4,
+      "global_cluster_id": "G026"
+    },
+    {
+      "provisional_label": "Tooling/environment configuration or guidance problems",
+      "normalized_issue_label": "tooling_environment_misconfiguration_or_guidance",
+      "short_description": "Course VMs, connectors, CI/deployment pipelines, or coding environments are misconfigured or lack setup guidance, preventing expected workflows.",
+      "member_cluster_ids": [
+        "C969_2",
+        "C969_3",
+        "D197_4",
+        "D277_3",
+        "D278_4"
+      ],
+      "total_num_posts": 5,
+      "num_clusters": 5,
+      "num_courses": 4,
+      "global_cluster_id": "G027"
+    },
+    {
+      "provisional_label": "grading_or_answer_key_or_process_issues",
+      "normalized_issue_label": "grading_or_answer_key_or_process_issues",
+      "short_description": "Answer keys, grading logic, or grader processes are incorrect or outdated, causing correct student answers or code to be marked wrong.",
+      "member_cluster_ids": [
+        "D363_1",
+        "D385_1",
+        "D427_3"
+      ],
+      "total_num_posts": 5,
+      "num_clusters": 3,
+      "num_courses": 3,
+      "global_cluster_id": "G028"
+    },
+    {
+      "provisional_label": "Assessor/rubric inconsistency and poor feedback",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Assessors apply rubrics inconsistently, provide unclear or misaligned feedback, or fail to verify submitted evidence, creating contradictory revision requests and incorrect competency decisions.",
+      "member_cluster_ids": [
+        "D652_1",
+        "D660_2",
+        "D688_1",
+        "D688_2"
+      ],
+      "total_num_posts": 4,
+      "num_clusters": 4,
+      "num_courses": 3,
+      "global_cluster_id": "G029"
+    },
+    {
+      "provisional_label": "Workflow or policy barriers blocking progress",
+      "normalized_issue_label": "workflow_or_policy_barriers",
+      "short_description": "Course or institutional policies and workflow design (blocking peer-review dependencies, rigid remediation requirements, or failure to apply transfer credit) create administrative or procedural barriers to student progress.",
+      "member_cluster_ids": [
+        "D479_1",
+        "D481_1",
+        "D481_2",
+        "D564_1"
+      ],
+      "total_num_posts": 4,
+      "num_clusters": 4,
+      "num_courses": 3,
+      "global_cluster_id": "G030"
+    },
+    {
+      "provisional_label": "external_tool_dependency_risks",
+      "normalized_issue_label": "external_tool_dependency_risks",
+      "short_description": "Course files rely on external tool features (e.g., Excel macros) or platform-specific behaviors that trigger antivirus, compatibility, or runtime issues for some student environments.",
+      "member_cluster_ids": [
+        "C268_1",
+        "D280_4",
+        "D335_4"
+      ],
+      "total_num_posts": 4,
+      "num_clusters": 3,
+      "num_courses": 3,
+      "global_cluster_id": "G031"
+    },
+    {
+      "provisional_label": "instructor_or_support_unresponsiveness",
+      "normalized_issue_label": "instructor_or_support_unresponsiveness",
+      "short_description": "Instructors, approvers, or course support are slow or unresponsive to student requests (approvals, questions), creating blockers and missed deadlines.",
+      "member_cluster_ids": [
+        "C211_1",
+        "D398_2"
+      ],
+      "total_num_posts": 4,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G032"
+    },
+    {
+      "provisional_label": "workflow_or_policy_barriers",
+      "normalized_issue_label": "workflow_or_policy_barriers",
+      "short_description": "Course or institutional policies and remediation/workflow requirements (voucher approvals, remediation thresholds, evidence rules) create disproportionate or obstructive barriers to student progress.",
+      "member_cluster_ids": [
+        "D325_1",
+        "D325_2",
+        "D329_1",
+        "D336_2"
+      ],
+      "total_num_posts": 4,
+      "num_clusters": 4,
+      "num_courses": 3,
+      "global_cluster_id": "G033"
+    },
+    {
+      "provisional_label": "Exam/proctoring platform access and reliability issues",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Proctoring or exam-platform access failures, long delays, or browser reliability problems disrupt assessment start or ability to view required materials.",
+      "member_cluster_ids": [
+        "D101_3",
+        "D203_1",
+        "D278_5"
+      ],
+      "total_num_posts": 3,
+      "num_clusters": 3,
+      "num_courses": 3,
+      "global_cluster_id": "G034"
+    },
+    {
+      "provisional_label": "Excessive workload or scope misalignment in course design",
+      "normalized_issue_label": "workload_or_scope_issues",
+      "short_description": "Assignment design or course material volume creates disproportionate time burden (forced multiple recordings, fragmented long content, excessive required readings).",
+      "member_cluster_ids": [
+        "C213_3",
+        "C716_3",
+        "C723_2"
+      ],
+      "total_num_posts": 3,
+      "num_clusters": 3,
+      "num_courses": 3,
+      "global_cluster_id": "G035"
+    },
+    {
+      "provisional_label": "Platform, playback, and system failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Technical failures in course platforms, lesson loading, or assessment recording/playback (including encryption issues) prevent access to materials or cause lost assessment evidence.",
+      "member_cluster_ids": [
+        "D676_2",
+        "D685_1",
+        "D756_1"
+      ],
+      "total_num_posts": 3,
+      "num_clusters": 3,
+      "num_courses": 3,
+      "global_cluster_id": "G036"
+    },
+    {
+      "provisional_label": "Policy or workflow barriers (remediation, extra requirements, track assignment)",
+      "normalized_issue_label": "workflow_or_policy_barriers",
+      "short_description": "Course policies or workflows impose extra, inflexible, or blocking requirements (remediation, redo policies, degree-plan workflows) that impede progress.",
+      "member_cluster_ids": [
+        "C957_1",
+        "D080_3",
+        "D278_3"
+      ],
+      "total_num_posts": 3,
+      "num_clusters": 3,
+      "num_courses": 3,
+      "global_cluster_id": "G037"
+    },
+    {
+      "provisional_label": "Tool configuration or guidance problems (how-to and format guidance)",
+      "normalized_issue_label": "tooling_environment_misconfiguration_or_guidance",
+      "short_description": "Course expectations conflict with available tools or lack clear technical/configuration guidance (recording/embed requirements, simulation UI behavior, Panopto positioning).",
+      "member_cluster_ids": [
+        "C204_1",
+        "C210_1",
+        "C216_2"
+      ],
+      "total_num_posts": 3,
+      "num_clusters": 3,
+      "num_courses": 3,
+      "global_cluster_id": "G038"
+    },
+    {
+      "provisional_label": "Unresponsiveness or delays from instructors/support staff",
+      "normalized_issue_label": "instructor_or_support_unresponsiveness",
+      "short_description": "Instructors or support staff are slow or unresponsive to time-sensitive requests (approvals, credentials), causing delays and risk of missed deadlines.",
+      "member_cluster_ids": [
+        "C190_1",
+        "C211_2",
+        "C777_5"
+      ],
+      "total_num_posts": 3,
+      "num_clusters": 3,
+      "num_courses": 3,
+      "global_cluster_id": "G039"
+    },
+    {
+      "provisional_label": "proctoring_or_exam_platform_issues",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Proctoring platform checks, queues, or launch workflows are unreliable or inaccurate, preventing students from starting scheduled exams.",
+      "member_cluster_ids": [
+        "D281_1",
+        "D336_1"
+      ],
+      "total_num_posts": 3,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G040"
+    },
+    {
+      "provisional_label": "AI / similarity detection configuration and guidance issues",
+      "normalized_issue_label": "ai_detection_confusion_and_false_flags",
+      "short_description": "Similarity/AI-detection tooling flags student submissions (shared-database matches, unclear acceptable editing tools) without clear config or remediation guidance.",
+      "member_cluster_ids": [
+        "C200_2",
+        "C717_2"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G041"
+    },
+    {
+      "provisional_label": "Evaluator inconsistency or poor feedback quality",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Inconsistent application of rubrics, conflicting feedback between instructors and assessors, or vague returned feedback leaves students without clear guidance.",
+      "member_cluster_ids": [
+        "C948_1",
+        "D099_1"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G042"
+    },
+    {
+      "provisional_label": "Evaluator rubric/process or answer-key problems",
+      "normalized_issue_label": "grading_or_answer_key_or_process_issues",
+      "short_description": "Rubrics, assessor expectations, or grading processes are unclear, overly strict, or misaligned with evidence, causing repeated revisions or gatekeeping.",
+      "member_cluster_ids": [
+        "D072_2",
+        "D268_2"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G043"
+    },
+    {
+      "provisional_label": "External tool dependencies are unreliable or create barriers",
+      "normalized_issue_label": "external_tool_dependency_risks",
+      "short_description": "Mandatory third-party platforms or external hosting services are unreliable, create access/integration barriers, or stop rendering submitted assets.",
+      "member_cluster_ids": [
+        "D081_1",
+        "D277_2"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G044"
+    },
+    {
+      "provisional_label": "Instructor or course support unresponsiveness",
+      "normalized_issue_label": "instructor_or_support_unresponsiveness",
+      "short_description": "Instructors or course support are unresponsive, unprofessional, or unable to provide needed course-specific help (including limited tutoring availability), delaying or blocking student progress.",
+      "member_cluster_ids": [
+        "D464_3",
+        "D522_2"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G045"
+    },
+    {
+      "provisional_label": "Missing or broken course assets and templates",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Required course assets, images, templates, or examples are missing or broken, preventing correct completion or formatting of tasks.",
+      "member_cluster_ids": [
+        "D270_1",
+        "D276_2"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G046"
+    },
+    {
+      "provisional_label": "Proctoring policies or live exam platform problems",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Rigid proctoring procedures or live proctoring/connectivity failures interrupt exams or create identity/room-check conflicts.",
+      "member_cluster_ids": [
+        "C213_2",
+        "C777_6"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G047"
+    },
+    {
+      "provisional_label": "Simulation scheduling availability",
+      "normalized_issue_label": "scheduling_or_simulation_availability_issues",
+      "short_description": "Mandatory simulation sessions (e.g., Mursion) have no available booking slots, preventing students from completing required, time-bound activities.",
+      "member_cluster_ids": [
+        "D659_2",
+        "D676_1"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G048"
+    },
+    {
+      "provisional_label": "Tooling, platform guidance, or configuration gaps",
+      "normalized_issue_label": "tooling_environment_misconfiguration_or_guidance",
+      "short_description": "Required tooling or platform usage is misconfigured or lacks guidance (buggy starter code, unclear acceptable evidence for tool behavior, or undefined tools), leaving students unable to demonstrate required results or know what to submit.",
+      "member_cluster_ids": [
+        "D602_3",
+        "D604_3"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G049"
+    },
+    {
+      "provisional_label": "Undocumented or obstructive workflow and policy behaviors",
+      "normalized_issue_label": "workflow_or_policy_barriers",
+      "short_description": "Course or platform enforces undocumented workflow or policy behaviors (sequential locks, changing retake rules) that block progress or confuse students.",
+      "member_cluster_ids": [
+        "C190_2",
+        "C773_2"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 2,
+      "num_courses": 2,
+      "global_cluster_id": "G050"
+    },
+    {
+      "provisional_label": "ai_detection_confusion_and_false_flags",
+      "normalized_issue_label": "ai_detection_confusion_and_false_flags",
+      "short_description": "Similarity/AI-detection tools return inconsistent or unclear metrics and the course provides insufficient guidance on how results are interpreted or used.",
+      "member_cluster_ids": [
+        "C717_1"
+      ],
+      "total_num_posts": 2,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G051"
+    },
+    {
+      "provisional_label": "AI/similarity detection produces false positives or lacks guidance",
+      "normalized_issue_label": "ai_detection_confusion_and_false_flags",
+      "short_description": "Similarity or plagiarism checking returns high scores without clear configuration or guidance to avoid false positives.",
+      "member_cluster_ids": [
+        "D101_4"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G052"
+    },
+    {
+      "provisional_label": "Assessment content misalignment",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Pre-assessments or preparatory content do not align with objective assessments, producing unexpected assessment material and poor preparedness.",
+      "member_cluster_ids": [
+        "D677_1"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G053"
+    },
+    {
+      "provisional_label": "Broken or unusable course resources",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Required course media or materials (e.g., videos) have audio or functionality problems that prevent students from accessing necessary content.",
+      "member_cluster_ids": [
+        "D697_1"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G054"
+    },
+    {
+      "provisional_label": "Course scope or assessment size is excessive",
+      "normalized_issue_label": "workload_or_scope_issues",
+      "short_description": "Course scope or combined assessments cover too much content (e.g., multiple course levels), making assessment content unmanageably large.",
+      "member_cluster_ids": [
+        "C958_1"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G055"
+    },
+    {
+      "provisional_label": "Grading, answer key, or data/key mismatches",
+      "normalized_issue_label": "grading_or_answer_key_or_process_issues",
+      "short_description": "Provided answer keys, expected results, or task data are incorrect or misaligned with the assessment, producing impossible or puzzling grading outcomes.",
+      "member_cluster_ids": [
+        "D553_1"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G056"
+    },
+    {
+      "provisional_label": "Process and policy barriers around required steps",
+      "normalized_issue_label": "workflow_or_policy_barriers",
+      "short_description": "Course or proctor workflows (e.g., confirming required surveys before simulations) are not enforced or are unclear, causing students to miss required assessment components.",
+      "member_cluster_ids": [
+        "D689_1"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G057"
+    },
+    {
+      "provisional_label": "Proctoring and exam platform interruptions",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Proctoring or exam platforms cause mid-test terminations, redirects, or loss of review/score options, directly disrupting assessments.",
+      "member_cluster_ids": [
+        "D487_2"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G058"
+    },
+    {
+      "provisional_label": "Proctoring behavior and exam environment problems",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Unprofessional or inconsistent proctor behavior and exam-environment issues create distractions or unclear proctoring practices that affect assessment integrity and student performance.",
+      "member_cluster_ids": [
+        "D904_1"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G059"
+    },
+    {
+      "provisional_label": "Scheduling or required synchronous session availability problems",
+      "normalized_issue_label": "scheduling_or_simulation_availability_issues",
+      "short_description": "Required synchronous sessions or scheduled blocks have limited availability that doesn't accommodate students' schedules.",
+      "member_cluster_ids": [
+        "D080_4"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G060"
+    },
+    {
+      "provisional_label": "Simulation scheduling and facilitator availability issues",
+      "normalized_issue_label": "scheduling_or_simulation_availability_issues",
+      "short_description": "Simulations or facilitated sessions suffer no-shows, late starts, or scheduling problems that waste student time and block required activities.",
+      "member_cluster_ids": [
+        "D577_1"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G061"
+    },
+    {
+      "provisional_label": "Third-party tool performance and dependency risk",
+      "normalized_issue_label": "external_tool_dependency_risks",
+      "short_description": "Third-party simulations or tools cause severe local performance issues or are unreliable, blocking students from completing required activities on their devices.",
+      "member_cluster_ids": [
+        "D848_1"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G062"
+    },
+    {
+      "provisional_label": "prerequisite_gaps_or_unpreparedness",
+      "normalized_issue_label": "prerequisite_gaps_or_unpreparedness",
+      "short_description": "Courses assume prior knowledge or skills that have not been taught or reinforced, creating learning gaps that impede progress.",
+      "member_cluster_ids": [
+        "D287_6"
+      ],
+      "total_num_posts": 1,
+      "num_clusters": 1,
+      "num_courses": 1,
+      "global_cluster_id": "G063"
+    }
+  ],
+  "unassigned_clusters": []
+}

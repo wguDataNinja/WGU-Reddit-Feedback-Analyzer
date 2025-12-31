@@ -1,0 +1,32 @@
+{
+  "run_id": "gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_full_20251130_084422",
+  "stage3_run_dir": "artifacts/stage3/runs/gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_full_20251130_084422",
+  "stage3_run_slug": "gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_full",
+  "source_stage2_run": {
+    "run_id": "gpt-5-mini_s2_cluster_full_20251126_080011",
+    "stage2_run_dir": "artifacts/stage2/runs/gpt-5-mini_s2_cluster_full_20251126_080011",
+    "stage2_run_slug": "gpt-5-mini_s2_cluster_full",
+    "manifest_path": "artifacts/stage2/runs/gpt-5-mini_s2_cluster_full_20251126_080011/manifest.json"
+  },
+  "stage2_run_dir": "artifacts/stage2/runs/gpt-5-mini_s2_cluster_full_20251126_080011",
+  "stage2_run_slug": "gpt-5-mini_s2_cluster_full",
+  "stage2_manifest_path": "artifacts/stage2/runs/gpt-5-mini_s2_cluster_full_20251126_080011/manifest.json",
+  "clusters_csv_path": "artifacts/stage3/preprocessed/gpt-5-mini_s2_cluster_full/clusters_llm.csv",
+  "global_model_name": "gpt-5-mini",
+  "global_prompt_path": "prompts/s3_normalize_clusters.txt",
+  "num_input_clusters": 327,
+  "num_input_courses": 170,
+  "total_input_posts": 421,
+  "num_batches": 6,
+  "num_global_clusters": 63,
+  "num_unassigned_clusters": 0,
+  "total_assigned_posts": 421,
+  "total_unassigned_posts": 0,
+  "cluster_coverage_fraction": 1.0,
+  "post_coverage_fraction": 1.0,
+  "started_at_epoch": 1764510262.930305,
+  "finished_at_epoch": 1764510843.386539,
+  "wallclock_sec": 580.4562339782715,
+  "total_cost_usd": 0.023146,
+  "total_elapsed_sec_model_calls": 580.4279999999999
+}

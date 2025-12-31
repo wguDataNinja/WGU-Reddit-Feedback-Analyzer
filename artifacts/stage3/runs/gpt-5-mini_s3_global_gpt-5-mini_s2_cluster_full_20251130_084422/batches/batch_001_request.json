@@ -1,0 +1,424 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "D664_1",
+      "issue_summary": "Unclear assessment expectations and rubric misalignment for identifying, describing, and justifying key principles",
+      "course_code": "D664",
+      "course_title": "Learners and Learning Science",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D664_2",
+      "issue_summary": "Course materials and instructional content are insufficient or not aligned with assessment requirements, leaving students unable to explain required concepts",
+      "course_code": "D664",
+      "course_title": "Learners and Learning Science",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D675_1",
+      "issue_summary": "Unclear expectations about the scope and alignment of Task 2 literacy block (whether to integrate with another subject, break ELA into sections, and what screening assessments to include).",
+      "course_code": "D675",
+      "course_title": "Elementary Literacy Methods",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D675_2",
+      "issue_summary": "Insufficient and unhelpful sample/template and missing guidance for completing the literacy block template (confusion about the top portion and overall template usage).",
+      "course_code": "D675",
+      "course_title": "Elementary Literacy Methods",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D696_1",
+      "issue_summary": "Unclear or conflicting instructions for Task 2 teaching demonstration video and how it must align with Task 1 (audience presence, where to start in the lesson, required materials, student grouping/roles, and specific actions to demonstrate).",
+      "course_code": "D696",
+      "course_title": "Foundations of Literacy Through Literature",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "QHT1_1",
+      "issue_summary": "Broken or missing course resource links and missing WGU Connect access/button preventing students from locating required materials",
+      "course_code": "QHT1",
+      "course_title": "Business Management Tasks",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "AFT2_1",
+      "issue_summary": "Ambiguous or incomplete instructions for Task 1 about whether students must identify compliant vs noncompliant artifacts",
+      "course_code": "AFT2",
+      "course_title": "AFT2 – Accreditation Audit",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C165_1",
+      "issue_summary": "Practice/infographic quizzes are misaligned with check-in quizzes and OAs (not representative in content, format, or difficulty)",
+      "course_code": "C165",
+      "course_title": "Integrated Physical Sciences",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C165_2",
+      "issue_summary": "Course textbook/material wording is unclear or poorly written, making concepts hard to understand",
+      "course_code": "C165",
+      "course_title": "Integrated Physical Sciences",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C180_1",
+      "issue_summary": "unclear or poorly worded pre-assessment questions misaligned with course materials",
+      "course_code": "C180",
+      "course_title": "Introduction to Psychology",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C190_1",
+      "issue_summary": "Course instructor/CI unresponsive or slow to approve retake attempts, causing delays",
+      "course_code": "C190",
+      "course_title": "Introduction to Biology",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C190_2",
+      "issue_summary": "Inconsistent or changing retake requirements and instructions after submission",
+      "course_code": "C190",
+      "course_title": "Introduction to Biology",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C190_3",
+      "issue_summary": "Evaluator feedback is insufficient — highlights given without explanations to guide corrections",
+      "course_code": "C190",
+      "course_title": "Introduction to Biology",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C200_1",
+      "issue_summary": "grader/evaluator inconsistency or incorrect application of rubric on resubmissions",
+      "course_code": "C200",
+      "course_title": "Managing Organizations and Leading People",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C200_2",
+      "issue_summary": "AI-detection tool flags and lack of guidance on acceptable editing tools or how to resolve false positives",
+      "course_code": "C200",
+      "course_title": "Managing Organizations and Leading People",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C200_3",
+      "issue_summary": "assignment expectations unclear or not scaffolded for students without prior management/leadership experience",
+      "course_code": "C200",
+      "course_title": "Managing Organizations and Leading People",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C200_4",
+      "issue_summary": "missing hosted or recorded lecture content to teach core material",
+      "course_code": "C200",
+      "course_title": "Managing Organizations and Leading People",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C204_1",
+      "issue_summary": "Unclear instructions/demonstration for Panopto webcam overlay positioning (how to place presenter video in lower corner)",
+      "course_code": "C204",
+      "course_title": "Management Communication",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C204_2",
+      "issue_summary": "Broken or missing course resource links in WGU Connect (PowerPoint and tip sheet inaccessible)",
+      "course_code": "C204",
+      "course_title": "Management Communication",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C207_2",
+      "issue_summary": "Misalignment between practice assessment (PA) materials and the objective assessment (OA) — practice prep does not reflect OA wording or style.",
+      "course_code": "C207",
+      "course_title": "Data-Driven Decision Making",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C210_1",
+      "issue_summary": "Course submission requirements conflict with provided/allowed presentation tools: WGU PowerPoint lacks live-record/embed capability while course expectations require embedded video or use of Panopto, and guidance on acceptable formats/tools is unclear.",
+      "course_code": "C210",
+      "course_title": "Management and Leadership Capstone",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C211_2",
+      "issue_summary": "Required access credentials (quiz/proctor passwords) are missing from course instructions and not provided promptly by staff",
+      "course_code": "C211",
+      "course_title": "Global Economics for Managers",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C211_3",
+      "issue_summary": "OA/assessment results get stuck in a 'scheduled' status and require manual intervention, with slow or no follow-up from Assessment Services",
+      "course_code": "C211",
+      "course_title": "Global Economics for Managers",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C211_4",
+      "issue_summary": "Proctored assessment (PA) content and style are misaligned with the available practice OAs, leaving students underprepared",
+      "course_code": "C211",
+      "course_title": "Global Economics for Managers",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C212_1",
+      "issue_summary": "Ambiguous assignment instructions for Part A1a about whether students should use real external research or fabricate hypothetical research results",
+      "course_code": "C212",
+      "course_title": "Marketing",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C213_1",
+      "issue_summary": "Pre-Assessment (PA) and course/practice materials not aligned with the Objective Assessment (OA), causing PA performance to not predict OA success",
+      "course_code": "C213",
+      "course_title": "Accounting for Decision Makers",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C213_2",
+      "issue_summary": "Proctoring policies and identity/room-check procedures applied rigidly or without clear exceptions, leading to exam interruptions and student confusion",
+      "course_code": "C213",
+      "course_title": "Accounting for Decision Makers",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C213_3",
+      "issue_summary": "Course content is overly long and fragmented (many long video subsections per topic), creating excessive time burden and poor pacing",
+      "course_code": "C213",
+      "course_title": "Accounting for Decision Makers",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C213_4",
+      "issue_summary": "Required course resource (study guide) missing from course folder with only a vague 'being updated' response and no workaround or timeline",
+      "course_code": "C213",
+      "course_title": "Accounting for Decision Makers",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C214_2",
+      "issue_summary": "Required PA file/feature fails to load in Excel (technical/tool malfunction preventing completion).",
+      "course_code": "C214",
+      "course_title": "Financial Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C214_3",
+      "issue_summary": "Required course material (pre-assessment report) is missing or empty on the platform.",
+      "course_code": "C214",
+      "course_title": "Financial Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C214_4",
+      "issue_summary": "OA result/term processing error — submitted OA not recorded/updated to next term, causing incorrect 'incomplete' status.",
+      "course_code": "C214",
+      "course_title": "Financial Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C216_1",
+      "issue_summary": "Panopto recording tool fails to capture screen/app or PowerPoint slides (only webcam recorded) or instructions for using Panopto are unclear",
+      "course_code": "C216",
+      "course_title": "MBA Capstone",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C216_2",
+      "issue_summary": "Simulation UI and instructions unclear about auto-populated quarter data vs. zeros for future quarters (students unsure whether to manually enter projections)",
+      "course_code": "C216",
+      "course_title": "MBA Capstone",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C237_1",
+      "issue_summary": "Misalignment between learning materials/quizzes and the performance assessment (PA) — answer choices and problem scope in quizzes don't match PA formatting or options, causing guesswork",
+      "course_code": "C237",
+      "course_title": "Taxation I",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C268_2",
+      "issue_summary": "Pre-assessment platform/display failing to show PA scores/proficiency/status and not recording or showing test duration.",
+      "course_code": "C268",
+      "course_title": "Spreadsheets",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C458_1",
+      "issue_summary": "Preassessment content not aligned with final assessment; exam contains unexpected or confusing questions",
+      "course_code": "C458",
+      "course_title": "Health, Fitness, and Wellness",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C483_1",
+      "issue_summary": "Course assessments (OA) cover few questions but require studying an excessive amount of course content — scope of materials not aligned to assessment length",
+      "course_code": "C483",
+      "course_title": "Principles of Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C483_2",
+      "issue_summary": "Course materials are disorganized and poorly mapped to the study guide — content scattered across non-sequential chapters without a consolidated, study-guide-aligned resource",
+      "course_code": "C483",
+      "course_title": "Principles of Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C715_1",
+      "issue_summary": "Practice tests are not aligned with the Objective Assessment (OA) content or format",
+      "course_code": "C715",
+      "course_title": "Organizational Behavior",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C715_2",
+      "issue_summary": "Required e-book is difficult to use or broken, impairing study",
+      "course_code": "C715",
+      "course_title": "Organizational Behavior",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C716_2",
+      "issue_summary": "Unclear or inconsistent submission file-type and link guidance—students receive rejections for file types/links without prior guidance on acceptable formats.",
+      "course_code": "C716",
+      "course_title": "Business Communication",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C716_3",
+      "issue_summary": "Assessment design forces multiple recorded presentation tasks with no alternative formats, creating excessive time burden and student discomfort.",
+      "course_code": "C716",
+      "course_title": "Business Communication",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C717_2",
+      "issue_summary": "Similarity checker is matching against a shared student-submission database (CopyLeaks shared data hub), causing persistent/false similarity results and no clear mitigation or configuration explanation.",
+      "course_code": "C717",
+      "course_title": "Business Ethics",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C722_1",
+      "issue_summary": "Course text/materials poorly organized or written, hindering usability and learning",
+      "course_code": "C722",
+      "course_title": "Project Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C723_1",
+      "issue_summary": "students cannot access required course materials due to platform/resource availability or access problems",
+      "course_code": "C723",
+      "course_title": "Quantitative Analysis For Business",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C723_2",
+      "issue_summary": "course provides an excessive volume of required materials (e.g., 1,000+ pages on Sophia) leading to unmanageable workload",
+      "course_code": "C723",
+      "course_title": "Quantitative Analysis For Business",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C773_1",
+      "issue_summary": "Rubric and evaluator expectations are misaligned with task instructions—requirements (e.g., secondary navigation, positional awareness) are not clearly specified in rubric or task, causing unexpected returns.",
+      "course_code": "C773",
+      "course_title": "User Interface Design",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C773_2",
+      "issue_summary": "Course/platform enforces sequential task approvals or locks subsequent tasks when earlier tasks are returned/not passed, and this behavior is not documented.",
+      "course_code": "C773",
+      "course_title": "User Interface Design",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C777_4",
+      "issue_summary": "Broken or missing links and study guide resources that remain unrepaired after feedback, leaving required materials inaccessible.",
+      "course_code": "C777",
+      "course_title": "Web Development Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C777_5",
+      "issue_summary": "Instructor/course team unresponsiveness or delays in approving time-sensitive requests (e.g., retake approvals), risking missed term deadlines.",
+      "course_code": "C777",
+      "course_title": "Web Development Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C777_6",
+      "issue_summary": "Proctoring/connectivity problems during live proctored exams (proctor can't see video), risking exam validity or flags.",
+      "course_code": "C777",
+      "course_title": "Web Development Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C783_1",
+      "issue_summary": "Evaluator misapplying rubric or not adequately reviewing submissions, returning revisions despite requirements being met",
+      "course_code": "C783",
+      "course_title": "Project Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C803_1",
+      "issue_summary": "Materials and task instructions lack clear, actionable guidance for applying AHIMA's Data Quality Management model to assignment tasks",
+      "course_code": "C803",
+      "course_title": "Data Analytics and Information Governance",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C810_1",
+      "issue_summary": "automated assessment provides insufficient item-level feedback (no indication which questions were incorrect)",
+      "course_code": "C810",
+      "course_title": "Foundations in Healthcare Data Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C816_1",
+      "issue_summary": "Evaluator feedback is vague and non-actionable, leaving students unsure how to revise to meet expectations",
+      "course_code": "C816",
+      "course_title": "Healthcare System Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C816_2",
+      "issue_summary": "Course materials, rubric, and scenario/assessment are misaligned or inconsistent, making requirements unclear",
+      "course_code": "C816",
+      "course_title": "Healthcare System Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C845_1",
+      "issue_summary": "Study guide and/or assessment materials contain ambiguous or opinion-based multiple-choice questions without clear instructions (e.g., whether multiple answers may be correct), causing confusion about expected answers.",
+      "course_code": "C845",
+      "course_title": "Information Systems Security",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C867_1",
+      "issue_summary": "Ambiguous assignment instructions/instructor materials implying manual data edits instead of implementing code",
+      "course_code": "C867",
+      "course_title": "Scripting and Programming - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "C927_1",
+      "issue_summary": "Outdated course materials and examples (inactive companies/items) that create misleading or incorrect content",
+      "course_code": "C927",
+      "course_title": "Managing Technology Operations and Innovation",
+      "num_posts": 1
+    }
+  ]
+}

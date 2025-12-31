@@ -36,6 +36,7 @@ from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
 from wgu_reddit_analyzer.utils.logging_utils import get_logger
+from wgu_reddit_analyzer.core.schema_definitions import SCHEMA_VERSION
 
 LOGGER = get_logger("label_posts")
 
@@ -195,6 +196,7 @@ def write_manifest(
     labeled: int,
 ) -> None:
     manifest = {
+        "schema_version": SCHEMA_VERSION,
         "stage": "stage1c_labeling",
         "run_id": run_id,
         "timestamp_utc": datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ"),

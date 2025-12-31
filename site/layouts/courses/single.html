@@ -1,0 +1,173 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+</header>
+
+<style>
+.wra-hero{margin-top:1rem;padding:.85rem 1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme)}
+.wra-hero p{margin:.35rem 0}.wra-hero .wra-sub{opacity:.85}
+.wra-metrics{display:grid;grid-template-columns:1fr;gap:.5rem;margin-top:.75rem}
+@media (min-width:800px){.wra-metrics{grid-template-columns:1fr 1fr 1fr}}
+.wra-metrics div{padding:.5rem .75rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--code-bg)}
+.wra-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem}
+.wra-card{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme)}
+.wra-card h2{margin-top:0}.wra-muted{opacity:.85}
+.wra-badge{display:inline-block;padding:.15rem .5rem;border:1px solid var(--border);border-radius:999px;background:var(--code-bg);font-size:.9em}
+
+.wra-pattern{margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border)}
+.wra-pattern:first-child{margin-top:.25rem;padding-top:0;border-top:none}
+.wra-pattern-title{margin:0;font-size:1.05em}
+.wra-meta{display:flex;gap:.5rem;flex-wrap:wrap;align-items:baseline;margin-top:.35rem}
+.wra-link{opacity:.9}
+
+.wra-quotes{margin:.65rem 0 0 0;padding:0;list-style:none}
+.wra-quote{margin:.6rem 0;padding:.65rem .75rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--code-bg)}
+.wra-quote p{margin:0}
+.wra-quote .wra-quote-link{margin-top:.35rem;font-size:.92em;opacity:.9}
+</style>
+
+{{ $code := .File.BaseFileName }}
+{{ $idx := site.Data.course_index.courses }}
+{{ $course := index $idx $code }}
+
+{{/* Issue map for display labels */}}
+{{ $issueMap := dict }}
+{{ with site.Data.issue_index.issues }}{{ $issueMap = . }}{{ end }}
+
+{{ $ex := dict }}
+{{ $exErr := false }}
+{{ $p := resources.Get "results_f/post_excerpts.json" | transform.Unmarshal }}
+{{ with $p }}
+  {{ $ex = . }}
+{{ else }}
+  {{ $exErr = true }}
+{{ end }}
+{{ $postsByID := (index $ex "posts_by_id" | default (dict)) }}
+
+{{ if not $course }}
+  <div class="post-content">
+    <p>Course not found in course_index.json: {{ $code }}</p>
+  </div>
+{{ else }}
+  {{ $title := (index $course "course_title" | default (index $course "course_title_final") | default "") }}
+  {{ $colleges := (index $course "colleges" | default (slice)) }}
+  {{ $pp := int (index $course "total_pain_point_posts" | default 0) }}
+  {{ $neg := int (index $course "total_negative_posts" | default 0) }}
+  {{ $clusters := (index $course "clusters" | default (index $course "problem_areas" | default (slice))) }}
+  {{ $numClusters := 0 }}{{ if eq (printf "%T" $clusters) "[]interface {}" }}{{ $numClusters = len $clusters }}{{ end }}
+
+  <section class="wra-hero">
+    <p><span class="wra-badge">{{ $code }}</span>{{ if $title }} <strong>{{ $title }}</strong>{{ end }}</p>
+    <p class="wra-sub">
+      {{ if and $colleges (gt (len $colleges) 0) }}Colleges: {{ delimit $colleges ", " }}{{ else }}Colleges: Unspecified{{ end }}
+    </p>
+    <p class="wra-sub">
+      This dataset includes only posts filtered for negative sentiment. Counts reflect discussion volume (posts), not students, and do not measure satisfaction.
+    </p>
+    <div class="wra-metrics">
+      <div><strong>Reported difficulty posts</strong><br>{{ $pp }}</div>
+      <div><strong>Negative-sentiment posts</strong><br>{{ $neg }}</div>
+      <div><strong>Recurring patterns</strong><br>{{ $numClusters }}</div>
+    </div>
+  </section>
+
+  <section class="wra-grid">
+    <div class="wra-card">
+      <h2>Recurring patterns</h2>
+
+      {{ if ne (printf "%T" $clusters) "[]interface {}" }}
+        <p class="wra-muted">Recurring patterns have an unexpected shape in course_index.json.</p>
+      {{ else if eq (len $clusters) 0 }}
+        <p class="wra-muted">No recurring patterns found for this course.</p>
+      {{ else }}
+        {{ $rows := slice }}
+        {{ range $clusters }}
+          {{ if eq (printf "%T" .) "map[string]interface {}" }}
+            {{ $issue := (index . "normalized_issue_label" | default "") }}
+
+            {{/* Prefer issue_index provisional_label over any local fallback */}}
+            {{ $label := "" }}
+            {{ if $issue }}
+              {{ $iss := index $issueMap $issue }}
+              {{ if $iss }}
+                {{ $label = (index $iss "provisional_label" | default "") }}
+              {{ end }}
+            {{ end }}
+            {{ if not $label }}
+              {{ $label = (index . "provisional_label" | default "") }}
+            {{ end }}
+            {{ if not $label }}{{ $label = "Unlabeled category" }}{{ end }}
+
+            {{ $summary := (index . "cluster_issue_summary" | default (index . "summary" | default "")) }}
+            {{ $n := int (index . "num_posts" | default (index . "total_posts" | default 0)) }}
+            {{ $snips := (index . "example_snippets" | default (slice)) }}
+            {{ $pids := (index . "example_post_ids" | default (slice)) }}
+            {{ $rows = $rows | append (dict "issue" $issue "label" $label "summary" $summary "n" $n "snips" $snips "pids" $pids) }}
+          {{ end }}
+        {{ end }}
+        {{ $rows = sort $rows "n" "desc" }}
+
+        {{ range $rows }}
+          {{ $issue := (index . "issue" | default "") }}
+          {{ $label := (index . "label" | default "") }}
+          {{ $summary := (index . "summary" | default "") }}
+          {{ $n := int (index . "n" | default 0) }}
+          {{ $snips := (index . "snips" | default (slice)) }}
+          {{ $pids := (index . "pids" | default (slice)) }}
+
+          <div class="wra-pattern">
+            <p class="wra-pattern-title"><strong>{{ $label }}</strong></p>
+
+            <div class="wra-meta">
+              <span class="wra-badge">{{ $n }} posts</span>
+
+              {{ if $issue }}
+                <a class="wra-link" href="/global-issues/{{ $issue | urlize }}/">Common theme</a>
+              {{ end }}
+
+              <a class="wra-link" href="/raw-posts/?course={{ $code }}{{ if $issue }}&issue={{ $issue | urlquery }}{{ end }}">Source posts</a>
+            </div>
+
+            {{ if $summary }}<p class="wra-muted" style="margin-top:.5rem;">{{ $summary }}</p>{{ end }}
+
+            {{ if and $snips (gt (len $snips) 0) }}
+              <ul class="wra-quotes">
+                {{ range $i, $q := first 4 $snips }}
+                  {{ $pid := "" }}
+                  {{ if and $pids (gt (len $pids) $i) }}{{ $pid = (index $pids $i | default "") }}{{ end }}
+
+                  {{ $reddit := "" }}
+                  {{ if $pid }}
+                    {{ $rec := index $postsByID $pid }}
+                    {{ if $rec }}
+                      {{ $reddit = (index $rec "reddit_url" | default "") }}
+                    {{ end }}
+                    {{ if not $reddit }}
+                      {{ $reddit = printf "https://www.reddit.com/comments/%s/" $pid }}
+                    {{ end }}
+                  {{ end }}
+
+                  <li class="wra-quote">
+                    <p>{{ $q }}</p>
+                    <div class="wra-quote-link">
+                      {{ if $pid }}
+                        <a href="{{ $reddit }}">Open post</a>
+                      {{ else }}
+                        <a href="/raw-posts/?course={{ $code }}&q={{ $q | urlquery }}">Find in source posts</a>
+                      {{ end }}
+                    </div>
+                  </li>
+                {{ end }}
+              </ul>
+            {{ end }}
+          </div>
+        {{ end }}
+
+        {{ if $exErr }}
+          <p class="wra-muted" style="margin-top:1rem;">Note: post_excerpts.json was not available at build time, so some Open post links may fall back to a generic Reddit URL.</p>
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+{{ end }}
+{{ end }}

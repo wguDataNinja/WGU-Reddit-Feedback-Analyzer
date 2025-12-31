@@ -1,0 +1,31 @@
+{
+  "command": "preprocess_painpoints.py --input-predictions artifacts/stage1/full_corpus/gpt-5-mini_s1_optimal_fullcorpus_20251126_023336/predictions_FULL.csv --output artifacts/stage2/painpoints_llm_friendly.csv --manifest artifacts/stage2/manifest.json",
+  "counts": {
+    "drop_reasons": {
+      "error_flagged": 6,
+      "not_painpoint": 707
+    },
+    "rows_written": 390,
+    "total_rows_read": 1103
+  },
+  "created_at_utc": "2025-12-30T22:36:30.185943Z",
+  "git": {
+    "head": "1bda5bf8ac4bc5502b3541547d2f6c24852c7bc1",
+    "present": true,
+    "ref": "refs/heads/feat/schema-version-threading"
+  },
+  "inputs": {
+    "predictions_full_csv": {
+      "bytes": 208317,
+      "path": "artifacts/stage1/full_corpus/gpt-5-mini_s1_optimal_fullcorpus_20251126_023336/predictions_FULL.csv"
+    }
+  },
+  "outputs": {
+    "painpoints_llm_friendly_csv": {
+      "bytes": 162999,
+      "path": "artifacts/stage2/painpoints_llm_friendly.csv"
+    }
+  },
+  "run_id": "stage2_20251230_223630",
+  "stage": "stage2"
+}

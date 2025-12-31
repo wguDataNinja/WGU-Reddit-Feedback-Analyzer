@@ -1,0 +1,70 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.description }}<p class="page-description">{{ . }}</p>{{ end }}
+</header>
+
+{{ with .Content }}
+  <div class="post-content">
+    {{ . }}
+  </div>
+{{ end }}
+
+<style>
+.wra-card{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme);margin-top:1rem}
+.wra-row{display:flex;gap:.75rem;flex-wrap:wrap;align-items:baseline}
+.wra-badge{display:inline-block;padding:.15rem .5rem;border:1px solid var(--border);border-radius:999px;background:var(--code-bg);font-size:.9em}
+.wra-muted{opacity:.85}
+</style>
+
+{{ $issues := site.Data.issue_index.issues }}
+{{ $rows := slice }}
+
+{{ range .Pages }}
+  {{ $lab := .Params.normalized_issue_label }}
+  {{ if $lab }}
+    {{ $m := index $issues $lab }}
+    {{ $posts := int (index $m "total_num_posts" | default 0) }}
+    {{ $courses := int (index $m "num_courses" | default 0) }}
+    {{ $clusters := int (index $m "num_clusters" | default 0) }}
+    {{ $cols := (index $m "colleges_represented" | default (slice)) }}
+    {{ $desc := (index $m "short_description" | default "") }}
+    {{ $rows = $rows | append (dict
+      "title" .Title
+      "rel" .RelPermalink
+      "lab" $lab
+      "posts" $posts
+      "courses" $courses
+      "clusters" $clusters
+      "colleges" $cols
+      "desc" $desc
+    ) }}
+  {{ end }}
+{{ end }}
+
+{{ $rows = sort $rows "posts" "desc" }}
+
+{{ range $rows }}
+  <div class="wra-card">
+    <h2><a href="{{ .rel }}">{{ .title }}</a></h2>
+
+    {{ if .desc }}
+      <p class="wra-muted">{{ .desc }}</p>
+    {{ end }}
+
+    <div class="wra-row">
+      <span class="wra-badge">{{ .posts }} posts</span>
+      <span class="wra-badge">{{ .courses }} courses</span>
+      <span class="wra-badge">{{ .clusters }} clusters</span>
+    </div>
+
+    <p class="wra-muted">
+      {{ if and .colleges (gt (len .colleges) 0) }}
+        Colleges: {{ delimit .colleges ", " }}
+      {{ else }}
+        Colleges: Unspecified
+      {{ end }}
+    </p>
+  </div>
+{{ end }}
+{{ end }}

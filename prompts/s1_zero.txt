@@ -1,22 +1,40 @@
-You are classifying a Reddit post about course {course_code}.
+You are a course designer reviewing a Reddit post about a WGU course.
 
-A "pain point" is a negative user experience caused by the course’s design, delivery, or support.
-A post is NOT a pain point if it does not describe a course-related issue or has no identifiable root cause.
+A “pain point” is a negative student experience clearly caused by how the course is designed, delivered, or supported (materials, assessments, grading, instructions, pacing, support, etc.). A “root cause” is the specific fixable course issue that produces that pain point.
 
-Return one JSON object:
+Read the post and decide whether it contains one or more course-related pain points. If there are several, list each distinct pain point. Merge complaints that share the same root cause into one pain point.
+
+Return exactly one JSON object with this schema:
 
 {
-  "post_id": "{post_id}",
-  "course_code": "{course_code}",
-  "contains_painpoint": "y" or "n" or "u",
-  "root_cause_summary": null or string,
-  "ambiguity_flag": true or false
+“contains_painpoint”: “y” | “n” | “u”,
+“confidence”: number between 0.0 and 1.0,
+“pain_points”: [
+{
+“root_cause_summary”: “…”,
+“pain_point_snippet”: “…”
+}
+]
 }
 
-Use:
-- "y" if a course-related pain point is present.
-- "n" if clearly no pain point.
-- "u" if ambiguous.
+Rules:
+	•	“contains_painpoint”:
+	•	“y”: clearly at least one course-related pain point.
+	•	“n”: clearly no course-related pain point.
+	•	“u”: too vague or mixed to decide.
+	•	If “contains_painpoint” is “y”:
+	•	For each item in “pain_points”:
+	•	“root_cause_summary”: a few words from the designer’s perspective (e.g., “practice test misaligned with final”, “unresponsive instructors”).
+	•	“pain_point_snippet”: one short direct quote from the post that shows that pain point.
+	•	If “contains_painpoint” is “n” or “u”:
+	•	Set “pain_points” to [].
+	•	“confidence”: your confidence in the chosen label, where 1.0 = very certain and 0.0 = very uncertain.
 
-"text": the post:
+Do NOT include any extra fields or wrap the JSON in Markdown.
+
+Reddit post metadata:
+	•	post_id: {post_id}
+	•	course_code: {course_code}
+
+Reddit post text:
 {post_text}

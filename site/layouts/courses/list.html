@@ -1,0 +1,47 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.description }}<p class="page-description">{{ . }}</p>{{ end }}
+</header>
+
+<style>
+.wra-card{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme);margin-top:1rem}
+.wra-row{display:flex;gap:.75rem;flex-wrap:wrap;align-items:baseline}
+.wra-muted{opacity:.85}
+.wra-link{margin-top:.5rem;display:inline-block}
+</style>
+
+{{ $idx := site.Data.course_index.courses }}
+{{ $rows := slice }}
+{{ range $code, $c := $idx }}
+  {{ $title := (index $c "course_title" | default (index $c "course_title_final") | default "") }}
+  {{ $colleges := (index $c "colleges" | default (slice)) }}
+  {{ $posts := int (index $c "total_negative_posts" | default 0) }}
+  {{ $rows = $rows | append (dict "code" $code "title" $title "colleges" $colleges "posts" $posts) }}
+{{ end }}
+{{ $rows = sort $rows "posts" "desc" }}
+
+{{ range $rows }}
+  <div class="wra-card">
+    <h2>
+      <a href="/courses/{{ urlize .code }}/">{{ .code }}</a>{{ if .title }} — {{ .title }}{{ end }}
+    </h2>
+
+    <div class="wra-row">
+      <strong>Posts:</strong> {{ .posts }}
+    </div>
+
+    <p class="wra-muted">
+      {{ if and .colleges (gt (len .colleges) 0) }}
+        Colleges: {{ delimit .colleges ", " }}
+      {{ else }}
+        Colleges: Unspecified
+      {{ end }}
+    </p>
+
+    <a class="wra-link" href="/raw-posts/?course={{ .code }}">
+      View source posts
+    </a>
+  </div>
+{{ end }}
+{{ end }}

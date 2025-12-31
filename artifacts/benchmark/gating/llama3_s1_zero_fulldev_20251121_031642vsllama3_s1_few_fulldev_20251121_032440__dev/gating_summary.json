@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "old_run_dir": "artifacts/benchmark/legacy_20251214/stage1_runs/runs/llama3_s1_zero_fulldev_20251121_031642",
+  "new_run_dir": "artifacts/benchmark/legacy_20251214/stage1_runs/runs/llama3_s1_few_fulldev_20251121_032440",
+  "split": "DEV",
+  "alpha": 0.05,
+  "join_counts": {
+    "n_old_rows": 135,
+    "n_new_rows": 135,
+    "n_joined_rows": 135
+  },
+  "old_metrics": {
+    "tp": 25,
+    "fp": 58,
+    "fn": 0,
+    "tn": 50,
+    "precision": 0.30120481927710846,
+    "recall": 1.0,
+    "f1": 0.462962962962963,
+    "accuracy": 0.5639097744360902,
+    "excluded": 2
+  },
+  "new_metrics": {
+    "tp": 24,
+    "fp": 40,
+    "fn": 2,
+    "tn": 69,
+    "precision": 0.375,
+    "recall": 0.9230769230769231,
+    "f1": 0.5333333333333333,
+    "accuracy": 0.6888888888888889,
+    "excluded": 0
+  },
+  "mcnemar": {
+    "b": 6,
+    "c": 22,
+    "n": 28,
+    "p_value": 0.0037191659212112427,
+    "eligible_rows": 133
+  },
+  "distribution_shift": {
+    "counts": {
+      "old": {
+        "y": 83,
+        "n": 50,
+        "u": 2
+      },
+      "new": {
+        "y": 64,
+        "n": 71,
+        "u": 0
+      }
+    },
+    "chi2": 8.100410412098725,
+    "dof": 2,
+    "p_value": 0.017418799829622078,
+    "flag": true
+  },
+  "decision": "accept",
+  "decision_reason": "mcnemar_improvement",
+  "artifacts": {
+    "gating_summary_path": "artifacts/benchmark/gating/llama3_s1_zero_fulldev_20251121_031642vsllama3_s1_few_fulldev_20251121_032440__dev/gating_summary.json",
+    "paired_rows_path": "artifacts/benchmark/gating/llama3_s1_zero_fulldev_20251121_031642vsllama3_s1_few_fulldev_20251121_032440__dev/paired_rows.csv"
+  }
+}

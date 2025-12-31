@@ -1,0 +1,9 @@
+{
+  "stage": "stage0",
+  "status": "locked",
+  "locked_utc": "2025-11-07T20:42:30Z",
+  "record_count": 1103,
+  "sha256": "eee48d854cf9b78c62230b4c327eb8137a7d1de7b43ab9a0fb3306b465428d83",
+  "source_path": "artifacts/stage0_filtered_posts.jsonl",
+  "note": "Authoritative Stage 0 dataset (negative-only, course-verified)."
+}

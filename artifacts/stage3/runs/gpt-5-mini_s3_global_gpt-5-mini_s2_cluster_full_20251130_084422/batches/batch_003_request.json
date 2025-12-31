@@ -1,0 +1,424 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "D279_1",
+      "issue_summary": "Ambiguous or conflicting assignment instructions and supporting documents (expectations undefined)",
+      "course_code": "D279",
+      "course_title": "User Interface Design",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D279_2",
+      "issue_summary": "WGU-provided PowerPoint file/template lacks hyperlink or in-document linking functionality (file incompatible with student software/features)",
+      "course_code": "D279",
+      "course_title": "User Interface Design",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D280_3",
+      "issue_summary": "Outdated or incorrect zyBooks/course materials regarding Angular/CLI versions and setup steps, causing build errors and platform-specific issues (Mac) when following instructions.",
+      "course_code": "D280",
+      "course_title": "JavaScript Programming",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D280_4",
+      "issue_summary": "Dependence on an external World Bank API that omits certain regions (e.g., Taiwan, Falklands, some islands) without course guidance on acceptable handling or required workarounds.",
+      "course_code": "D280",
+      "course_title": "JavaScript Programming",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D281_2",
+      "issue_summary": "Course learning material contains unclear or nonsensical questions",
+      "course_code": "D281",
+      "course_title": "Linux Foundations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D282_1",
+      "issue_summary": "Broken or unclear AWS lab access: instructions and/or lab integration require a specific student lab account but credentials/console access are unclear or misconfigured",
+      "course_code": "D282",
+      "course_title": "Cloud Foundations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D282_2",
+      "issue_summary": "Assessments test excessive memorization of minute AWS product details (e.g., pricing) not aligned with course materials or realistic learning objectives",
+      "course_code": "D282",
+      "course_title": "Cloud Foundations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D284_1",
+      "issue_summary": "Unclear expectations about requirements artifacts—scope and how to distinguish functional vs non-functional requirements",
+      "course_code": "D284",
+      "course_title": "Software Engineering",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D284_2",
+      "issue_summary": "Ambiguous assignment prompt about whether students must invent their own problem or use a provided problem",
+      "course_code": "D284",
+      "course_title": "Software Engineering",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D286_2",
+      "issue_summary": "ZyBooks pre-assessment enforces specific code structure/syntax without providing a clear rubric or guidance",
+      "course_code": "D286",
+      "course_title": "Java Fundamentals",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D286_3",
+      "issue_summary": "PA and OA environments or evaluation differ (parse/runtime differences or rubric mismatches) so code that runs in PA fails or is marked wrong on OA",
+      "course_code": "D286",
+      "course_title": "Java Fundamentals",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D287_2",
+      "issue_summary": "Course starter/project files misconfigured (database names, ports, application properties) preventing local server from running and requiring instructor intervention to fix",
+      "course_code": "D287",
+      "course_title": "Java Frameworks",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D287_4",
+      "issue_summary": "Pre-existing course code formatting is inconsistent and poorly formatted, reducing clarity and modeling bad coding practices",
+      "course_code": "D287",
+      "course_title": "Java Frameworks",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D287_5",
+      "issue_summary": "Automated evaluator or grading environment reports build/runtime errors not reproducible locally, indicating environment/configuration mismatches or evaluator inconsistency",
+      "course_code": "D287",
+      "course_title": "Java Frameworks",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D287_6",
+      "issue_summary": "Course assumes prior knowledge of Java file I/O (FileInputStream, FileOutputStream, PrintWriter) that students haven't been taught, causing gaps between prerequisites/content and lessons",
+      "course_code": "D287",
+      "course_title": "Java Frameworks",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D288_3",
+      "issue_summary": "Conflicting or unclear instructions about whether the Lab environment is required for the project",
+      "course_code": "D288",
+      "course_title": "Back-End Programming",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D288_4",
+      "issue_summary": "Course-provided JSON/data file is malformed (circular references) causing infinite recursion and blocking student progress",
+      "course_code": "D288",
+      "course_title": "Back-End Programming",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D288_5",
+      "issue_summary": "Essential course materials hosted on Panopto were inaccessible during an outage, blocking access to fix/instructional videos",
+      "course_code": "D288",
+      "course_title": "Back-End Programming",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D313_1",
+      "issue_summary": "Misalignment between course materials/pre-assessments and the Objective Assessment content",
+      "course_code": "D313",
+      "course_title": "Anatomy and Physiology II with Lab",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D317_1",
+      "issue_summary": "Practice/pretests are misaligned with assessed tasks (lack PBQs) and do not provide clear study guidance",
+      "course_code": "D317",
+      "course_title": "IT Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D317_2",
+      "issue_summary": "Practice questions and answer choices are poorly worded or unclear",
+      "course_code": "D317",
+      "course_title": "IT Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D324_1",
+      "issue_summary": "broken or nonfunctional assessment item (drag-and-drop PBQ) preventing completion",
+      "course_code": "D324",
+      "course_title": "Business of IT - Project Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D324_2",
+      "issue_summary": "vague or poorly worded exam questions causing confusion",
+      "course_code": "D324",
+      "course_title": "Business of IT - Project Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D325_1",
+      "issue_summary": "Second-attempt remediation requirements are excessively burdensome and disproportionate to near-pass results",
+      "course_code": "D325",
+      "course_title": "Networks",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D325_2",
+      "issue_summary": "Verification/evidence requirements (submit screenshots) and very high score thresholds make remediation onerous",
+      "course_code": "D325",
+      "course_title": "Networks",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D329_1",
+      "issue_summary": "Instructor-imposed arbitrary voucher approval requirement (90% on CertMaster practice exam)",
+      "course_code": "D329",
+      "course_title": "Network and Security - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D330_2",
+      "issue_summary": "Objective Assessment tests on an outdated/deprecated software version (Oracle) not reflected in materials or current industry practice",
+      "course_code": "D330",
+      "course_title": "Data Systems Administration",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D334_1",
+      "issue_summary": "Assessment items (OAs) include questions or topics not covered in the provided study guide or course materials",
+      "course_code": "D334",
+      "course_title": "Introduction to Cryptography",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D334_2",
+      "issue_summary": "Course materials contain factual inaccuracies or outdated information (e.g., incorrect 3DES round count)",
+      "course_code": "D334",
+      "course_title": "Introduction to Cryptography",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D335_3",
+      "issue_summary": "Inadequate evaluator/instructor feedback and remediation after failing assessments (generic study plans instead of targeted, actionable grading explanations).",
+      "course_code": "D335",
+      "course_title": "Introduction to Programming in Python",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D335_4",
+      "issue_summary": "Third-party lab content (Zybooks v2) contains bugs and conflicting instructions/outputs, forcing students to produce intentionally incorrect code to pass.",
+      "course_code": "D335",
+      "course_title": "Introduction to Programming in Python",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D336_1",
+      "issue_summary": "Proctoring requirements are unclear/overly burdensome (requires simultaneous multiple camera views), risking test cancellation",
+      "course_code": "D336",
+      "course_title": "Business of IT - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D336_2",
+      "issue_summary": "External certification results not being recorded/processed in course records and no acknowledgement after emailing certificate",
+      "course_code": "D336",
+      "course_title": "Business of IT - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D336_3",
+      "issue_summary": "Course video materials are too short and do not adequately cover required topics",
+      "course_code": "D336",
+      "course_title": "Business of IT - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D351_2",
+      "issue_summary": "Pre-assessment study-guide mappings and feedback point to incorrect chapters/sections or unrelated material",
+      "course_code": "D351",
+      "course_title": "Functions of Human Resource Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D355_1",
+      "issue_summary": "Course resources inaccessible after platform migration and unclear guidance on where/how to access resources or when the class becomes active",
+      "course_code": "D355",
+      "course_title": "Total Rewards",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D363_1",
+      "issue_summary": "Incorrect or outdated answer key/automated grading marking correct work as wrong",
+      "course_code": "D363",
+      "course_title": "Personal Finance",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D363_2",
+      "issue_summary": "Course materials/definitions contradict assessment expectations (e.g., discretionary expenses misdefined leading to wrong answer choices)",
+      "course_code": "D363",
+      "course_title": "Personal Finance",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D363_3",
+      "issue_summary": "Performance assessment content/format misaligned with objective assessment, preventing effective preparation",
+      "course_code": "D363",
+      "course_title": "Personal Finance",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D370_1",
+      "issue_summary": "Required assignment templates or materials not provided or not clearly accessible",
+      "course_code": "D370",
+      "course_title": "IT Leadership Foundations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D370_2",
+      "issue_summary": "Platform downtime prevents access to assignment instructions/materials and offline work is not supported",
+      "course_code": "D370",
+      "course_title": "IT Leadership Foundations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D378_1",
+      "issue_summary": "Assessment misalignment: proctored exam content and question types do not match the study guide, Quizlet, or pre-assessment",
+      "course_code": "D378",
+      "course_title": "Digital Marketing Science",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D385_2",
+      "issue_summary": "Unclear or contradictory practice assessment instructions and provided code, preventing students from understanding requirements or attempting the coding tasks.",
+      "course_code": "D385",
+      "course_title": "Software Security and Testing",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D388_2",
+      "issue_summary": "Pre-assessments do not display a clear final/overall score, preventing students from evaluating readiness",
+      "course_code": "D388",
+      "course_title": "Fundamentals of Spreadsheets and Data Presentations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D389_1",
+      "issue_summary": "Ambiguous/contradictory instructions about required deliverable format (APA vs. answering template questions)",
+      "course_code": "D389",
+      "course_title": "Learning Strategies in Higher Education",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D389_2",
+      "issue_summary": "Missing citation guidance for sources with multiple authors",
+      "course_code": "D389",
+      "course_title": "Learning Strategies in Higher Education",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D398_1",
+      "issue_summary": "Objective assessment (OA) content not aligned with course materials and pre-assessments; multiple OA versions cause unexpected variation",
+      "course_code": "D398",
+      "course_title": "Introduction to Pharmacology",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D398_2",
+      "issue_summary": "Course instructor unresponsive after failed assessment — no clear response SLA or escalation/contact alternative",
+      "course_code": "D398",
+      "course_title": "Introduction to Pharmacology",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D412_1",
+      "issue_summary": "Unclear or missing instructions for configuring/editing OpnSense firewall rules in the lab materials",
+      "course_code": "D412",
+      "course_title": "Network Analytics and Troubleshooting",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D412_2",
+      "issue_summary": "Lab environment instability or broken labs requiring restarts, blocking progress",
+      "course_code": "D412",
+      "course_title": "Network Analytics and Troubleshooting",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D412_3",
+      "issue_summary": "Misconfigured or inaccessible VM/content mapping — students can't find the correct VM or website content referenced in tickets",
+      "course_code": "D412",
+      "course_title": "Network Analytics and Troubleshooting",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D413_1",
+      "issue_summary": "Performance Assessment (PA) content and difficulty do not align with Objective Assessment (OA); PA does not adequately prepare students for the harder, more detailed OA",
+      "course_code": "D413",
+      "course_title": "Telecomm and Wireless Communications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D422_1",
+      "issue_summary": "Primary course material (zyBooks) is poorly formatted and provides insufficient practice problems and worked examples",
+      "course_code": "D422",
+      "course_title": "Discrete Math: Algorithms and Cryptography",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D426_2",
+      "issue_summary": "Mandatory remediation (DRYbooks/Zybooks) required before retakes is ineffective, contains irrelevant content, wastes student time, and blocks timely progress.",
+      "course_code": "D426",
+      "course_title": "Data Management - Foundations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D426_3",
+      "issue_summary": "Testing platform malfunction (FORBIDDEN error) allowed the student to continue the exam despite the error and the failed attempt was not removed.",
+      "course_code": "D426",
+      "course_title": "Data Management - Foundations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D427_3",
+      "issue_summary": "Assessment content errors/typos and internal inconsistencies (e.g., mismatched object names between prompt and test cases) causing confusion and wrong grading.",
+      "course_code": "D427",
+      "course_title": "Data Management - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D427_4",
+      "issue_summary": "WGU/zyBooks browser or test platform freezes during the OA, blocking submission or navigation and wasting exam time.",
+      "course_code": "D427",
+      "course_title": "Data Management - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D427_5",
+      "issue_summary": "Required ZyBooks labs referenced by students/instructions are missing from the course materials (lab 7 and 8 not present where expected).",
+      "course_code": "D427",
+      "course_title": "Data Management - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D427_6",
+      "issue_summary": "Lack of clear grading/formatting guidance for machine‑graded SQL (unclear rules on capitalization, spacing, quotes, data types) and no instructor clarification.",
+      "course_code": "D427",
+      "course_title": "Data Management - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D430_1",
+      "issue_summary": "Required course materials were converted to a new linked/reference format that students find difficult to use and unhelpful",
+      "course_code": "D430",
+      "course_title": "Fundamentals of Information Security",
+      "num_posts": 1
+    }
+  ]
+}

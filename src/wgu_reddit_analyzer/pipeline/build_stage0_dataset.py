@@ -1,24 +1,28 @@
 """
-Stage 0 Dataset Builder
+Stage 0 Dataset Builder (Historical / Artifact-Generating)
 
-Purpose:
-    Build the authoritative Stage 0 dataset used for all downstream tasks.
+This module documents the exact logic used to produce the authoritative Stage 0
+Reddit corpus used in the WGU Reddit Analyzer paper.
 
-Inputs:
-    - db/WGU-Reddit.db (posts and subreddits tables).
-    - wgu_reddit_analyzer.utils.filters.COURSE_CSV (course list).
+Stage 0 constructs a fixed, complaint-focused dataset from the project’s historical
+SQLite database by applying strictly defined structural, course-matching, and
+sentiment filters. The resulting JSONL file is treated as immutable ground truth
+for all downstream stages.
 
-Outputs:
-    - artifacts/stage0_filtered_posts.jsonl
+Important:
+- The Stage 0 artifact (artifacts/stage0_filtered_posts.jsonl) is committed to the
+  repository and is the version used for all reported results.
+- External users are NOT expected to run this script.
+- Re-running Stage 0 requires access to the original database and will produce a
+  different corpus, invalidating downstream counts.
 
-Usage:
+This script is retained for auditability and methodological transparency only.
+
+Entrypoint (historical):
     python -m wgu_reddit_analyzer.pipeline.build_stage0_dataset
 
-Notes:
-    - Each record has exactly one matched course_code.
-    - Each record satisfies vader_compound < -0.2.
-    - Only structurally valid, non-deleted, non-removed, non-promotional posts
-      are included.
+Artifact:
+    artifacts/stage0_filtered_posts.jsonl
 """
 
 from __future__ import annotations
@@ -31,10 +35,21 @@ import pandas as pd
 
 from wgu_reddit_analyzer.utils import filters
 from wgu_reddit_analyzer.utils.db import get_db_connection
-from wgu_reddit_analyzer.utils.logging_utils import get_logger
 from wgu_reddit_analyzer.utils.sentiment_vader import calculate_vader_sentiment
 
-logger = get_logger("build_stage0_dataset")
+try:
+    from wgu_reddit_analyzer.utils.logging_utils import get_logger  # type: ignore
+
+    logger = get_logger(__name__)
+except Exception:  # noqa: BLE001
+    import logging
+
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    )
+    logger = logging.getLogger(__name__)
+
 
 STAGE0_FILENAME = "stage0_filtered_posts.jsonl"
 
@@ -73,20 +88,23 @@ WHERE
 
 def _project_root() -> Path:
     """
-    Return the repository root inferred from this file location.
+    Infer the repository root from this module's location.
+
+    This repository ships runnable pipeline scripts under src/. The Stage 0 builder is
+    expected to be invoked from a cloned repository without user-specific paths.
 
     Returns:
-        Absolute path to the repository root.
+        Absolute path to the inferred repository root.
     """
     return Path(__file__).resolve().parents[3]
 
 
 def _artifacts_dir() -> Path:
     """
-    Ensure and return the artifacts directory.
+    Create (if needed) and return the repository artifacts directory.
 
     Returns:
-        Path to artifacts/ under the repository root.
+        Path to artifacts/ under the inferred repository root.
     """
     directory = _project_root() / "artifacts"
     directory.mkdir(parents=True, exist_ok=True)
@@ -95,10 +113,14 @@ def _artifacts_dir() -> Path:
 
 def _load_course_codes() -> List[str]:
     """
-    Load course codes from the configured COURSE_CSV file.
+    Load normalized course codes from the configured course list CSV.
+
+    The CSV path is defined by wgu_reddit_analyzer.utils.filters.COURSE_CSV. Codes are
+    read from the "CourseCode" column and normalized via string conversion and strip.
 
     Returns:
-        List of normalized course codes. Empty list if load fails.
+        List of non-empty course codes. Returns an empty list if the file is missing
+        or cannot be read.
     """
     csv_path = filters.COURSE_CSV
     if not csv_path.exists():
@@ -111,13 +133,7 @@ def _load_course_codes() -> List[str]:
         logger.error("Failed to read course list CSV at %s: %s", csv_path, exc)
         return []
 
-    codes = (
-        df_codes["CourseCode"]
-        .dropna()
-        .astype(str)
-        .str.strip()
-        .tolist()
-    )
+    codes = df_codes["CourseCode"].dropna().astype(str).str.strip().tolist()
     codes = [code for code in codes if code]
 
     logger.info("Loaded %d course codes from %s", len(codes), csv_path)
@@ -129,16 +145,17 @@ def _load_course_codes() -> List[str]:
 
 def _ensure_vader(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Ensure each post has a valid numeric vader_compound score.
+    Ensure the DataFrame has a numeric vader_compound score for each row.
 
-    Missing or invalid scores are recomputed using title + selftext.
+    If vader_compound is missing or not castable to float, the score is recomputed
+    using calculate_vader_sentiment over the combined title and selftext.
 
     Args:
-        df:
-            DataFrame of posts including title and selftext.
+        df: DataFrame containing at least title and selftext columns.
 
     Returns:
-        DataFrame with a float vader_compound column.
+        The same DataFrame with a vader_compound column present and best-effort
+        cast to float.
     """
     if "vader_compound" not in df.columns:
         df["vader_compound"] = None
@@ -176,24 +193,25 @@ def _ensure_vader(df: pd.DataFrame) -> pd.DataFrame:
     try:
         df["vader_compound"] = df["vader_compound"].astype(float)
     except Exception as exc:  # noqa: BLE001
-        logger.warning(
-            "Could not cast all vader_compound values to float: %s",
-            exc,
-        )
+        logger.warning("Could not cast all vader_compound values to float: %s", exc)
 
     return df
 
 
 def build_stage0_dataset(output_path: Path) -> int:
     """
-    Build and write the authoritative Stage 0 dataset.
+    Build and write the Stage 0 dataset to a JSON Lines file.
+
+    The selection and filtering behavior is defined by PIPELINE_SPEC.md and must be
+    consistent across runs. This function preserves the required filtering rules and
+    output fields.
 
     Args:
-        output_path:
-            Destination path for the JSONL output file.
+        output_path: Destination path for the JSONL output file.
 
     Returns:
-        Number of records written to output_path.
+        Number of records written to output_path. If no eligible records are found,
+        an empty file is written and 0 is returned.
     """
     conn = get_db_connection()
     try:
@@ -302,19 +320,15 @@ def build_stage0_dataset(output_path: Path) -> int:
             file.write("\n")
             count += 1
 
-    logger.info(
-        "Stage 0 export complete: %d records written to %s",
-        count,
-        output_path,
-    )
+    logger.info("Stage 0 export complete: %d records written to %s", count, output_path)
     return count
 
 
 def main() -> None:
     """
-    CLI entrypoint for building the Stage 0 dataset.
+    Build the Stage 0 dataset using the default artifacts location.
 
-    Uses the default artifacts directory and filename.
+    Writes artifacts/stage0_filtered_posts.jsonl under the inferred repository root.
     """
     artifacts_dir = _artifacts_dir()
     output_path = artifacts_dir / STAGE0_FILENAME

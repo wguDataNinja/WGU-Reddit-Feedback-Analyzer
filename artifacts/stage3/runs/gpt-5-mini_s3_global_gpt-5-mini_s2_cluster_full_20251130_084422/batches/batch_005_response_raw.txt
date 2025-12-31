@@ -1,0 +1,102 @@
+{
+  "global_clusters": [
+    {
+      "provisional_label": "Ambiguous or incomplete instructions and prompts",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Assignment and assessment instructions, prompts, and expectations are unclear or incomplete (format, required elements, citation rules, scope), causing students to submit incorrectly or be returned.",
+      "member_cluster_ids": [
+        "D645_1",
+        "D658_1",
+        "D662_1",
+        "D663_1",
+        "D663_2",
+        "D670_2",
+        "D774_2",
+        "MGT2_1"
+      ]
+    },
+    {
+      "provisional_label": "Missing or insufficient instructional materials and exemplars",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Courses lack required templates, exemplars, multimedia, or sufficient instructional resources and guided materials needed for students to complete assessments correctly.",
+      "member_cluster_ids": [
+        "D645_2",
+        "D670_1",
+        "D774_1",
+        "D775_1",
+        "D776_1"
+      ]
+    },
+    {
+      "provisional_label": "Assessor/rubric inconsistency and poor feedback",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Assessors apply rubrics inconsistently, provide unclear or misaligned feedback, or fail to verify submitted evidence, creating contradictory revision requests and incorrect competency decisions.",
+      "member_cluster_ids": [
+        "D652_1",
+        "D660_2",
+        "D688_1",
+        "D688_2"
+      ]
+    },
+    {
+      "provisional_label": "Platform, playback, and system failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Technical failures in course platforms, lesson loading, or assessment recording/playback (including encryption issues) prevent access to materials or cause lost assessment evidence.",
+      "member_cluster_ids": [
+        "D676_2",
+        "D685_1",
+        "D756_1"
+      ]
+    },
+    {
+      "provisional_label": "Simulation scheduling availability",
+      "normalized_issue_label": "scheduling_or_simulation_availability_issues",
+      "short_description": "Mandatory simulation sessions (e.g., Mursion) have no available booking slots, preventing students from completing required, time-bound activities.",
+      "member_cluster_ids": [
+        "D659_2",
+        "D676_1"
+      ]
+    },
+    {
+      "provisional_label": "Assessment content misalignment",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Pre-assessments or preparatory content do not align with objective assessments, producing unexpected assessment material and poor preparedness.",
+      "member_cluster_ids": [
+        "D677_1"
+      ]
+    },
+    {
+      "provisional_label": "Broken or unusable course resources",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Required course media or materials (e.g., videos) have audio or functionality problems that prevent students from accessing necessary content.",
+      "member_cluster_ids": [
+        "D697_1"
+      ]
+    },
+    {
+      "provisional_label": "Process and policy barriers around required steps",
+      "normalized_issue_label": "workflow_or_policy_barriers",
+      "short_description": "Course or proctor workflows (e.g., confirming required surveys before simulations) are not enforced or are unclear, causing students to miss required assessment components.",
+      "member_cluster_ids": [
+        "D689_1"
+      ]
+    },
+    {
+      "provisional_label": "Third-party tool performance and dependency risk",
+      "normalized_issue_label": "external_tool_dependency_risks",
+      "short_description": "Third-party simulations or tools cause severe local performance issues or are unreliable, blocking students from completing required activities on their devices.",
+      "member_cluster_ids": [
+        "D848_1"
+      ]
+    },
+    {
+      "provisional_label": "Proctoring behavior and exam environment problems",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Unprofessional or inconsistent proctor behavior and exam-environment issues create distractions or unclear proctoring practices that affect assessment integrity and student performance.",
+      "member_cluster_ids": [
+        "D904_1"
+      ]
+    }
+  ],
+  "unassigned_clusters": []
+}

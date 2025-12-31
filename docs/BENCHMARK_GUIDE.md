@@ -1,123 +1,130 @@
-# WGU Reddit Analyzer – Benchmark Guide
+# WGU Reddit Analyzer – Stage 1 Benchmark Guide
 
-_Last updated: 2025-11-10_
+**Version:** 2025-11-22  
+**Scope:** Full evaluation pipeline for Stage-1 pain-point detection using LLMs.
 
 ---
 
 ## 1 · Purpose
 
-Defines how Large Language Models (LLMs) are evaluated for extracting course-level pain points from Reddit posts.  
-Focus: accuracy, efficiency, and reproducibility across fixed datasets.
+This guide defines:
+
+- how Stage-1 LLM classifiers are evaluated  
+- how prompts and models are compared  
+- how metrics, cost, and latency are computed  
+- how DEV and TEST benchmarks are run  
+- how FP/FN analysis drives prompt optimization  
 
 ---
 
 ## 2 · Benchmark Goals
 
-The benchmark serves two core evaluation goals:
+### 2.1 Model comparison
 
-1. **Model Comparison** — measure performance and efficiency across LLMs (e.g., GPT-5, Llama 3).  
-2. **Prompt Comparison** — assess multiple prompt templates to identify the most effective configuration for the full dataset run.
+Evaluate `llama3`, `gpt-5-nano`, `gpt-5-mini`, and `gpt-5` across:
 
-Both dimensions are evaluated on identical datasets to ensure fair, reproducible comparison of accuracy, cost, and latency.
+- accuracy / precision / recall / F1  
+- cost  
+- latency  
+
+### 2.2 Prompt comparison
+
+For each model:
+
+- zero-shot baseline (`s1_zero.txt`)  
+- few-shot v1 (`s1_few.txt`)  
+- final tuned prompt (`s1_optimal.txt`, refined Stage 1 prompt selected after DEV analysis)
+
+### 2.3 Schema stability
+
+All models must return outputs that can be normalized into the Stage-1 schema.  
+The parser must behave identically across all model outputs.
+
+### 2.4 Prompt promotion and acceptance criteria
+
+Changes to Stage-1 prompts are accepted only if they satisfy explicit acceptance criteria on the same labeled examples.
+
+Disagreements between a baseline prompt and a candidate prompt are evaluated using McNemar’s test on DEV to ensure that observed improvements are not due to chance. Prompt promotion additionally requires improvement without performance regression on core classification metrics, particularly F1.
+
+Operational metrics such as cost and latency are recorded but do not affect acceptance decisions.
+
+### 2.5 Prompt selection under metric tradeoffs
+
+Prompt refinement does not guarantee improvement across all metrics. In practice, tighter prompts often reduce false positives and improve precision while lowering recall.
+
+Prompt selection is therefore treated as a multi-objective decision rather than a single-metric optimization. Candidate prompts are evaluated jointly on:
+
+- statistical improvement under McNemar’s test  
+- balance between precision and recall (F1)  
+- error and schema stability  
+- cost and latency characteristics  
+
+Final selection favors prompts that achieve statistically justified improvements without performance regression. The selected prompt is referred to as the **refined** Stage 1 prompt.
 
 ---
 
-## 3 · Benchmark Structure
+## 3 · Benchmark Code Layout
 
-```
-src/wgu_reddit_analyzer/benchmark/
-  ├── data_io.py
-  ├── runner.py
-  ├── metrics.py
-  ├── cost_latency.py
-  ├── estimate_benchmark_cost.py
-  └── report.py
-```
+**Code:** `src/wgu_reddit_analyzer/benchmark/`
 
-All benchmark outputs and reports are stored in:
+- `stage1_classifier.py`  
+- `stage1_types.py`  
+- `model_client.py`  
+- `run_stage1_benchmark.py`  
+- `build_stage1_panel.py`  
+- `combine_runs_for_analysis.py`  
+- `cost_latency.py`  
+- `model_registry.py`  
+- `update_run_index.py`  
+- `llm_connectivity_check.py`  
 
-```
-artifacts/benchmark/
-```
+**Artifacts:** `artifacts/benchmark/`
+
+- `stage1/runs/`  
+- `stage1_run_index.csv`  
+- `stage1_panel_DEV.csv`  
+- `stage1_panel_TEST.csv`  
+- `DEV_candidates.jsonl`  
+- `TEST_candidates.jsonl`  
+- `gold/gold_labels.csv`  
+- `gating/` (pairwise prompt comparison artifacts)
+
+Each prompt comparison produces a gating directory containing a summary of the acceptance decision and the paired example rows used for evaluation.
 
 ---
 
 ## 4 · Datasets
 
-Two locked splits: **DEV** and **TEST**.  
-Each contains Reddit posts referencing a single WGU course.  
-Datasets are versioned and immutable once released; any relabeling requires a version bump.
+Two frozen splits are used.
+
+### DEV
+- used for prompt iteration  
+- used for model comparison  
+- used for FP/FN clustering  
+- authoritative for selecting the final prompt  
+
+### TEST
+- untouched until prompt freeze  
+- used for final evaluation only  
+
+`gold_labels.csv` must not change without a dataset version bump.
+
+Only `artifacts/benchmark/gold/gold_labels.csv` is authoritative; any backups are stored under `artifacts/benchmark/gold/.old`.
 
 ---
 
 ## 5 · Prompt Benchmarking
 
-The benchmark framework supports configurable prompt templates stored in:
+**Prompt directory:** `prompts/`
 
-```
-prompts/
-  ├── zero_shot.txt
-  ├── few_shot_simple.txt
-  └── few_shot_optimized.txt
-```
+Each benchmark run copies its prompt file into the run directory for reproducibility.
 
-Each template defines a unique prompting strategy:
+| Prompt | Purpose |
+|---|---|
+| `s1_zero.txt` | Zero-shot baseline |
+| `s1_few.txt` | Few-shot v1 |
+| `s1_optimal.txt` | Final tuned prompt (refined) |
 
-| Prompt Type | Description | Purpose |
-|--------------|-------------|----------|
-| **Zero-shot** | Basic task instructions only | Establish baseline accuracy |
-| **Few-shot (simple)** | Includes 2–3 labeled examples | Tests example-driven gains |
-| **Few-shot (optimized)** | DEV-tuned for clarity and efficiency | Maximizes accuracy-to-cost ratio |
-
-Each run specifies the template via `prompt.template_path` in its YAML configuration.  
-This allows reproducible multi-prompt benchmarking across models, tracking **accuracy**, **latency**, and **cost per 1K posts**.
-
----
-
-## 6 · Benchmark Flow
-
-1. Load dataset and prompt configuration.  
-2. Run selected models and prompt templates.  
-3. Collect predictions, token usage, and latency.  
-4. Compute evaluation metrics (Precision, Recall, F1, Accuracy).  
-5. Aggregate results via leaderboard and Pareto chart.  
-6. Select the top-performing prompt per model based on DEV results for final TEST evaluation.
-
----
-
-## 7 · Metrics & Analysis
-
-Includes standard classification metrics plus **Macro / Weighted F1** to mitigate class imbalance.  
-Efficiency metrics track:
-- **Cost per 1K posts (USD)**  
-- **p50 / p95 latency (ms)**  
-
-Results are summarized in a **Pareto cost–accuracy plot**, highlighting trade-offs between performance and efficiency across both models and prompt types.
-
----
-
-## 8 · Running the Benchmark
-
+**Runner flag:**
 ```bash
-python -m wgu_reddit_analyzer.benchmark.runner --config configs/benchmark_example.yml
-python -m wgu_reddit_analyzer.benchmark.report
-```
-
-Outputs appear under:
-
-```
-artifacts/benchmark/
-```
-
----
-
-## 9 · Results & Deliverables
-
-- Reproducible leaderboard of model × prompt performance  
-- Cost–accuracy Pareto summary  
-- Optimal prompt per model for full dataset deployment  
-- Locked and versioned evaluation datasets  
-- Clear linkage between benchmark artifacts and project documentation
-
----
-
+--prompt prompts/<prompt>.txt

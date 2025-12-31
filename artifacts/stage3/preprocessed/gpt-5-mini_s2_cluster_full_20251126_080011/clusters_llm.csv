@@ -1,0 +1,328 @@
+cluster_id,issue_summary,course_code,course_title,num_posts
+AFT2_1,Ambiguous or incomplete instructions for Task 1 about whether students must identify compliant vs noncompliant artifacts,AFT2,AFT2 – Accreditation Audit,1
+C165_1,"Practice/infographic quizzes are misaligned with check-in quizzes and OAs (not representative in content, format, or difficulty)",C165,Integrated Physical Sciences,1
+C165_2,"Course textbook/material wording is unclear or poorly written, making concepts hard to understand",C165,Integrated Physical Sciences,1
+C180_1,unclear or poorly worded pre-assessment questions misaligned with course materials,C180,Introduction to Psychology,1
+C190_1,"Course instructor/CI unresponsive or slow to approve retake attempts, causing delays",C190,Introduction to Biology,1
+C190_2,Inconsistent or changing retake requirements and instructions after submission,C190,Introduction to Biology,1
+C190_3,Evaluator feedback is insufficient — highlights given without explanations to guide corrections,C190,Introduction to Biology,1
+C200_1,grader/evaluator inconsistency or incorrect application of rubric on resubmissions,C200,Managing Organizations and Leading People,1
+C200_2,AI-detection tool flags and lack of guidance on acceptable editing tools or how to resolve false positives,C200,Managing Organizations and Leading People,1
+C200_3,assignment expectations unclear or not scaffolded for students without prior management/leadership experience,C200,Managing Organizations and Leading People,1
+C200_4,missing hosted or recorded lecture content to teach core material,C200,Managing Organizations and Leading People,1
+C204_1,Unclear instructions/demonstration for Panopto webcam overlay positioning (how to place presenter video in lower corner),C204,Management Communication,1
+C204_2,Broken or missing course resource links in WGU Connect (PowerPoint and tip sheet inaccessible),C204,Management Communication,1
+C207_1,"Unclear, inconsistent, or unhelpful evaluator feedback and rubric expectations for assignments (vague guidance, contradictory comments, or 'read the textbook' responses).",C207,Data-Driven Decision Making,3
+C207_2,Misalignment between practice assessment (PA) materials and the objective assessment (OA) — practice prep does not reflect OA wording or style.,C207,Data-Driven Decision Making,1
+C210_1,"Course submission requirements conflict with provided/allowed presentation tools: WGU PowerPoint lacks live-record/embed capability while course expectations require embedded video or use of Panopto, and guidance on acceptable formats/tools is unclear.",C210,Management and Leadership Capstone,1
+C211_1,"Instructors/approvers are unresponsive or slow to respond to student requests (retake approvals, questions), causing missed deadlines and blocked progress",C211,Global Economics for Managers,3
+C211_2,Required access credentials (quiz/proctor passwords) are missing from course instructions and not provided promptly by staff,C211,Global Economics for Managers,1
+C211_3,"OA/assessment results get stuck in a 'scheduled' status and require manual intervention, with slow or no follow-up from Assessment Services",C211,Global Economics for Managers,1
+C211_4,"Proctored assessment (PA) content and style are misaligned with the available practice OAs, leaving students underprepared",C211,Global Economics for Managers,1
+C212_1,Ambiguous assignment instructions for Part A1a about whether students should use real external research or fabricate hypothetical research results,C212,Marketing,1
+C213_1,"Pre-Assessment (PA) and course/practice materials not aligned with the Objective Assessment (OA), causing PA performance to not predict OA success",C213,Accounting for Decision Makers,1
+C213_2,"Proctoring policies and identity/room-check procedures applied rigidly or without clear exceptions, leading to exam interruptions and student confusion",C213,Accounting for Decision Makers,1
+C213_3,"Course content is overly long and fragmented (many long video subsections per topic), creating excessive time burden and poor pacing",C213,Accounting for Decision Makers,1
+C213_4,Required course resource (study guide) missing from course folder with only a vague 'being updated' response and no workaround or timeline,C213,Accounting for Decision Makers,1
+C214_1,"Course resources (lectures, problem sets, study guide, textbook, PA) are misaligned with the Objective Assessment (content, problem styles, and formulas).",C214,Financial Management,5
+C214_2,Required PA file/feature fails to load in Excel (technical/tool malfunction preventing completion).,C214,Financial Management,1
+C214_3,Required course material (pre-assessment report) is missing or empty on the platform.,C214,Financial Management,1
+C214_4,"OA result/term processing error — submitted OA not recorded/updated to next term, causing incorrect 'incomplete' status.",C214,Financial Management,1
+C216_1,Panopto recording tool fails to capture screen/app or PowerPoint slides (only webcam recorded) or instructions for using Panopto are unclear,C216,MBA Capstone,1
+C216_2,Simulation UI and instructions unclear about auto-populated quarter data vs. zeros for future quarters (students unsure whether to manually enter projections),C216,MBA Capstone,1
+C237_1,"Misalignment between learning materials/quizzes and the performance assessment (PA) — answer choices and problem scope in quizzes don't match PA formatting or options, causing guesswork",C237,Taxation I,1
+C268_1,"Course-provided spreadsheets include Excel macros without warnings or compatibility alternatives, causing antivirus detections and Mac runtime errors.",C268,Spreadsheets,2
+C268_2,Pre-assessment platform/display failing to show PA scores/proficiency/status and not recording or showing test duration.,C268,Spreadsheets,1
+C458_1,Preassessment content not aligned with final assessment; exam contains unexpected or confusing questions,C458,"Health, Fitness, and Wellness",1
+C483_1,Course assessments (OA) cover few questions but require studying an excessive amount of course content — scope of materials not aligned to assessment length,C483,Principles of Management,1
+C483_2,"Course materials are disorganized and poorly mapped to the study guide — content scattered across non-sequential chapters without a consolidated, study-guide-aligned resource",C483,Principles of Management,1
+C715_1,Practice tests are not aligned with the Objective Assessment (OA) content or format,C715,Organizational Behavior,1
+C715_2,"Required e-book is difficult to use or broken, impairing study",C715,Organizational Behavior,1
+C716_1,Ambiguous instructions/rubric for SRM3 Task 3 about whether text-based PowerPoint speaker notes are acceptable versus requiring a synchronized audio/video recording; examples mentioning built-in recording features create confusion and lack how-to guidance.,C716,Business Communication,2
+C716_2,Unclear or inconsistent submission file-type and link guidance—students receive rejections for file types/links without prior guidance on acceptable formats.,C716,Business Communication,1
+C716_3,"Assessment design forces multiple recorded presentation tasks with no alternative formats, creating excessive time burden and student discomfort.",C716,Business Communication,1
+C717_1,"Similarity/AI-detection tools provide inconsistent, unclear, or non‑transparent output (AI% vs similarity) and students lack guidance on how these tools are applied.",C717,Business Ethics,2
+C717_2,"Similarity checker is matching against a shared student-submission database (CopyLeaks shared data hub), causing persistent/false similarity results and no clear mitigation or configuration explanation.",C717,Business Ethics,1
+C722_1,"Course text/materials poorly organized or written, hindering usability and learning",C722,Project Management,1
+C723_1,students cannot access required course materials due to platform/resource availability or access problems,C723,Quantitative Analysis For Business,1
+C723_2,"course provides an excessive volume of required materials (e.g., 1,000+ pages on Sophia) leading to unmanageable workload",C723,Quantitative Analysis For Business,1
+C773_1,"Rubric and evaluator expectations are misaligned with task instructions—requirements (e.g., secondary navigation, positional awareness) are not clearly specified in rubric or task, causing unexpected returns.",C773,User Interface Design,1
+C773_2,"Course/platform enforces sequential task approvals or locks subsequent tasks when earlier tasks are returned/not passed, and this behavior is not documented.",C773,User Interface Design,1
+C777_1,"Practice materials and Practice Assessment (PA) are not representative of the Objective Assessment (OA), causing students to be unprepared despite passing course practice.",C777,Web Development Applications,2
+C777_2,"Course content is disorganized or presented inconsistently/contradictorily (e.g., CSS topics not structured clearly), causing confusion.",C777,Web Development Applications,2
+C777_3,"Platform/system errors prevent students from accessing or launching scheduled OAs (errors, queues, or failed launches) causing exam delays or missed appointments.",C777,Web Development Applications,2
+C777_4,"Broken or missing links and study guide resources that remain unrepaired after feedback, leaving required materials inaccessible.",C777,Web Development Applications,1
+C777_5,"Instructor/course team unresponsiveness or delays in approving time-sensitive requests (e.g., retake approvals), risking missed term deadlines.",C777,Web Development Applications,1
+C777_6,"Proctoring/connectivity problems during live proctored exams (proctor can't see video), risking exam validity or flags.",C777,Web Development Applications,1
+C783_1,"Evaluator misapplying rubric or not adequately reviewing submissions, returning revisions despite requirements being met",C783,Project Management,1
+C803_1,"Materials and task instructions lack clear, actionable guidance for applying AHIMA's Data Quality Management model to assignment tasks",C803,Data Analytics and Information Governance,1
+C810_1,automated assessment provides insufficient item-level feedback (no indication which questions were incorrect),C810,Foundations in Healthcare Data Management,1
+C816_1,"Evaluator feedback is vague and non-actionable, leaving students unsure how to revise to meet expectations",C816,Healthcare System Applications,1
+C816_2,"Course materials, rubric, and scenario/assessment are misaligned or inconsistent, making requirements unclear",C816,Healthcare System Applications,1
+C843_1,Unclear or insufficient evaluator/CI feedback and assignment instructions leading to repeated revisions and student confusion,C843,Managing Information Security,2
+C843_2,Misalignment or contradictory expectations between course materials and evaluator guidance about acceptable frameworks/references,C843,Managing Information Security,2
+C845_1,"Study guide and/or assessment materials contain ambiguous or opinion-based multiple-choice questions without clear instructions (e.g., whether multiple answers may be correct), causing confusion about expected answers.",C845,Information Systems Security,1
+C867_1,Ambiguous assignment instructions/instructor materials implying manual data edits instead of implementing code,C867,Scripting and Programming - Applications,1
+C927_1,Outdated course materials and examples (inactive companies/items) that create misleading or incorrect content,C927,Managing Technology Operations and Innovation,1
+C948_1,Inconsistent application of rubric between instructors and assessors leading to conflicting feedback and rejected submissions,C948,Technical Communication,1
+C949_1,"Objective Assessment (OA) content is misaligned with course materials (PA, study guide, cohort videos), causing unexpected/uncovered questions.",C949,Data Structures and Algorithms I,2
+C949_2,"Course materials and supplemental resources are scattered and disorganized across multiple locations, making studying difficult.",C949,Data Structures and Algorithms I,1
+C949_3,Multiple or inconsistent OA/test versions with varying difficulty lead to unequal student experiences and unexpected content.,C949,Data Structures and Algorithms I,1
+C952_1,Assessment content (RISC/ARM and code-to-machine conversion) is not covered or aligned with course materials/learning objectives,C952,Computer Architecture,1
+C954_1,Course readings/flashcards do not cover topics assessed on the PA/OA (material-assessment misalignment),C954,Information Technology Management,1
+C957_1,"Course requires redoing excessive numbers of questions and rewatching all videos, creating redundant and time-consuming requirements",C957,Applied Algebra,1
+C958_1,"Course scope and assessments are oversized—materials and a single exam combine Calc I and II topics, making assessment content unmanageably large",C958,Calculus I,1
+C959_1,"Objective Assessment contains questions not covered by course materials or the Practice Assessment (misalignment between PA/OA, including obscure facts), causing unexpected difficulty",C959,Discrete Mathematics I,2
+C959_2,OA includes obscure zyBooks-specific details and the course/PA messaging that 'PA ~ OA' is misleading,C959,Discrete Mathematics I,1
+C960_1,"Objective assessment content is misaligned with course instruction and pre-assessments—exams include unexpected, deeper topics and higher difficulty causing time-pressure and surprise.",C960,Discrete Mathematics II,2
+C960_2,"Course learning materials (Zybooks, resource guides, videos) are unclear, poorly written, or overly technical and therefore unusable, forcing students to seek external resources or workarounds.",C960,Discrete Mathematics II,1
+C963_1,Assessment format changed (OA to PA) without clear announcement to students,C963,American Politics and the US Constitution,1
+C963_2,Mentor failed to communicate course updates/assessment changes to the student,C963,American Politics and the US Constitution,1
+C969_1,"Provided VM MySQL environment is misconfigured or outdated (auth method and connector) and incompatible with students' tools, blocking database connections for assignments",C969,Software II – Advanced C#,2
+C969_2,Assignment requires legacy MySQL authentication method (my_native_password) that is disabled with no instructions to enable or provide alternatives,C969,Software II – Advanced C#,1
+C969_3,VM includes an outdated/incompatible MySQL connector preventing adding a MySQL DB connection in Visual Studio 2022; no updated connector or setup guidance provided,C969,Software II – Advanced C#,1
+D072_1,"Mentor/instructor is imposing additional, non-required 'homework' and withholding approval for OA retakes (gatekeeping behavior not aligned with self-paced policy)",D072,Fundamentals for Success in Business,1
+D072_2,"Assessment grading demands verbatim, word-for-word definitions (rubric misalignment with demonstrated understanding)",D072,Fundamentals for Success in Business,1
+D075_1,Unclear or poorly worded course materials and instructions requiring external clarification,D075,Information Technology Management Essentials,1
+D076_1,"Learning videos and course materials are misaligned with OA content and vocabulary, leaving topics assessed on the exam uncovered",D076,Finance Skills for Managers,1
+D076_2,Insufficient instructional/cohort videos and learning resources for course sections,D076,Finance Skills for Managers,1
+D077_1,"Unit/practice assessments and instructor-provided tests are misaligned with the OA, causing students to pass practice but fail the OA",D077,"Concepts in Marketing, Sales, and Customer Contact",1
+D078_1,Unclear or insufficient task instructions for assessment tasks (students unsure what Task 1/Task 2 require).,D078,Business Environment Applications I: Business Structures and Legal Environment,1
+D078_2,Submission platform/process issues — inability to cancel or resubmit uploaded files and unclear submission limits.,D078,Business Environment Applications I: Business Structures and Legal Environment,1
+D080_1,"Practice assessments (PAs) are not aligned with the Objective Assessment (OA) format/content, so passing PAs doesn't prepare students for the OA.",D080,Managing in a Global Business Environment,2
+D080_2,Course lesson materials are not aligned with the Performance Assessment (PA); PA content isn't covered in lesson resources.,D080,Managing in a Global Business Environment,1
+D080_3,"Remediation requirements after a failed OA are overly burdensome and inflexible (lengthy study guide plus mandatory office hours), creating delay and extra work.",D080,Managing in a Global Business Environment,1
+D080_4,Required synchronous/scheduled sessions (multiple 45‑minute blocks) have limited instructor/time slot availability that doesn't accommodate working students/parents.,D080,Managing in a Global Business Environment,1
+D081_1,"Mandatory use of a third‑party platform (WGUConnect) required to access course materials, creating an access/integration barrier",D081,Innovative and Strategic Thinking,1
+D089_1,Objective assessment (OA IN01) and performance assessment (PA PINO) are misaligned with each other and with course materials,D089,Principles of Economics,1
+D099_1,"Vague or insufficient grading feedback and unclear rubric for the study guide assignment, leaving students without actionable guidance when work is returned",D099,Sales Management,1
+D100_1,course video lectures are unclear or poorly explained,D100,Introduction to Spreadsheets,1
+D100_2,exam software/Excel glitches prevent completing required tasks during assessments,D100,Introduction to Spreadsheets,1
+D101_1,"Inadequate or missing instructional/support materials and assignment data for Excel-based tasks (missing required data, no resource pages/recordings, poor-quality videos).",D101,Cost and Managerial Accounting,3
+D101_2,Assessments contain items that are misaligned with taught content or have unclear instructions (quiz questions covering later-unit content; Master Budgeting tasks/questions unclear or not correlated to guidance).,D101,Cost and Managerial Accounting,2
+D101_3,"Proctoring/platform interruptions consume exam time and force reconnections, creating time pressure and guesswork.",D101,Cost and Managerial Accounting,1
+D101_4,Similarity/plagiarism checking produces consistently high similarity scores and lacks clear guidance or configuration to prevent false positives.,D101,Cost and Managerial Accounting,1
+D102_1,"Course readings, videos, and in-text practice are too easy or not practical and do not provide scaffolded practice to prepare for the pre-assessment/OA",D102,Financial Accounting,1
+D102_2,Practice Performance Assessment lacks any way to check answers or receive formative feedback unless the student submits the assessment,D102,Financial Accounting,1
+D102_3,"Course explanations and presentation conflict with common external instructional approaches, causing confusion (materials lack alternative explanations or crosswalks)",D102,Financial Accounting,1
+D103_1,"Core course materials (textbook and embedded media) are low-quality and written in a confusing, overly dense style that hinders comprehension.",D103,Intermediate Accounting I,2
+D103_2,"Misalignment between study materials (PA, unit tests, study guide practice questions) and the OA exam content, leaving students unprepared for assessment questions.",D103,Intermediate Accounting I,1
+D184_1,Misalignment between unit quizzes/study materials and the pretest (different content or question style),D184,Standards-Based Assessment,1
+D196_1,"Practice assessments, module final tests, and PAs do not align with the Objective Assessment (OA), leaving students unprepared for OA content and difficulty.",D196,Principles of Financial and Managerial Accounting,3
+D196_2,"Coaching/pre-assessment reports or section-level feedback are missing or not displaying (blank), preventing students from seeing performance by section.",D196,Principles of Financial and Managerial Accounting,2
+D196_3,"Lesson quiz questions are ambiguous or overly picky (technicalities/expected-answer selection misaligned with taught material), causing inconsistent scoring.",D196,Principles of Financial and Managerial Accounting,1
+D196_4,"Platform/support failures delayed exam access (long transfers, wait), causing student exhaustion that could impact performance.",D196,Principles of Financial and Managerial Accounting,1
+D196_5,"OA results or course status recorded in the wrong term (misattributed across term boundary), likely due to cut-off/time-zone logic.",D196,Principles of Financial and Managerial Accounting,1
+D196_6,MyEducator Excel test interface/layout (side menu combined with Excel pages) is distracting and hinders focus/accessibility for some students.,D196,Principles of Financial and Managerial Accounting,1
+D197_1,"Unclear or inconsistent submission/rubric requirements about required evidence and artifacts (specific screenshots, CLI output, merge conflict proof, branch base, and exactly what to submit)",D197,Version Control,6
+D197_2,"Repository access/authentication problems preventing students from cloning or accessing course GitLab repos (404 links, outdated saved credentials)",D197,Version Control,2
+D197_3,"Outdated or missing instructional materials (removed PA videos, screenshots that no longer match current GitLab UI)",D197,Version Control,2
+D197_4,Course pipeline or environment not producing expected artifacts in the D197 workspace after running CI steps,D197,Version Control,1
+D203_1,Proctoring/platform access failures causing long delays to start the OA,D203,Fundamentals of Anatomy and Physiology,1
+D216_1,Assessment questions are not aligned with course materials/study content,D216,Business Law for Accountants,1
+D255_1,Unclear or missing submission instructions for quiz/answers associated with the first performance task (whether to email instructor or include with task submission).,D255,Professional Practice Experience I: Technical,1
+D265_1,Course content or assessments inconsistent/outdated — missing assessment or recent course change caused confusion,D265,Critical Thinking: Reason and Evidence,1
+D268_1,"Ambiguous instructions for the narrated PowerPoint (whether students must speak, required level of detail, and expected length)",D268,Introduction to Communication: Connecting with Others,2
+D268_2,"Assessment rubric and assessor expectations for Task 2 are unclear or misaligned with video evidence, causing repeated revisions",D268,Introduction to Communication: Connecting with Others,1
+D268_3,Limited or inflexible student support options (office hours/scheduling) hinder timely clarification and assistance,D268,Introduction to Communication: Connecting with Others,1
+D270_1,Missing or unavailable assessment templates/examples and unclear formatting/structure guidance for tasks,D270,Composition: Successful Self-Expression,1
+D270_2,Course of study lacks a week-by-week pacing/syllabus component required by external institutions,D270,Composition: Successful Self-Expression,1
+D276_1,Course platform tools are malfunctioning (submission form errors and grader incorrectly flagging correct code),D276,Web Development Foundations,2
+D276_2,Missing or broken course assets/images in the course content,D276,Web Development Foundations,1
+D276_3,"Course materials are outdated, poor quality, or not adequately aligned with current course expectations",D276,Web Development Foundations,1
+D276_4,Vague or unclear project/PA guidelines and instructions,D276,Web Development Foundations,1
+D277_1,"Evaluators inconsistently apply the rubric or misreview submissions, resulting in incorrect missing-item feedback and contradictory instructions.",D277,Front-End Web Development,2
+D277_2,"Required/encouraged external hosting services are unreliable or behave inconsistently, causing hosted submissions to stop rendering assets after submission.",D277,Front-End Web Development,1
+D277_3,"Course commit → pipeline → deployment process or its instructions are failing, so student commits do not publish and pages show stale content.",D277,Front-End Web Development,1
+D277_4,"Assignment wording is ambiguous about scope (e.g., what 'all pages from part A' includes), causing confusion about required pages and elements.",D277,Front-End Web Development,1
+D277_5,"Provided instructional/support resources (tutors/instructors) are unreliable or fail to show up, leaving students without expected help.",D277,Front-End Web Development,1
+D277_6,Evaluator turnaround exceeds the advertised 3-day timeframe with insufficient communication about delays or availability.,D277,Front-End Web Development,1
+D278_1,"ZyBooks content is poorly organized or presented in large, non-incremental chunks, making learning difficult and prompting students to seek external resources",D278,Scripting and Programming - Foundations,2
+D278_2,Course materials (readings/prep) do not align with assessments (OAs/labs) — exam/lab expectations differ from what is taught,D278,Scripting and Programming - Foundations,2
+D278_3,"Degree-plan/track assignment workflow prevents selecting or assigning the correct programming track before course start, and mentors cannot view or adjust plans early",D278,Scripting and Programming - Foundations,1
+D278_4,"Coral coding environment lacks clear instructions or tutorials (e.g., how to set input variables); missing demo/video guidance",D278,Scripting and Programming - Foundations,1
+D278_5,Exam platform/browser reliability issues prevent viewing required materials (diagrams) during assessment,D278,Scripting and Programming - Foundations,1
+D279_1,Ambiguous or conflicting assignment instructions and supporting documents (expectations undefined),D279,User Interface Design,1
+D279_2,WGU-provided PowerPoint file/template lacks hyperlink or in-document linking functionality (file incompatible with student software/features),D279,User Interface Design,1
+D280_1,"GitLab/student repo problems: missing starter code, fork/inaccessible project notifications, and inability to commit to branches; course repo setup guidance and GitLab how‑to are insufficient.",D280,JavaScript Programming,2
+D280_2,"Ambiguous or contradictory assignment instructions/examples (e.g., Part G method requirements; HTML layout vs completed example) leading to confusion about required deliverables.",D280,JavaScript Programming,2
+D280_3,"Outdated or incorrect zyBooks/course materials regarding Angular/CLI versions and setup steps, causing build errors and platform-specific issues (Mac) when following instructions.",D280,JavaScript Programming,1
+D280_4,"Dependence on an external World Bank API that omits certain regions (e.g., Taiwan, Falklands, some islands) without course guidance on acceptable handling or required workarounds.",D280,JavaScript Programming,1
+D281_1,Proctoring platform and pre-exam checks are unreliable (queueing failures and inaccurate network/upload prechecks) causing exam delays or preventing start,D281,Linux Foundations,2
+D281_2,Course learning material contains unclear or nonsensical questions,D281,Linux Foundations,1
+D282_1,Broken or unclear AWS lab access: instructions and/or lab integration require a specific student lab account but credentials/console access are unclear or misconfigured,D282,Cloud Foundations,1
+D282_2,"Assessments test excessive memorization of minute AWS product details (e.g., pricing) not aligned with course materials or realistic learning objectives",D282,Cloud Foundations,1
+D284_1,Unclear expectations about requirements artifacts—scope and how to distinguish functional vs non-functional requirements,D284,Software Engineering,1
+D284_2,Ambiguous assignment prompt about whether students must invent their own problem or use a provided problem,D284,Software Engineering,1
+D286_1,inconsistent or implementation-specific automated grading across platforms (ZyBooks/PA/OA) causing correct solutions to be marked wrong,D286,Java Fundamentals,2
+D286_2,ZyBooks pre-assessment enforces specific code structure/syntax without providing a clear rubric or guidance,D286,Java Fundamentals,1
+D286_3,PA and OA environments or evaluation differ (parse/runtime differences or rubric mismatches) so code that runs in PA fails or is marked wrong on OA,D286,Java Fundamentals,1
+D287_1,"Unclear or misaligned assignment/rubric requirements for UI customization and inventory behavior (associating products/parts, inventory min/max, and tracking) leaving students unsure what to implement",D287,Java Frameworks,5
+D287_2,"Course starter/project files misconfigured (database names, ports, application properties) preventing local server from running and requiring instructor intervention to fix",D287,Java Frameworks,1
+D287_3,"Form validation messages not shown due to missing/incorrect HTML or form configuration in provided files, hindering user feedback and debugging",D287,Java Frameworks,2
+D287_4,"Pre-existing course code formatting is inconsistent and poorly formatted, reducing clarity and modeling bad coding practices",D287,Java Frameworks,1
+D287_5,"Automated evaluator or grading environment reports build/runtime errors not reproducible locally, indicating environment/configuration mismatches or evaluator inconsistency",D287,Java Frameworks,1
+D287_6,"Course assumes prior knowledge of Java file I/O (FileInputStream, FileOutputStream, PrintWriter) that students haven't been taught, causing gaps between prerequisites/content and lessons",D287,Java Frameworks,1
+D288_1,"Environment, dependency, or configuration mismatches between WGU lab, local student setups, and assessor environments causing runtime errors or failures",D288,Back-End Programming,3
+D288_2,"Seed data / bootstrap mismatches or broken checkout backend causing cart not found/empty and purchase request failures (ID mismatches, 404s, total not calculated)",D288,Back-End Programming,3
+D288_3,Conflicting or unclear instructions about whether the Lab environment is required for the project,D288,Back-End Programming,1
+D288_4,Course-provided JSON/data file is malformed (circular references) causing infinite recursion and blocking student progress,D288,Back-End Programming,1
+D288_5,"Essential course materials hosted on Panopto were inaccessible during an outage, blocking access to fix/instructional videos",D288,Back-End Programming,1
+D313_1,Misalignment between course materials/pre-assessments and the Objective Assessment content,D313,Anatomy and Physiology II with Lab,1
+D315_1,"Misalignment between course practice materials (study quizzes, PA) and the Objective Assessment — OA includes unexpected topics and tricky question styles not reflected in provided resources.",D315,Network and Security - Foundations,3
+D317_1,Practice/pretests are misaligned with assessed tasks (lack PBQs) and do not provide clear study guidance,D317,IT Applications,1
+D317_2,Practice questions and answer choices are poorly worded or unclear,D317,IT Applications,1
+D322_1,"Misalignment between course study materials/PA and the OA — OA contains specific topics (e.g., computing 'generation' history questions) not emphasized or covered in provided materials.",D322,Introduction to IT,2
+D324_1,broken or nonfunctional assessment item (drag-and-drop PBQ) preventing completion,D324,Business of IT - Project Management,1
+D324_2,vague or poorly worded exam questions causing confusion,D324,Business of IT - Project Management,1
+D325_1,Second-attempt remediation requirements are excessively burdensome and disproportionate to near-pass results,D325,Networks,1
+D325_2,Verification/evidence requirements (submit screenshots) and very high score thresholds make remediation onerous,D325,Networks,1
+D329_1,Instructor-imposed arbitrary voucher approval requirement (90% on CertMaster practice exam),D329,Network and Security - Applications,1
+D330_1,"Course materials and provided resources (readings, cohorts, study aids) do not align with Objective Assessment content",D330,Data Systems Administration,3
+D330_2,Objective Assessment tests on an outdated/deprecated software version (Oracle) not reflected in materials or current industry practice,D330,Data Systems Administration,1
+D333_1,"Assessment content (OA) is misaligned with study guide, PA, and provided course materials—exam includes situational or out-of-scope questions not covered by resources.",D333,Ethics in Technology,3
+D333_2,"Confusing or inconsistent communication and course interface about assessment format and requirements (OA vs PA, required essays/textbook); platform/mentors not updated to reflect changes.",D333,Ethics in Technology,2
+D334_1,Assessment items (OAs) include questions or topics not covered in the provided study guide or course materials,D334,Introduction to Cryptography,1
+D334_2,"Course materials contain factual inaccuracies or outdated information (e.g., incorrect 3DES round count)",D334,Introduction to Cryptography,1
+D335_1,"Automated assessments lack transparency and clear input/output expectations (hidden test-case outputs; unclear expected input handling), causing unexpected failures.",D335,Introduction to Programming in Python,3
+D335_2,"Assessments are misaligned with course materials and intended skills (difficulty mismatch and choice of OA over PA), leaving students unprepared.",D335,Introduction to Programming in Python,2
+D335_3,"Inadequate evaluator/instructor feedback and remediation after failing assessments (generic study plans instead of targeted, actionable grading explanations).",D335,Introduction to Programming in Python,1
+D335_4,"Third-party lab content (Zybooks v2) contains bugs and conflicting instructions/outputs, forcing students to produce intentionally incorrect code to pass.",D335,Introduction to Programming in Python,1
+D336_1,"Proctoring requirements are unclear/overly burdensome (requires simultaneous multiple camera views), risking test cancellation",D336,Business of IT - Applications,1
+D336_2,External certification results not being recorded/processed in course records and no acknowledgement after emailing certificate,D336,Business of IT - Applications,1
+D336_3,Course video materials are too short and do not adequately cover required topics,D336,Business of IT - Applications,1
+D351_1,"Assessments (PA/OA) are misaligned with course materials and with each other, containing questions/topics not covered in the taught content",D351,Functions of Human Resource Management,2
+D351_2,Pre-assessment study-guide mappings and feedback point to incorrect chapters/sections or unrelated material,D351,Functions of Human Resource Management,1
+D355_1,Course resources inaccessible after platform migration and unclear guidance on where/how to access resources or when the class becomes active,D355,Total Rewards,1
+D363_1,Incorrect or outdated answer key/automated grading marking correct work as wrong,D363,Personal Finance,1
+D363_2,"Course materials/definitions contradict assessment expectations (e.g., discretionary expenses misdefined leading to wrong answer choices)",D363,Personal Finance,1
+D363_3,"Performance assessment content/format misaligned with objective assessment, preventing effective preparation",D363,Personal Finance,1
+D370_1,Required assignment templates or materials not provided or not clearly accessible,D370,IT Leadership Foundations,1
+D370_2,Platform downtime prevents access to assignment instructions/materials and offline work is not supported,D370,IT Leadership Foundations,1
+D378_1,"Assessment misalignment: proctored exam content and question types do not match the study guide, Quizlet, or pre-assessment",D378,Digital Marketing Science,1
+D385_1,"Assessment grading or answer-key mismatch: correct student code/answers are being marked wrong due to incorrect/outdated answer keys, evaluator/grader errors, or unclear rubric alignment.",D385,Software Security and Testing,3
+D385_2,"Unclear or contradictory practice assessment instructions and provided code, preventing students from understanding requirements or attempting the coding tasks.",D385,Software Security and Testing,1
+D387_1,"Unclear or undocumented required runtime/tool versions and compatibility (JDK/Lombok, Node, CPU architecture)",D387,Advanced Java,2
+D387_2,"Insufficient environment/CI/evaluator configuration guidance and troubleshooting instructions (platform-specific install steps, debugging tips, evaluator environment alignment)",D387,Advanced Java,2
+D388_1,"Automated grading/validation incorrectly fails to detect correct student inputs (comment boxes, table sorting)",D388,Fundamentals of Spreadsheets and Data Presentations,2
+D388_2,"Pre-assessments do not display a clear final/overall score, preventing students from evaluating readiness",D388,Fundamentals of Spreadsheets and Data Presentations,1
+D389_1,Ambiguous/contradictory instructions about required deliverable format (APA vs. answering template questions),D389,Learning Strategies in Higher Education,1
+D389_2,Missing citation guidance for sources with multiple authors,D389,Learning Strategies in Higher Education,1
+D398_1,Objective assessment (OA) content not aligned with course materials and pre-assessments; multiple OA versions cause unexpected variation,D398,Introduction to Pharmacology,1
+D398_2,Course instructor unresponsive after failed assessment — no clear response SLA or escalation/contact alternative,D398,Introduction to Pharmacology,1
+D412_1,Unclear or missing instructions for configuring/editing OpnSense firewall rules in the lab materials,D412,Network Analytics and Troubleshooting,1
+D412_2,"Lab environment instability or broken labs requiring restarts, blocking progress",D412,Network Analytics and Troubleshooting,1
+D412_3,Misconfigured or inaccessible VM/content mapping — students can't find the correct VM or website content referenced in tickets,D412,Network Analytics and Troubleshooting,1
+D413_1,"Performance Assessment (PA) content and difficulty do not align with Objective Assessment (OA); PA does not adequately prepare students for the harder, more detailed OA",D413,Telecomm and Wireless Communications,1
+D422_1,Primary course material (zyBooks) is poorly formatted and provides insufficient practice problems and worked examples,D422,Discrete Math: Algorithms and Cryptography,1
+D426_1,"Course study materials (Zybooks, red doc, GitHub resources, preassessment) do not align with the Objective Assessment and fail to cover OA topics, leaving students unprepared.",D426,Data Management - Foundations,4
+D426_2,"Mandatory remediation (DRYbooks/Zybooks) required before retakes is ineffective, contains irrelevant content, wastes student time, and blocks timely progress.",D426,Data Management - Foundations,1
+D426_3,Testing platform malfunction (FORBIDDEN error) allowed the student to continue the exam despite the error and the failed attempt was not removed.,D426,Data Management - Foundations,1
+D427_1,"ZyBooks autograder/test harness and environment bugs (parser errors, execution timeouts, MySQL/version or environment mismatches) causing correct SQL/code to be marked incorrect or receive 0s.",D427,Data Management - Applications,3
+D427_2,"Practice materials, PAs, and study guides are outdated or misaligned with the proctored OA (content, question styles, and chapter references don't match the assessment).",D427,Data Management - Applications,3
+D427_3,"Assessment content errors/typos and internal inconsistencies (e.g., mismatched object names between prompt and test cases) causing confusion and wrong grading.",D427,Data Management - Applications,1
+D427_4,"WGU/zyBooks browser or test platform freezes during the OA, blocking submission or navigation and wasting exam time.",D427,Data Management - Applications,1
+D427_5,Required ZyBooks labs referenced by students/instructions are missing from the course materials (lab 7 and 8 not present where expected).,D427,Data Management - Applications,1
+D427_6,"Lack of clear grading/formatting guidance for machine‑graded SQL (unclear rules on capitalization, spacing, quotes, data types) and no instructor clarification.",D427,Data Management - Applications,1
+D430_1,Required course materials were converted to a new linked/reference format that students find difficult to use and unhelpful,D430,Fundamentals of Information Security,1
+D432_1,Required cohort materials and resources not uploaded to Course Tips (missing course resources/guidance).,D432,HR Compliance and Employee Relations,1
+D464_1,Final assessment content misaligned with course materials and unit tests,D464,Managing Operations,1
+D464_2,Student unable to access/open exam despite completing prerequisites (platform/process or administrative barrier),D464,Managing Operations,1
+D464_3,Instructor unresponsive/unprofessional and inadequate support during scheduled meetings and course-change requests,D464,Managing Operations,1
+D465_1,Unclear or misleading OA wording causing misalignment with the PA and tripping up students,D465,Data Applications,1
+D467_1,"Misalignment between Performance Assessment (PA) and Objective Assessment (OA): OA covers content and question styles not reflected in the PA, causing unexpected difficulty.",D467,Exploring Data,1
+D479_1,"Course requires peer reviews from other students as a blocking submission dependency, preventing progress when reviewers are unavailable",D479,User Experience Design,1
+D481_1,"Transfer/credit from prior WGU bachelor coursework not applied, forcing mandatory enrollment in D481",D481,Security Foundations,1
+D481_2,Inconsistent or incorrect communication between records and program mentor about credit applicability,D481,Security Foundations,1
+D482_1,"Course materials are low-quality and appear unoriginal or AI-generated, lacking clear explanations and original content",D482,Secure Network Design,1
+D483_1,Broken or unusable lab access (credentials or platform tools) preventing completion of virtual labs,D483,Security Operations,2
+D483_2,Unclear rubric/instructions for the incident response report (whether to fill template vs. produce a full report),D483,Security Operations,1
+D483_3,Ambiguous remediation instructions and evidence requirements for investigations (what actions to take and document),D483,Security Operations,1
+D483_4,Course assessment misalignment: additional performance objective required beyond passing CySA+,D483,Security Operations,1
+D485_1,platform permission bug prevents assigning roles despite ADMIN privileges,D485,D485 – Cloud Security,1
+D486_1,"Rubric language is ambiguous—refers to 'given points' without specifying where those points are listed (e.g., SAR), leaving students unsure what to address in the assessment.",D486,"Governance, Risk, and Compliance",1
+D486_2,"Required course resource (pre-recorded cohort) is missing or inaccessible, preventing students from obtaining guidance needed to complete the Performance Assessment (especially section B).",D486,"Governance, Risk, and Compliance",1
+D487_1,"Objective Assessment (OA) misalignment: OA questions are worded differently, more confusing, or cover content not present in course materials or pre-assessments",D487,Secure Software Design,2
+D487_2,Proctoring/platform error causing exams to terminate or redirect (survey) mid-test with no score or review options,D487,Secure Software Design,1
+D487_3,Excessive use of unexplained acronyms/abbreviations in materials and assessments making questions unclear,D487,Secure Software Design,1
+D488_1,"Required CertMasters lab environment is broken/unusable (lags, nonfunctional features) while course requires 100% completion",D488,Cybersecurity Architecture and Engineering,1
+D489_1,Ambiguous instructions in Requirements Part B about scope: unclear if students must address all bullets under a chosen subtopic or only one bullet.,D489,Cybersecurity Management,1
+D490_1,Inconsistent and slow evaluator grading turnaround causing unexpected delays,D490,Cybersecurity Graduate Capstone,1
+D492_1,"Lab environment is slow/unresponsive, degrading student experience and usability",D492,Data Analytics - Applications,1
+D493_1,"Conflicting and insufficient instructional materials: Panapto videos are too theoretical and differ from Open Mateo code examples, preventing completion of the PA.",D493,D493 – Scripting and Programming - Applications,1
+D522_1,"Assessment platform/reporting failures: premature 'Results Posted' notifications, missing coaching/score reports, and disconnections leading to incorrect No Pass outcomes",D522,Python for IT Automation,1
+D522_2,Insufficient course-specific support: instructors unresponsive/unhelpful and tutoring resources limited to fundamentals course only,D522,Python for IT Automation,1
+D546_1,Contradictory feedback and apparent misapplication of the grading rubric between professor approval and course evaluator,D546,Healthcare Policy and Governance,1
+D547_1,Conflicting or duplicated instructions across multiple locations causing requirement confusion,D547,Evidence-Based Healthcare Administration,1
+D553_1,Provided dataset or task instructions contain incorrect or misaligned expected results (answer key/data mismatch),D553,Data Analytics for Accountants II,1
+D554_1,Insufficient supplementary materials and course support for new classes,D554,Advanced Financial Accounting I,1
+D557_1,Disorganized or unclear course materials and organization causing students to be unsure if they've missed required sections,D557,Corporate Taxation,1
+D560_1,Objective Assessment (OA) covers topics/questions not addressed in the Performance Assessment (PA) materials or activities (PA–OA misalignment),D560,Internal Auditing I,1
+D564_1,"Excessive and inflexible remediation requirement after OA failure (lengthy 6-page worksheet, rigid answer/citation rules, insufficient accommodations or scaling for narrow misses)",D564,Theories of Personality,1
+D564_2,Platform/system access failures causing delays to start the OA,D564,Theories of Personality,1
+D571_1,Instructors/CIs provide inconsistent or unhelpful guidance and course-level documentation is unclear (example: conflicting citation instructions from instructors).,D571,Psychopathology,2
+D571_2,"Assessment requirements (E1–E3) are missing from or not covered in the course materials, creating misalignment between assignment expectations and available content.",D571,Psychopathology,1
+D571_3,"Incorrect or duplicated assignment resource lists (e.g., movie lists for Task 2 vs Task 3), causing confusion about required materials for assignments.",D571,Psychopathology,1
+D572_1,Instructions and rubric lack clear guidance on how to acknowledge sources (in-text citations and references) for Initial and Panel Interviews,D572,Career and Lifelong Learning,1
+D573_1,Unclear or insufficiently specific instructions/rubric about matching chosen special populations to acceptable treatment strategies,D573,Understanding Substance Abuse & Addiction,1
+D573_2,Evaluator feedback is non-actionable or lacking guidance when submissions are rejected for population-treatment mismatch,D573,Understanding Substance Abuse & Addiction,1
+D577_1,"Simulation facilitator/virtual avatar no-show or late for scheduled simulation sessions, causing students to wait and lose scheduled time",D577,Team Dynamics,1
+D596_1,Ambiguous or unclear assignment instructions and rubric expectations leading to student confusion about what to include,D596,The Data Analytics Journey,3
+D596_2,Unstated or unclear submission format requirements (required file types/evidence) causing rejected evaluations,D596,The Data Analytics Journey,1
+D597_1,"Unclear or missing instructions/navigation and location of Task 1 resources (scenario selection, virtual lab access, required CSV file).",D597,Data Management,2
+D597_2,Required Task 2 asset ('map script') not provided or instructions do not explain where to find/use it.,D597,Data Management,1
+D597_3,"Platform/tool bug: MongoDB query execution time reported as 0ms, preventing demonstration of performance improvements.",D597,Data Management,1
+D598_1,inconsistent or unclear evaluator feedback/grading that doesn't identify reproducible errors,D598,Analytics Programming,1
+D599_1,Provided datasets contain missing/dirty data but tasks and instructions do not specify or guide data cleaning expectations,D599,Data Preparation and Exploration,1
+D599_2,Rubric wording or evaluator guidance is ambiguous or misapplied (identifier variables incorrectly labeled as quantitative),D599,Data Preparation and Exploration,1
+D600_1,Conflicting or unclear submission instructions and rubric requirements for Git commits/submissions (per-part commits vs single notebook),D600,Statistical Data Mining,1
+D600_2,"Course materials omit definitions/explanations of specific statistical terms, requiring students to search externally",D600,Statistical Data Mining,1
+D601_1,"Evaluator feedback inadequate and submission locked requiring professor meeting, blocking student progress",D601,Data Storytelling for Varied Audiences,1
+D602_1,"Unclear or missing instructions and examples for MLproject/main.py and how to structure/run Task 2 (MLflow usage, subprocess vs direct runs, file roles)",D602,D602 – Deployment,3
+D602_2,Provided Task 2 starter script contains MLflow run-handling bug (multiple start_run calls) causing MlflowException and breaking the supplied code,D602,D602 – Deployment,1
+D602_3,"No guidance on acceptable evidence or troubleshooting when MLflow UI shows successful run but command-line processes fail, leaving students unsure what to submit",D602,D602 – Deployment,1
+D603_1,"Unclear submission instructions for Part D regarding which datasets (training, test, full) must be uploaded",D603,Machine Learning,1
+D604_1,"Contradictory or unclear instructions about where and how to complete and submit the PA (confusion between GitLab pipeline, Cloud Academy virtual lab, and EMA).",D604,Advanced Analytics,1
+D604_2,Rubric and assessment criteria do not mention required GitLab commits or align with tasks described in the PA.,D604,Advanced Analytics,1
+D604_3,Missing explanations or guidance for required platforms/tools (EMA is not defined or explained in instructions).,D604,Advanced Analytics,1
+D607_1,"Assignment lacks clear instructions for architecture diagram (recommended tools, required elements, and expected format).",D607,Cloud Databases,1
+D608_1,Broken or outdated third-party resource link (Udacity/AWS) in course resources preventing access to required cloud resources,D608,Data Processing,1
+D619_1,"Essential supporting documents/attachments are placed below the rubric or hard to locate, causing confusion about assignment requirements",D619,Global Health,1
+D635_1,"Unclear instructions about acceptable 'credible resources' for Task 2 Part B (source requirements, whether sources must be from WGU library, and whether they must explicitly reference Part A activity).",D635,Practices for Inclusive Classrooms,1
+D635_2,Assessment misalignment and confusing/ambiguous OA wording — pretest and study materials do not reflect actual OA questions and question wording is misleading.,D635,Practices for Inclusive Classrooms,1
+D644_1,Pre-assessment content is not aligned with the objective assessment; OA contains topics not covered in pre-assessment,D644,Foundations of Strategic Communications,1
+D645_1,Ambiguous assignment instructions about combining multiple provided templates into one submission,D645,Crafting a Communications Strategy Through Research and Data Insights,1
+D645_2,Lack of example student submissions or exemplar resources to guide formatting and expectations,D645,Crafting a Communications Strategy Through Research and Data Insights,1
+D652_1,"Evaluator feedback is unclear or misaligned with submissions, including references to non-existent UI cues, leading to unnecessary or illogical revision requests.",D652,Design Applications,1
+D658_1,"unclear instructions and expectations for the required teaching recording (format, content, simulated students vs. explanation)",D658,Planning Instructional Strategies for Meaningful Learning,1
+D659_1,"Course readings and practice materials are definition-focused and lack scenario-based examples, leaving students unprepared for scenario-style pre-assessments and OAs.",D659,Assessing and Monitoring Student Learning,2
+D659_2,"Required Mursion simulation scheduling has no available time slots, preventing students from booking and completing the mandatory simulation.",D659,Assessing and Monitoring Student Learning,1
+D660_1,"Vague or unclear Task 1 video instructions and rubric about expected format/content (whether to simulate teaching, present lesson plan, handle pauses/questions, demonstrate tech).",D660,Instructional Technology and Online Pedagogy,3
+D660_2,"Inconsistency between task description/rubric and assessor practices (reports that reading a lesson plan was accepted despite instructions to 'teach'), causing confusion about acceptable evidence.",D660,Instructional Technology and Online Pedagogy,1
+D662_1,Ambiguous or poorly written assessment items with multiple answer choices appearing correct,D662,Personalized Learning for Inclusive Classrooms,1
+D663_1,"Ambiguous assessment prompts and unclear expectations for response tone, formality, and level of detail (lacking examples or rubric guidance)",D663,The Professional Educator,1
+D663_2,"Unclear guidance on use of external resources/links and citation rules for assessments, causing student uncertainty about cheating",D663,The Professional Educator,1
+D664_1,"Unclear assessment expectations and rubric misalignment for identifying, describing, and justifying key principles",D664,Learners and Learning Science,2
+D664_2,"Course materials and instructional content are insufficient or not aligned with assessment requirements, leaving students unable to explain required concepts",D664,Learners and Learning Science,2
+D670_1,No lesson plan template or clear formatting guidance provided for assignments,D670,Elementary Literacy Methods,1
+D670_2,"Unclear or poorly organized assignment instructions and submission requirements (tasks combined, unclear whether to submit lesson plan with recording)",D670,Elementary Literacy Methods,1
+D675_1,"Unclear expectations about the scope and alignment of Task 2 literacy block (whether to integrate with another subject, break ELA into sections, and what screening assessments to include).",D675,Elementary Literacy Methods,2
+D675_2,Insufficient and unhelpful sample/template and missing guidance for completing the literacy block template (confusion about the top portion and overall template usage).,D675,Elementary Literacy Methods,2
+D676_1,Required Mursion simulation scheduling availability—no open slots for mandatory sessions,D676,Early Literacy Methods,1
+D676_2,Mursion simulation platform/technology reliability issues preventing completion of rubric requirements,D676,Early Literacy Methods,1
+D677_1,"Pre-assessment content is misaligned with the objective assessment, causing unexpected OA material.",D677,Elementary Literacy Curriculum,1
+D685_1,Platform/OEX lesson loading errors or outages preventing student access to course materials,D685,Practical Applications of Prompt,1
+D688_1,Assessor inconsistency or misapplication of the rubric leading to incorrect 'not competent' scores,D688,Foundations of Literacy Through Literature,1
+D688_2,Assessment process lacks verification that submitted video evidence was reviewed (possible assessor did not watch submission),D688,Foundations of Literacy Through Literature,1
+D689_1,"Proctors/instructors unable or unwilling to confirm the correct CORE survey before mursion, causing students to miss required assessment components",D689,Literacy Assessment and Interventions,1
+D696_1,"Unclear or conflicting instructions for Task 2 teaching demonstration video and how it must align with Task 1 (audience presence, where to start in the lesson, required materials, student grouping/roles, and specific actions to demonstrate).",D696,Foundations of Literacy Through Literature,2
+D697_1,Required course media/materials (videos) have audio or functionality problems that prevent students from learning content needed for mursion tasks and assessments,D697,Literacy Assessment and Interventions,1
+D756_1,assessment recording/playback (encryption) failures causing lost audio/video and forcing reassessments,D756,Individualized Education Plan (IEP) Collaboration and Communication with Parents and School Staff,1
+D774_1,Course lacks sufficient instructional resources and guided materials (only textbook and a very short welcome video).,D774,Introduction to Business Accounting,1
+D774_2,"Objective assessment questions are unclear or misleading, causing difficulty determining correct answers.",D774,Introduction to Business Accounting,1
+D775_1,Insufficient variety of instructional materials—course lacks multimedia (no videos) and relies heavily on extensive reading,D775,Introduction to Business Finance,1
+D776_1,"Missing required PA template/materials for Performance Assessment Task 1 (only prompts provided), causing uncertainty about correct submission",D776,Healthcare Leadership and Community Engagement,1
+D848_1,Third-party Labster simulation causes severe local performance issues (high CPU usage) making the simulation unusable on students' machines.,D848,General Earth Science I Lab,1
+D904_1,Unprofessional or inconsistent proctor behavior during OAs causing distractions; need improved proctor training/monitoring and clearer proctoring policies.,D904,Algebra for Secondary Mathematics Teaching,1
+MGT2_1,"Instructions for burn down chart are unclear about whether to count weekends or only workdays, causing returned submissions",MGT2,MGT2 – IT Project Management,1
+QHT1_1,Broken or missing course resource links and missing WGU Connect access/button preventing students from locating required materials,QHT1,Business Management Tasks,2

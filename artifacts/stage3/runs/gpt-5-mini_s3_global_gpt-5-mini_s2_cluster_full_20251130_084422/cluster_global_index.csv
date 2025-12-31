@@ -1,0 +1,328 @@
+cluster_id,global_cluster_id,course_code,course_title,num_posts,provisional_label,normalized_issue_label
+AFT2_1,G005,AFT2,AFT2 – Accreditation Audit,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+C165_1,G014,C165,Integrated Physical Sciences,1,Practice and course materials not aligned to assessments,assessment_material_misalignment
+C165_2,G016,C165,Integrated Physical Sciences,1,Low-quality or insufficient course materials,missing_or_low_quality_materials
+C180_1,G005,C180,Introduction to Psychology,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+C190_1,G039,C190,Introduction to Biology,1,Unresponsiveness or delays from instructors/support staff,instructor_or_support_unresponsiveness
+C190_2,G050,C190,Introduction to Biology,1,Undocumented or obstructive workflow and policy behaviors,workflow_or_policy_barriers
+C190_3,G021,C190,Introduction to Biology,1,Inconsistent or non-actionable evaluator feedback / rubric application,evaluator_inconsistency_or_poor_feedback
+C200_1,G021,C200,Managing Organizations and Leading People,1,Inconsistent or non-actionable evaluator feedback / rubric application,evaluator_inconsistency_or_poor_feedback
+C200_2,G041,C200,Managing Organizations and Leading People,1,AI / similarity detection configuration and guidance issues,ai_detection_confusion_and_false_flags
+C200_3,G005,C200,Managing Organizations and Leading People,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+C200_4,G013,C200,Managing Organizations and Leading People,1,"Broken, missing, or inaccessible required resources",missing_or_broken_resources
+C204_1,G038,C204,Management Communication,1,Tool configuration or guidance problems (how-to and format guidance),tooling_environment_misconfiguration_or_guidance
+C204_2,G013,C204,Management Communication,1,"Broken, missing, or inaccessible required resources",missing_or_broken_resources
+C207_1,G008,C207,Data-Driven Decision Making,3,evaluator_inconsistency_or_poor_feedback,evaluator_inconsistency_or_poor_feedback
+C207_2,G014,C207,Data-Driven Decision Making,1,Practice and course materials not aligned to assessments,assessment_material_misalignment
+C210_1,G038,C210,Management and Leadership Capstone,1,Tool configuration or guidance problems (how-to and format guidance),tooling_environment_misconfiguration_or_guidance
+C211_1,G032,C211,Global Economics for Managers,3,instructor_or_support_unresponsiveness,instructor_or_support_unresponsiveness
+C211_2,G039,C211,Global Economics for Managers,1,Unresponsiveness or delays from instructors/support staff,instructor_or_support_unresponsiveness
+C211_3,G026,C211,Global Economics for Managers,1,"Platform, tool, or processing failures",platform_or_environment_failures
+C211_4,G014,C211,Global Economics for Managers,1,Practice and course materials not aligned to assessments,assessment_material_misalignment
+C212_1,G005,C212,Marketing,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+C213_1,G014,C213,Accounting for Decision Makers,1,Practice and course materials not aligned to assessments,assessment_material_misalignment
+C213_2,G047,C213,Accounting for Decision Makers,1,Proctoring policies or live exam platform problems,proctoring_or_exam_platform_issues
+C213_3,G035,C213,Accounting for Decision Makers,1,Excessive workload or scope misalignment in course design,workload_or_scope_issues
+C213_4,G013,C213,Accounting for Decision Makers,1,"Broken, missing, or inaccessible required resources",missing_or_broken_resources
+C214_1,G001,C214,Financial Management,5,assessment_material_misalignment,assessment_material_misalignment
+C214_2,G026,C214,Financial Management,1,"Platform, tool, or processing failures",platform_or_environment_failures
+C214_3,G013,C214,Financial Management,1,"Broken, missing, or inaccessible required resources",missing_or_broken_resources
+C214_4,G026,C214,Financial Management,1,"Platform, tool, or processing failures",platform_or_environment_failures
+C216_1,G026,C216,MBA Capstone,1,"Platform, tool, or processing failures",platform_or_environment_failures
+C216_2,G038,C216,MBA Capstone,1,Tool configuration or guidance problems (how-to and format guidance),tooling_environment_misconfiguration_or_guidance
+C237_1,G014,C237,Taxation I,1,Practice and course materials not aligned to assessments,assessment_material_misalignment
+C268_1,G031,C268,Spreadsheets,2,external_tool_dependency_risks,external_tool_dependency_risks
+C268_2,G026,C268,Spreadsheets,1,"Platform, tool, or processing failures",platform_or_environment_failures
+C458_1,G014,C458,"Health, Fitness, and Wellness",1,Practice and course materials not aligned to assessments,assessment_material_misalignment
+C483_1,G014,C483,Principles of Management,1,Practice and course materials not aligned to assessments,assessment_material_misalignment
+C483_2,G016,C483,Principles of Management,1,Low-quality or insufficient course materials,missing_or_low_quality_materials
+C715_1,G014,C715,Organizational Behavior,1,Practice and course materials not aligned to assessments,assessment_material_misalignment
+C715_2,G013,C715,Organizational Behavior,1,"Broken, missing, or inaccessible required resources",missing_or_broken_resources
+C716_1,G002,C716,Business Communication,2,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+C716_2,G005,C716,Business Communication,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+C716_3,G035,C716,Business Communication,1,Excessive workload or scope misalignment in course design,workload_or_scope_issues
+C717_1,G051,C717,Business Ethics,2,ai_detection_confusion_and_false_flags,ai_detection_confusion_and_false_flags
+C717_2,G041,C717,Business Ethics,1,AI / similarity detection configuration and guidance issues,ai_detection_confusion_and_false_flags
+C722_1,G016,C722,Project Management,1,Low-quality or insufficient course materials,missing_or_low_quality_materials
+C723_1,G013,C723,Quantitative Analysis For Business,1,"Broken, missing, or inaccessible required resources",missing_or_broken_resources
+C723_2,G035,C723,Quantitative Analysis For Business,1,Excessive workload or scope misalignment in course design,workload_or_scope_issues
+C773_1,G005,C773,User Interface Design,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+C773_2,G050,C773,User Interface Design,1,Undocumented or obstructive workflow and policy behaviors,workflow_or_policy_barriers
+C777_1,G001,C777,Web Development Applications,2,assessment_material_misalignment,assessment_material_misalignment
+C777_2,G004,C777,Web Development Applications,2,missing_or_low_quality_materials,missing_or_low_quality_materials
+C777_3,G003,C777,Web Development Applications,2,platform_or_environment_failures,platform_or_environment_failures
+C777_4,G013,C777,Web Development Applications,1,"Broken, missing, or inaccessible required resources",missing_or_broken_resources
+C777_5,G039,C777,Web Development Applications,1,Unresponsiveness or delays from instructors/support staff,instructor_or_support_unresponsiveness
+C777_6,G047,C777,Web Development Applications,1,Proctoring policies or live exam platform problems,proctoring_or_exam_platform_issues
+C783_1,G021,C783,Project Management,1,Inconsistent or non-actionable evaluator feedback / rubric application,evaluator_inconsistency_or_poor_feedback
+C803_1,G005,C803,Data Analytics and Information Governance,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+C810_1,G021,C810,Foundations in Healthcare Data Management,1,Inconsistent or non-actionable evaluator feedback / rubric application,evaluator_inconsistency_or_poor_feedback
+C816_1,G021,C816,Healthcare System Applications,1,Inconsistent or non-actionable evaluator feedback / rubric application,evaluator_inconsistency_or_poor_feedback
+C816_2,G014,C816,Healthcare System Applications,1,Practice and course materials not aligned to assessments,assessment_material_misalignment
+C843_1,G008,C843,Managing Information Security,2,evaluator_inconsistency_or_poor_feedback,evaluator_inconsistency_or_poor_feedback
+C843_2,G008,C843,Managing Information Security,2,evaluator_inconsistency_or_poor_feedback,evaluator_inconsistency_or_poor_feedback
+C845_1,G005,C845,Information Systems Security,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+C867_1,G005,C867,Scripting and Programming - Applications,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+C927_1,G016,C927,Managing Technology Operations and Innovation,1,Low-quality or insufficient course materials,missing_or_low_quality_materials
+C948_1,G042,C948,Technical Communication,1,Evaluator inconsistency or poor feedback quality,evaluator_inconsistency_or_poor_feedback
+C949_1,G001,C949,Data Structures and Algorithms I,2,assessment_material_misalignment,assessment_material_misalignment
+C949_2,G011,C949,Data Structures and Algorithms I,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+C949_3,G010,C949,Data Structures and Algorithms I,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+C952_1,G010,C952,Computer Architecture,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+C954_1,G010,C954,Information Technology Management,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+C957_1,G037,C957,Applied Algebra,1,"Policy or workflow barriers (remediation, extra requirements, track assignment)",workflow_or_policy_barriers
+C958_1,G055,C958,Calculus I,1,Course scope or assessment size is excessive,workload_or_scope_issues
+C959_1,G001,C959,Discrete Mathematics I,2,assessment_material_misalignment,assessment_material_misalignment
+C959_2,G010,C959,Discrete Mathematics I,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+C960_1,G001,C960,Discrete Mathematics II,2,assessment_material_misalignment,assessment_material_misalignment
+C960_2,G011,C960,Discrete Mathematics II,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+C963_1,G019,C963,American Politics and the US Constitution,1,Mentor/evaluator unavailability or poor responsiveness,instructor_or_support_unresponsiveness
+C963_2,G019,C963,American Politics and the US Constitution,1,Mentor/evaluator unavailability or poor responsiveness,instructor_or_support_unresponsiveness
+C969_1,G007,C969,Software II – Advanced C#,2,tooling_environment_misconfiguration_or_guidance,tooling_environment_misconfiguration_or_guidance
+C969_2,G027,C969,Software II – Advanced C#,1,Tooling/environment configuration or guidance problems,tooling_environment_misconfiguration_or_guidance
+C969_3,G027,C969,Software II – Advanced C#,1,Tooling/environment configuration or guidance problems,tooling_environment_misconfiguration_or_guidance
+D072_1,G019,D072,Fundamentals for Success in Business,1,Mentor/evaluator unavailability or poor responsiveness,instructor_or_support_unresponsiveness
+D072_2,G043,D072,Fundamentals for Success in Business,1,Evaluator rubric/process or answer-key problems,grading_or_answer_key_or_process_issues
+D075_1,G020,D075,Information Technology Management Essentials,1,Ambiguous or unclear instructions and assignment wording,unclear_or_ambiguous_instructions
+D076_1,G010,D076,Finance Skills for Managers,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+D076_2,G011,D076,Finance Skills for Managers,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+D077_1,G010,D077,"Concepts in Marketing, Sales, and Customer Contact",1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+D078_1,G020,D078,Business Environment Applications I: Business Structures and Legal Environment,1,Ambiguous or unclear instructions and assignment wording,unclear_or_ambiguous_instructions
+D078_2,G025,D078,Business Environment Applications I: Business Structures and Legal Environment,1,"Platform, exam interface, or system failures",platform_or_environment_failures
+D080_1,G001,D080,Managing in a Global Business Environment,2,assessment_material_misalignment,assessment_material_misalignment
+D080_2,G010,D080,Managing in a Global Business Environment,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+D080_3,G037,D080,Managing in a Global Business Environment,1,"Policy or workflow barriers (remediation, extra requirements, track assignment)",workflow_or_policy_barriers
+D080_4,G060,D080,Managing in a Global Business Environment,1,Scheduling or required synchronous session availability problems,scheduling_or_simulation_availability_issues
+D081_1,G044,D081,Innovative and Strategic Thinking,1,External tool dependencies are unreliable or create barriers,external_tool_dependency_risks
+D089_1,G010,D089,Principles of Economics,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+D099_1,G042,D099,Sales Management,1,Evaluator inconsistency or poor feedback quality,evaluator_inconsistency_or_poor_feedback
+D100_1,G011,D100,Introduction to Spreadsheets,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+D100_2,G025,D100,Introduction to Spreadsheets,1,"Platform, exam interface, or system failures",platform_or_environment_failures
+D101_1,G004,D101,Cost and Managerial Accounting,3,missing_or_low_quality_materials,missing_or_low_quality_materials
+D101_2,G001,D101,Cost and Managerial Accounting,2,assessment_material_misalignment,assessment_material_misalignment
+D101_3,G034,D101,Cost and Managerial Accounting,1,Exam/proctoring platform access and reliability issues,proctoring_or_exam_platform_issues
+D101_4,G052,D101,Cost and Managerial Accounting,1,AI/similarity detection produces false positives or lacks guidance,ai_detection_confusion_and_false_flags
+D102_1,G011,D102,Financial Accounting,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+D102_2,G011,D102,Financial Accounting,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+D102_3,G011,D102,Financial Accounting,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+D103_1,G004,D103,Intermediate Accounting I,2,missing_or_low_quality_materials,missing_or_low_quality_materials
+D103_2,G010,D103,Intermediate Accounting I,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+D184_1,G010,D184,Standards-Based Assessment,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+D196_1,G001,D196,Principles of Financial and Managerial Accounting,3,assessment_material_misalignment,assessment_material_misalignment
+D196_2,G003,D196,Principles of Financial and Managerial Accounting,2,platform_or_environment_failures,platform_or_environment_failures
+D196_3,G010,D196,Principles of Financial and Managerial Accounting,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+D196_4,G025,D196,Principles of Financial and Managerial Accounting,1,"Platform, exam interface, or system failures",platform_or_environment_failures
+D196_5,G025,D196,Principles of Financial and Managerial Accounting,1,"Platform, exam interface, or system failures",platform_or_environment_failures
+D196_6,G025,D196,Principles of Financial and Managerial Accounting,1,"Platform, exam interface, or system failures",platform_or_environment_failures
+D197_1,G002,D197,Version Control,6,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D197_2,G003,D197,Version Control,2,platform_or_environment_failures,platform_or_environment_failures
+D197_3,G009,D197,Version Control,2,missing_or_broken_resources,missing_or_broken_resources
+D197_4,G027,D197,Version Control,1,Tooling/environment configuration or guidance problems,tooling_environment_misconfiguration_or_guidance
+D203_1,G034,D203,Fundamentals of Anatomy and Physiology,1,Exam/proctoring platform access and reliability issues,proctoring_or_exam_platform_issues
+D216_1,G010,D216,Business Law for Accountants,1,Assessments not aligned with taught materials or objectives,assessment_material_misalignment
+D255_1,G020,D255,Professional Practice Experience I: Technical,1,Ambiguous or unclear instructions and assignment wording,unclear_or_ambiguous_instructions
+D265_1,G011,D265,Critical Thinking: Reason and Evidence,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+D268_1,G002,D268,Introduction to Communication: Connecting with Others,2,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D268_2,G043,D268,Introduction to Communication: Connecting with Others,1,Evaluator rubric/process or answer-key problems,grading_or_answer_key_or_process_issues
+D268_3,G019,D268,Introduction to Communication: Connecting with Others,1,Mentor/evaluator unavailability or poor responsiveness,instructor_or_support_unresponsiveness
+D270_1,G046,D270,Composition: Successful Self-Expression,1,Missing or broken course assets and templates,missing_or_broken_resources
+D270_2,G011,D270,Composition: Successful Self-Expression,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+D276_1,G003,D276,Web Development Foundations,2,platform_or_environment_failures,platform_or_environment_failures
+D276_2,G046,D276,Web Development Foundations,1,Missing or broken course assets and templates,missing_or_broken_resources
+D276_3,G011,D276,Web Development Foundations,1,"Missing, scattered, or low-quality learning materials",missing_or_low_quality_materials
+D276_4,G020,D276,Web Development Foundations,1,Ambiguous or unclear instructions and assignment wording,unclear_or_ambiguous_instructions
+D277_1,G008,D277,Front-End Web Development,2,evaluator_inconsistency_or_poor_feedback,evaluator_inconsistency_or_poor_feedback
+D277_2,G044,D277,Front-End Web Development,1,External tool dependencies are unreliable or create barriers,external_tool_dependency_risks
+D277_3,G027,D277,Front-End Web Development,1,Tooling/environment configuration or guidance problems,tooling_environment_misconfiguration_or_guidance
+D277_4,G020,D277,Front-End Web Development,1,Ambiguous or unclear instructions and assignment wording,unclear_or_ambiguous_instructions
+D277_5,G019,D277,Front-End Web Development,1,Mentor/evaluator unavailability or poor responsiveness,instructor_or_support_unresponsiveness
+D277_6,G019,D277,Front-End Web Development,1,Mentor/evaluator unavailability or poor responsiveness,instructor_or_support_unresponsiveness
+D278_1,G004,D278,Scripting and Programming - Foundations,2,missing_or_low_quality_materials,missing_or_low_quality_materials
+D278_2,G001,D278,Scripting and Programming - Foundations,2,assessment_material_misalignment,assessment_material_misalignment
+D278_3,G037,D278,Scripting and Programming - Foundations,1,"Policy or workflow barriers (remediation, extra requirements, track assignment)",workflow_or_policy_barriers
+D278_4,G027,D278,Scripting and Programming - Foundations,1,Tooling/environment configuration or guidance problems,tooling_environment_misconfiguration_or_guidance
+D278_5,G034,D278,Scripting and Programming - Foundations,1,Exam/proctoring platform access and reliability issues,proctoring_or_exam_platform_issues
+D279_1,G002,D279,User Interface Design,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D279_2,G007,D279,User Interface Design,1,tooling_environment_misconfiguration_or_guidance,tooling_environment_misconfiguration_or_guidance
+D280_1,G009,D280,JavaScript Programming,2,missing_or_broken_resources,missing_or_broken_resources
+D280_2,G002,D280,JavaScript Programming,2,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D280_3,G007,D280,JavaScript Programming,1,tooling_environment_misconfiguration_or_guidance,tooling_environment_misconfiguration_or_guidance
+D280_4,G031,D280,JavaScript Programming,1,external_tool_dependency_risks,external_tool_dependency_risks
+D281_1,G040,D281,Linux Foundations,2,proctoring_or_exam_platform_issues,proctoring_or_exam_platform_issues
+D281_2,G004,D281,Linux Foundations,1,missing_or_low_quality_materials,missing_or_low_quality_materials
+D282_1,G009,D282,Cloud Foundations,1,missing_or_broken_resources,missing_or_broken_resources
+D282_2,G001,D282,Cloud Foundations,1,assessment_material_misalignment,assessment_material_misalignment
+D284_1,G002,D284,Software Engineering,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D284_2,G002,D284,Software Engineering,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D286_1,G003,D286,Java Fundamentals,2,platform_or_environment_failures,platform_or_environment_failures
+D286_2,G002,D286,Java Fundamentals,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D286_3,G007,D286,Java Fundamentals,1,tooling_environment_misconfiguration_or_guidance,tooling_environment_misconfiguration_or_guidance
+D287_1,G002,D287,Java Frameworks,5,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D287_2,G007,D287,Java Frameworks,1,tooling_environment_misconfiguration_or_guidance,tooling_environment_misconfiguration_or_guidance
+D287_3,G009,D287,Java Frameworks,2,missing_or_broken_resources,missing_or_broken_resources
+D287_4,G004,D287,Java Frameworks,1,missing_or_low_quality_materials,missing_or_low_quality_materials
+D287_5,G008,D287,Java Frameworks,1,evaluator_inconsistency_or_poor_feedback,evaluator_inconsistency_or_poor_feedback
+D287_6,G063,D287,Java Frameworks,1,prerequisite_gaps_or_unpreparedness,prerequisite_gaps_or_unpreparedness
+D288_1,G007,D288,Back-End Programming,3,tooling_environment_misconfiguration_or_guidance,tooling_environment_misconfiguration_or_guidance
+D288_2,G009,D288,Back-End Programming,3,missing_or_broken_resources,missing_or_broken_resources
+D288_3,G002,D288,Back-End Programming,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D288_4,G009,D288,Back-End Programming,1,missing_or_broken_resources,missing_or_broken_resources
+D288_5,G003,D288,Back-End Programming,1,platform_or_environment_failures,platform_or_environment_failures
+D313_1,G001,D313,Anatomy and Physiology II with Lab,1,assessment_material_misalignment,assessment_material_misalignment
+D315_1,G001,D315,Network and Security - Foundations,3,assessment_material_misalignment,assessment_material_misalignment
+D317_1,G001,D317,IT Applications,1,assessment_material_misalignment,assessment_material_misalignment
+D317_2,G004,D317,IT Applications,1,missing_or_low_quality_materials,missing_or_low_quality_materials
+D322_1,G001,D322,Introduction to IT,2,assessment_material_misalignment,assessment_material_misalignment
+D324_1,G003,D324,Business of IT - Project Management,1,platform_or_environment_failures,platform_or_environment_failures
+D324_2,G002,D324,Business of IT - Project Management,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D325_1,G033,D325,Networks,1,workflow_or_policy_barriers,workflow_or_policy_barriers
+D325_2,G033,D325,Networks,1,workflow_or_policy_barriers,workflow_or_policy_barriers
+D329_1,G033,D329,Network and Security - Applications,1,workflow_or_policy_barriers,workflow_or_policy_barriers
+D330_1,G001,D330,Data Systems Administration,3,assessment_material_misalignment,assessment_material_misalignment
+D330_2,G001,D330,Data Systems Administration,1,assessment_material_misalignment,assessment_material_misalignment
+D333_1,G001,D333,Ethics in Technology,3,assessment_material_misalignment,assessment_material_misalignment
+D333_2,G002,D333,Ethics in Technology,2,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D334_1,G001,D334,Introduction to Cryptography,1,assessment_material_misalignment,assessment_material_misalignment
+D334_2,G004,D334,Introduction to Cryptography,1,missing_or_low_quality_materials,missing_or_low_quality_materials
+D335_1,G002,D335,Introduction to Programming in Python,3,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D335_2,G001,D335,Introduction to Programming in Python,2,assessment_material_misalignment,assessment_material_misalignment
+D335_3,G008,D335,Introduction to Programming in Python,1,evaluator_inconsistency_or_poor_feedback,evaluator_inconsistency_or_poor_feedback
+D335_4,G031,D335,Introduction to Programming in Python,1,external_tool_dependency_risks,external_tool_dependency_risks
+D336_1,G040,D336,Business of IT - Applications,1,proctoring_or_exam_platform_issues,proctoring_or_exam_platform_issues
+D336_2,G033,D336,Business of IT - Applications,1,workflow_or_policy_barriers,workflow_or_policy_barriers
+D336_3,G004,D336,Business of IT - Applications,1,missing_or_low_quality_materials,missing_or_low_quality_materials
+D351_1,G001,D351,Functions of Human Resource Management,2,assessment_material_misalignment,assessment_material_misalignment
+D351_2,G001,D351,Functions of Human Resource Management,1,assessment_material_misalignment,assessment_material_misalignment
+D355_1,G003,D355,Total Rewards,1,platform_or_environment_failures,platform_or_environment_failures
+D363_1,G028,D363,Personal Finance,1,grading_or_answer_key_or_process_issues,grading_or_answer_key_or_process_issues
+D363_2,G001,D363,Personal Finance,1,assessment_material_misalignment,assessment_material_misalignment
+D363_3,G001,D363,Personal Finance,1,assessment_material_misalignment,assessment_material_misalignment
+D370_1,G009,D370,IT Leadership Foundations,1,missing_or_broken_resources,missing_or_broken_resources
+D370_2,G003,D370,IT Leadership Foundations,1,platform_or_environment_failures,platform_or_environment_failures
+D378_1,G001,D378,Digital Marketing Science,1,assessment_material_misalignment,assessment_material_misalignment
+D385_1,G028,D385,Software Security and Testing,3,grading_or_answer_key_or_process_issues,grading_or_answer_key_or_process_issues
+D385_2,G002,D385,Software Security and Testing,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D387_1,G007,D387,Advanced Java,2,tooling_environment_misconfiguration_or_guidance,tooling_environment_misconfiguration_or_guidance
+D387_2,G007,D387,Advanced Java,2,tooling_environment_misconfiguration_or_guidance,tooling_environment_misconfiguration_or_guidance
+D388_1,G003,D388,Fundamentals of Spreadsheets and Data Presentations,2,platform_or_environment_failures,platform_or_environment_failures
+D388_2,G007,D388,Fundamentals of Spreadsheets and Data Presentations,1,tooling_environment_misconfiguration_or_guidance,tooling_environment_misconfiguration_or_guidance
+D389_1,G002,D389,Learning Strategies in Higher Education,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D389_2,G002,D389,Learning Strategies in Higher Education,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D398_1,G001,D398,Introduction to Pharmacology,1,assessment_material_misalignment,assessment_material_misalignment
+D398_2,G032,D398,Introduction to Pharmacology,1,instructor_or_support_unresponsiveness,instructor_or_support_unresponsiveness
+D412_1,G002,D412,Network Analytics and Troubleshooting,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D412_2,G003,D412,Network Analytics and Troubleshooting,1,platform_or_environment_failures,platform_or_environment_failures
+D412_3,G003,D412,Network Analytics and Troubleshooting,1,platform_or_environment_failures,platform_or_environment_failures
+D413_1,G001,D413,Telecomm and Wireless Communications,1,assessment_material_misalignment,assessment_material_misalignment
+D422_1,G004,D422,Discrete Math: Algorithms and Cryptography,1,missing_or_low_quality_materials,missing_or_low_quality_materials
+D426_1,G001,D426,Data Management - Foundations,4,assessment_material_misalignment,assessment_material_misalignment
+D426_2,G004,D426,Data Management - Foundations,1,missing_or_low_quality_materials,missing_or_low_quality_materials
+D426_3,G003,D426,Data Management - Foundations,1,platform_or_environment_failures,platform_or_environment_failures
+D427_1,G003,D427,Data Management - Applications,3,platform_or_environment_failures,platform_or_environment_failures
+D427_2,G001,D427,Data Management - Applications,3,assessment_material_misalignment,assessment_material_misalignment
+D427_3,G028,D427,Data Management - Applications,1,grading_or_answer_key_or_process_issues,grading_or_answer_key_or_process_issues
+D427_4,G003,D427,Data Management - Applications,1,platform_or_environment_failures,platform_or_environment_failures
+D427_5,G009,D427,Data Management - Applications,1,missing_or_broken_resources,missing_or_broken_resources
+D427_6,G002,D427,Data Management - Applications,1,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D430_1,G004,D430,Fundamentals of Information Security,1,missing_or_low_quality_materials,missing_or_low_quality_materials
+D432_1,G023,D432,HR Compliance and Employee Relations,1,Missing or broken required resources and assets,missing_or_broken_resources
+D464_1,G012,D464,Managing Operations,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment
+D464_2,G018,D464,Managing Operations,1,"Platform, lab, and assessment system failures",platform_or_environment_failures
+D464_3,G045,D464,Managing Operations,1,Instructor or course support unresponsiveness,instructor_or_support_unresponsiveness
+D465_1,G012,D465,Data Applications,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment
+D467_1,G012,D467,Exploring Data,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment
+D479_1,G030,D479,User Experience Design,1,Workflow or policy barriers blocking progress,workflow_or_policy_barriers
+D481_1,G030,D481,Security Foundations,1,Workflow or policy barriers blocking progress,workflow_or_policy_barriers
+D481_2,G030,D481,Security Foundations,1,Workflow or policy barriers blocking progress,workflow_or_policy_barriers
+D482_1,G017,D482,Secure Network Design,1,"Low-quality, missing, or poorly organized course materials",missing_or_low_quality_materials
+D483_1,G003,D483,Security Operations,2,platform_or_environment_failures,platform_or_environment_failures
+D483_2,G006,D483,Security Operations,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D483_3,G006,D483,Security Operations,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D483_4,G012,D483,Security Operations,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment
+D485_1,G018,D485,D485 – Cloud Security,1,"Platform, lab, and assessment system failures",platform_or_environment_failures
+D486_1,G006,D486,"Governance, Risk, and Compliance",1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D486_2,G023,D486,"Governance, Risk, and Compliance",1,Missing or broken required resources and assets,missing_or_broken_resources
+D487_1,G001,D487,Secure Software Design,2,assessment_material_misalignment,assessment_material_misalignment
+D487_2,G058,D487,Secure Software Design,1,Proctoring and exam platform interruptions,proctoring_or_exam_platform_issues
+D487_3,G006,D487,Secure Software Design,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D488_1,G018,D488,Cybersecurity Architecture and Engineering,1,"Platform, lab, and assessment system failures",platform_or_environment_failures
+D489_1,G006,D489,Cybersecurity Management,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D490_1,G022,D490,Cybersecurity Graduate Capstone,1,Inconsistent or unhelpful evaluator feedback and grading problems,evaluator_inconsistency_or_poor_feedback
+D492_1,G018,D492,Data Analytics - Applications,1,"Platform, lab, and assessment system failures",platform_or_environment_failures
+D493_1,G017,D493,D493 – Scripting and Programming - Applications,1,"Low-quality, missing, or poorly organized course materials",missing_or_low_quality_materials
+D522_1,G018,D522,Python for IT Automation,1,"Platform, lab, and assessment system failures",platform_or_environment_failures
+D522_2,G045,D522,Python for IT Automation,1,Instructor or course support unresponsiveness,instructor_or_support_unresponsiveness
+D546_1,G022,D546,Healthcare Policy and Governance,1,Inconsistent or unhelpful evaluator feedback and grading problems,evaluator_inconsistency_or_poor_feedback
+D547_1,G006,D547,Evidence-Based Healthcare Administration,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D553_1,G056,D553,Data Analytics for Accountants II,1,"Grading, answer key, or data/key mismatches",grading_or_answer_key_or_process_issues
+D554_1,G017,D554,Advanced Financial Accounting I,1,"Low-quality, missing, or poorly organized course materials",missing_or_low_quality_materials
+D557_1,G017,D557,Corporate Taxation,1,"Low-quality, missing, or poorly organized course materials",missing_or_low_quality_materials
+D560_1,G012,D560,Internal Auditing I,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment
+D564_1,G030,D564,Theories of Personality,1,Workflow or policy barriers blocking progress,workflow_or_policy_barriers
+D564_2,G018,D564,Theories of Personality,1,"Platform, lab, and assessment system failures",platform_or_environment_failures
+D571_1,G008,D571,Psychopathology,2,evaluator_inconsistency_or_poor_feedback,evaluator_inconsistency_or_poor_feedback
+D571_2,G012,D571,Psychopathology,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment
+D571_3,G017,D571,Psychopathology,1,"Low-quality, missing, or poorly organized course materials",missing_or_low_quality_materials
+D572_1,G006,D572,Career and Lifelong Learning,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D573_1,G006,D573,Understanding Substance Abuse & Addiction,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D573_2,G022,D573,Understanding Substance Abuse & Addiction,1,Inconsistent or unhelpful evaluator feedback and grading problems,evaluator_inconsistency_or_poor_feedback
+D577_1,G061,D577,Team Dynamics,1,Simulation scheduling and facilitator availability issues,scheduling_or_simulation_availability_issues
+D596_1,G002,D596,The Data Analytics Journey,3,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D596_2,G006,D596,The Data Analytics Journey,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D597_1,G002,D597,Data Management,2,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D597_2,G023,D597,Data Management,1,Missing or broken required resources and assets,missing_or_broken_resources
+D597_3,G018,D597,Data Management,1,"Platform, lab, and assessment system failures",platform_or_environment_failures
+D598_1,G022,D598,Analytics Programming,1,Inconsistent or unhelpful evaluator feedback and grading problems,evaluator_inconsistency_or_poor_feedback
+D599_1,G017,D599,Data Preparation and Exploration,1,"Low-quality, missing, or poorly organized course materials",missing_or_low_quality_materials
+D599_2,G006,D599,Data Preparation and Exploration,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D600_1,G006,D600,Statistical Data Mining,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D600_2,G017,D600,Statistical Data Mining,1,"Low-quality, missing, or poorly organized course materials",missing_or_low_quality_materials
+D601_1,G022,D601,Data Storytelling for Varied Audiences,1,Inconsistent or unhelpful evaluator feedback and grading problems,evaluator_inconsistency_or_poor_feedback
+D602_1,G002,D602,D602 – Deployment,3,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D602_2,G023,D602,D602 – Deployment,1,Missing or broken required resources and assets,missing_or_broken_resources
+D602_3,G049,D602,D602 – Deployment,1,"Tooling, platform guidance, or configuration gaps",tooling_environment_misconfiguration_or_guidance
+D603_1,G006,D603,Machine Learning,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D604_1,G006,D604,Advanced Analytics,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D604_2,G012,D604,Advanced Analytics,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment
+D604_3,G049,D604,Advanced Analytics,1,"Tooling, platform guidance, or configuration gaps",tooling_environment_misconfiguration_or_guidance
+D607_1,G006,D607,Cloud Databases,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D608_1,G023,D608,Data Processing,1,Missing or broken required resources and assets,missing_or_broken_resources
+D619_1,G017,D619,Global Health,1,"Low-quality, missing, or poorly organized course materials",missing_or_low_quality_materials
+D635_1,G006,D635,Practices for Inclusive Classrooms,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
+D635_2,G012,D635,Practices for Inclusive Classrooms,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment
+D644_1,G012,D644,Foundations of Strategic Communications,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment
+D645_1,G015,D645,Crafting a Communications Strategy Through Research and Data Insights,1,Ambiguous or incomplete instructions and prompts,unclear_or_ambiguous_instructions
+D645_2,G024,D645,Crafting a Communications Strategy Through Research and Data Insights,1,Missing or insufficient instructional materials and exemplars,missing_or_low_quality_materials
+D652_1,G029,D652,Design Applications,1,Assessor/rubric inconsistency and poor feedback,evaluator_inconsistency_or_poor_feedback
+D658_1,G015,D658,Planning Instructional Strategies for Meaningful Learning,1,Ambiguous or incomplete instructions and prompts,unclear_or_ambiguous_instructions
+D659_1,G004,D659,Assessing and Monitoring Student Learning,2,missing_or_low_quality_materials,missing_or_low_quality_materials
+D659_2,G048,D659,Assessing and Monitoring Student Learning,1,Simulation scheduling availability,scheduling_or_simulation_availability_issues
+D660_1,G002,D660,Instructional Technology and Online Pedagogy,3,unclear_or_ambiguous_instructions,unclear_or_ambiguous_instructions
+D660_2,G029,D660,Instructional Technology and Online Pedagogy,1,Assessor/rubric inconsistency and poor feedback,evaluator_inconsistency_or_poor_feedback
+D662_1,G015,D662,Personalized Learning for Inclusive Classrooms,1,Ambiguous or incomplete instructions and prompts,unclear_or_ambiguous_instructions
+D663_1,G015,D663,The Professional Educator,1,Ambiguous or incomplete instructions and prompts,unclear_or_ambiguous_instructions
+D663_2,G015,D663,The Professional Educator,1,Ambiguous or incomplete instructions and prompts,unclear_or_ambiguous_instructions
+D664_1,G005,D664,Learners and Learning Science,2,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+D664_2,G016,D664,Learners and Learning Science,2,Low-quality or insufficient course materials,missing_or_low_quality_materials
+D670_1,G024,D670,Elementary Literacy Methods,1,Missing or insufficient instructional materials and exemplars,missing_or_low_quality_materials
+D670_2,G015,D670,Elementary Literacy Methods,1,Ambiguous or incomplete instructions and prompts,unclear_or_ambiguous_instructions
+D675_1,G005,D675,Elementary Literacy Methods,2,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+D675_2,G016,D675,Elementary Literacy Methods,2,Low-quality or insufficient course materials,missing_or_low_quality_materials
+D676_1,G048,D676,Early Literacy Methods,1,Simulation scheduling availability,scheduling_or_simulation_availability_issues
+D676_2,G036,D676,Early Literacy Methods,1,"Platform, playback, and system failures",platform_or_environment_failures
+D677_1,G053,D677,Elementary Literacy Curriculum,1,Assessment content misalignment,assessment_material_misalignment
+D685_1,G036,D685,Practical Applications of Prompt,1,"Platform, playback, and system failures",platform_or_environment_failures
+D688_1,G029,D688,Foundations of Literacy Through Literature,1,Assessor/rubric inconsistency and poor feedback,evaluator_inconsistency_or_poor_feedback
+D688_2,G029,D688,Foundations of Literacy Through Literature,1,Assessor/rubric inconsistency and poor feedback,evaluator_inconsistency_or_poor_feedback
+D689_1,G057,D689,Literacy Assessment and Interventions,1,Process and policy barriers around required steps,workflow_or_policy_barriers
+D696_1,G005,D696,Foundations of Literacy Through Literature,2,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
+D697_1,G054,D697,Literacy Assessment and Interventions,1,Broken or unusable course resources,missing_or_broken_resources
+D756_1,G036,D756,Individualized Education Plan (IEP) Collaboration and Communication with Parents and School Staff,1,"Platform, playback, and system failures",platform_or_environment_failures
+D774_1,G024,D774,Introduction to Business Accounting,1,Missing or insufficient instructional materials and exemplars,missing_or_low_quality_materials
+D774_2,G015,D774,Introduction to Business Accounting,1,Ambiguous or incomplete instructions and prompts,unclear_or_ambiguous_instructions
+D775_1,G024,D775,Introduction to Business Finance,1,Missing or insufficient instructional materials and exemplars,missing_or_low_quality_materials
+D776_1,G024,D776,Healthcare Leadership and Community Engagement,1,Missing or insufficient instructional materials and exemplars,missing_or_low_quality_materials
+D848_1,G062,D848,General Earth Science I Lab,1,Third-party tool performance and dependency risk,external_tool_dependency_risks
+D904_1,G059,D904,Algebra for Secondary Mathematics Teaching,1,Proctoring behavior and exam environment problems,proctoring_or_exam_platform_issues
+MGT2_1,G015,MGT2,MGT2 – IT Project Management,1,Ambiguous or incomplete instructions and prompts,unclear_or_ambiguous_instructions
+QHT1_1,G013,QHT1,Business Management Tasks,2,"Broken, missing, or inaccessible required resources",missing_or_broken_resources

@@ -1,0 +1,6 @@
+college,stage0_posts,stage1_painpoints,stage1_non_painpoints,stage1_error_rows,stage2_clusters,stage2_posts_included_for_clustering,stage2_unclustered_painpoints,stage3_global_issues_in_course,stage3_issue_course_post_memberships
+School of Technology,635,230,405,0,186,7,223,168,237
+School of Business,487,144,343,0,123,1,143,109,146
+School of Education,131,43,88,0,42,0,43,39,49
+Leavitt School of Health,132,39,93,0,42,0,39,39,42
+NOT FOUND,8,4,4,0,2,0,4,2,4

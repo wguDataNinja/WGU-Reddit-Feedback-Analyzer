@@ -47,6 +47,7 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple
 
 from wgu_reddit_analyzer.utils.logging_utils import get_logger
 from wgu_reddit_analyzer.utils.token_utils import count_tokens
+from wgu_reddit_analyzer.core.schema_definitions import SCHEMA_VERSION
 
 SEED = 20251107
 DEFAULT_MIN_TOKENS = 20
@@ -442,6 +443,7 @@ def build_manifest(
     """
     timestamp_utc = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     return {
+        "schema_version": SCHEMA_VERSION,
         "stage": "stage1b_sampling",
         "run_id": run_id,
         "timestamp_utc": timestamp_utc,

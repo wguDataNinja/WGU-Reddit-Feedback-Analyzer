@@ -1,0 +1,65 @@
+{
+  "schema_version": "1.0.0",
+  "old_run_dir": "artifacts/benchmark/legacy_20251214/stage1_runs/runs/gpt-5-mini_s1_zero_fulldev_20251121_043352",
+  "new_run_dir": "artifacts/benchmark/legacy_20251214/stage1_runs/runs/gpt-5-mini_s1_few_fulldev_20251121_045651",
+  "split": "DEV",
+  "alpha": 0.05,
+  "join_counts": {
+    "n_old_rows": 135,
+    "n_new_rows": 135,
+    "n_joined_rows": 135
+  },
+  "old_metrics": {
+    "tp": 26,
+    "fp": 88,
+    "fn": 0,
+    "tn": 16,
+    "precision": 0.22807017543859648,
+    "recall": 1.0,
+    "f1": 0.3714285714285714,
+    "accuracy": 0.3230769230769231,
+    "excluded": 5
+  },
+  "new_metrics": {
+    "tp": 25,
+    "fp": 53,
+    "fn": 0,
+    "tn": 50,
+    "precision": 0.32051282051282054,
+    "recall": 1.0,
+    "f1": 0.48543689320388356,
+    "accuracy": 0.5859375,
+    "excluded": 7
+  },
+  "mcnemar": {
+    "b": 0,
+    "c": 29,
+    "n": 29,
+    "p_value": 3.725290298461914e-09,
+    "eligible_rows": 123
+  },
+  "distribution_shift": {
+    "counts": {
+      "old": {
+        "y": 114,
+        "n": 16,
+        "u": 5
+      },
+      "new": {
+        "y": 78,
+        "n": 50,
+        "u": 7
+      }
+    },
+    "chi2": 24.59848484848485,
+    "dof": 2,
+    "p_value": 4.555194060843975e-06,
+    "flag": true
+  },
+  "decision": "accept",
+  "decision_reason": "mcnemar_improvement",
+  "artifacts": {
+    "gating_summary_path": "artifacts/benchmark/gating/gpt-5-mini_s1_zero_fulldev_20251121_043352vsgpt-5-mini_s1_few_fulldev_20251121_045651__dev/gating_summary.json",
+    "paired_rows_path": "artifacts/benchmark/gating/gpt-5-mini_s1_zero_fulldev_20251121_043352vsgpt-5-mini_s1_few_fulldev_20251121_045651__dev/paired_rows.csv"
+  }
+}

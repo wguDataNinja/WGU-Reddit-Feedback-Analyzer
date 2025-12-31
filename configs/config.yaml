@@ -1,0 +1,69 @@
+paths:
+  project_root: .
+  data_dir: data
+  output_dir: output
+  logs_dir: output/logs
+
+io:
+  db_path: db/WGU-Reddit.db
+  course_csv: data/course_list_with_college.csv
+  data_root: data/
+  output_root: output/
+
+logging:
+  pipeline_log_path: output/logs/pipeline.log
+  level: INFO
+
+stage1:
+  input_dev: data/labels/DEV_locked.jsonl
+  input_test: data/labels/TEST_locked.jsonl
+  output_dir: output/tmp/stage1
+  max_rows: null
+  debug: true
+  provider: ollama
+  model: llama3
+  manifest_path: output/tmp/labels_manifest.json
+
+models:
+  openai:
+    api_key_env: OPENAI_API_KEY
+    weak: gpt-4o-mini
+    strong: gpt-4o-mini
+  ollama:
+    base_url: http://localhost:11434/v1
+    weak: llama3
+    strong: llama3
+
+# configs/config.yaml
+sentiment:
+  enabled: true        # still compute VADER
+  column: vader_compound
+  scorer: vader
+
+filters_pipeline:
+  course_codes:
+    enabled: true
+    params:
+      exact_match_count: 1
+  sentiment:
+    enabled: false
+  length:
+    enabled: false
+# required by AppCfg
+pdf_export:
+  enabled: false
+  engine: weasyprint
+  guides_dir: output/guides
+
+# supports both AppCfg and fetchers
+reddit:
+  client_id: ${REDDIT_CLIENT_ID:-2AdPjpG_iSQh0TWD6nKjEg}
+  client_secret: ${REDDIT_CLIENT_SECRET:-uMUTf6xmHSMmaL751WXAoJG0URjaDw}
+  user_agent: ${REDDIT_USER_AGENT:-Subreddit Sentiment Analysis by u/BuddyOwensPVB}
+  username: ${REDDIT_USERNAME:-BuddyOwensPVB}
+  password: ${REDDIT_PASSWORD:-X7^x4RctF$*z}
+  client_id_env: REDDIT_CLIENT_ID
+  client_secret_env: REDDIT_CLIENT_SECRET
+  user_agent_env: REDDIT_USER_AGENT
+  username_env: REDDIT_USERNAME
+  password_env: REDDIT_PASSWORD

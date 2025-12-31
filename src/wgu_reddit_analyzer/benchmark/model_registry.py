@@ -1,4 +1,20 @@
 from __future__ import annotations
+
+"""
+Stage 1 Model Registry.
+
+Defines available LLMs for benchmarking with metadata for provider and cost.
+
+Components:
+    - ModelInfo: Dataclass with model name, provider, per-1K token costs, and local flag.
+    - MODEL_REGISTRY: Maps model names to ModelInfo instances.
+    - get_model_info(name): Retrieve ModelInfo by name; raises KeyError if unknown.
+
+Notes:
+    - Costs for OpenAI models are per 1K tokens.
+    - Local models (e.g., Ollama) have zero costs.
+"""
+
 from dataclasses import dataclass
 from typing import Dict
 
