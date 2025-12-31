@@ -112,6 +112,10 @@ artifacts/**
 !artifacts/stage3/runs/gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_full_20251130_084422/
 !artifacts/stage3/runs/gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_full_20251130_084422/**
 
+# Canonical Stage 2 derived artifacts (paper rebuild)
+!artifacts/stage2/
+!artifacts/stage2/manifest.json
+!artifacts/stage2/painpoints_llm_friendly.csv
 # -------------------------
 # Hugo site: keep source only
 # -------------------------
