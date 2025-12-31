@@ -1,5 +1,0 @@
-model_name,provider,num_examples,total_cost_usd,avg_elapsed_sec_per_example,num_parse_errors,num_schema_errors,num_llm_failures,num_fallbacks
-gpt-5,openai,60,0.0735619999999999,6.416366666666668,0,0,0,0
-gpt-5-mini,openai,60,0.0205389999999999,7.333366666666665,0,0,0,0
-gpt-5-nano,openai,60,0.004304,12.3202,0,0,0,0
-llama3,ollama,60,0.0,5.423166666666668,0,1,0,0

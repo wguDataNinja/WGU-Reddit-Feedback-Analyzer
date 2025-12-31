@@ -149,3 +149,8 @@ site.BACKUP_*/
 *.sqlite3
 .env
 .env.*
+
+
+docs/tables/
+docs/templates/
+tests/
