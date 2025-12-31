@@ -1,0 +1,87 @@
+{
+  "generated_at": 1762498189.3441238,
+  "tables": {
+    "posts": {
+      "count": 27290,
+      "columns": [
+        "post_id",
+        "subreddit_id",
+        "username",
+        "title",
+        "selftext",
+        "created_utc",
+        "edited_utc",
+        "score",
+        "upvote_ratio",
+        "is_promotional",
+        "is_removed",
+        "is_deleted",
+        "flair",
+        "post_type",
+        "num_comments",
+        "url",
+        "permalink",
+        "extra_metadata",
+        "captured_at",
+        "matched_course_codes",
+        "course_code",
+        "course_code_count",
+        "vader_compound",
+        "processed_stage0_at"
+      ]
+    },
+    "comments": {
+      "count": 127218,
+      "columns": [
+        "comment_id",
+        "post_id",
+        "username",
+        "parent_comment_id",
+        "body",
+        "created_utc",
+        "edited_utc",
+        "score",
+        "is_promotional",
+        "is_removed",
+        "is_deleted",
+        "extra_metadata",
+        "captured_at"
+      ]
+    },
+    "subreddits": {
+      "count": 51,
+      "columns": [
+        "subreddit_id",
+        "name",
+        "description",
+        "is_nsfw",
+        "created_utc",
+        "rules",
+        "sidebar_text"
+      ]
+    },
+    "subreddit_stats": {
+      "count": 4541,
+      "columns": [
+        "subreddit_id",
+        "captured_at",
+        "subscriber_count",
+        "active_users",
+        "posts_per_day",
+        "total_posts"
+      ]
+    },
+    "run_log": {
+      "count": 13,
+      "columns": [
+        "run_id",
+        "started_at",
+        "finished_at",
+        "seeds_read",
+        "posts_attempted",
+        "comments_inserted",
+        "failures"
+      ]
+    }
+  }
+}

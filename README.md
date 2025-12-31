@@ -1,153 +1,167 @@
-# WGU Reddit Analyzer Pipeline
+# WGU Reddit Analyzer
 
-_Last updated: 2025-11-10_
+## Overview
 
----
+Western Governors University provides many official channels for students to seek academic help and support. Reddit is not one of them.
 
-## Purpose
-The **WGU Reddit Analyzer** is a reproducible, auditable LLM pipeline for extracting actionable student pain points from Reddit discussions.  
-It replaces the legacy sentiment-monitoring prototype with a structured benchmark framework focused on **cost**, **accuracy**, and **reproducibility**.
+Despite this, many WGU students use Reddit to ask questions, express frustration, and discuss course experiences. These conversations are unsolicited, informal, and spread across more than 50 WGU-related subreddits. As a result, Reddit represents a large, fragmented body of feedback about courses that is difficult to analyze using traditional methods.
 
----
+The **WGU Reddit Analyzer** is a reproducible research pipeline that uses large language models (LLMs) to transform this unstructured social media discussion into structured, analyzable data. The pipeline produces course-level issue summaries, cross-course issue categories, and deterministic reporting tables suitable for academic analysis.
 
-## System Architecture
-
-### Core Package Layout
-```
-src/wgu_reddit_analyzer/
-│
-├── fetchers/       → Reddit ingest (PRAW collectors)
-├── utils/          → config loader, DB helpers, logging, token utilities
-├── pipeline/       → Stage 0 dataset build
-├── benchmark/      → Stage 1 sampling, labeling, cost & model utilities
-└── llm_pipeline/   → Stage 2–3 evaluation (future)
-```
-
-### Supporting Folders
-
-| Folder | Purpose |
-|---------|----------|
-| `configs/` | YAML job configs |
-| `prompts/` | Prompt templates |
-| `artifacts/` | Generated data and logs |
-| `docs/` | Markdown technical documentation |
-| `archive_legacy/` | Deprecated code |
-| `site/` | Hugo PaperMod static site (source only) |
+This repository contains the analytical system.  
+A companion static website presents selected outputs in a read-only, public format.
 
 ---
 
-## Daily Ingest Pipeline
+## Scope and Non-Goals
 
-**Script:** `wgu_reddit_analyzer.daily.daily_update`  
-Automates Reddit ingest and database updates for all WGU subreddits.
+### In Scope
 
-- Reads canonical list from `data/wgu_subreddits.txt`  
-- Uses credentials from `.env` and `configs/config.yaml`  
-- Writes logs to `logs/daily_update.log` and data to `db/WGU-Reddit.db`  
-- Outputs run manifests under `artifacts/runs/<timestamp>/`  
+- Public Reddit posts from WGU-related subreddits  
+- Posts referencing exactly one identifiable WGU course  
+- Sentiment-based filtering to focus analysis on negative experiences  
+- LLM-based classification, clustering, and synthesis  
+- Artifact-driven reproducibility with stored outputs  
+- Cost and latency tracking for LLM stages  
 
-Run manually:
-```bash
-python -m wgu_reddit_analyzer.daily.daily_update
-```
+### Out of Scope
 
----
-
-## Analytical Flow
-
-### Stage 0 — Data Collection & Filtering
-Collect Reddit posts via PRAW, filter for valid WGU course codes and negative VADER sentiment (< –0.2).  
-**Outputs:** `artifacts/stage0_filtered_posts.jsonl`, `db/WGU-Reddit.db`
-
-### Stage 1A — Length Profile & Trim Analysis
-Token distribution computed with `benchmark/build_length_profile.py`.  
-Cutoffs of 20–600 tokens cover > 99% of posts.  
-**Artifacts:** `length_profile.json`, `length_histogram_tokens.png`, and `docs/STAGE1A_SAMPLING_STRATEGY.md`
-
-### Stage 1B — Stratified Sampling
-Script `benchmark/build_stratified_sample.py` creates deterministic, balanced DEV/TEST splits (200 posts total, seed 20251107).  
-**Outputs:** `DEV_candidates.jsonl`, `TEST_candidates.jsonl`, `manifest.json`
-
-### Stage 1C — Manual Labeling (Gold Dataset)
-Script `benchmark/label_posts.py` provides an interactive CLI (`y n u q`).  
-**Output:** `artifacts/benchmark/gold/gold_labels.csv`
+- Reddit comments or full discussion threads  
+- Posts referencing multiple courses  
+- Neutral or positive sentiment posts   
+- Causal claims or evaluation of course quality  
 
 ---
 
-### Benchmark Utilities
+## Dataset Overview
 
-| Module | Role |
-|---------|------|
-| `benchmark/model_registry.py` | Defines model metadata and per-1K-token rates (OpenAI GPT-5, Llama 3). |
-| `benchmark/cost_latency.py` | Computes token cost and latency from registry values. |
-| `benchmark/hello_llm.py` | Connectivity and cost validation. |
+At a high level:
 
----
+- Roughly 27,000 Reddit posts were initially collected into a local database  
+- Filtering based on sentiment and course-code rules produced a frozen analysis corpus of **1,103 posts**  
+- These posts reference **242 WGU courses** across **51 subreddits**  
+- A separate benchmark sample of approximately 200 posts was manually labeled for evaluation purposes  
 
-## Future Work
-- **Stage 2 – Root-Cause Clustering:** LLM groups posts by course and summarizes recurring issues.  
-- **Stage 3 – Benchmark Evaluation:** Computes F1, precision, recall, and cost–accuracy Pareto fronts.  
-- **Prompt Benchmarking:** Compare zero-shot and few-shot templates from `prompts/`.  
-- **Cost Estimation:** `benchmark/estimate_benchmark_cost.py` projects runtime and API costs.
+Counts represent posts, not students, outcomes, or prevalence.  
+Detailed collection and filtering rules are documented in the pipeline specification.
 
 ---
 
-## Datasets & Artifacts
+## Pipeline Overview
 
-| File | Description |
-|-------|--------------|
-| `stage0_filtered_posts.jsonl` | Locked negative-only dataset |
-| `DEV_candidates.jsonl` | 70% DEV subset |
-| `TEST_candidates.jsonl` | 30% TEST subset |
-| `gold_labels.csv` | Final labeled benchmark set |
+The analyzer is implemented as a staged pipeline. Each stage produces explicit, stored artifacts that are reused downstream.
 
-All outputs live under `artifacts/` and are **immutable once published**.
+### Locked Reddit Corpus
 
----
+A fixed dataset of Reddit posts is constructed once and treated as immutable by all downstream stages. Filtering rules ensure that each post is public, negative in sentiment, and associated with exactly one course.
 
-## Repository Policy
-- **Active:** `src/`, `configs/`, `prompts/`, `artifacts/`, `docs/`  
-- **Legacy:** `archive_legacy/` *(ignored)*  
-- Each script writes logs and manifests under `artifacts/runs/`.
+### Pain-Point Classification
 
----
+Each post is independently evaluated by an LLM to determine whether it contains a fixable, course-side pain point. Outputs follow a strict schema and explicitly record parsing errors, schema violations, and failures.
 
-## Environment and Secrets
-All credentials are managed via `wgu_reddit_analyzer.utils.config_loader`.
+Prompt and model selection for this stage are driven by documented benchmarking and evaluation procedures.
 
-**Environment Variables**
-```
-REDDIT_CLIENT_ID
-REDDIT_CLIENT_SECRET
-REDDIT_USER_AGENT
-REDDIT_USERNAME
-REDDIT_PASSWORD
-OPENAI_API_KEY
-```
-No secrets are committed to source control.
+### Course-Level Clustering
+
+Posts identified as containing course-side issues are grouped within each course into recurring issue clusters. This step aggregates individual complaints into higher-level themes while preserving traceability.
+
+### Cross-Course Normalization
+
+Course-level clusters are normalized into shared issue categories across courses. This resolves differences in wording and granularity and enables cross-course analysis.
+
+### Reporting and Presentation
+
+Final reporting tables are produced deterministically from stored artifacts. No LLMs are used beyond the normalization stage.
+
+A complete, authoritative description of pipeline behavior lives in  
+[`docs/PIPELINE_SPEC.md`](docs/PIPELINE_SPEC.md).
 
 ---
 
-## Install and Run
-```bash
-pip install -e .
-python -m wgu_reddit_analyzer.daily.daily_update
-python -m wgu_reddit_analyzer.benchmark.build_stratified_sample
-python -m wgu_reddit_analyzer.benchmark.label_posts
-```
+## Evaluation and Benchmarking
 
-**Imports use the package namespace:**
-```python
-from wgu_reddit_analyzer.utils.logging_utils import get_logger
-```
+Pain-point detection is treated explicitly as a classification task with frozen DEV and TEST splits. Evaluation uses standard classification metrics, with clearly defined exclusions and error handling rules.
 
----
+Prompt iteration is gated by paired statistical testing to prevent silent regressions. Operational metrics such as cost and latency are tracked but do not drive statistical acceptance decisions.
 
-## References
-- Rao et al. (2025) – *QuaLLM Framework for Reddit Feedback Extraction*  
-- De Santis et al. (2025) – *LLM Robustness on Noisy Social Text*  
-- Koltcov et al. (2024) – *Class Imbalance Methods for Short Social Data*
+Detailed documentation is available in:
+
+- [`docs/BENCHMARK_GUIDE.md`](docs/BENCHMARK_GUIDE.md)  
+- [`docs/COST_ESTIMATION.md`](docs/COST_ESTIMATION.md)  
+- [`docs/LABEL_GUIDE.md`](docs/LABEL_GUIDE.md)  
 
 ---
 
-✅ **Status:** Stage 0 locked · Stage 1A/1B complete · Stage 1C ready · Benchmark modules verified · Prompt benchmarking pending
+## Methodological Grounding
+
+The pipeline design is informed by recent research on LLM-based classification and large-scale qualitative analysis of social media data. These influences shape the project’s emphasis on fixed datasets, explicit schemas, staged processing, and evaluation-driven prompt refinement.
+
+A full discussion of these influences is documented in  
+[`docs/METHODOLOGICAL_FOUNDATIONS.md`](docs/METHODOLOGICAL_FOUNDATIONS.md).
+
+---
+
+## Reproducibility
+
+All results presented in the accompanying paper and static website are derived from stored artifacts included in this repository.
+
+- Reported results are pinned to specific runs  
+- Downstream tables can be rebuilt deterministically  
+- Reproduction does **not** require re-running any LLM stages or API access  
+
+Authoritative run pins and rebuild instructions are documented in  
+[`docs/PAPER_RUNS.md`](docs/PAPER_RUNS.md).
+
+---
+
+## Static Website (GUI)
+
+The repository includes a static website that presents selected outputs of the pipeline.
+
+The site:
+
+- displays precomputed artifacts only  
+- performs no analysis or inference  
+- supports exploration of courses, issue categories, and source posts  
+
+The website is a presentation layer, not an analytical component. All interpretation belongs to the pipeline artifacts and the paper.
+
+Documentation for the site lives in  
+[`site/README_SITE.md`](site/README_SITE.md).
+
+A link to the hosted site will be added here once finalized.
+
+---
+
+## Repository Structure
+
+- `src/` — pipeline implementation  
+- `artifacts/` — stored outputs for all stages  
+- `docs/` — specifications, benchmarks, labeling guides, and paper references  
+- `prompts/` — LLM prompt templates  
+- `site/` — static website source  
+- `archive_legacy/` — deprecated prototypes  
+
+Changes to the project over time are tracked in  
+[`CHANGELOG.md`](CHANGELOG.md).
+
+---
+
+## Ethics and Limitations
+
+- Only public Reddit posts are used  
+- Usernames are removed from stored artifacts  
+- Displayed excerpts are truncated and privacy-reviewed  
+- Results are aggregate and not representative of all student experiences  
+
+This project is intended for research and methodological exploration, not institutional evaluation.
+
+---
+
+## What This Work Demonstrates
+
+This project shows that large language models can be used in a disciplined, reproducible way to structure large volumes of informal social media discussion into data suitable for academic analysis.
+
+Applied to Reddit posts about WGU courses, the pipeline transforms scattered, unsolicited student discussion into stable issue summaries and cross-course categories while preserving traceability and transparency.
+
+While this repository focuses on course-related pain points, the same approach could support other research questions about student discussion, such as what students value about their programs or why they choose WGU, given appropriate evaluation.

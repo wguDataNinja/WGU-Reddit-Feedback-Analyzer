@@ -1,0 +1,64 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{ with .Params.description }}<p class="page-description">{{ . }}</p>{{ end }}
+</header>
+
+<style>
+.wra-wrap{margin-top:1rem}
+.wra-panel{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme)}
+.wra-controls{display:grid;grid-template-columns:1fr;gap:.75rem}
+@media (min-width:900px){.wra-controls{grid-template-columns:1.2fr .8fr .8fr}}
+.wra-controls input,.wra-controls select{width:100%;padding:.55rem .65rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme);color:inherit}
+.wra-row{display:flex;gap:.75rem;flex-wrap:wrap;align-items:center;justify-content:space-between;margin-top:.75rem}
+.wra-badge{display:inline-block;padding:.15rem .5rem;border:1px solid var(--border);border-radius:999px;background:var(--code-bg);font-size:.9em}
+.wra-list{margin-top:1rem;display:grid;grid-template-columns:1fr;gap:1rem}
+.wra-card{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme)}
+.wra-card h2{margin:.1rem 0 .35rem 0;font-size:1.05rem}
+.wra-meta{display:flex;gap:.5rem;flex-wrap:wrap;align-items:center;margin:.25rem 0 .5rem 0;opacity:.9}
+.wra-muted{opacity:.85}
+.wra-pager{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-top:1rem}
+.wra-pager button{padding:.45rem .7rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme);color:inherit;cursor:pointer}
+.wra-pager button:disabled{opacity:.5;cursor:not-allowed}
+</style>
+
+<div class="wra-wrap" id="wra-raw-posts" data-index-url='{{ "/post_index.json" | relURL }}'>
+  <div class="wra-panel">
+    <div class="wra-controls">
+      <div>
+        <label class="wra-muted">Keyword</label>
+        <input id="wra-q" type="text" placeholder="Search title and excerpt" />
+      </div>
+      <div>
+        <label class="wra-muted">Course</label>
+        <select id="wra-course">
+          <option value="">All courses</option>
+        </select>
+      </div>
+      <div>
+        <label class="wra-muted">Page size</label>
+        <select id="wra-page-size">
+          <option value="25">25</option>
+          <option value="50" selected>50</option>
+          <option value="100">100</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="wra-row">
+      <div class="wra-muted" id="wra-status">Loading…</div>
+      <div class="wra-muted" id="wra-filter-status"></div>
+    </div>
+  </div>
+
+  <div class="wra-list" id="wra-results"></div>
+
+  <div class="wra-pager">
+    <button id="wra-prev" disabled>Prev</button>
+    <span class="wra-muted" id="wra-page">Page 1</span>
+    <button id="wra-next" disabled>Next</button>
+  </div>
+</div>
+
+<script defer src='{{ "js/raw-posts.js" | relURL }}'></script>
+{{ end }}

@@ -1,0 +1,424 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "D432_1",
+      "issue_summary": "Required cohort materials and resources not uploaded to Course Tips (missing course resources/guidance).",
+      "course_code": "D432",
+      "course_title": "HR Compliance and Employee Relations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D464_1",
+      "issue_summary": "Final assessment content misaligned with course materials and unit tests",
+      "course_code": "D464",
+      "course_title": "Managing Operations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D464_2",
+      "issue_summary": "Student unable to access/open exam despite completing prerequisites (platform/process or administrative barrier)",
+      "course_code": "D464",
+      "course_title": "Managing Operations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D464_3",
+      "issue_summary": "Instructor unresponsive/unprofessional and inadequate support during scheduled meetings and course-change requests",
+      "course_code": "D464",
+      "course_title": "Managing Operations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D465_1",
+      "issue_summary": "Unclear or misleading OA wording causing misalignment with the PA and tripping up students",
+      "course_code": "D465",
+      "course_title": "Data Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D467_1",
+      "issue_summary": "Misalignment between Performance Assessment (PA) and Objective Assessment (OA): OA covers content and question styles not reflected in the PA, causing unexpected difficulty.",
+      "course_code": "D467",
+      "course_title": "Exploring Data",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D479_1",
+      "issue_summary": "Course requires peer reviews from other students as a blocking submission dependency, preventing progress when reviewers are unavailable",
+      "course_code": "D479",
+      "course_title": "User Experience Design",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D481_1",
+      "issue_summary": "Transfer/credit from prior WGU bachelor coursework not applied, forcing mandatory enrollment in D481",
+      "course_code": "D481",
+      "course_title": "Security Foundations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D481_2",
+      "issue_summary": "Inconsistent or incorrect communication between records and program mentor about credit applicability",
+      "course_code": "D481",
+      "course_title": "Security Foundations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D482_1",
+      "issue_summary": "Course materials are low-quality and appear unoriginal or AI-generated, lacking clear explanations and original content",
+      "course_code": "D482",
+      "course_title": "Secure Network Design",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D483_2",
+      "issue_summary": "Unclear rubric/instructions for the incident response report (whether to fill template vs. produce a full report)",
+      "course_code": "D483",
+      "course_title": "Security Operations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D483_3",
+      "issue_summary": "Ambiguous remediation instructions and evidence requirements for investigations (what actions to take and document)",
+      "course_code": "D483",
+      "course_title": "Security Operations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D483_4",
+      "issue_summary": "Course assessment misalignment: additional performance objective required beyond passing CySA+",
+      "course_code": "D483",
+      "course_title": "Security Operations",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D485_1",
+      "issue_summary": "platform permission bug prevents assigning roles despite ADMIN privileges",
+      "course_code": "D485",
+      "course_title": "D485 – Cloud Security",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D486_1",
+      "issue_summary": "Rubric language is ambiguous—refers to 'given points' without specifying where those points are listed (e.g., SAR), leaving students unsure what to address in the assessment.",
+      "course_code": "D486",
+      "course_title": "Governance, Risk, and Compliance",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D486_2",
+      "issue_summary": "Required course resource (pre-recorded cohort) is missing or inaccessible, preventing students from obtaining guidance needed to complete the Performance Assessment (especially section B).",
+      "course_code": "D486",
+      "course_title": "Governance, Risk, and Compliance",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D487_2",
+      "issue_summary": "Proctoring/platform error causing exams to terminate or redirect (survey) mid-test with no score or review options",
+      "course_code": "D487",
+      "course_title": "Secure Software Design",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D487_3",
+      "issue_summary": "Excessive use of unexplained acronyms/abbreviations in materials and assessments making questions unclear",
+      "course_code": "D487",
+      "course_title": "Secure Software Design",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D488_1",
+      "issue_summary": "Required CertMasters lab environment is broken/unusable (lags, nonfunctional features) while course requires 100% completion",
+      "course_code": "D488",
+      "course_title": "Cybersecurity Architecture and Engineering",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D489_1",
+      "issue_summary": "Ambiguous instructions in Requirements Part B about scope: unclear if students must address all bullets under a chosen subtopic or only one bullet.",
+      "course_code": "D489",
+      "course_title": "Cybersecurity Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D490_1",
+      "issue_summary": "Inconsistent and slow evaluator grading turnaround causing unexpected delays",
+      "course_code": "D490",
+      "course_title": "Cybersecurity Graduate Capstone",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D492_1",
+      "issue_summary": "Lab environment is slow/unresponsive, degrading student experience and usability",
+      "course_code": "D492",
+      "course_title": "Data Analytics - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D493_1",
+      "issue_summary": "Conflicting and insufficient instructional materials: Panapto videos are too theoretical and differ from Open Mateo code examples, preventing completion of the PA.",
+      "course_code": "D493",
+      "course_title": "D493 – Scripting and Programming - Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D522_1",
+      "issue_summary": "Assessment platform/reporting failures: premature 'Results Posted' notifications, missing coaching/score reports, and disconnections leading to incorrect No Pass outcomes",
+      "course_code": "D522",
+      "course_title": "Python for IT Automation",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D522_2",
+      "issue_summary": "Insufficient course-specific support: instructors unresponsive/unhelpful and tutoring resources limited to fundamentals course only",
+      "course_code": "D522",
+      "course_title": "Python for IT Automation",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D546_1",
+      "issue_summary": "Contradictory feedback and apparent misapplication of the grading rubric between professor approval and course evaluator",
+      "course_code": "D546",
+      "course_title": "Healthcare Policy and Governance",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D547_1",
+      "issue_summary": "Conflicting or duplicated instructions across multiple locations causing requirement confusion",
+      "course_code": "D547",
+      "course_title": "Evidence-Based Healthcare Administration",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D553_1",
+      "issue_summary": "Provided dataset or task instructions contain incorrect or misaligned expected results (answer key/data mismatch)",
+      "course_code": "D553",
+      "course_title": "Data Analytics for Accountants II",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D554_1",
+      "issue_summary": "Insufficient supplementary materials and course support for new classes",
+      "course_code": "D554",
+      "course_title": "Advanced Financial Accounting I",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D557_1",
+      "issue_summary": "Disorganized or unclear course materials and organization causing students to be unsure if they've missed required sections",
+      "course_code": "D557",
+      "course_title": "Corporate Taxation",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D560_1",
+      "issue_summary": "Objective Assessment (OA) covers topics/questions not addressed in the Performance Assessment (PA) materials or activities (PA–OA misalignment)",
+      "course_code": "D560",
+      "course_title": "Internal Auditing I",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D564_1",
+      "issue_summary": "Excessive and inflexible remediation requirement after OA failure (lengthy 6-page worksheet, rigid answer/citation rules, insufficient accommodations or scaling for narrow misses)",
+      "course_code": "D564",
+      "course_title": "Theories of Personality",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D564_2",
+      "issue_summary": "Platform/system access failures causing delays to start the OA",
+      "course_code": "D564",
+      "course_title": "Theories of Personality",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D571_2",
+      "issue_summary": "Assessment requirements (E1–E3) are missing from or not covered in the course materials, creating misalignment between assignment expectations and available content.",
+      "course_code": "D571",
+      "course_title": "Psychopathology",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D571_3",
+      "issue_summary": "Incorrect or duplicated assignment resource lists (e.g., movie lists for Task 2 vs Task 3), causing confusion about required materials for assignments.",
+      "course_code": "D571",
+      "course_title": "Psychopathology",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D572_1",
+      "issue_summary": "Instructions and rubric lack clear guidance on how to acknowledge sources (in-text citations and references) for Initial and Panel Interviews",
+      "course_code": "D572",
+      "course_title": "Career and Lifelong Learning",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D573_1",
+      "issue_summary": "Unclear or insufficiently specific instructions/rubric about matching chosen special populations to acceptable treatment strategies",
+      "course_code": "D573",
+      "course_title": "Understanding Substance Abuse & Addiction",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D573_2",
+      "issue_summary": "Evaluator feedback is non-actionable or lacking guidance when submissions are rejected for population-treatment mismatch",
+      "course_code": "D573",
+      "course_title": "Understanding Substance Abuse & Addiction",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D577_1",
+      "issue_summary": "Simulation facilitator/virtual avatar no-show or late for scheduled simulation sessions, causing students to wait and lose scheduled time",
+      "course_code": "D577",
+      "course_title": "Team Dynamics",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D596_2",
+      "issue_summary": "Unstated or unclear submission format requirements (required file types/evidence) causing rejected evaluations",
+      "course_code": "D596",
+      "course_title": "The Data Analytics Journey",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D597_2",
+      "issue_summary": "Required Task 2 asset ('map script') not provided or instructions do not explain where to find/use it.",
+      "course_code": "D597",
+      "course_title": "Data Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D597_3",
+      "issue_summary": "Platform/tool bug: MongoDB query execution time reported as 0ms, preventing demonstration of performance improvements.",
+      "course_code": "D597",
+      "course_title": "Data Management",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D598_1",
+      "issue_summary": "inconsistent or unclear evaluator feedback/grading that doesn't identify reproducible errors",
+      "course_code": "D598",
+      "course_title": "Analytics Programming",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D599_1",
+      "issue_summary": "Provided datasets contain missing/dirty data but tasks and instructions do not specify or guide data cleaning expectations",
+      "course_code": "D599",
+      "course_title": "Data Preparation and Exploration",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D599_2",
+      "issue_summary": "Rubric wording or evaluator guidance is ambiguous or misapplied (identifier variables incorrectly labeled as quantitative)",
+      "course_code": "D599",
+      "course_title": "Data Preparation and Exploration",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D600_1",
+      "issue_summary": "Conflicting or unclear submission instructions and rubric requirements for Git commits/submissions (per-part commits vs single notebook)",
+      "course_code": "D600",
+      "course_title": "Statistical Data Mining",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D600_2",
+      "issue_summary": "Course materials omit definitions/explanations of specific statistical terms, requiring students to search externally",
+      "course_code": "D600",
+      "course_title": "Statistical Data Mining",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D601_1",
+      "issue_summary": "Evaluator feedback inadequate and submission locked requiring professor meeting, blocking student progress",
+      "course_code": "D601",
+      "course_title": "Data Storytelling for Varied Audiences",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D602_2",
+      "issue_summary": "Provided Task 2 starter script contains MLflow run-handling bug (multiple start_run calls) causing MlflowException and breaking the supplied code",
+      "course_code": "D602",
+      "course_title": "D602 – Deployment",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D602_3",
+      "issue_summary": "No guidance on acceptable evidence or troubleshooting when MLflow UI shows successful run but command-line processes fail, leaving students unsure what to submit",
+      "course_code": "D602",
+      "course_title": "D602 – Deployment",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D603_1",
+      "issue_summary": "Unclear submission instructions for Part D regarding which datasets (training, test, full) must be uploaded",
+      "course_code": "D603",
+      "course_title": "Machine Learning",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D604_1",
+      "issue_summary": "Contradictory or unclear instructions about where and how to complete and submit the PA (confusion between GitLab pipeline, Cloud Academy virtual lab, and EMA).",
+      "course_code": "D604",
+      "course_title": "Advanced Analytics",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D604_2",
+      "issue_summary": "Rubric and assessment criteria do not mention required GitLab commits or align with tasks described in the PA.",
+      "course_code": "D604",
+      "course_title": "Advanced Analytics",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D604_3",
+      "issue_summary": "Missing explanations or guidance for required platforms/tools (EMA is not defined or explained in instructions).",
+      "course_code": "D604",
+      "course_title": "Advanced Analytics",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D607_1",
+      "issue_summary": "Assignment lacks clear instructions for architecture diagram (recommended tools, required elements, and expected format).",
+      "course_code": "D607",
+      "course_title": "Cloud Databases",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D608_1",
+      "issue_summary": "Broken or outdated third-party resource link (Udacity/AWS) in course resources preventing access to required cloud resources",
+      "course_code": "D608",
+      "course_title": "Data Processing",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D619_1",
+      "issue_summary": "Essential supporting documents/attachments are placed below the rubric or hard to locate, causing confusion about assignment requirements",
+      "course_code": "D619",
+      "course_title": "Global Health",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D635_1",
+      "issue_summary": "Unclear instructions about acceptable 'credible resources' for Task 2 Part B (source requirements, whether sources must be from WGU library, and whether they must explicitly reference Part A activity).",
+      "course_code": "D635",
+      "course_title": "Practices for Inclusive Classrooms",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D635_2",
+      "issue_summary": "Assessment misalignment and confusing/ambiguous OA wording — pretest and study materials do not reflect actual OA questions and question wording is misleading.",
+      "course_code": "D635",
+      "course_title": "Practices for Inclusive Classrooms",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D644_1",
+      "issue_summary": "Pre-assessment content is not aligned with the objective assessment; OA contains topics not covered in pre-assessment",
+      "course_code": "D644",
+      "course_title": "Foundations of Strategic Communications",
+      "num_posts": 1
+    }
+  ]
+}

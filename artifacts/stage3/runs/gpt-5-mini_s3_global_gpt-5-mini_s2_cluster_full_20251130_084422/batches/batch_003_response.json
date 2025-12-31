@@ -1,0 +1,156 @@
+{
+  "global_clusters": [
+    {
+      "provisional_label": "assessment_material_misalignment",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Course assessments (pre-assessments, PAs, OAs or proctored exams) contain content, versions, or question types that are not covered or mapped correctly to the provided course materials and study guides.",
+      "member_cluster_ids": [
+        "D282_2",
+        "D313_1",
+        "D317_1",
+        "D330_2",
+        "D334_1",
+        "D351_2",
+        "D363_2",
+        "D363_3",
+        "D378_1",
+        "D398_1",
+        "D413_1"
+      ]
+    },
+    {
+      "provisional_label": "unclear_or_ambiguous_instructions",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Assignment, lab, or assessment instructions and prompts are ambiguous or contradictory, leaving students unsure of required formats, scope, or task expectations.",
+      "member_cluster_ids": [
+        "D279_1",
+        "D284_1",
+        "D284_2",
+        "D288_3",
+        "D286_2",
+        "D324_2",
+        "D385_2",
+        "D389_1",
+        "D389_2",
+        "D412_1",
+        "D427_6"
+      ]
+    },
+    {
+      "provisional_label": "platform_or_environment_failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Platform, lab, or hosting outages and environment instabilities (including test platform freezes or migration-related access loss) prevent access or completion of course work.",
+      "member_cluster_ids": [
+        "D288_5",
+        "D324_1",
+        "D355_1",
+        "D370_2",
+        "D412_2",
+        "D412_3",
+        "D426_3",
+        "D427_4"
+      ]
+    },
+    {
+      "provisional_label": "missing_or_low_quality_materials",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Primary course materials, examples, or remediation content are missing, poorly formatted, factually inaccurate, or of insufficient quality to support learning.",
+      "member_cluster_ids": [
+        "D281_2",
+        "D287_4",
+        "D317_2",
+        "D336_3",
+        "D422_1",
+        "D426_2",
+        "D430_1",
+        "D334_2"
+      ]
+    },
+    {
+      "provisional_label": "tooling_environment_misconfiguration_or_guidance",
+      "normalized_issue_label": "tooling_environment_misconfiguration_or_guidance",
+      "short_description": "Tooling, starter files, or evaluation environments are misconfigured, outdated, or lack clear configuration guidance, causing build/run/evaluation mismatches.",
+      "member_cluster_ids": [
+        "D279_2",
+        "D280_3",
+        "D286_3",
+        "D287_2",
+        "D388_2"
+      ]
+    },
+    {
+      "provisional_label": "missing_or_broken_resources",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Required files, data, labs, or templates are missing, malformed, or incompatible, blocking student progress until resources are fixed or provided.",
+      "member_cluster_ids": [
+        "D282_1",
+        "D288_4",
+        "D370_1",
+        "D427_5"
+      ]
+    },
+    {
+      "provisional_label": "workflow_or_policy_barriers",
+      "normalized_issue_label": "workflow_or_policy_barriers",
+      "short_description": "Course or institutional policies and remediation/workflow requirements (voucher approvals, remediation thresholds, evidence rules) create disproportionate or obstructive barriers to student progress.",
+      "member_cluster_ids": [
+        "D325_1",
+        "D325_2",
+        "D329_1",
+        "D336_2"
+      ]
+    },
+    {
+      "provisional_label": "evaluator_inconsistency_or_poor_feedback",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Automated or human evaluation produces inconsistent results or provides generic, non-actionable feedback that does not explain grading decisions or remediation steps.",
+      "member_cluster_ids": [
+        "D287_5",
+        "D335_3"
+      ]
+    },
+    {
+      "provisional_label": "external_tool_dependency_risks",
+      "normalized_issue_label": "external_tool_dependency_risks",
+      "short_description": "Course relies on third-party tools or external APIs that have bugs, omissions, or behavior differences which the course does not address or provide workarounds for.",
+      "member_cluster_ids": [
+        "D280_4",
+        "D335_4"
+      ]
+    },
+    {
+      "provisional_label": "grading_or_answer_key_or_process_issues",
+      "normalized_issue_label": "grading_or_answer_key_or_process_issues",
+      "short_description": "Answer keys, test case references, or assessment content contain errors, typos, or mismatches that cause correct student work to be graded incorrectly.",
+      "member_cluster_ids": [
+        "D363_1",
+        "D427_3"
+      ]
+    },
+    {
+      "provisional_label": "proctoring_or_exam_platform_issues",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Proctoring policies or exam platform requirements are unclear, overly burdensome, or risk test cancellation due to technical demands.",
+      "member_cluster_ids": [
+        "D336_1"
+      ]
+    },
+    {
+      "provisional_label": "instructor_or_support_unresponsiveness",
+      "normalized_issue_label": "instructor_or_support_unresponsiveness",
+      "short_description": "Students do not receive timely instructor or support responses after assessment failures or when escalation is needed; no clear SLA or alternative contact is provided.",
+      "member_cluster_ids": [
+        "D398_2"
+      ]
+    },
+    {
+      "provisional_label": "prerequisite_gaps_or_unpreparedness",
+      "normalized_issue_label": "prerequisite_gaps_or_unpreparedness",
+      "short_description": "Courses assume prior knowledge or skills that have not been taught or reinforced, creating learning gaps that impede progress.",
+      "member_cluster_ids": [
+        "D287_6"
+      ]
+    }
+  ],
+  "unassigned_clusters": []
+}

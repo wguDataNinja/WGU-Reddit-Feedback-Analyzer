@@ -1,0 +1,422 @@
+post_id,cluster_id,global_cluster_id,course_code,course_title
+1kvhffn,AFT2_1,G005,AFT2,AFT2 – Accreditation Audit
+1lju7av,C165_1,G014,C165,Integrated Physical Sciences
+1lbptfq,C165_2,G016,C165,Integrated Physical Sciences
+1kqff60,C180_1,G005,C180,Introduction to Psychology
+1arp422,C190_1,G039,C190,Introduction to Biology
+1lz59ae,C190_2,G050,C190,Introduction to Biology
+x1s4gw,C190_3,G021,C190,Introduction to Biology
+1ap07fb,C200_1,G021,C200,Managing Organizations and Leading People
+1jsjoqe,C200_2,G041,C200,Managing Organizations and Leading People
+1k73poq,C200_3,G005,C200,Managing Organizations and Leading People
+1no2ruq,C200_4,G013,C200,Managing Organizations and Leading People
+1gp8c9x,C204_1,G038,C204,Management Communication
+1kozkrg,C204_2,G013,C204,Management Communication
+1b6lgju,C207_1,G008,C207,Data-Driven Decision Making
+1gfrdgm,C207_1,G008,C207,Data-Driven Decision Making
+1nu1frh,C207_1,G008,C207,Data-Driven Decision Making
+1iex6mr,C207_2,G014,C207,Data-Driven Decision Making
+1njyljq,C210_1,G038,C210,Management and Leadership Capstone
+1ci7efm,C211_1,G032,C211,Global Economics for Managers
+1i5z4ev,C211_1,G032,C211,Global Economics for Managers
+1e12ncu,C211_1,G032,C211,Global Economics for Managers
+1e12ncu,C211_2,G039,C211,Global Economics for Managers
+1lu24vq,C211_3,G026,C211,Global Economics for Managers
+1m2hl4r,C211_4,G014,C211,Global Economics for Managers
+19enoj0,C212_1,G005,C212,Marketing
+1adh5n2,C213_1,G014,C213,Accounting for Decision Makers
+1e93oh1,C213_2,G047,C213,Accounting for Decision Makers
+1gxkpxj,C213_3,G035,C213,Accounting for Decision Makers
+1kvcnzt,C213_4,G013,C213,Accounting for Decision Makers
+1cykd6l,C214_1,G001,C214,Financial Management
+1dr8yxy,C214_1,G001,C214,Financial Management
+1e476c5,C214_1,G001,C214,Financial Management
+1moav95,C214_1,G001,C214,Financial Management
+1cpv657,C214_1,G001,C214,Financial Management
+1jtwrw1,C214_2,G026,C214,Financial Management
+1krk5zw,C214_3,G013,C214,Financial Management
+1n5t34o,C214_4,G026,C214,Financial Management
+1gtrs8w,C216_1,G026,C216,MBA Capstone
+1n1mxvu,C216_2,G038,C216,MBA Capstone
+1iu2d9s,C237_1,G014,C237,Taxation I
+1h0ukdz,C268_1,G031,C268,Spreadsheets
+1k222xm,C268_1,G031,C268,Spreadsheets
+1jtwp2h,C268_2,G026,C268,Spreadsheets
+1nwencc,C458_1,G014,C458,"Health, Fitness, and Wellness"
+1kcmw6u,C483_1,G014,C483,Principles of Management
+1l0mrs2,C483_2,G016,C483,Principles of Management
+1m4etiv,C715_1,G014,C715,Organizational Behavior
+1lchbko,C715_2,G013,C715,Organizational Behavior
+1k3nrhk,C716_1,G002,C716,Business Communication
+1k3ns5p,C716_1,G002,C716,Business Communication
+1lqs2it,C716_2,G005,C716,Business Communication
+1mpk66n,C716_3,G035,C716,Business Communication
+1mgcah7,C717_1,G051,C717,Business Ethics
+1mxg6mh,C717_1,G051,C717,Business Ethics
+1mxg6mh,C717_2,G041,C717,Business Ethics
+1lshljm,C722_1,G016,C722,Project Management
+1kots11,C723_1,G013,C723,Quantitative Analysis For Business
+1ndqxbg,C723_2,G035,C723,Quantitative Analysis For Business
+1e1597j,C773_1,G005,C773,User Interface Design
+1l41cbc,C773_2,G050,C773,User Interface Design
+1c1vf93,C777_1,G001,C777,Web Development Applications
+1kh8lb4,C777_1,G001,C777,Web Development Applications
+1e4jxx7,C777_2,G004,C777,Web Development Applications
+1l6s63q,C777_2,G004,C777,Web Development Applications
+1ftiqcp,C777_3,G003,C777,Web Development Applications
+1krvn5n,C777_3,G003,C777,Web Development Applications
+1gxegch,C777_4,G013,C777,Web Development Applications
+1kxvduo,C777_5,G039,C777,Web Development Applications
+1ng8x0e,C777_6,G047,C777,Web Development Applications
+1n4cfep,C783_1,G021,C783,Project Management
+1muykuw,C803_1,G005,C803,Data Analytics and Information Governance
+1mg1to5,C810_1,G021,C810,Foundations in Healthcare Data Management
+1b4ghw4,C816_1,G021,C816,Healthcare System Applications
+1lc6uem,C816_2,G014,C816,Healthcare System Applications
+1lofclp,C843_1,G008,C843,Managing Information Security
+1matys7,C843_1,G008,C843,Managing Information Security
+1nuan5m,C843_2,G008,C843,Managing Information Security
+1matys7,C843_2,G008,C843,Managing Information Security
+1h0euq3,C845_1,G005,C845,Information Systems Security
+1d5vqa0,C867_1,G005,C867,Scripting and Programming - Applications
+1na3dek,C927_1,G016,C927,Managing Technology Operations and Innovation
+1841smz,C948_1,G042,C948,Technical Communication
+1itr62r,C949_1,G001,C949,Data Structures and Algorithms I
+1m50chh,C949_1,G001,C949,Data Structures and Algorithms I
+1hq6d0u,C949_2,G011,C949,Data Structures and Algorithms I
+1itr62r,C949_3,G010,C949,Data Structures and Algorithms I
+1du1gzj,C952_1,G010,C952,Computer Architecture
+1iikmkz,C954_1,G010,C954,Information Technology Management
+1lgnjdw,C957_1,G037,C957,Applied Algebra
+1n5a49g,C958_1,G055,C958,Calculus I
+1dtmqif,C959_1,G001,C959,Discrete Mathematics I
+1g72ev3,C959_1,G001,C959,Discrete Mathematics I
+1g72ev3,C959_2,G010,C959,Discrete Mathematics I
+1domuol,C960_1,G001,C960,Discrete Mathematics II
+1f13env,C960_1,G001,C960,Discrete Mathematics II
+1lint0z,C960_2,G011,C960,Discrete Mathematics II
+1lhvmsy,C963_1,G019,C963,American Politics and the US Constitution
+1lhvmsy,C963_2,G019,C963,American Politics and the US Constitution
+1cv4njn,C969_1,G007,C969,Software II – Advanced C#
+1f5x29z,C969_1,G007,C969,Software II – Advanced C#
+1cv4njn,C969_2,G027,C969,Software II – Advanced C#
+1f5x29z,C969_3,G027,C969,Software II – Advanced C#
+1k7zfk3,D072_1,G019,D072,Fundamentals for Success in Business
+1mlu6ur,D072_2,G043,D072,Fundamentals for Success in Business
+1kw44vc,D075_1,G020,D075,Information Technology Management Essentials
+1jyktr2,D076_1,G010,D076,Finance Skills for Managers
+1m7jk72,D076_2,G011,D076,Finance Skills for Managers
+1itn0pd,D077_1,G010,D077,"Concepts in Marketing, Sales, and Customer Contact"
+1gqrs3w,D078_1,G020,D078,Business Environment Applications I: Business Structures and Legal Environment
+1l5mpq6,D078_2,G025,D078,Business Environment Applications I: Business Structures and Legal Environment
+1lhctl0,D080_1,G001,D080,Managing in a Global Business Environment
+1m3l0he,D080_1,G001,D080,Managing in a Global Business Environment
+1ms5z35,D080_2,G010,D080,Managing in a Global Business Environment
+1l8asql,D080_3,G037,D080,Managing in a Global Business Environment
+1l8dl83,D080_4,G060,D080,Managing in a Global Business Environment
+1navhhi,D081_1,G044,D081,Innovative and Strategic Thinking
+1njqe9i,D089_1,G010,D089,Principles of Economics
+1n0ozsc,D099_1,G042,D099,Sales Management
+1gi3pu5,D100_1,G011,D100,Introduction to Spreadsheets
+1ntr86d,D100_2,G025,D100,Introduction to Spreadsheets
+1kvxwes,D101_1,G004,D101,Cost and Managerial Accounting
+1lrkoa1,D101_1,G004,D101,Cost and Managerial Accounting
+1lz26g7,D101_1,G004,D101,Cost and Managerial Accounting
+1kr6du0,D101_2,G001,D101,Cost and Managerial Accounting
+1neictp,D101_2,G001,D101,Cost and Managerial Accounting
+1kq49wb,D101_3,G034,D101,Cost and Managerial Accounting
+1lnmizo,D101_4,G052,D101,Cost and Managerial Accounting
+1nhh0mo,D102_1,G011,D102,Financial Accounting
+1jja55l,D102_2,G011,D102,Financial Accounting
+1neo2vs,D102_3,G011,D102,Financial Accounting
+1lf5mk0,D103_1,G004,D103,Intermediate Accounting I
+1nm1qnj,D103_1,G004,D103,Intermediate Accounting I
+1li0ivg,D103_2,G010,D103,Intermediate Accounting I
+1loh1q9,D184_1,G010,D184,Standards-Based Assessment
+1h9qiii,D196_1,G001,D196,Principles of Financial and Managerial Accounting
+1hrk5zi,D196_1,G001,D196,Principles of Financial and Managerial Accounting
+1ltij8p,D196_1,G001,D196,Principles of Financial and Managerial Accounting
+1ie22kq,D196_2,G003,D196,Principles of Financial and Managerial Accounting
+1k2wxpv,D196_2,G003,D196,Principles of Financial and Managerial Accounting
+1ndm9ql,D196_3,G010,D196,Principles of Financial and Managerial Accounting
+1jvo1mj,D196_4,G025,D196,Principles of Financial and Managerial Accounting
+1kc7dpy,D196_5,G025,D196,Principles of Financial and Managerial Accounting
+1lr075i,D196_6,G025,D196,Principles of Financial and Managerial Accounting
+1b8ks9p,D197_1,G002,D197,Version Control
+1bco480,D197_1,G002,D197,Version Control
+1nxcfvk,D197_1,G002,D197,Version Control
+1l1yd7g,D197_1,G002,D197,Version Control
+1j1cwxy,D197_1,G002,D197,Version Control
+1n64e3a,D197_1,G002,D197,Version Control
+1bqrzmb,D197_2,G003,D197,Version Control
+1cly2hq,D197_2,G003,D197,Version Control
+1lhdi9o,D197_3,G009,D197,Version Control
+1lqxp9w,D197_3,G009,D197,Version Control
+1gl3fu1,D197_4,G027,D197,Version Control
+1mv37ub,D203_1,G034,D203,Fundamentals of Anatomy and Physiology
+1l04s9t,D216_1,G010,D216,Business Law for Accountants
+1n8s680,D255_1,G020,D255,Professional Practice Experience I: Technical
+1mb2380,D265_1,G011,D265,Critical Thinking: Reason and Evidence
+1k8s7e7,D268_1,G002,D268,Introduction to Communication: Connecting with Others
+1nx287c,D268_1,G002,D268,Introduction to Communication: Connecting with Others
+1g9ebg5,D268_2,G043,D268,Introduction to Communication: Connecting with Others
+1g9ebg5,D268_3,G019,D268,Introduction to Communication: Connecting with Others
+1kasgbh,D270_1,G046,D270,Composition: Successful Self-Expression
+1lntdw0,D270_2,G011,D270,Composition: Successful Self-Expression
+1mbztnn,D276_1,G003,D276,Web Development Foundations
+1mn9eo9,D276_1,G003,D276,Web Development Foundations
+16y5q7p,D276_2,G046,D276,Web Development Foundations
+18jfjem,D276_3,G011,D276,Web Development Foundations
+1l4h3um,D276_4,G020,D276,Web Development Foundations
+1njjy68,D277_1,G008,D277,Front-End Web Development
+1nt2zmj,D277_1,G008,D277,Front-End Web Development
+1d8p0bo,D277_2,G044,D277,Front-End Web Development
+1m6umpu,D277_3,G027,D277,Front-End Web Development
+1io32ox,D277_4,G020,D277,Front-End Web Development
+1gq27yl,D277_5,G019,D277,Front-End Web Development
+1kuii8v,D277_6,G019,D277,Front-End Web Development
+1bkid8q,D278_1,G004,D278,Scripting and Programming - Foundations
+1bu2jk3,D278_1,G004,D278,Scripting and Programming - Foundations
+1iostbs,D278_2,G001,D278,Scripting and Programming - Foundations
+1n6hkl6,D278_2,G001,D278,Scripting and Programming - Foundations
+1i313yn,D278_3,G037,D278,Scripting and Programming - Foundations
+1lvp63k,D278_4,G027,D278,Scripting and Programming - Foundations
+1lxgkdq,D278_5,G034,D278,Scripting and Programming - Foundations
+1bnr166,D279_1,G002,D279,User Interface Design
+1f9s617,D279_2,G007,D279,User Interface Design
+1fo3usf,D280_1,G009,D280,JavaScript Programming
+1ine7ln,D280_1,G009,D280,JavaScript Programming
+1jw0w87,D280_2,G002,D280,JavaScript Programming
+1mqnohg,D280_2,G002,D280,JavaScript Programming
+1c46s8f,D280_3,G007,D280,JavaScript Programming
+1n1nou4,D280_4,G031,D280,JavaScript Programming
+19fctbx,D281_1,G040,D281,Linux Foundations
+1n74a5g,D281_1,G040,D281,Linux Foundations
+1gvsi3y,D281_2,G004,D281,Linux Foundations
+1imjbds,D282_1,G009,D282,Cloud Foundations
+19bgz4v,D282_2,G001,D282,Cloud Foundations
+19fe9bs,D284_1,G002,D284,Software Engineering
+1j9aq4m,D284_2,G002,D284,Software Engineering
+1bgyhcv,D286_1,G003,D286,Java Fundamentals
+1gzn0jj,D286_1,G003,D286,Java Fundamentals
+1bgyhcv,D286_2,G002,D286,Java Fundamentals
+1gzn0jj,D286_3,G007,D286,Java Fundamentals
+1d80my9,D287_1,G002,D287,Java Frameworks
+1era7to,D287_1,G002,D287,Java Frameworks
+1f38dr6,D287_1,G002,D287,Java Frameworks
+1f38klq,D287_1,G002,D287,Java Frameworks
+1l1yqto,D287_1,G002,D287,Java Frameworks
+1by7wbq,D287_2,G007,D287,Java Frameworks
+1fz1860,D287_3,G009,D287,Java Frameworks
+1grzgjg,D287_3,G009,D287,Java Frameworks
+1hyofpu,D287_4,G004,D287,Java Frameworks
+1jdkvg0,D287_5,G008,D287,Java Frameworks
+1nh2uyk,D287_6,G063,D287,Java Frameworks
+1gnkpzc,D288_1,G007,D288,Back-End Programming
+1k4uzgm,D288_1,G007,D288,Back-End Programming
+1nks1up,D288_1,G007,D288,Back-End Programming
+1cbonta,D288_2,G009,D288,Back-End Programming
+1fyi1im,D288_2,G009,D288,Back-End Programming
+1nenzqe,D288_2,G009,D288,Back-End Programming
+1lnowd1,D288_3,G002,D288,Back-End Programming
+1bj6kdn,D288_4,G009,D288,Back-End Programming
+1eo5j5r,D288_5,G003,D288,Back-End Programming
+1kcvako,D313_1,G001,D313,Anatomy and Physiology II with Lab
+1e54966,D315_1,G001,D315,Network and Security - Foundations
+1fie25i,D315_1,G001,D315,Network and Security - Foundations
+1k3ev55,D315_1,G001,D315,Network and Security - Foundations
+1f0gvpy,D317_1,G001,D317,IT Applications
+1jcv67h,D317_2,G004,D317,IT Applications
+1m8ihj9,D322_1,G001,D322,Introduction to IT
+1mhwddl,D322_1,G001,D322,Introduction to IT
+1nwd3q0,D324_1,G003,D324,Business of IT - Project Management
+191qzx8,D324_2,G002,D324,Business of IT - Project Management
+1k5qft9,D325_1,G033,D325,Networks
+1k5qft9,D325_2,G033,D325,Networks
+1c95hsq,D329_1,G033,D329,Network and Security - Applications
+1le5t86,D330_1,G001,D330,Data Systems Administration
+1nmgfnn,D330_1,G001,D330,Data Systems Administration
+1lne8x5,D330_1,G001,D330,Data Systems Administration
+1lne8x5,D330_2,G001,D330,Data Systems Administration
+1hsajll,D333_1,G001,D333,Ethics in Technology
+1jzeone,D333_1,G001,D333,Ethics in Technology
+1k9ftrg,D333_1,G001,D333,Ethics in Technology
+1kg9pfy,D333_2,G002,D333,Ethics in Technology
+1mjny1g,D333_2,G002,D333,Ethics in Technology
+1m56myk,D334_1,G001,D334,Introduction to Cryptography
+1nl2g8w,D334_2,G004,D334,Introduction to Cryptography
+1fxu616,D335_1,G002,D335,Introduction to Programming in Python
+1gehs7e,D335_1,G002,D335,Introduction to Programming in Python
+1fppuft,D335_1,G002,D335,Introduction to Programming in Python
+1fkzesb,D335_2,G001,D335,Introduction to Programming in Python
+1gc6cg8,D335_2,G001,D335,Introduction to Programming in Python
+1fppuft,D335_3,G008,D335,Introduction to Programming in Python
+1lgei7k,D335_4,G031,D335,Introduction to Programming in Python
+18ddidg,D336_1,G040,D336,Business of IT - Applications
+1cv4q0b,D336_2,G033,D336,Business of IT - Applications
+1kbwwg3,D336_3,G004,D336,Business of IT - Applications
+1jxv0no,D351_1,G001,D351,Functions of Human Resource Management
+1mc4cu0,D351_1,G001,D351,Functions of Human Resource Management
+1mgn55l,D351_2,G001,D351,Functions of Human Resource Management
+1kqdyml,D355_1,G003,D355,Total Rewards
+1kupx3x,D363_1,G028,D363,Personal Finance
+1me0vwl,D363_2,G001,D363,Personal Finance
+1ms810g,D363_3,G001,D363,Personal Finance
+1j69qvq,D370_1,G009,D370,IT Leadership Foundations
+1l8k499,D370_2,G003,D370,IT Leadership Foundations
+1kj7i9q,D378_1,G001,D378,Digital Marketing Science
+1iyy4cz,D385_1,G028,D385,Software Security and Testing
+1j4crw6,D385_1,G028,D385,Software Security and Testing
+1kncci1,D385_1,G028,D385,Software Security and Testing
+1h9y4dg,D385_2,G002,D385,Software Security and Testing
+1beu5gh,D387_1,G007,D387,Advanced Java
+1jj3unz,D387_1,G007,D387,Advanced Java
+1beu5gh,D387_2,G007,D387,Advanced Java
+1jj3unz,D387_2,G007,D387,Advanced Java
+1jwqw6c,D388_1,G003,D388,Fundamentals of Spreadsheets and Data Presentations
+1n4ydbt,D388_1,G003,D388,Fundamentals of Spreadsheets and Data Presentations
+1kcozr8,D388_2,G007,D388,Fundamentals of Spreadsheets and Data Presentations
+1jwcnpb,D389_1,G002,D389,Learning Strategies in Higher Education
+1jwcnpb,D389_2,G002,D389,Learning Strategies in Higher Education
+1mcexv9,D398_1,G001,D398,Introduction to Pharmacology
+1eh3hyn,D398_2,G032,D398,Introduction to Pharmacology
+18c1rg3,D412_1,G002,D412,Network Analytics and Troubleshooting
+1ham6d5,D412_2,G003,D412,Network Analytics and Troubleshooting
+1je91k0,D412_3,G003,D412,Network Analytics and Troubleshooting
+1ner75n,D413_1,G001,D413,Telecomm and Wireless Communications
+1nu2s20,D422_1,G004,D422,Discrete Math: Algorithms and Cryptography
+1kmuvmi,D426_1,G001,D426,Data Management - Foundations
+1lw1wmx,D426_1,G001,D426,Data Management - Foundations
+1mepdmi,D426_1,G001,D426,Data Management - Foundations
+1nrnszh,D426_1,G001,D426,Data Management - Foundations
+1kmuvmi,D426_2,G004,D426,Data Management - Foundations
+1lxbjqi,D426_3,G003,D426,Data Management - Foundations
+1fbzi1g,D427_1,G003,D427,Data Management - Applications
+1ni5x75,D427_1,G003,D427,Data Management - Applications
+1ki7dpf,D427_1,G003,D427,Data Management - Applications
+1fnzs9g,D427_2,G001,D427,Data Management - Applications
+1njtta8,D427_2,G001,D427,Data Management - Applications
+1lboa9z,D427_2,G001,D427,Data Management - Applications
+1kdhnm6,D427_3,G028,D427,Data Management - Applications
+1ke2mfm,D427_4,G003,D427,Data Management - Applications
+1kffhci,D427_5,G009,D427,Data Management - Applications
+1ksc94f,D427_6,G002,D427,Data Management - Applications
+1iwgodh,D430_1,G004,D430,Fundamentals of Information Security
+1b6xdn9,D432_1,G023,D432,HR Compliance and Employee Relations
+1jsn2yz,D464_1,G012,D464,Managing Operations
+1n1u5no,D464_2,G018,D464,Managing Operations
+1na7h3p,D464_3,G045,D464,Managing Operations
+1n6y2j9,D465_1,G012,D465,Data Applications
+1l095iq,D467_1,G012,D467,Exploring Data
+1e5x32m,D479_1,G030,D479,User Experience Design
+1kp1esg,D481_1,G030,D481,Security Foundations
+1kp1esg,D481_2,G030,D481,Security Foundations
+1mb3tf0,D482_1,G017,D482,Secure Network Design
+1gs99yf,D483_1,G003,D483,Security Operations
+1m8qbb6,D483_1,G003,D483,Security Operations
+1hz6f14,D483_2,G006,D483,Security Operations
+1k1muc7,D483_3,G006,D483,Security Operations
+1jkh81h,D483_4,G012,D483,Security Operations
+1h76k4m,D485_1,G018,D485,D485 – Cloud Security
+1feyjxa,D486_1,G006,D486,"Governance, Risk, and Compliance"
+1h6xzfn,D486_2,G023,D486,"Governance, Risk, and Compliance"
+1ncoskd,D487_1,G001,D487,Secure Software Design
+1nfiuuz,D487_1,G001,D487,Secure Software Design
+1j1urrh,D487_2,G058,D487,Secure Software Design
+1ijji2a,D487_3,G006,D487,Secure Software Design
+1m12pgo,D488_1,G018,D488,Cybersecurity Architecture and Engineering
+1kqq8lh,D489_1,G006,D489,Cybersecurity Management
+1nib4uk,D490_1,G022,D490,Cybersecurity Graduate Capstone
+1hftslm,D492_1,G018,D492,Data Analytics - Applications
+1kka8bz,D493_1,G017,D493,D493 – Scripting and Programming - Applications
+1knmh1i,D522_1,G018,D522,Python for IT Automation
+1ms5bwf,D522_2,G045,D522,Python for IT Automation
+1lvwxh5,D546_1,G022,D546,Healthcare Policy and Governance
+1kf0lj7,D547_1,G006,D547,Evidence-Based Healthcare Administration
+1neitan,D553_1,G056,D553,Data Analytics for Accountants II
+1jmyvmq,D554_1,G017,D554,Advanced Financial Accounting I
+1mmoatt,D557_1,G017,D557,Corporate Taxation
+1ma3sc4,D560_1,G012,D560,Internal Auditing I
+1iy8p35,D564_1,G030,D564,Theories of Personality
+1khlnhd,D564_2,G018,D564,Theories of Personality
+1jvjssn,D571_1,G008,D571,Psychopathology
+1muxdgk,D571_1,G008,D571,Psychopathology
+1jvjssn,D571_2,G012,D571,Psychopathology
+1jzfuwv,D571_3,G017,D571,Psychopathology
+1nnvn7n,D572_1,G006,D572,Career and Lifelong Learning
+1m2kf2s,D573_1,G006,D573,Understanding Substance Abuse & Addiction
+1m2kf2s,D573_2,G022,D573,Understanding Substance Abuse & Addiction
+1nrfxkk,D577_1,G061,D577,Team Dynamics
+1f1t8kb,D596_1,G002,D596,The Data Analytics Journey
+1j845qm,D596_1,G002,D596,The Data Analytics Journey
+1mifu5o,D596_1,G002,D596,The Data Analytics Journey
+1mifu5o,D596_2,G006,D596,The Data Analytics Journey
+1l6gl92,D597_1,G002,D597,Data Management
+1lrmrw8,D597_1,G002,D597,Data Management
+1jb79lz,D597_2,G023,D597,Data Management
+1j0d0ka,D597_3,G018,D597,Data Management
+1ix5u34,D598_1,G022,D598,Analytics Programming
+1ivaifd,D599_1,G017,D599,Data Preparation and Exploration
+1n7jxbv,D599_2,G006,D599,Data Preparation and Exploration
+1g7mef1,D600_1,G006,D600,Statistical Data Mining
+1loglrd,D600_2,G017,D600,Statistical Data Mining
+1k7vbi9,D601_1,G022,D601,Data Storytelling for Varied Audiences
+1ksfyvf,D602_1,G002,D602,D602 – Deployment
+1lt498j,D602_1,G002,D602,D602 – Deployment
+1mpe5f9,D602_1,G002,D602,D602 – Deployment
+1jt8nwn,D602_2,G023,D602,D602 – Deployment
+1jokn9n,D602_3,G049,D602,D602 – Deployment
+1lmmzxq,D603_1,G006,D603,Machine Learning
+1njc2vz,D604_1,G006,D604,Advanced Analytics
+1njc2vz,D604_2,G012,D604,Advanced Analytics
+1njc2vz,D604_3,G049,D604,Advanced Analytics
+1n1ply7,D607_1,G006,D607,Cloud Databases
+1kemcms,D608_1,G023,D608,Data Processing
+1i5yw8t,D619_1,G017,D619,Global Health
+1k5auv1,D635_1,G006,D635,Practices for Inclusive Classrooms
+1mt5gz2,D635_2,G012,D635,Practices for Inclusive Classrooms
+1ncwr4m,D644_1,G012,D644,Foundations of Strategic Communications
+1l2tpe5,D645_1,G015,D645,Crafting a Communications Strategy Through Research and Data Insights
+1l2tpe5,D645_2,G024,D645,Crafting a Communications Strategy Through Research and Data Insights
+1l2m727,D652_1,G029,D652,Design Applications
+1l4a91z,D658_1,G015,D658,Planning Instructional Strategies for Meaningful Learning
+1msmvxl,D659_1,G004,D659,Assessing and Monitoring Student Learning
+1msmwif,D659_1,G004,D659,Assessing and Monitoring Student Learning
+1jvuvuc,D659_2,G048,D659,Assessing and Monitoring Student Learning
+1hugzva,D660_1,G002,D660,Instructional Technology and Online Pedagogy
+1j79pww,D660_1,G002,D660,Instructional Technology and Online Pedagogy
+1ktvzst,D660_1,G002,D660,Instructional Technology and Online Pedagogy
+1ktvzst,D660_2,G029,D660,Instructional Technology and Online Pedagogy
+1mebnlx,D662_1,G015,D662,Personalized Learning for Inclusive Classrooms
+1kcui01,D663_1,G015,D663,The Professional Educator
+1m1lbec,D663_2,G015,D663,The Professional Educator
+1ji1r9l,D664_1,G005,D664,Learners and Learning Science
+1nbx53t,D664_1,G005,D664,Learners and Learning Science
+1ji1r9l,D664_2,G016,D664,Learners and Learning Science
+1nbx53t,D664_2,G016,D664,Learners and Learning Science
+1khu04k,D670_1,G024,D670,Elementary Literacy Methods
+1n0uzlv,D670_2,G015,D670,Elementary Literacy Methods
+1k1yu13,D675_1,G005,D675,Elementary Literacy Methods
+1knmj0u,D675_1,G005,D675,Elementary Literacy Methods
+1k1yu13,D675_2,G016,D675,Elementary Literacy Methods
+1knmj0u,D675_2,G016,D675,Elementary Literacy Methods
+1ickc91,D676_1,G048,D676,Early Literacy Methods
+1m1obgr,D676_2,G036,D676,Early Literacy Methods
+1noa7r7,D677_1,G053,D677,Elementary Literacy Curriculum
+1mmp1qq,D685_1,G036,D685,Practical Applications of Prompt
+1nbnace,D688_1,G029,D688,Foundations of Literacy Through Literature
+1nbnace,D688_2,G029,D688,Foundations of Literacy Through Literature
+1mukpqe,D689_1,G057,D689,Literacy Assessment and Interventions
+1jwhsc7,D696_1,G005,D696,Foundations of Literacy Through Literature
+1n9pjgo,D696_1,G005,D696,Foundations of Literacy Through Literature
+1kt6qa7,D697_1,G054,D697,Literacy Assessment and Interventions
+1n09xbl,D756_1,G036,D756,Individualized Education Plan (IEP) Collaboration and Communication with Parents and School Staff
+1lv6civ,D774_1,G024,D774,Introduction to Business Accounting
+1nrdkeg,D774_2,G015,D774,Introduction to Business Accounting
+1m3lv0s,D775_1,G024,D775,Introduction to Business Finance
+1n26869,D776_1,G024,D776,Healthcare Leadership and Community Engagement
+1n8lx0u,D848_1,G062,D848,General Earth Science I Lab
+13t1ar6,D904_1,G059,D904,Algebra for Secondary Mathematics Teaching
+1iacz5q,MGT2_1,G015,MGT2,MGT2 – IT Project Management
+1kwaiw1,QHT1_1,G013,QHT1,Business Management Tasks
+1kz4t0l,QHT1_1,G013,QHT1,Business Management Tasks

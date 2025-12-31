@@ -1,0 +1,149 @@
+{
+  "global_clusters": [
+    {
+      "provisional_label": "Ambiguous or conflicting assignment and assessment instructions",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Instructions, rubrics, and templates are ambiguous, conflicting, or missing detail (scope, required artifacts, formats, or steps), causing students to misinterpret what to submit.",
+      "member_cluster_ids": [
+        "D664_1",
+        "D675_1",
+        "D696_1",
+        "AFT2_1",
+        "C200_3",
+        "C212_1",
+        "C716_2",
+        "C867_1",
+        "C845_1",
+        "C180_1",
+        "C773_1",
+        "C803_1"
+      ]
+    },
+    {
+      "provisional_label": "Practice and course materials not aligned to assessments",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Practice items, quizzes, pre-assessments, or study materials are not representative of objective assessments in content, format, or scope, leaving students underprepared.",
+      "member_cluster_ids": [
+        "C165_1",
+        "C207_2",
+        "C237_1",
+        "C213_1",
+        "C458_1",
+        "C715_1",
+        "C483_1",
+        "C211_4",
+        "C816_2"
+      ]
+    },
+    {
+      "provisional_label": "Broken, missing, or inaccessible required resources",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Required files, links, study guides, or platform-hosted materials are missing, broken, inaccessible, or not provided, preventing completion of tasks.",
+      "member_cluster_ids": [
+        "QHT1_1",
+        "C777_4",
+        "C213_4",
+        "C214_3",
+        "C723_1",
+        "C715_2",
+        "C200_4",
+        "C204_2"
+      ]
+    },
+    {
+      "provisional_label": "Low-quality or insufficient course materials",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Course content (text, examples, templates) is outdated, poorly written, incomplete, or otherwise insufficient to teach required concepts.",
+      "member_cluster_ids": [
+        "D664_2",
+        "D675_2",
+        "C165_2",
+        "C722_1",
+        "C483_2",
+        "C927_1"
+      ]
+    },
+    {
+      "provisional_label": "Inconsistent or non-actionable evaluator feedback / rubric application",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Evaluators misapply rubrics, provide vague or non-actionable feedback, or inconsistently grade/rescore resubmissions, preventing effective revision.",
+      "member_cluster_ids": [
+        "C200_1",
+        "C190_3",
+        "C783_1",
+        "C816_1",
+        "C810_1"
+      ]
+    },
+    {
+      "provisional_label": "Platform, tool, or processing failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Platform or tool malfunctions and processing errors (recording failures, file/feature load errors, score/result processing issues) block task completion or recordkeeping.",
+      "member_cluster_ids": [
+        "C216_1",
+        "C214_2",
+        "C268_2",
+        "C214_4",
+        "C211_3"
+      ]
+    },
+    {
+      "provisional_label": "Tool configuration or guidance problems (how-to and format guidance)",
+      "normalized_issue_label": "tooling_environment_misconfiguration_or_guidance",
+      "short_description": "Course expectations conflict with available tools or lack clear technical/configuration guidance (recording/embed requirements, simulation UI behavior, Panopto positioning).",
+      "member_cluster_ids": [
+        "C204_1",
+        "C210_1",
+        "C216_2"
+      ]
+    },
+    {
+      "provisional_label": "Unresponsiveness or delays from instructors/support staff",
+      "normalized_issue_label": "instructor_or_support_unresponsiveness",
+      "short_description": "Instructors or support staff are slow or unresponsive to time-sensitive requests (approvals, credentials), causing delays and risk of missed deadlines.",
+      "member_cluster_ids": [
+        "C190_1",
+        "C777_5",
+        "C211_2"
+      ]
+    },
+    {
+      "provisional_label": "AI / similarity detection configuration and guidance issues",
+      "normalized_issue_label": "ai_detection_confusion_and_false_flags",
+      "short_description": "Similarity/AI-detection tooling flags student submissions (shared-database matches, unclear acceptable editing tools) without clear config or remediation guidance.",
+      "member_cluster_ids": [
+        "C200_2",
+        "C717_2"
+      ]
+    },
+    {
+      "provisional_label": "Undocumented or obstructive workflow and policy behaviors",
+      "normalized_issue_label": "workflow_or_policy_barriers",
+      "short_description": "Course or platform enforces undocumented workflow or policy behaviors (sequential locks, changing retake rules) that block progress or confuse students.",
+      "member_cluster_ids": [
+        "C773_2",
+        "C190_2"
+      ]
+    },
+    {
+      "provisional_label": "Excessive workload or scope misalignment in course design",
+      "normalized_issue_label": "workload_or_scope_issues",
+      "short_description": "Assignment design or course material volume creates disproportionate time burden (forced multiple recordings, fragmented long content, excessive required readings).",
+      "member_cluster_ids": [
+        "C716_3",
+        "C213_3",
+        "C723_2"
+      ]
+    },
+    {
+      "provisional_label": "Proctoring policies or live exam platform problems",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Rigid proctoring procedures or live proctoring/connectivity failures interrupt exams or create identity/room-check conflicts.",
+      "member_cluster_ids": [
+        "C777_6",
+        "C213_2"
+      ]
+    }
+  ],
+  "unassigned_clusters": []
+}

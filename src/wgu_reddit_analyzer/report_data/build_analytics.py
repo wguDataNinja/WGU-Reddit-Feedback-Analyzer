@@ -12,6 +12,27 @@ Outputs (all unfiltered, full data):
 - artifacts/report_data/course_cluster_detail.jsonl
 - artifacts/report_data/global_issues.csv
 - artifacts/report_data/issue_course_matrix.csv
+
+Important reproducibility note
+------------------------------
+Stage 4 defaults to reading:
+    artifacts/stage2/painpoints_llm_friendly.csv
+
+This path is NOT guaranteed to be stable and may be overwritten during
+experimentation or debugging.
+
+For paper and report reproduction, a pinned Stage 2 artifact MUST be used
+and passed explicitly via:
+
+    --stage2-painpoints-csv artifacts/stage2/runs/<RUN_SLUG>/painpoints_full_for_clustering.csv
+
+The canonical paper run uses:
+    artifacts/stage2/runs/.old/painpoints_full_for_clustering.csv
+    (390 pain-point rows)
+
+Failing to pass an explicit Stage 2 file can silently change pain-point
+counts in post_master.csv and downstream reports.
+
 """
 
 from __future__ import annotations
@@ -19,7 +40,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Optional
 
 import pandas as pd
 
@@ -55,9 +76,20 @@ def load_stage0_filtered(artifacts_dir: Path) -> pd.DataFrame:
     return df
 
 
-def load_painpoints_stage2(artifacts_dir: Path) -> pd.DataFrame:
-    """Load Stage 2 pain point classifier outputs."""
-    path = artifacts_dir / "stage2" / "painpoints_llm_friendly.csv"
+def load_painpoints_stage2(
+    artifacts_dir: Path,
+    stage2_painpoints_csv: Optional[Path] = None,
+) -> pd.DataFrame:
+    """
+    Load Stage 2 painpoints CSV.
+
+    Default:
+      <artifacts_dir>/stage2/painpoints_llm_friendly.csv
+
+    Override:
+      --stage2-painpoints-csv PATH (absolute or repo-relative)
+    """
+    path = stage2_painpoints_csv or (artifacts_dir / "stage2" / "painpoints_llm_friendly.csv")
     if not path.exists():
         raise FileNotFoundError(f"Missing Stage 2 painpoint file: {path}")
     df = pd.read_csv(path)
@@ -199,41 +231,64 @@ def build_post_master(
     return df
 
 
-def collapse_to_post_level(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    Collapse a post×cluster table to one row per post_id.
-
-    - Non-cluster fields: take first (identical across clusters for a post).
-    - Cluster / issue fields: aggregate unique values into semicolon-joined strings.
-    """
+def collapse_to_post_level(df: pd.DataFrame, df_global_issues: pd.DataFrame) -> pd.DataFrame:
     df = df.copy()
 
-    cluster_cols = [
-        "cluster_id",
-        "global_cluster_id",
-        "normalized_issue_label",
-        "provisional_label",
-    ]
+    weights = (
+        df_global_issues.set_index("global_cluster_id")["total_num_posts"]
+        .fillna(0)
+        .to_dict()
+    )
 
     def uniq_join(series: pd.Series) -> str:
         vals = [str(v) for v in series.dropna().unique() if str(v) != ""]
-        if not vals:
+        return "" if not vals else ";".join(sorted(vals))
+
+    def pick_issue_per_post(g: pd.DataFrame) -> str:
+        sub = g.dropna(subset=["normalized_issue_label", "global_cluster_id"]).copy()
+        if sub.empty:
             return ""
-        return ";".join(sorted(vals))
+        sub["w"] = sub["global_cluster_id"].map(weights).fillna(0).astype(int)
+        sub = sub.sort_values(
+            by=["w", "global_cluster_id", "normalized_issue_label"],
+            ascending=[False, True, True],
+            kind="mergesort",
+        )
+        return str(sub.iloc[0]["normalized_issue_label"])
+
+    chosen = (
+        df.groupby("post_id")
+        .apply(pick_issue_per_post)
+        .reset_index(name="normalized_issue_label_single")
+    )
+
+    cluster_join_cols = ["cluster_id", "global_cluster_id", "provisional_label"]
 
     agg: Dict[str, Any] = {}
     for col in df.columns:
         if col == "post_id":
             continue
-        if col in cluster_cols:
+        if col in cluster_join_cols:
             agg[col] = uniq_join
+        elif col == "normalized_issue_label":
+            agg[col] = "first"  # overwritten below
+        elif col == "is_pain_point":
+            agg[col] = "max"    # critical fix
         else:
             agg[col] = "first"
 
     collapsed = df.groupby("post_id", as_index=False).agg(agg)
+
+    if "is_pain_point" in collapsed.columns:
+        collapsed["is_pain_point"] = collapsed["is_pain_point"].fillna(0).astype(int)
+
+    collapsed = collapsed.drop(columns=["normalized_issue_label"], errors="ignore").merge(
+        chosen, on="post_id", how="left"
+    )
+    collapsed = collapsed.rename(columns={"normalized_issue_label_single": "normalized_issue_label"})
+    collapsed["normalized_issue_label"] = collapsed["normalized_issue_label"].fillna("")
+
     return collapsed
-
-
 def build_course_summary(df_post_cluster: pd.DataFrame) -> pd.DataFrame:
     """Aggregate the post×cluster table into per-course summary metrics."""
     df = df_post_cluster.copy()
@@ -422,6 +477,15 @@ def parse_args() -> argparse.Namespace:
         help="Path to data/ root (default: <repo_root>/data)",
     )
     parser.add_argument(
+        "--stage2-painpoints-csv",
+        type=Path,
+        default=None,
+        help=(
+            "Optional explicit Stage 2 painpoints CSV. "
+            "If provided, overrides <artifacts_dir>/stage2/painpoints_llm_friendly.csv"
+        ),
+    )
+    parser.add_argument(
         "--stage3-preprocessed-dir",
         type=Path,
         required=True,
@@ -449,12 +513,16 @@ def main() -> None:
     preprocessed_dir = args.stage3_preprocessed_dir
     run_dir = args.stage3_run_dir
 
+    stage2_painpoints_path = args.stage2_painpoints_csv
+    if stage2_painpoints_path is not None and not stage2_painpoints_path.is_absolute():
+        stage2_painpoints_path = (root / stage2_painpoints_path).resolve()
+
     report_data_dir = artifacts_dir / "report_data"
     ensure_dir(report_data_dir)
 
     # Load inputs
     df_stage0 = load_stage0_filtered(artifacts_dir)
-    df_pp = load_painpoints_stage2(artifacts_dir)
+    df_pp = load_painpoints_stage2(artifacts_dir, stage2_painpoints_csv=stage2_painpoints_path)
     df_clusters_llm = load_stage3_preprocessed(preprocessed_dir)
     stage3_runs = load_stage3_runs(run_dir)
     df_cluster_global = stage3_runs["cluster_global"]
@@ -471,8 +539,13 @@ def main() -> None:
         df_courses=df_courses,
     )
 
+    # Build global_issues early (needed for deterministic single-label collapse)
+    df_global_issues = build_global_issues(global_clusters_raw)
+    df_global_issues["schema_version"] = SCHEMA_VERSION
+    df_global_issues.to_csv(report_data_dir / "global_issues.csv", index=False)
+
     # Collapse to true post-level master for reporting
-    df_master = collapse_to_post_level(df_post_cluster)
+    df_master = collapse_to_post_level(df_post_cluster, df_global_issues)
     df_master["schema_version"] = SCHEMA_VERSION
     df_master.to_csv(report_data_dir / "post_master.csv", index=False)
 
@@ -488,11 +561,6 @@ def main() -> None:
         course_summary=course_summary,
     )
     write_jsonl(report_data_dir / "course_cluster_detail.jsonl", cluster_detail_records)
-
-    # Build global_issues
-    df_global_issues = build_global_issues(global_clusters_raw)
-    df_global_issues["schema_version"] = SCHEMA_VERSION
-    df_global_issues.to_csv(report_data_dir / "global_issues.csv", index=False)
 
     # Build issue_course_matrix from post×cluster table
     df_issue_course = build_issue_course_matrix(df_post_cluster)

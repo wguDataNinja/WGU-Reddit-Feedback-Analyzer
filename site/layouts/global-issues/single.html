@@ -1,0 +1,59 @@
+{{ define "main" }}
+<main class="main">
+  <article class="post-single">
+    {{ $key := .Params.normalized_issue_label }}
+    {{ if not $key }}{{ $key = .File.BaseFileName }}{{ end }}
+
+    {{ $db := site.Data.issue_index }}
+    {{ $issues := index $db "issues" }}
+    {{ $issue := index $issues $key }}
+
+    <header class="post-header">
+      <h1 class="post-title">{{ .Title }}</h1>
+
+      {{ if $issue }}
+        {{ $desc := index $issue "short_description" }}
+        {{ if $desc }}
+          <div class="post-description">{{ $desc }}</div>
+        {{ end }}
+      {{ end }}
+    </header>
+
+    {{ if not $issue }}
+      <div class="post-content">
+        <p>Missing issue record for key: <code>{{ $key }}</code></p>
+      </div>
+    {{ else }}
+      <div class="post-content">
+        <p>
+          Total posts: {{ index $issue "total_num_posts" }}<br />
+          Courses impacted: {{ index $issue "num_courses" }}<br />
+          Clusters: {{ index $issue "num_clusters" }}
+        </p>
+
+        {{ $cols := index $issue "colleges_represented" }}
+        {{ if and $cols (gt (len $cols) 0) }}
+          <p>Colleges: {{ delimit $cols ", " }}</p>
+        {{ end }}
+
+        <h2>Impacted courses</h2>
+        {{ $courses := index $issue "courses" }}
+        {{ if and $courses (gt (len $courses) 0) }}
+          <ul>
+            {{ range $courses }}
+              {{ $cc := index . "course_code" }}
+              {{ $n := index . "num_posts" }}
+              <li>
+                <a href="{{ printf "/courses/%s/" $cc | relURL }}">{{ $cc }}</a>
+                (posts: {{ $n }})
+              </li>
+            {{ end }}
+          </ul>
+        {{ else }}
+          <p>No courses listed for this issue.</p>
+        {{ end }}
+      </div>
+    {{ end }}
+  </article>
+</main>
+{{ end }}

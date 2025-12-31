@@ -1,0 +1,424 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "D197_1",
+      "issue_summary": "Unclear or inconsistent submission/rubric requirements about required evidence and artifacts (specific screenshots, CLI output, merge conflict proof, branch base, and exactly what to submit)",
+      "course_code": "D197",
+      "course_title": "Version Control",
+      "num_posts": 6
+    },
+    {
+      "cluster_id": "C214_1",
+      "issue_summary": "Course resources (lectures, problem sets, study guide, textbook, PA) are misaligned with the Objective Assessment (content, problem styles, and formulas).",
+      "course_code": "C214",
+      "course_title": "Financial Management",
+      "num_posts": 5
+    },
+    {
+      "cluster_id": "D287_1",
+      "issue_summary": "Unclear or misaligned assignment/rubric requirements for UI customization and inventory behavior (associating products/parts, inventory min/max, and tracking) leaving students unsure what to implement",
+      "course_code": "D287",
+      "course_title": "Java Frameworks",
+      "num_posts": 5
+    },
+    {
+      "cluster_id": "D426_1",
+      "issue_summary": "Course study materials (Zybooks, red doc, GitHub resources, preassessment) do not align with the Objective Assessment and fail to cover OA topics, leaving students unprepared.",
+      "course_code": "D426",
+      "course_title": "Data Management - Foundations",
+      "num_posts": 4
+    },
+    {
+      "cluster_id": "C207_1",
+      "issue_summary": "Unclear, inconsistent, or unhelpful evaluator feedback and rubric expectations for assignments (vague guidance, contradictory comments, or 'read the textbook' responses).",
+      "course_code": "C207",
+      "course_title": "Data-Driven Decision Making",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "C211_1",
+      "issue_summary": "Instructors/approvers are unresponsive or slow to respond to student requests (retake approvals, questions), causing missed deadlines and blocked progress",
+      "course_code": "C211",
+      "course_title": "Global Economics for Managers",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D101_1",
+      "issue_summary": "Inadequate or missing instructional/support materials and assignment data for Excel-based tasks (missing required data, no resource pages/recordings, poor-quality videos).",
+      "course_code": "D101",
+      "course_title": "Cost and Managerial Accounting",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D196_1",
+      "issue_summary": "Practice assessments, module final tests, and PAs do not align with the Objective Assessment (OA), leaving students unprepared for OA content and difficulty.",
+      "course_code": "D196",
+      "course_title": "Principles of Financial and Managerial Accounting",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D288_1",
+      "issue_summary": "Environment, dependency, or configuration mismatches between WGU lab, local student setups, and assessor environments causing runtime errors or failures",
+      "course_code": "D288",
+      "course_title": "Back-End Programming",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D288_2",
+      "issue_summary": "Seed data / bootstrap mismatches or broken checkout backend causing cart not found/empty and purchase request failures (ID mismatches, 404s, total not calculated)",
+      "course_code": "D288",
+      "course_title": "Back-End Programming",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D315_1",
+      "issue_summary": "Misalignment between course practice materials (study quizzes, PA) and the Objective Assessment — OA includes unexpected topics and tricky question styles not reflected in provided resources.",
+      "course_code": "D315",
+      "course_title": "Network and Security - Foundations",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D330_1",
+      "issue_summary": "Course materials and provided resources (readings, cohorts, study aids) do not align with Objective Assessment content",
+      "course_code": "D330",
+      "course_title": "Data Systems Administration",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D333_1",
+      "issue_summary": "Assessment content (OA) is misaligned with study guide, PA, and provided course materials—exam includes situational or out-of-scope questions not covered by resources.",
+      "course_code": "D333",
+      "course_title": "Ethics in Technology",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D335_1",
+      "issue_summary": "Automated assessments lack transparency and clear input/output expectations (hidden test-case outputs; unclear expected input handling), causing unexpected failures.",
+      "course_code": "D335",
+      "course_title": "Introduction to Programming in Python",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D385_1",
+      "issue_summary": "Assessment grading or answer-key mismatch: correct student code/answers are being marked wrong due to incorrect/outdated answer keys, evaluator/grader errors, or unclear rubric alignment.",
+      "course_code": "D385",
+      "course_title": "Software Security and Testing",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D427_1",
+      "issue_summary": "ZyBooks autograder/test harness and environment bugs (parser errors, execution timeouts, MySQL/version or environment mismatches) causing correct SQL/code to be marked incorrect or receive 0s.",
+      "course_code": "D427",
+      "course_title": "Data Management - Applications",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D427_2",
+      "issue_summary": "Practice materials, PAs, and study guides are outdated or misaligned with the proctored OA (content, question styles, and chapter references don't match the assessment).",
+      "course_code": "D427",
+      "course_title": "Data Management - Applications",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D596_1",
+      "issue_summary": "Ambiguous or unclear assignment instructions and rubric expectations leading to student confusion about what to include",
+      "course_code": "D596",
+      "course_title": "The Data Analytics Journey",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D602_1",
+      "issue_summary": "Unclear or missing instructions and examples for MLproject/main.py and how to structure/run Task 2 (MLflow usage, subprocess vs direct runs, file roles)",
+      "course_code": "D602",
+      "course_title": "D602 – Deployment",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "D660_1",
+      "issue_summary": "Vague or unclear Task 1 video instructions and rubric about expected format/content (whether to simulate teaching, present lesson plan, handle pauses/questions, demonstrate tech).",
+      "course_code": "D660",
+      "course_title": "Instructional Technology and Online Pedagogy",
+      "num_posts": 3
+    },
+    {
+      "cluster_id": "C268_1",
+      "issue_summary": "Course-provided spreadsheets include Excel macros without warnings or compatibility alternatives, causing antivirus detections and Mac runtime errors.",
+      "course_code": "C268",
+      "course_title": "Spreadsheets",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C716_1",
+      "issue_summary": "Ambiguous instructions/rubric for SRM3 Task 3 about whether text-based PowerPoint speaker notes are acceptable versus requiring a synchronized audio/video recording; examples mentioning built-in recording features create confusion and lack how-to guidance.",
+      "course_code": "C716",
+      "course_title": "Business Communication",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C717_1",
+      "issue_summary": "Similarity/AI-detection tools provide inconsistent, unclear, or non‑transparent output (AI% vs similarity) and students lack guidance on how these tools are applied.",
+      "course_code": "C717",
+      "course_title": "Business Ethics",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C777_1",
+      "issue_summary": "Practice materials and Practice Assessment (PA) are not representative of the Objective Assessment (OA), causing students to be unprepared despite passing course practice.",
+      "course_code": "C777",
+      "course_title": "Web Development Applications",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C777_2",
+      "issue_summary": "Course content is disorganized or presented inconsistently/contradictorily (e.g., CSS topics not structured clearly), causing confusion.",
+      "course_code": "C777",
+      "course_title": "Web Development Applications",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C777_3",
+      "issue_summary": "Platform/system errors prevent students from accessing or launching scheduled OAs (errors, queues, or failed launches) causing exam delays or missed appointments.",
+      "course_code": "C777",
+      "course_title": "Web Development Applications",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C843_1",
+      "issue_summary": "Unclear or insufficient evaluator/CI feedback and assignment instructions leading to repeated revisions and student confusion",
+      "course_code": "C843",
+      "course_title": "Managing Information Security",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C843_2",
+      "issue_summary": "Misalignment or contradictory expectations between course materials and evaluator guidance about acceptable frameworks/references",
+      "course_code": "C843",
+      "course_title": "Managing Information Security",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C949_1",
+      "issue_summary": "Objective Assessment (OA) content is misaligned with course materials (PA, study guide, cohort videos), causing unexpected/uncovered questions.",
+      "course_code": "C949",
+      "course_title": "Data Structures and Algorithms I",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C959_1",
+      "issue_summary": "Objective Assessment contains questions not covered by course materials or the Practice Assessment (misalignment between PA/OA, including obscure facts), causing unexpected difficulty",
+      "course_code": "C959",
+      "course_title": "Discrete Mathematics I",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C960_1",
+      "issue_summary": "Objective assessment content is misaligned with course instruction and pre-assessments—exams include unexpected, deeper topics and higher difficulty causing time-pressure and surprise.",
+      "course_code": "C960",
+      "course_title": "Discrete Mathematics II",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "C969_1",
+      "issue_summary": "Provided VM MySQL environment is misconfigured or outdated (auth method and connector) and incompatible with students' tools, blocking database connections for assignments",
+      "course_code": "C969",
+      "course_title": "Software II – Advanced C#",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D080_1",
+      "issue_summary": "Practice assessments (PAs) are not aligned with the Objective Assessment (OA) format/content, so passing PAs doesn't prepare students for the OA.",
+      "course_code": "D080",
+      "course_title": "Managing in a Global Business Environment",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D101_2",
+      "issue_summary": "Assessments contain items that are misaligned with taught content or have unclear instructions (quiz questions covering later-unit content; Master Budgeting tasks/questions unclear or not correlated to guidance).",
+      "course_code": "D101",
+      "course_title": "Cost and Managerial Accounting",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D103_1",
+      "issue_summary": "Core course materials (textbook and embedded media) are low-quality and written in a confusing, overly dense style that hinders comprehension.",
+      "course_code": "D103",
+      "course_title": "Intermediate Accounting I",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D196_2",
+      "issue_summary": "Coaching/pre-assessment reports or section-level feedback are missing or not displaying (blank), preventing students from seeing performance by section.",
+      "course_code": "D196",
+      "course_title": "Principles of Financial and Managerial Accounting",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D197_2",
+      "issue_summary": "Repository access/authentication problems preventing students from cloning or accessing course GitLab repos (404 links, outdated saved credentials)",
+      "course_code": "D197",
+      "course_title": "Version Control",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D197_3",
+      "issue_summary": "Outdated or missing instructional materials (removed PA videos, screenshots that no longer match current GitLab UI)",
+      "course_code": "D197",
+      "course_title": "Version Control",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D268_1",
+      "issue_summary": "Ambiguous instructions for the narrated PowerPoint (whether students must speak, required level of detail, and expected length)",
+      "course_code": "D268",
+      "course_title": "Introduction to Communication: Connecting with Others",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D276_1",
+      "issue_summary": "Course platform tools are malfunctioning (submission form errors and grader incorrectly flagging correct code)",
+      "course_code": "D276",
+      "course_title": "Web Development Foundations",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D277_1",
+      "issue_summary": "Evaluators inconsistently apply the rubric or misreview submissions, resulting in incorrect missing-item feedback and contradictory instructions.",
+      "course_code": "D277",
+      "course_title": "Front-End Web Development",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D278_1",
+      "issue_summary": "ZyBooks content is poorly organized or presented in large, non-incremental chunks, making learning difficult and prompting students to seek external resources",
+      "course_code": "D278",
+      "course_title": "Scripting and Programming - Foundations",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D278_2",
+      "issue_summary": "Course materials (readings/prep) do not align with assessments (OAs/labs) — exam/lab expectations differ from what is taught",
+      "course_code": "D278",
+      "course_title": "Scripting and Programming - Foundations",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D280_1",
+      "issue_summary": "GitLab/student repo problems: missing starter code, fork/inaccessible project notifications, and inability to commit to branches; course repo setup guidance and GitLab how‑to are insufficient.",
+      "course_code": "D280",
+      "course_title": "JavaScript Programming",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D280_2",
+      "issue_summary": "Ambiguous or contradictory assignment instructions/examples (e.g., Part G method requirements; HTML layout vs completed example) leading to confusion about required deliverables.",
+      "course_code": "D280",
+      "course_title": "JavaScript Programming",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D281_1",
+      "issue_summary": "Proctoring platform and pre-exam checks are unreliable (queueing failures and inaccurate network/upload prechecks) causing exam delays or preventing start",
+      "course_code": "D281",
+      "course_title": "Linux Foundations",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D286_1",
+      "issue_summary": "inconsistent or implementation-specific automated grading across platforms (ZyBooks/PA/OA) causing correct solutions to be marked wrong",
+      "course_code": "D286",
+      "course_title": "Java Fundamentals",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D287_3",
+      "issue_summary": "Form validation messages not shown due to missing/incorrect HTML or form configuration in provided files, hindering user feedback and debugging",
+      "course_code": "D287",
+      "course_title": "Java Frameworks",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D322_1",
+      "issue_summary": "Misalignment between course study materials/PA and the OA — OA contains specific topics (e.g., computing 'generation' history questions) not emphasized or covered in provided materials.",
+      "course_code": "D322",
+      "course_title": "Introduction to IT",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D333_2",
+      "issue_summary": "Confusing or inconsistent communication and course interface about assessment format and requirements (OA vs PA, required essays/textbook); platform/mentors not updated to reflect changes.",
+      "course_code": "D333",
+      "course_title": "Ethics in Technology",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D335_2",
+      "issue_summary": "Assessments are misaligned with course materials and intended skills (difficulty mismatch and choice of OA over PA), leaving students unprepared.",
+      "course_code": "D335",
+      "course_title": "Introduction to Programming in Python",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D351_1",
+      "issue_summary": "Assessments (PA/OA) are misaligned with course materials and with each other, containing questions/topics not covered in the taught content",
+      "course_code": "D351",
+      "course_title": "Functions of Human Resource Management",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D387_1",
+      "issue_summary": "Unclear or undocumented required runtime/tool versions and compatibility (JDK/Lombok, Node, CPU architecture)",
+      "course_code": "D387",
+      "course_title": "Advanced Java",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D387_2",
+      "issue_summary": "Insufficient environment/CI/evaluator configuration guidance and troubleshooting instructions (platform-specific install steps, debugging tips, evaluator environment alignment)",
+      "course_code": "D387",
+      "course_title": "Advanced Java",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D388_1",
+      "issue_summary": "Automated grading/validation incorrectly fails to detect correct student inputs (comment boxes, table sorting)",
+      "course_code": "D388",
+      "course_title": "Fundamentals of Spreadsheets and Data Presentations",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D483_1",
+      "issue_summary": "Broken or unusable lab access (credentials or platform tools) preventing completion of virtual labs",
+      "course_code": "D483",
+      "course_title": "Security Operations",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D487_1",
+      "issue_summary": "Objective Assessment (OA) misalignment: OA questions are worded differently, more confusing, or cover content not present in course materials or pre-assessments",
+      "course_code": "D487",
+      "course_title": "Secure Software Design",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D571_1",
+      "issue_summary": "Instructors/CIs provide inconsistent or unhelpful guidance and course-level documentation is unclear (example: conflicting citation instructions from instructors).",
+      "course_code": "D571",
+      "course_title": "Psychopathology",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D597_1",
+      "issue_summary": "Unclear or missing instructions/navigation and location of Task 1 resources (scenario selection, virtual lab access, required CSV file).",
+      "course_code": "D597",
+      "course_title": "Data Management",
+      "num_posts": 2
+    },
+    {
+      "cluster_id": "D659_1",
+      "issue_summary": "Course readings and practice materials are definition-focused and lack scenario-based examples, leaving students unprepared for scenario-style pre-assessments and OAs.",
+      "course_code": "D659",
+      "course_title": "Assessing and Monitoring Student Learning",
+      "num_posts": 2
+    }
+  ]
+}

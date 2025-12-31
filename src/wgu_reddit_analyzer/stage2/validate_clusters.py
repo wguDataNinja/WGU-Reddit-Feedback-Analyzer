@@ -20,8 +20,14 @@ from typing import Any, Dict, Iterable, Set
 
 from wgu_reddit_analyzer.utils.logging_utils import get_logger
 
-logger = get_logger("stage2.validate_clusters")
+import logging
 
+try:
+    from wgu_reddit_analyzer.utils.logging_utils import get_logger
+    logger = get_logger("stage2.validate_clusters")
+except Exception:
+    logging.basicConfig(level=logging.INFO)
+    logger = logging.getLogger("stage2.validate_clusters")
 
 def _ensure(condition: bool, message: str) -> None:
     if not condition:
@@ -189,9 +195,14 @@ def _parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Validate Stage-2 cluster JSON files."
     )
+    default_clusters_dir = Path("artifacts/stage2/runs")
+    if default_clusters_dir.exists():
+        # pick the latest run by modified time
+        latest_run_dir = max(default_clusters_dir.iterdir(), key=lambda p: p.stat().st_mtime)
+        default_clusters_dir = latest_run_dir / "clusters"
     parser.add_argument(
         "--clusters-dir",
-        default="artifacts/stage2/clusters",
+        default=str(default_clusters_dir),
         help="Directory containing <course_code>.json cluster files.",
     )
     parser.add_argument(

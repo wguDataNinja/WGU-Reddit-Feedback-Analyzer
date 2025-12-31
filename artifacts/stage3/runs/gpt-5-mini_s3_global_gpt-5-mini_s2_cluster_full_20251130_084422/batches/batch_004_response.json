@@ -1,0 +1,149 @@
+{
+  "global_clusters": [
+    {
+      "provisional_label": "Unclear or conflicting instructions and rubrics",
+      "normalized_issue_label": "unclear_or_ambiguous_instructions",
+      "short_description": "Instructions, rubrics, or task guidance are ambiguous, contradictory, or scattered across locations (including unclear submission formats, scope, required artifacts, or unexplained acronyms), causing students to submit incorrect work or be unsure how to comply.",
+      "member_cluster_ids": [
+        "D483_2",
+        "D483_3",
+        "D486_1",
+        "D489_1",
+        "D572_1",
+        "D573_1",
+        "D596_2",
+        "D599_2",
+        "D600_1",
+        "D603_1",
+        "D604_1",
+        "D547_1",
+        "D487_3",
+        "D635_1",
+        "D607_1"
+      ]
+    },
+    {
+      "provisional_label": "Assessment and materials misalignment (OA/PA/rubric mismatch)",
+      "normalized_issue_label": "assessment_material_misalignment",
+      "short_description": "Assessments, pre-assessments, rubrics, or study materials do not align (OA vs PA, pretest vs OA, rubric vs required tasks), producing unexpected content or criteria on graded assessments.",
+      "member_cluster_ids": [
+        "D464_1",
+        "D465_1",
+        "D467_1",
+        "D483_4",
+        "D560_1",
+        "D571_2",
+        "D604_2",
+        "D635_2",
+        "D644_1"
+      ]
+    },
+    {
+      "provisional_label": "Low-quality, missing, or poorly organized course materials",
+      "normalized_issue_label": "missing_or_low_quality_materials",
+      "short_description": "Course content or supporting materials are incomplete, low-quality, inconsistent, or poorly organized (including theoretical videos that contradict examples, missing supplemental resources, or unclear placement of attachments).",
+      "member_cluster_ids": [
+        "D482_1",
+        "D493_1",
+        "D554_1",
+        "D557_1",
+        "D619_1",
+        "D571_3",
+        "D599_1",
+        "D600_2"
+      ]
+    },
+    {
+      "provisional_label": "Platform, lab, and assessment system failures",
+      "normalized_issue_label": "platform_or_environment_failures",
+      "short_description": "Technical failures or outages in labs, assessment platforms, or course environments (broken labs, slow/unresponsive environments, permission bugs, platform reporting errors, access failures) prevent students from completing or submitting work.",
+      "member_cluster_ids": [
+        "D488_1",
+        "D492_1",
+        "D522_1",
+        "D485_1",
+        "D597_3",
+        "D564_2",
+        "D464_2"
+      ]
+    },
+    {
+      "provisional_label": "Missing or broken required resources and assets",
+      "normalized_issue_label": "missing_or_broken_resources",
+      "short_description": "Required files, starter assets, recordings, or external links are missing, inaccessible, or broken (including missing scripts, cohort recordings, or third‑party links), preventing students from completing tasks.",
+      "member_cluster_ids": [
+        "D432_1",
+        "D486_2",
+        "D597_2",
+        "D608_1",
+        "D602_2"
+      ]
+    },
+    {
+      "provisional_label": "Inconsistent or unhelpful evaluator feedback and grading problems",
+      "normalized_issue_label": "evaluator_inconsistency_or_poor_feedback",
+      "short_description": "Evaluators provide inconsistent, non-actionable, slow, or contradictory feedback (misapplied rubrics, long turnarounds, or blocking workflow requiring meetings), impeding student progress.",
+      "member_cluster_ids": [
+        "D598_1",
+        "D601_1",
+        "D546_1",
+        "D490_1",
+        "D573_2"
+      ]
+    },
+    {
+      "provisional_label": "Workflow or policy barriers blocking progress",
+      "normalized_issue_label": "workflow_or_policy_barriers",
+      "short_description": "Course or institutional policies and workflow design (blocking peer-review dependencies, rigid remediation requirements, or failure to apply transfer credit) create administrative or procedural barriers to student progress.",
+      "member_cluster_ids": [
+        "D564_1",
+        "D479_1",
+        "D481_1",
+        "D481_2"
+      ]
+    },
+    {
+      "provisional_label": "Tooling, platform guidance, or configuration gaps",
+      "normalized_issue_label": "tooling_environment_misconfiguration_or_guidance",
+      "short_description": "Required tooling or platform usage is misconfigured or lacks guidance (buggy starter code, unclear acceptable evidence for tool behavior, or undefined tools), leaving students unable to demonstrate required results or know what to submit.",
+      "member_cluster_ids": [
+        "D602_3",
+        "D604_3"
+      ]
+    },
+    {
+      "provisional_label": "Instructor or course support unresponsiveness",
+      "normalized_issue_label": "instructor_or_support_unresponsiveness",
+      "short_description": "Instructors or course support are unresponsive, unprofessional, or unable to provide needed course-specific help (including limited tutoring availability), delaying or blocking student progress.",
+      "member_cluster_ids": [
+        "D464_3",
+        "D522_2"
+      ]
+    },
+    {
+      "provisional_label": "Grading, answer key, or data/key mismatches",
+      "normalized_issue_label": "grading_or_answer_key_or_process_issues",
+      "short_description": "Provided answer keys, expected results, or task data are incorrect or misaligned with the assessment, producing impossible or puzzling grading outcomes.",
+      "member_cluster_ids": [
+        "D553_1"
+      ]
+    },
+    {
+      "provisional_label": "Proctoring and exam platform interruptions",
+      "normalized_issue_label": "proctoring_or_exam_platform_issues",
+      "short_description": "Proctoring or exam platforms cause mid-test terminations, redirects, or loss of review/score options, directly disrupting assessments.",
+      "member_cluster_ids": [
+        "D487_2"
+      ]
+    },
+    {
+      "provisional_label": "Simulation scheduling and facilitator availability issues",
+      "normalized_issue_label": "scheduling_or_simulation_availability_issues",
+      "short_description": "Simulations or facilitated sessions suffer no-shows, late starts, or scheduling problems that waste student time and block required activities.",
+      "member_cluster_ids": [
+        "D577_1"
+      ]
+    }
+  ],
+  "unassigned_clusters": []
+}

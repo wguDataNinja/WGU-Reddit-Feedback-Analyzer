@@ -1,0 +1,41 @@
+baseURL = "http://localhost:1313/"
+languageCode = "en-us"
+title = "WGU Reddit Snapshot"
+theme = "PaperMod"
+publishDir = "public"
+
+[params]
+  ShowReadingTime = false
+  ShowShareButtons = false
+  defaultTheme = "light"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[menu]
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 10
+
+  [[menu.main]]
+    name = "Privacy"
+    url = "/privacy/"
+    weight = 20
+
+  [[menu.main]]
+    name = "Courses"
+    url = "/courses/"
+    weight = 30
+
+  [[menu.main]]
+    name = "Categories"
+    url = "/global-issues/"
+    weight = 40
+
+  [[menu.main]]
+    name = "Source posts"
+    url = "/raw-posts/"
+    weight = 50

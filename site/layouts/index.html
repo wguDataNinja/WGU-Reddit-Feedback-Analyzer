@@ -1,0 +1,177 @@
+{{ define "main" }}
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+</header>
+
+<style>
+.wra-hero{margin-top:1rem;padding:.85rem 1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme)}
+.wra-hero p{margin:.5rem 0}
+.wra-muted{opacity:.85}
+.wra-links{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.5rem}
+.wra-links a{font-weight:600}
+.wra-grid{display:grid;grid-template-columns:1fr;gap:1rem;margin-top:1rem}
+.wra-card{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme)}
+.wra-card h2{margin-top:0}
+.wra-list{margin-top:.5rem}
+.wra-list li{margin:.25rem 0}
+.wra-cta{margin-top:.75rem}
+.wra-link {
+  color: var(--primary);
+  font-weight: 600;
+}
+.wra-link:hover {
+  text-decoration: underline;
+}
+</style>
+
+{{ $courseIndex := site.Data.course_index }}
+{{ $issueIndex := site.Data.issue_index }}
+
+{{ $courseMap := dict }}
+{{ with $courseIndex.courses }}{{ $courseMap = . }}{{ end }}
+
+{{ $issueMap := dict }}
+{{ with $issueIndex.issues }}{{ $issueMap = . }}{{ end }}
+
+{{/* Courses */}}
+{{ $courseRows := slice }}
+{{ range $code, $c := $courseMap }}
+  {{ $title := (index $c "course_title" | default (index $c "course_title_final") | default "") }}
+  {{ $pp := int (index $c "total_pain_point_posts" | default 0) }}
+  {{ $courseRows = $courseRows | append (dict "code" $code "title" $title "pp" $pp) }}
+{{ end }}
+{{ $courseRows = sort $courseRows "pp" "desc" }}
+{{ $topCourses := first 8 $courseRows }}
+
+{{/* Categories */}}
+{{ $issueRows := slice }}
+{{ range $slug, $it := $issueMap }}
+  {{ $posts := int (index $it "total_num_posts" | default (index $it "total_posts" | default 0)) }}
+  {{ $label := (index $it "provisional_label" | default $slug) }}
+  {{ $issueRows = $issueRows | append (dict "slug" $slug "label" $label "posts" $posts) }}
+{{ end }}
+{{ $issueRows = sort $issueRows "posts" "desc" }}
+{{ $topIssues := first 8 $issueRows }}
+
+{{/* Colleges list with fallback */}}
+{{ $allowedColleges := site.Data.college_map.allowed_colleges }}
+{{ if not $allowedColleges }}
+  {{ $allowedColleges = slice "School of Business" "Leavitt School of Health" "School of Technology" "School of Education" }}
+{{ end }}
+
+{{/* Top categories by college */}}
+{{ $collegeIssueCounts := dict }}
+{{ range $slug, $iss := $issueMap }}
+  {{ $coursesForIssue := (index $iss "courses") }}
+  {{ if (reflect.IsSlice $coursesForIssue) }}
+    {{ range $coursesForIssue }}
+      {{ $n := int (index . "num_posts" | default 0) }}
+      {{ $cols := (index . "colleges") }}
+      {{ if (reflect.IsSlice $cols) }}
+        {{ range $cols }}
+          {{ $col := . }}
+          {{ $byCol := (index $collegeIssueCounts $col) }}
+          {{ if not $byCol }}{{ $byCol = dict }}{{ end }}
+          {{ $prev := (index $byCol $slug) }}
+          {{ if not $prev }}{{ $prev = 0 }}{{ end }}
+          {{ $byCol = merge $byCol (dict $slug (add $prev $n)) }}
+          {{ $collegeIssueCounts = merge $collegeIssueCounts (dict $col $byCol) }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{ $collegeTop3 := dict }}
+{{ range $allowedColleges }}
+  {{ $col := . }}
+  {{ $byCol := (index $collegeIssueCounts $col) }}
+  {{ $rows := slice }}
+  {{ if $byCol }}
+    {{ range $slug, $n := $byCol }}
+      {{ $iss := (index $issueMap $slug) }}
+      {{ $label := $slug }}
+      {{ if $iss }}
+        {{ $label = (index $iss "provisional_label") }}
+        {{ if not $label }}{{ $label = $slug }}{{ end }}
+      {{ end }}
+      {{ $rows = $rows | append (dict "slug" $slug "label" $label "posts" $n) }}
+    {{ end }}
+    {{ $rows = sort $rows "posts" "desc" }}
+  {{ end }}
+  {{ $collegeTop3 = merge $collegeTop3 (dict $col (first 3 $rows)) }}
+{{ end }}
+
+<section class="wra-hero">
+  {{ .Content }}
+</section>
+
+<section class="wra-grid">
+  <div class="wra-card">
+    <h2>Courses with highest post volume</h2>
+
+    {{ if gt (len $topCourses) 0 }}
+      <ol class="wra-list">
+        {{ range $topCourses }}
+          <li>
+            <a href="{{ printf "/courses/%s/" .code | relURL }}">{{ .code }}{{ if .title }} — {{ .title }}{{ end }}</a>
+            <span class="wra-muted"> ({{ .pp }} posts)</span>
+          </li>
+        {{ end }}
+      </ol>
+    {{ else }}
+      <p class="wra-muted">No course data found.</p>
+    {{ end }}
+
+    <p class="wra-cta"><a href="{{ "/courses/" | relURL }}">View all courses</a></p>
+  </div>
+
+  <div class="wra-card">
+    <h2>Categories with highest post volume</h2>
+
+    {{ if gt (len $topIssues) 0 }}
+      <ol class="wra-list">
+        {{ range $topIssues }}
+          <li>
+            <a href="{{ printf "/global-issues/%s/" .slug | relURL }}">{{ .label }}</a>
+            <span class="wra-muted"> ({{ .posts }} posts)</span>
+          </li>
+        {{ end }}
+      </ol>
+    {{ else }}
+      <p class="wra-muted">No category data found.</p>
+    {{ end }}
+
+    <p class="wra-cta"><a href="{{ "/global-issues/" | relURL }}">View all categories</a></p>
+  </div>
+
+  <div class="wra-card">
+    <h2>Top categories by college</h2>
+
+    <p class="wra-muted">
+      Each post is associated with a course; courses can be listed under more than one college in the course catalog.
+    </p>
+
+    {{ range $allowedColleges }}
+      {{ $col := . }}
+      {{ $rows := (index $collegeTop3 $col) }}
+
+      <br>
+      <h3>{{ $col }}</h3>
+
+      {{ if and $rows (gt (len $rows) 0) }}
+        <div class="wra-list">
+          {{ range $rows }}
+            <div>
+              <a href="{{ printf "/global-issues/%s/" .slug | relURL }}">{{ .label }}</a>
+              <span class="wra-muted"> ({{ .posts }} posts)</span>
+            </div>
+          {{ end }}
+        </div>
+      {{ else }}
+        <p class="wra-muted">No entries available in this snapshot.</p>
+      {{ end }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}

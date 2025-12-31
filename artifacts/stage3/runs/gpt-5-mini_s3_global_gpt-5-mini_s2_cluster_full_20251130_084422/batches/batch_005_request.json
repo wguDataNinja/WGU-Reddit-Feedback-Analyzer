@@ -1,0 +1,193 @@
+{
+  "clusters": [
+    {
+      "cluster_id": "D645_1",
+      "issue_summary": "Ambiguous assignment instructions about combining multiple provided templates into one submission",
+      "course_code": "D645",
+      "course_title": "Crafting a Communications Strategy Through Research and Data Insights",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D645_2",
+      "issue_summary": "Lack of example student submissions or exemplar resources to guide formatting and expectations",
+      "course_code": "D645",
+      "course_title": "Crafting a Communications Strategy Through Research and Data Insights",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D652_1",
+      "issue_summary": "Evaluator feedback is unclear or misaligned with submissions, including references to non-existent UI cues, leading to unnecessary or illogical revision requests.",
+      "course_code": "D652",
+      "course_title": "Design Applications",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D658_1",
+      "issue_summary": "unclear instructions and expectations for the required teaching recording (format, content, simulated students vs. explanation)",
+      "course_code": "D658",
+      "course_title": "Planning Instructional Strategies for Meaningful Learning",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D659_2",
+      "issue_summary": "Required Mursion simulation scheduling has no available time slots, preventing students from booking and completing the mandatory simulation.",
+      "course_code": "D659",
+      "course_title": "Assessing and Monitoring Student Learning",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D660_2",
+      "issue_summary": "Inconsistency between task description/rubric and assessor practices (reports that reading a lesson plan was accepted despite instructions to 'teach'), causing confusion about acceptable evidence.",
+      "course_code": "D660",
+      "course_title": "Instructional Technology and Online Pedagogy",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D662_1",
+      "issue_summary": "Ambiguous or poorly written assessment items with multiple answer choices appearing correct",
+      "course_code": "D662",
+      "course_title": "Personalized Learning for Inclusive Classrooms",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D663_1",
+      "issue_summary": "Ambiguous assessment prompts and unclear expectations for response tone, formality, and level of detail (lacking examples or rubric guidance)",
+      "course_code": "D663",
+      "course_title": "The Professional Educator",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D663_2",
+      "issue_summary": "Unclear guidance on use of external resources/links and citation rules for assessments, causing student uncertainty about cheating",
+      "course_code": "D663",
+      "course_title": "The Professional Educator",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D670_1",
+      "issue_summary": "No lesson plan template or clear formatting guidance provided for assignments",
+      "course_code": "D670",
+      "course_title": "Elementary Literacy Methods",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D670_2",
+      "issue_summary": "Unclear or poorly organized assignment instructions and submission requirements (tasks combined, unclear whether to submit lesson plan with recording)",
+      "course_code": "D670",
+      "course_title": "Elementary Literacy Methods",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D676_1",
+      "issue_summary": "Required Mursion simulation scheduling availability—no open slots for mandatory sessions",
+      "course_code": "D676",
+      "course_title": "Early Literacy Methods",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D676_2",
+      "issue_summary": "Mursion simulation platform/technology reliability issues preventing completion of rubric requirements",
+      "course_code": "D676",
+      "course_title": "Early Literacy Methods",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D677_1",
+      "issue_summary": "Pre-assessment content is misaligned with the objective assessment, causing unexpected OA material.",
+      "course_code": "D677",
+      "course_title": "Elementary Literacy Curriculum",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D685_1",
+      "issue_summary": "Platform/OEX lesson loading errors or outages preventing student access to course materials",
+      "course_code": "D685",
+      "course_title": "Practical Applications of Prompt",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D688_1",
+      "issue_summary": "Assessor inconsistency or misapplication of the rubric leading to incorrect 'not competent' scores",
+      "course_code": "D688",
+      "course_title": "Foundations of Literacy Through Literature",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D688_2",
+      "issue_summary": "Assessment process lacks verification that submitted video evidence was reviewed (possible assessor did not watch submission)",
+      "course_code": "D688",
+      "course_title": "Foundations of Literacy Through Literature",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D689_1",
+      "issue_summary": "Proctors/instructors unable or unwilling to confirm the correct CORE survey before mursion, causing students to miss required assessment components",
+      "course_code": "D689",
+      "course_title": "Literacy Assessment and Interventions",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D697_1",
+      "issue_summary": "Required course media/materials (videos) have audio or functionality problems that prevent students from learning content needed for mursion tasks and assessments",
+      "course_code": "D697",
+      "course_title": "Literacy Assessment and Interventions",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D756_1",
+      "issue_summary": "assessment recording/playback (encryption) failures causing lost audio/video and forcing reassessments",
+      "course_code": "D756",
+      "course_title": "Individualized Education Plan (IEP) Collaboration and Communication with Parents and School Staff",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D774_1",
+      "issue_summary": "Course lacks sufficient instructional resources and guided materials (only textbook and a very short welcome video).",
+      "course_code": "D774",
+      "course_title": "Introduction to Business Accounting",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D774_2",
+      "issue_summary": "Objective assessment questions are unclear or misleading, causing difficulty determining correct answers.",
+      "course_code": "D774",
+      "course_title": "Introduction to Business Accounting",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D775_1",
+      "issue_summary": "Insufficient variety of instructional materials—course lacks multimedia (no videos) and relies heavily on extensive reading",
+      "course_code": "D775",
+      "course_title": "Introduction to Business Finance",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D776_1",
+      "issue_summary": "Missing required PA template/materials for Performance Assessment Task 1 (only prompts provided), causing uncertainty about correct submission",
+      "course_code": "D776",
+      "course_title": "Healthcare Leadership and Community Engagement",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D848_1",
+      "issue_summary": "Third-party Labster simulation causes severe local performance issues (high CPU usage) making the simulation unusable on students' machines.",
+      "course_code": "D848",
+      "course_title": "General Earth Science I Lab",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "D904_1",
+      "issue_summary": "Unprofessional or inconsistent proctor behavior during OAs causing distractions; need improved proctor training/monitoring and clearer proctoring policies.",
+      "course_code": "D904",
+      "course_title": "Algebra for Secondary Mathematics Teaching",
+      "num_posts": 1
+    },
+    {
+      "cluster_id": "MGT2_1",
+      "issue_summary": "Instructions for burn down chart are unclear about whether to count weekends or only workdays, causing returned submissions",
+      "course_code": "MGT2",
+      "course_title": "MGT2 – IT Project Management",
+      "num_posts": 1
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+# F.3 Course archetypes
+
+This section identifies courses that exhibit higher structural complexity, operationalized as issue diversity rather than issue volume. Courses are included when they meet two explicit conditions within the single-college filtered dataset: at least five pain-point posts and at least three distinct normalized issue labels.
+
+The purpose of this section is not to rank courses by severity or frequency of complaints, but to isolate cases where students report multiple qualitatively different types of problems within the same course. This distinction highlights courses where issues may arise from interacting components rather than a single repeated failure mode.
+
+## Course archetype table
+
+| course_code | course_title | catalog_college | total_posts | unique_issues | issue_list |
+|---|---|---|---|---|---|
+| D287 | Java Frameworks | School of Technology | 11 | 5 | missing_or_broken_resources; missing_or_low_quality_materials; prerequisite_gaps_or_unpreparedness; tooling_environment_misconfiguration_or_guidance; unclear_or_ambiguous_instructions |
+| C777 | Web Development Applications | School of Technology | 9 | 5 | assessment_material_misalignment; instructor_or_support_unresponsiveness; missing_or_broken_resources; missing_or_low_quality_materials; proctoring_or_exam_platform_issues |
+| D277 | Front-End Web Development | School of Technology | 7 | 5 | evaluator_inconsistency_or_poor_feedback; external_tool_dependency_risks; instructor_or_support_unresponsiveness; platform_or_environment_failures; unclear_or_ambiguous_instructions |
+| D278 | Scripting and Programming - Foundations | School of Technology | 7 | 5 | assessment_material_misalignment; missing_or_low_quality_materials; proctoring_or_exam_platform_issues; tooling_environment_misconfiguration_or_guidance; workflow_or_policy_barriers |
+| D427 | Data Management - Applications | School of Technology | 10 | 4 | assessment_material_misalignment; grading_or_answer_key_or_process_issues; missing_or_broken_resources; platform_or_environment_failures |
+| D101 | Cost and Managerial Accounting | School of Business | 7 | 4 | ai_detection_confusion_and_false_flags; assessment_material_misalignment; missing_or_low_quality_materials; proctoring_or_exam_platform_issues |
+| D276 | Web Development Foundations | School of Technology | 5 | 4 | missing_or_broken_resources; missing_or_low_quality_materials; platform_or_environment_failures; unclear_or_ambiguous_instructions |
+| D197 | Version Control | School of Technology | 11 | 3 | missing_or_low_quality_materials; platform_or_environment_failures; unclear_or_ambiguous_instructions |
+| D196 | Principles of Financial and Managerial Accounting | School of Business | 9 | 3 | assessment_material_misalignment; platform_or_environment_failures; unclear_or_ambiguous_instructions |
+| D288 | Back-End Programming | School of Technology | 9 | 3 | missing_or_broken_resources; platform_or_environment_failures; unclear_or_ambiguous_instructions |
+| C214 | Financial Management | School of Business | 8 | 3 | assessment_material_misalignment; missing_or_broken_resources; platform_or_environment_failures |
+| D280 | JavaScript Programming | School of Technology | 6 | 3 | external_tool_dependency_risks; missing_or_low_quality_materials; unclear_or_ambiguous_instructions |
+| D335 | Introduction to Programming in Python | School of Technology | 6 | 3 | assessment_material_misalignment; external_tool_dependency_risks; tooling_environment_misconfiguration_or_guidance |
+| D080 | Managing in a Global Business Environment | School of Business | 5 | 3 | assessment_material_misalignment; scheduling_or_simulation_availability_issues; workflow_or_policy_barriers |
+| D483 | Security Operations | School of Technology | 5 | 3 | assessment_material_misalignment; missing_or_broken_resources; unclear_or_ambiguous_instructions |
+| D602 | Deployment | School of Technology | 5 | 3 | missing_or_broken_resources; tooling_environment_misconfiguration_or_guidance; unclear_or_ambiguous_instructions |
+
+Across the table, courses with similar post volumes can exhibit markedly different levels of issue diversity. For example, D197 and D287 both have eleven posts, but D197 spans three issue types while D287 spans five. This illustrates why issue diversity, rather than volume alone, is used to identify archetypes.
+
+Courses with exactly two distinct issues are intentionally excluded, even when post volume is high, because they represent repetition of a small number of problems rather than heterogeneous failure modes. The cutoff at three issues reflects an observed structural break in the data rather than a gradual continuum.
+
+## Sampling manifest
+
+Deep-read exemplars are selected deterministically from the archetype table. For each exemplar course, the manifest lists post_ids corresponding to the most frequent issues within that course. Stage 0 text for these post_ids is used to confirm that distinct issue labels correspond to substantively different problem descriptions rather than rephrasings of the same complaint.
+
+See `F3_sampling_manifest.jsonl`.

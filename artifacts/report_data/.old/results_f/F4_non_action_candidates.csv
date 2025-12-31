@@ -1,0 +1,6 @@
+normalized_issue_label,issue_total_posts,num_courses,num_colleges,top_courses_top10
+ai_detection_confusion_and_false_flags,2,2,1,C200(1); D101(1)
+prerequisite_gaps_or_unpreparedness,2,2,2,C200(1); D287(1)
+scheduling_or_simulation_availability_issues,4,4,3,D080(1); D577(1); D659(1); D676(1)
+workload_or_scope_issues,4,4,2,C213(1); C716(1); C723(1); C958(1)
+instructor_or_support_unresponsiveness,10,6,3,C211(4); D277(2); C777(1); D398(1); D464(1); D522(1)

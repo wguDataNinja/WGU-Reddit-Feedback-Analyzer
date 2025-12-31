@@ -1,0 +1,9 @@
+metric,value
+total_posts_post_master_unique_post_id,1103
+total_painpoint_rows,390
+total_courses_in_catalog,718
+single_college_courses,652
+multi_college_courses,66
+posts_retained_single_college_unique_post_id,967
+painpoints_retained_single_college_rows,354
+painpoint_pct_retained,0.907692

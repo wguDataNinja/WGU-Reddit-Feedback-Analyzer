@@ -1,124 +1,174 @@
-WGU Reddit Analyzer – Cost Estimation Guide
+# WGU Reddit Analyzer — Cost Estimation Guide
 
-Last updated: 2025-11-19
+_Last updated: 2025-11-19_
 
-============================================================
-1 · Purpose
+---
 
-Defines how benchmark costs and runtimes are estimated before a run and measured afterward.
-Includes:
+## 1 · Purpose
 
-• API pricing from model_registry.py
-• Prompt token overhead
-• Real observed API usage from Stage 1 benchmark runs
-• Comparison between projected and observed cost behavior
+This document defines how **benchmark cost and runtime** are:
 
-============================================================
-2 · Inputs
+- estimated prior to execution, and  
+- measured from observed API usage after execution.
 
-• artifacts/analysis/length_profile.json
-• benchmark/model_registry.py
-• benchmark/cost_latency.py
-• benchmark/estimate_benchmark_cost.py
-• prompts/ (all prompt templates)
-• configs/*.yml
+It supports planning, comparison across models and prompts, and transparent reporting.  
+All reported costs reflect **historical recorded usage** at execution time and should not be interpreted as current or future pricing.
 
-============================================================
-3 · Estimation Phases
+---
 
-3.1 Pre-Run (Static)
-Uses mean post length, prompt tokens, expected output length.
+## 2 · Inputs
 
-3.2 Post-Run (Observed)
-Uses actual logged tokens from each model call:
-input tokens, output tokens, and total cost.
+Cost estimation and measurement rely on the following inputs:
 
-============================================================
-4 · Cost Formula
+- `artifacts/analysis/length_profile.json`
+- `benchmark/model_registry.py`
+- `benchmark/cost_latency.py`
+- `benchmark/estimate_benchmark_cost.py`
+- `prompts/` (prompt templates)
+- `configs/*.yml`
 
-For model m, prompt p, dataset D:
+Model pricing information is recorded in `model_registry.py` at the time of each run.
 
-cost(m,p,D) ≈ N_D · [ (T_prompt + T_post)/1000 · c_in(m)
-+ T_out/1000 · c_out(m) ]
+---
+
+## 3 · Estimation Phases
+
+### 3.1 Pre-Run (Static Estimation)
+
+Before execution, cost is estimated using:
+
+- mean post length from prior analysis,
+- prompt token length,
+- expected output length,
+- dataset size.
+
+These estimates are used for planning and comparison only.
+
+---
+
+### 3.2 Post-Run (Observed Measurement)
+
+After execution, cost and latency are computed from logged API usage:
+
+- input tokens
+- output tokens
+- elapsed wall-clock time
+- total recorded cost
+
+Observed values are authoritative for reporting.
+
+---
+
+## 4 · Cost Model
+
+For a model *m*, prompt *p*, and dataset *D*:
+
+```
+cost(m,p,D) ≈ N_D · [
+  (T_prompt + T_post) / 1000 · c_in(m)
++ T_out / 1000 · c_out(m)
+]
+```
 
 Where:
-N_D = number of posts
-c_in, c_out = input/output cost per 1k tokens
 
-Local models have cost = 0 but non-zero runtime.
+- `N_D` = number of posts  
+- `T_prompt` = prompt tokens  
+- `T_post` = post text tokens  
+- `T_out` = output tokens  
+- `c_in`, `c_out` = per-1k-token input and output costs recorded for the model  
 
-============================================================
-5 · Benchmark Cost Artifacts
+Local models have zero API cost but non-zero runtime.
 
-Pre-run:
-artifacts/benchmark/cost_estimates.csv
+---
 
-Post-run:
-artifacts/benchmark/final_cost_summary.json
+## 5 · Cost Artifacts
 
-Columns include:
-model, dataset, prompt_label, num_posts, cost_usd, tokens_in, tokens_out, seconds_elapsed.
+### Pre-Run
 
-============================================================
-6 · CLI Usage
+- `artifacts/benchmark/cost_estimates.csv`
 
-Single scenario:
+### Post-Run
 
-python -m wgu_reddit_analyzer.benchmark.estimate_benchmark_cost 
-–prompt-label zero_shot –prompt-tokens 260
+- `artifacts/benchmark/final_cost_summary.json`
 
-Multiple scenarios:
+Common fields include:
 
-python -m wgu_reddit_analyzer.benchmark.estimate_benchmark_cost 
-–scenario zero_shot:260:120:4:0.0 
-–scenario few_shot_simple:420:120:4:0.0 
-–scenario few_shot_opt:600:140:4:0.0
+- model  
+- dataset  
+- prompt_label  
+- num_posts  
+- tokens_in  
+- tokens_out  
+- cost_usd  
+- seconds_elapsed  
 
-============================================================
-7 · Observed Costs (DEV runs to date)
+---
 
-The following are real API charges from all DEV runs performed so far
-(most were 2–5 post smoke tests, plus the full 25-post zero-shot run).
+## 6 · CLI Usage
 
-gpt-5
-• Input tokens total: 0.018 USD
-• Output tokens total: 0.127 USD
-• Notes: Most expensive model; output dominates cost.
+### Single scenario
 
-gpt-5-mini
-• Input tokens total: 0.003 USD
-• Output tokens total: 0.029 USD
-• Notes: 4–5× cheaper than gpt-5 per call.
+```bash
+python -m wgu_reddit_analyzer.benchmark.estimate_benchmark_cost \
+  --prompt-label zero_shot \
+  --prompt-tokens 260
+```
 
-gpt-5-nano
-• Input tokens total: 0.003 USD
-• Output tokens total: 0.081 USD
-• Notes: Cheaper input, but surprisingly high output cost due to verbose responses.
+### Multiple scenarios
 
-llama3
-• Input/output: 0.000 USD (local)
-• Notes: Only time cost matters; runs ~1000 posts/hour CPU-only.
+```bash
+python -m wgu_reddit_analyzer.benchmark.estimate_benchmark_cost \
+  --scenario zero_shot:260:120:4:0.0 \
+  --scenario few_shot_simple:420:120:4:0.0 \
+  --scenario few_shot_opt:600:140:4:0.0
+```
 
-gpt-4o-mini
-• Not included in this summary yet, but prior runs show very low cost per call.
+These commands produce planning estimates only.
 
-============================================================
-8 · Interpretation of Observed Costs
+---
 
-• Even with multiple DEV smoke tests, total spend stays extremely low.
-• The 25-post zero-shot sweep across five models cost well below 0.50 USD.
-• Output tokens dominate cost for OpenAI models, especially gpt-5 and gpt-5-nano.
-• Few-shot prompts will increase input tokens but often reduce output verbosity,
-potentially lowering total cost.
-• llama3 continues to be effectively free, but slow.
+## 7 · Observed Costs (DEV Runs)
 
-============================================================
-9 · Summary
+The following summarize **historical observed API usage** from DEV benchmark runs.  
+They reflect pricing at execution time and are included for transparency, not forecasting.
 
-• Pre-run formulas work well for rough planning.
-• Real observed usage is now tracked, enabling reliable cost prediction for full DEV/TEST.
-• All Stage 1 runs (zero-shot and upcoming few-shot) are economically trivial.
-• Cost-efficiency evaluation is now part of the Stage 1 prompt-evolution workflow.
+### gpt-5
+- Input tokens: 0.018 USD  
+- Output tokens: 0.127 USD  
+- Notes: Output tokens dominate total cost.
 
-============================================================
-END OF FILE
+### gpt-5-mini
+- Input tokens: 0.003 USD  
+- Output tokens: 0.029 USD  
+- Notes: 5× cheaper per call than gpt-5.
+
+### gpt-5-nano
+- Input tokens: 0.003 USD  
+- Output tokens: 0.081 USD  
+- Notes: 5× cheaper per call than 5-mini. but higher output verbosity.
+
+### llama3
+- Input/output cost: 0.000 USD (local)  
+- Notes: CPU-only execution; runtime is the primary cost.
+
+---
+
+## 8 · Interpretation
+
+- Even with multiple DEV smoke tests, total API spend remains very low.
+- Output tokens dominate cost for most hosted LLMs.
+- Few-shot prompts increase input tokens but may reduce verbose outputs.
+- Local models trade zero API cost for increased runtime.
+
+---
+
+## 9 · Summary
+
+- Pre-run estimation provides reliable planning guidance.
+- Observed usage is recorded for all benchmark runs.
+- Cost and latency are first-class benchmark metrics.
+- All reported costs are historical and tied to recorded artifacts.
+
+This cost framework supports transparent, reproducible evaluation without embedding assumptions about future pricing.
+
