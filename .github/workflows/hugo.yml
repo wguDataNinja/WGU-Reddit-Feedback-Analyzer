@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          set-safe-directory: true
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -32,7 +34,7 @@ jobs:
           extended: true
 
       - name: Build
-        run: hugo -s site --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
+        run: hugo -s site --minify --cleanDestinationDir --baseURL "${{ steps.pages.outputs.base_url }}/"
 
       - name: Debug output
         run: |
