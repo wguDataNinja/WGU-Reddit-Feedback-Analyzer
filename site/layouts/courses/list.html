@@ -24,7 +24,7 @@
 {{ range $rows }}
   <div class="wra-card">
     <h2>
-      <a href="/courses/{{ urlize .code }}/">{{ .code }}</a>{{ if .title }} — {{ .title }}{{ end }}
+      <a href="{{ printf "courses/%s/" (urlize .code) | relURL }}">{{ .code }}</a>{{ if .title }} — {{ .title }}{{ end }}
     </h2>
 
     <div class="wra-row">
@@ -39,7 +39,7 @@
       {{ end }}
     </p>
 
-    <a class="wra-link" href="/raw-posts/?course={{ .code }}">
+    <a class="wra-link" href="{{ printf "raw-posts/?course=%s" .code | relURL }}">
       View source posts
     </a>
   </div>

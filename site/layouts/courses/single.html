@@ -13,13 +13,11 @@
 .wra-card{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme)}
 .wra-card h2{margin-top:0}.wra-muted{opacity:.85}
 .wra-badge{display:inline-block;padding:.15rem .5rem;border:1px solid var(--border);border-radius:999px;background:var(--code-bg);font-size:.9em}
-
 .wra-pattern{margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--border)}
 .wra-pattern:first-child{margin-top:.25rem;padding-top:0;border-top:none}
 .wra-pattern-title{margin:0;font-size:1.05em}
 .wra-meta{display:flex;gap:.5rem;flex-wrap:wrap;align-items:baseline;margin-top:.35rem}
 .wra-link{opacity:.9}
-
 .wra-quotes{margin:.65rem 0 0 0;padding:0;list-style:none}
 .wra-quote{margin:.6rem 0;padding:.65rem .75rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--code-bg)}
 .wra-quote p{margin:0}
@@ -30,19 +28,11 @@
 {{ $idx := site.Data.course_index.courses }}
 {{ $course := index $idx $code }}
 
-{{/* Issue map for display labels */}}
 {{ $issueMap := dict }}
 {{ with site.Data.issue_index.issues }}{{ $issueMap = . }}{{ end }}
 
-{{ $ex := dict }}
-{{ $exErr := false }}
-{{ $p := resources.Get "results_f/post_excerpts.json" | transform.Unmarshal }}
-{{ with $p }}
-  {{ $ex = . }}
-{{ else }}
-  {{ $exErr = true }}
-{{ end }}
-{{ $postsByID := (index $ex "posts_by_id" | default (dict)) }}
+{{ $exErr := true }}
+{{ $postsByID := dict }}
 
 {{ if not $course }}
   <div class="post-content">
@@ -85,7 +75,6 @@
           {{ if eq (printf "%T" .) "map[string]interface {}" }}
             {{ $issue := (index . "normalized_issue_label" | default "") }}
 
-            {{/* Prefer issue_index provisional_label over any local fallback */}}
             {{ $label := "" }}
             {{ if $issue }}
               {{ $iss := index $issueMap $issue }}
@@ -122,10 +111,10 @@
               <span class="wra-badge">{{ $n }} posts</span>
 
               {{ if $issue }}
-                <a class="wra-link" href="/global-issues/{{ $issue | urlize }}/">Common theme</a>
+                <a class="wra-link" href="{{ printf "global-issues/%s/" ($issue | urlize) | relURL }}">Common theme</a>
               {{ end }}
 
-              <a class="wra-link" href="/raw-posts/?course={{ $code }}{{ if $issue }}&issue={{ $issue | urlquery }}{{ end }}">Source posts</a>
+              <a class="wra-link" href="{{ printf "raw-posts/?course=%s" $code | relURL }}{{ if $issue }}&issue={{ $issue | urlquery }}{{ end }}">Source posts</a>
             </div>
 
             {{ if $summary }}<p class="wra-muted" style="margin-top:.5rem;">{{ $summary }}</p>{{ end }}
@@ -153,7 +142,7 @@
                       {{ if $pid }}
                         <a href="{{ $reddit }}">Open post</a>
                       {{ else }}
-                        <a href="/raw-posts/?course={{ $code }}&q={{ $q | urlquery }}">Find in source posts</a>
+                        <a href="{{ printf "raw-posts/?course=%s&q=%s" $code ($q | urlquery) | relURL }}">Find in source posts</a>
                       {{ end }}
                     </div>
                   </li>
