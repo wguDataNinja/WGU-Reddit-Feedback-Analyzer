@@ -4,17 +4,18 @@ title = "WGU Reddit Snapshot"
 theme = "PaperMod"
 publishDir = "public"
 
+enableRobotsTXT = true
+
 [outputs]
 home = ["HTML", "RSS"]
 section = ["HTML", "RSS"]
 taxonomy = ["HTML", "RSS"]
 term = ["HTML", "RSS"]
 
-
 [params]
-  ShowReadingTime = false
-  ShowShareButtons = false
-  defaultTheme = "light"
+ShowReadingTime = false
+ShowShareButtons = false
+defaultTheme = "light"
 
 [markup]
   [markup.goldmark]
@@ -22,27 +23,28 @@ term = ["HTML", "RSS"]
       unsafe = true
 
 [menu]
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 10
 
   [[menu.main]]
-    name = "Privacy"
-    url = "/privacy/"
-    weight = 20
+  name = "About"
+  url = "/about/"
+  weight = 10
 
   [[menu.main]]
-    name = "Courses"
-    url = "/courses/"
-    weight = 30
+  name = "Privacy"
+  url = "/privacy/"
+  weight = 20
 
   [[menu.main]]
-    name = "Categories"
-    url = "/global-issues/"
-    weight = 40
+  name = "Courses"
+  url = "/courses/"
+  weight = 30
 
   [[menu.main]]
-    name = "Source posts"
-    url = "/raw-posts/"
-    weight = 50
+  name = "Categories"
+  url = "/global-issues/"
+  weight = 40
+
+  [[menu.main]]
+  name = "Source posts"
+  url = "/raw-posts/"
+  weight = 50
