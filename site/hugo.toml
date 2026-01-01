@@ -4,6 +4,13 @@ title = "WGU Reddit Snapshot"
 theme = "PaperMod"
 publishDir = "public"
 
+[outputs]
+home = ["HTML", "RSS"]
+section = ["HTML", "RSS"]
+taxonomy = ["HTML", "RSS"]
+term = ["HTML", "RSS"]
+
+
 [params]
   ShowReadingTime = false
   ShowShareButtons = false
