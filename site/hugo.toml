@@ -3,8 +3,7 @@ languageCode = "en-us"
 title = "WGU Reddit Snapshot"
 theme = "PaperMod"
 publishDir = "public"
-hideFooter = true
-
+ShowFooter = false
 enableRobotsTXT = true
 
 [outputs]
