@@ -18,12 +18,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-      - uses: actions/configure-pages@v5
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
         id: pages
 
-      - uses: peaceiris/actions-hugo@v3
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: "0.150.1"
           extended: true
@@ -31,7 +34,24 @@ jobs:
       - name: Build
         run: hugo -s site --minify --baseURL "${{ steps.pages.outputs.base_url }}/"
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Debug output
+        run: |
+          echo "PWD=$(pwd)"
+          echo "---- ls site ----"
+          ls -la site | head -n 200
+          echo "---- ls site/public ----"
+          ls -la site/public | head -n 200
+          echo "---- ls site/public/courses ----"
+          ls -la site/public/courses | head -n 50 || true
+          echo "---- ls site/public/courses/c100 ----"
+          ls -la site/public/courses/c100 | head -n 200 || true
+          echo "---- must exist ----"
+          test -f site/public/index.html
+          test -f site/public/courses/c100/index.html
+          echo "OK"
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: site/public
 
@@ -42,5 +62,6 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
+      - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v4
