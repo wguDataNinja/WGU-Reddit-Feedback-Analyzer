@@ -1,4 +1,4 @@
-baseURL = "http://localhost:1313/"
+baseURL = "/"
 languageCode = "en-us"
 title = "WGU Reddit Snapshot"
 theme = "PaperMod"
@@ -26,25 +26,25 @@ defaultTheme = "light"
 
   [[menu.main]]
   name = "About"
-  url = "/about/"
+  url = "about/"
   weight = 10
 
   [[menu.main]]
   name = "Privacy"
-  url = "/privacy/"
+  url = "privacy/"
   weight = 20
 
   [[menu.main]]
   name = "Courses"
-  url = "/courses/"
+  url = "courses/"
   weight = 30
 
   [[menu.main]]
   name = "Categories"
-  url = "/global-issues/"
+  url = "global-issues/"
   weight = 40
 
   [[menu.main]]
   name = "Source posts"
-  url = "/raw-posts/"
+  url = "raw-posts/"
   weight = 50
