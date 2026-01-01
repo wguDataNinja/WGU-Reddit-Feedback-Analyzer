@@ -2,7 +2,22 @@
   const root = document.getElementById("wra-raw-posts");
   if (!root) return;
 
-  const indexUrl = root.getAttribute("data-index-url");
+  let indexUrl = String(root.getAttribute("data-index-url") || "").trim();
+
+  if (!indexUrl) indexUrl = "post_index.json";
+
+  if (indexUrl.startsWith("/")) {
+    const host = window.location.hostname;
+    const isLocal = host === "localhost" || host === "127.0.0.1";
+
+    if (!isLocal) {
+      const repo = window.location.pathname.split("/").filter(Boolean)[0] || "";
+      if (repo) indexUrl = "/" + repo + indexUrl;
+    }
+  }
+
+  indexUrl = new URL(indexUrl, window.location.href).toString();
+
   const elQ = document.getElementById("wra-q");
   const elCourse = document.getElementById("wra-course");
   const elPageSize = document.getElementById("wra-page-size");
