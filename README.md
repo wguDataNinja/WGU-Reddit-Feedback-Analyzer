@@ -2,14 +2,16 @@
 
 ## Overview
 
-Western Governors University provides many official channels for students to seek academic help and support. Reddit is not one of them.
+Western Governors University provides many official channels for students to seek academic help and support, but Reddit
+is not one of them. Despite this, many WGU students use Reddit to ask questions, express frustration, and discuss course 
+experiences across more than 50 WGU-related subreddits. These unsolicited and informal conversations represent a large, 
+fragmented body of feedback that is difficult to analyze using traditional methods.
 
-Despite this, many WGU students use Reddit to ask questions, express frustration, and discuss course experiences. These conversations are unsolicited, informal, and spread across more than 50 WGU-related subreddits. As a result, Reddit represents a large, fragmented body of feedback about courses that is difficult to analyze using traditional methods.
+The **WGU Reddit Analyzer** is a reproducible research pipeline that uses large language models (LLMs) to transform this 
+unstructured social media discussion into structured, analyzable data. The pipeline produces course-level issue summaries, 
+cross-course issue categories, and deterministic reporting tables suitable for academic analysis.
 
-The **WGU Reddit Analyzer** is a reproducible research pipeline that uses large language models (LLMs) to transform this unstructured social media discussion into structured, analyzable data. The pipeline produces course-level issue summaries, cross-course issue categories, and deterministic reporting tables suitable for academic analysis.
-
-This repository contains the analytical system.  
-A companion static website presents selected outputs in a read-only, public format.
+A read-only static website presents selected outputs and can be accessed [here](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/).
 
 ---
 
