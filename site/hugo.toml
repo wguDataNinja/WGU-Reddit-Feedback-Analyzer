@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/"
 languageCode = "en-us"
 title = "WGU Reddit Snapshot"
 theme = "PaperMod"
