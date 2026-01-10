@@ -1,0 +1,77 @@
+{
+  "course": "D216",
+  "clusters": [
+    {
+      "cluster_id": "D216_1",
+      "title": "Uncertainty in Learning Outcomes",
+      "root_cause_summary": "Students feel lost and uncertain about their progress and passing the course despite efforts.",
+      "pain_point_ids": [
+        "1ig81fe_0",
+        "1lnj2oc_0",
+        "1h3t5se_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D216_2",
+      "title": "Assessment Difficulty",
+      "root_cause_summary": "Students struggle with the difficulty of assessments despite adequate preparation.",
+      "pain_point_ids": [
+        "1j11ps6_0",
+        "1l04s9t_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D216_3",
+      "title": "Course Engagement Issues",
+      "root_cause_summary": "Students find the course content and delivery unengaging and boring.",
+      "pain_point_ids": [
+        "1jahaqa_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D216_4",
+      "title": "Lack of Clarity in Study Focus",
+      "root_cause_summary": "Students are confused about which parts of the course material they should prioritize for assessments.",
+      "pain_point_ids": [
+        "1hfsmyg_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D216_5",
+      "title": "Ineffective Study Methods",
+      "root_cause_summary": "Students feel overwhelmed by the uncertainty of the effectiveness of their study methods.",
+      "pain_point_ids": [
+        "1h59dtj_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D216_6",
+      "title": "Textbook Relevance Issues",
+      "root_cause_summary": "Students regret not engaging with the textbook, impacting their understanding of course material.",
+      "pain_point_ids": [
+        "1h59dtj_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D216_1",
+      "summary": "Students feel lost and uncertain about their progress and passing the course despite efforts.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:33:26.550804Z"
+    },
+    {
+      "cluster_id": "D216_2",
+      "summary": "Students struggle with the difficulty of assessments despite adequate preparation.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:33:26.550889Z"
+    }
+  ]
+}

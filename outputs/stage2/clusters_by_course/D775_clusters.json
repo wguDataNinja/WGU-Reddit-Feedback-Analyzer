@@ -1,0 +1,25 @@
+{
+  "course": "D775",
+  "clusters": [
+    {
+      "cluster_id": "D775_1",
+      "title": "Information Overload",
+      "root_cause_summary": "Students are having difficulty retaining a large amount of information presented in the course.",
+      "pain_point_ids": [
+        "1jt92gw_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D775_2",
+      "title": "Reading Load and Resource Availability",
+      "root_cause_summary": "Students are overwhelmed by heavy reading loads and the lack of video resources for learning.",
+      "pain_point_ids": [
+        "1m3lv0s_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

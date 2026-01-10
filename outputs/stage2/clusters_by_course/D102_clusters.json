@@ -1,0 +1,75 @@
+{
+  "course": "D102",
+  "clusters": [
+    {
+      "cluster_id": "D102_1",
+      "title": "Understanding Key Concepts",
+      "root_cause_summary": "Students struggle with comprehension of key concepts, such as dividends, leading to repeated quiz failures.",
+      "pain_point_ids": [
+        "1l2sxhk_0",
+        "1hy8u0g_0",
+        "1ll9h64_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D102_2",
+      "title": "Overwhelming Course Material",
+      "root_cause_summary": "Students feel overwhelmed by the extensive amount of material required to understand the course content.",
+      "pain_point_ids": [
+        "1ll9h64_1",
+        "1kizotn_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D102_3",
+      "title": "Exam Format Anxiety",
+      "root_cause_summary": "Students experience anxiety and nervousness regarding the format and content of proctored exams.",
+      "pain_point_ids": [
+        "1kmspbq_0",
+        "1kn1r49_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D102_4",
+      "title": "Lack of Resource Availability",
+      "root_cause_summary": "Students feel frustrated due to insufficient resources to verify their answers for practice assessments.",
+      "pain_point_ids": [
+        "1jja55l_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D102_5",
+      "title": "Support and Additional Resources",
+      "root_cause_summary": "Students express difficulty in finding additional study materials after assessments and lack of support from instructors.",
+      "pain_point_ids": [
+        "1glqvai_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D102_1",
+      "summary": "Students struggle with comprehension of key concepts, such as dividends, leading to repeated quiz failures.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:51:04.538422Z"
+    },
+    {
+      "cluster_id": "D102_2",
+      "summary": "Students feel overwhelmed by the extensive amount of material required to understand the course content.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:51:04.538444Z"
+    },
+    {
+      "cluster_id": "D102_3",
+      "summary": "Students experience anxiety and nervousness regarding the format and content of proctored exams.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:51:04.538448Z"
+    }
+  ]
+}

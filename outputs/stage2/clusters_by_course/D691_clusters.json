@@ -1,0 +1,16 @@
+{
+  "course": "D691",
+  "clusters": [
+    {
+      "cluster_id": "D691_1",
+      "title": "Unclear Assignment Requirements",
+      "root_cause_summary": "Students are uncertain about the specifics and difficulty level of the assignments in the course.",
+      "pain_point_ids": [
+        "1m5odz7_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

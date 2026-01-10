@@ -1,0 +1,52 @@
+{
+  "course": "D334",
+  "clusters": [
+    {
+      "cluster_id": "D334_1",
+      "title": "Miscommunication about Course Resources",
+      "root_cause_summary": "Students are unclear about the availability and functionality of course resources, such as electronic tools.",
+      "pain_point_ids": [
+        "1k4wr2u_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D334_2",
+      "title": "Academic Performance Anxiety",
+      "root_cause_summary": "Students experience anxiety and stress due to repeatedly failing or struggling to pass the course.",
+      "pain_point_ids": [
+        "1ef8ncv_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D334_3",
+      "title": "Personal Circumstances Affecting Focus",
+      "root_cause_summary": "Students face personal challenges that hinder their ability to concentrate and succeed in the course.",
+      "pain_point_ids": [
+        "16533pt_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D334_4",
+      "title": "Overwhelm from Inconsistent Performance",
+      "root_cause_summary": "Students feel overwhelmed and fatigued due to inconsistent assessment outcomes in the course.",
+      "pain_point_ids": [
+        "1kzj3ym_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D334_5",
+      "title": "Study Material Incompleteness",
+      "root_cause_summary": "Students struggle to pass assessments due to discrepancies between study materials and actual exam questions.",
+      "pain_point_ids": [
+        "1m56myk_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

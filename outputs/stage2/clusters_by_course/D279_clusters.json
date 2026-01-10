@@ -1,0 +1,43 @@
+{
+  "course": "D279",
+  "clusters": [
+    {
+      "cluster_id": "D279_1",
+      "title": "Guidance on Software Tools",
+      "root_cause_summary": "Students need more guidance and resources for using specific software tools effectively.",
+      "pain_point_ids": [
+        "1f9s617_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D279_2",
+      "title": "Resource Access for Project Development",
+      "root_cause_summary": "Students are struggling to find effective tools and resources required for course project development.",
+      "pain_point_ids": [
+        "1crcu4q_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D279_3",
+      "title": "CSS and Web Development Challenges",
+      "root_cause_summary": "Students are facing difficulties with CSS, particularly with element positioning, impacting their web development tasks.",
+      "pain_point_ids": [
+        "1clayjb_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D279_4",
+      "title": "Assignment Clarity and Scope",
+      "root_cause_summary": "Students are finding the assignment massive and lacking in clarity, leading to frustration.",
+      "pain_point_ids": [
+        "1bnr166_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,43 @@
+{
+  "course": "C190",
+  "clusters": [
+    {
+      "cluster_id": "C190_1",
+      "title": "Instructor Support Delays",
+      "root_cause_summary": "Delays in receiving support from the instructor impact student progress.",
+      "pain_point_ids": [
+        "1arp422_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C190_2",
+      "title": "Overwhelming Course Material",
+      "root_cause_summary": "Course material is overwhelming and unengaging, reducing motivation.",
+      "pain_point_ids": [
+        "1i8jnik_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C190_3",
+      "title": "Mentor Call Scheduling Challenges",
+      "root_cause_summary": "Difficulty in scheduling mentor calls due to full-time job and course demands.",
+      "pain_point_ids": [
+        "x1s4gw_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C190_4",
+      "title": "Inconsistent Assessment Retake Process",
+      "root_cause_summary": "The complicated and inconsistent process for retaking assessments creates frustration and confusion for students.",
+      "pain_point_ids": [
+        "1lz59ae_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

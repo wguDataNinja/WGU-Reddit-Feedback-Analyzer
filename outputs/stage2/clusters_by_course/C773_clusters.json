@@ -1,0 +1,16 @@
+{
+  "course": "C773",
+  "clusters": [
+    {
+      "cluster_id": "C773_1",
+      "title": "Clarity of Requirements",
+      "root_cause_summary": "Students are confused about the expectations laid out in the rubric, leading to uncertainty regarding task completion.",
+      "pain_point_ids": [
+        "1e1597j_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

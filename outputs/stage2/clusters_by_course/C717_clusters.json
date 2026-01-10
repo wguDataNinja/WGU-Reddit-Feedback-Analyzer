@@ -1,0 +1,34 @@
+{
+  "course": "C717",
+  "clusters": [
+    {
+      "cluster_id": "C717_1",
+      "title": "Course Version Confusion",
+      "root_cause_summary": "Students are unclear about which version of the course they are enrolled in, causing confusion.",
+      "pain_point_ids": [
+        "1li2k4r_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C717_2",
+      "title": "Textbook Quality Issues",
+      "root_cause_summary": "Students find the course textbook unhelpful and seek better alternative resources.",
+      "pain_point_ids": [
+        "1li2k4r_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C717_3",
+      "title": "Repetitive Course Tasks",
+      "root_cause_summary": "Students experience frustration with the repetitive and bloated nature of course tasks.",
+      "pain_point_ids": [
+        "1li2k4r_2"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

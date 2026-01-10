@@ -1,0 +1,565 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WGU Reddit Monitoring Dashboard</title>
+
+<style>
+    /* Reset and base styles */
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+        font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif;
+        line-height:1.6;color:#333;background:#f5f5f5;
+    }
+    .container{max-width:1200px;margin:0 auto;padding:20px}
+
+    /* Header */
+    .header{
+        background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;
+        box-shadow:0 2px 4px rgba(0,0,0,.1);
+    }
+    .header h1{color:#ff4500;margin-bottom:10px;font-size:1.8rem}
+    .readme-link{
+        margin-left:10px;color:#007BFF;text-decoration:underline;font-weight:500;cursor:pointer;
+    }
+    .readme-link:hover{color:#0056b3}
+
+    /* Filter Bar */
+    .filter-bar{
+        background:#fff;padding:20px;border-radius:8px;margin-bottom:20px;
+        box-shadow:0 2px 4px rgba(0,0,0,.1);
+    }
+    .filter-row{
+        display:flex;gap:15px;margin-bottom:15px;flex-wrap:wrap;align-items:end;
+    }
+    .filter-group{
+        display:flex;flex-direction:column;min-width:120px;
+    }
+    .filter-group label{
+        font-size:.9rem;font-weight:500;margin-bottom:5px;color:#555;
+    }
+    .filter-group input,
+    .filter-group select{
+        padding:8px 12px;border:1px solid #ddd;border-radius:4px;font-size:.9rem;
+    }
+    .filter-group input:focus,
+    .filter-group select:focus{
+        outline:none;border-color:#ff4500;box-shadow:0 0 0 2px rgba(255,69,0,.1);
+    }
+    .sentiment-filter{display:flex;gap:8px;align-items:end}
+
+    /* Buttons */
+    .reset-btn{
+        background:#eee;border:1px solid #ccc;padding:8px 16px;border-radius:4px;
+        cursor:pointer;font-size:.9rem;margin-top:10px;
+    }
+    .reset-btn:hover{background:#ddd}
+
+    /* Post List */
+    .post-list{
+        background:#fff;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,.1);overflow:hidden;
+    }
+    .post-card{
+        border-bottom:1px solid #eee;padding:20px;transition:background-color .2s;
+    }
+    .post-card:hover{background:#fafafa}
+    .post-card:last-child{border-bottom:none}
+
+    .post-row-1{display:flex;gap:15px;margin-bottom:12px}
+    .post-title{font-weight:600;color:#333;min-width:200px;max-width:300px;flex-shrink:0}
+    .post-selftext{flex:1;color:#555;line-height:1.5}
+    .selftext-collapsed{max-height:60px;overflow:hidden;position:relative}
+    .selftext-collapsed::after{
+        content:'';position:absolute;bottom:0;right:0;width:100%;height:20px;
+        background:linear-gradient(transparent,#fafafa);
+    }
+    .expand-btn{
+        background:none;border:none;color:#ff4500;cursor:pointer;font-size:.9rem;margin-top:5px;
+    }
+    .expand-btn:hover{text-decoration:underline}
+
+    .post-row-2{
+        display:flex;
+        gap:15px;
+        font-size:.85rem;
+        color:#666;
+        align-items:flex-start;
+        flex-wrap:wrap;
+    }
+
+    .post-meta{
+        margin-left:auto;display:flex;gap:15px;align-items:center;flex-wrap:wrap;justify-content:flex-end;
+    }
+
+    .course-info{
+        font-weight:500;
+        color:#006400;
+        width:250px;
+        flex-shrink:0;
+        flex-grow:0;
+        word-wrap:break-word;
+    }
+
+    .categories,.intent-tags{display:flex;gap:5px}
+    .tag{
+        background:#e8f4f8;color:#0c7b93;padding:2px 8px;border-radius:12px;font-size:.8rem;
+    }
+    .intent-tag{background:#fff2e6;color:#cc8400}
+
+    .sentiment-score{font-weight:500}
+    .sentiment-bold-red{color:#c0392b;font-weight:bold}
+    .sentiment-red{color:#e74c3c}
+    .sentiment-grey{color:#888}
+    .sentiment-green{color:#2ecc71}
+    .sentiment-bold-green{color:#27ae60;font-weight:bold}
+
+    .post-link{color:#ff4500;text-decoration:none}
+    .post-link:hover{text-decoration:underline}
+    .date{color:#999}
+
+    mark{background:#ffeb3b;padding:0}
+
+    .no-text-placeholder{color:#aaa;font-style:italic}
+
+    /* Load more */
+    .load-more-container{text-align:center;padding:20px;background:#fff}
+    .load-more-btn{
+        background:#ff4500;color:#fff;border:none;padding:12px 24px;border-radius:6px;
+        font-size:1rem;cursor:pointer;transition:background-color .2s;
+    }
+    .load-more-btn:hover{background:#cc3700}
+    .load-more-btn:disabled{background:#ccc;cursor:not-allowed}
+
+    /* Status */
+    .status{
+        text-align:center;padding:20px;color:#666;background:#fff;border-radius:8px;margin-bottom:20px;
+    }
+
+    /* Responsive */
+    @media (max-width:768px){
+        .filter-row{flex-direction:column;align-items:stretch}
+        .filter-group{min-width:auto}
+        .post-row-1{flex-direction:column;gap:10px}
+        .post-title{min-width:auto;max-width:none}
+        .post-row-2{flex-direction:column;align-items:flex-start;gap:8px}
+        .post-meta{margin-left:0;justify-content:flex-start}
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1>WGU Reddit Monitoring Dashboard</h1>
+        <p>
+            View Posts by category, sentiment, course or college
+            <a href="https://github.com/wguDataNinja/wgu-reddit-monitoring-pipeline/blob/main/README.md"
+               class="readme-link" target="_blank" rel="noopener">View Readme</a>
+        </p>
+    </div>
+
+    <div class="filter-bar">
+        <div class="filter-row">
+            <div class="filter-group">
+                <label for="search">Search</label>
+                <input type="text" id="search" placeholder="Search title & content...">
+            </div>
+
+            <div class="filter-group">
+                <label for="course">Course</label>
+                <input id="course" list="courseList" placeholder="Start typing course code...">
+                <datalist id="courseList"></datalist>
+            </div>
+
+            <div class="filter-group">
+                <label for="college">College</label>
+                <select id="college">
+                    <option value="">All Colleges</option>
+                    <option>School of Business</option>
+                    <option>Leavitt School of Health</option>
+                    <option>School of Technology</option>
+                    <option>School of Education</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="category">Category</label>
+                <select id="category">
+                    <option value="">All Categories</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="intent">Intent</label>
+                <select id="intent">
+                    <option value="">All Intents</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label>Sentiment</label>
+                <div class="sentiment-filter">
+                    <select id="sentimentOp">
+                        <option value="">Any</option>
+                        <option value="<">Less than</option>
+                        <option value=">">Greater than</option>
+                    </select>
+                    <input type="number" id="sentimentValue" step="0.1" min="-1" max="1" placeholder="0.0">
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <label for="dateRange">Date Range</label>
+                <select id="dateRange">
+                    <option value="all">All Time</option>
+                    <option value="24h">Last 24 Hours</option>
+                    <option value="7d">Last 7 Days</option>
+                    <option value="30d">Last 30 Days</option>
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="sortBy">Sort By</label>
+                <select id="sortBy">
+                    <option value="recent">Date (Most Recent)</option>
+                    <option value="sentiment_low">Sentiment (Lowest First)</option>
+                    <option value="sentiment_high">Sentiment (Highest First)</option>
+                    <option value="length_short">Length (Shortest First)</option>
+                    <option value="length_long">Length (Longest First)</option>
+                </select>
+            </div>
+        </div>
+
+        <button id="forceRefresh" class="reset-btn">Refresh / Reset All Filters</button>
+    </div>
+
+    <div id="displayCount" class="status" style="margin-top:-10px;"></div>
+
+    <div id="status" class="status">Loading posts...</div>
+
+    <div id="postList" class="post-list" style="display:none;"></div>
+
+    <div id="loadMoreContainer" class="load-more-container" style="display:none;">
+        <button id="loadMoreBtn" class="load-more-btn">Load More Posts</button>
+        <div id="loadMoreStatus"></div>
+    </div>
+</div>
+
+<script>
+// index.html
+
+// Global state
+let allPosts = [];
+let filteredPosts = [];
+let displayedCount = 0;
+let maxCreatedUtc = 0;
+const POSTS_PER_PAGE = 20;
+
+// Initialize the application
+async function init() {
+    try {
+        const response = await fetch('gui_prototype_posts_merged.json');
+        const text = await response.text();
+        allPosts = JSON.parse(text);
+
+        normalizePosts();
+        populateFilterOptions();
+        renderFilters();
+        updateView();
+
+        document.getElementById('status').style.display = 'none';
+        document.getElementById('postList').style.display = 'block';
+        document.getElementById('loadMoreContainer').style.display = 'block';
+    } catch (error) {
+        console.error('Error initializing app:', error);
+        document.getElementById('status').textContent =
+            'Error loading posts. Please check if gui_prototype_posts_merged.json is available.';
+    }
+}
+
+// Preprocess posts data
+function normalizePosts() {
+    // Ensure colleges is an array
+    allPosts = allPosts.map(p => ({
+        ...p,
+        colleges: Array.isArray(p.colleges) ? p.colleges : (p.colleges ? [p.colleges] : [])
+    }));
+    maxCreatedUtc = Math.max(...allPosts.map(post => post.created_utc));
+}
+
+// Populate filter dropdown options + course datalist
+function populateFilterOptions() {
+    const categories = new Set();
+    const intents = new Set();
+
+    allPosts.forEach(post => {
+        (post.categories || []).forEach(cat => categories.add(cat));
+        (post.intent_tags || []).forEach(intent => intents.add(intent));
+    });
+
+    const categorySelect = document.getElementById('category');
+    [...categories].sort().forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat;
+        option.textContent = cat;
+        categorySelect.appendChild(option);
+    });
+
+    const intentSelect = document.getElementById('intent');
+    [...intents].sort().forEach(intent => {
+        const option = document.createElement('option');
+        option.value = intent;
+        option.textContent = intent.replace(/_/g, ' ');
+        intentSelect.appendChild(option);
+    });
+
+    // Courses datalist (up to 100 uniques, with label)
+    const courseSet = [...new Set(allPosts.map(p => p.course_code))].filter(Boolean).slice(0, 100);
+    const datalist = document.getElementById('courseList');
+    datalist.innerHTML = '';
+    courseSet.forEach(code => {
+        const post = allPosts.find(p => p.course_code === code);
+        const label = `${code} - ${post?.course_title || ''}`.slice(0, 60);
+        const option = document.createElement('option');
+        option.value = code;
+        option.label = label;
+        datalist.appendChild(option);
+    });
+}
+
+// Set up filter event listeners
+function renderFilters() {
+    const filterInputs = [
+        'search','category','intent','sentimentOp','sentimentValue','dateRange','sortBy','course','college'
+    ];
+
+    filterInputs.forEach(id => {
+        const element = document.getElementById(id);
+        element.addEventListener('input', debounce(updateView, 300));
+        element.addEventListener('change', updateView);
+    });
+
+    document.getElementById('loadMoreBtn').addEventListener('click', loadMore);
+
+    // 🔁 Replaced Reset Filters with Refresh
+    document.getElementById('forceRefresh').addEventListener('click', () => {
+        location.reload();
+    });
+}
+
+// Get current filter state
+function getFilterState() {
+    return {
+        search: document.getElementById('search').value.toLowerCase(),
+        course: document.getElementById('course').value.trim(),
+        college: document.getElementById('college').value,
+        category: document.getElementById('category').value,
+        intent: document.getElementById('intent').value,
+        sentimentOp: document.getElementById('sentimentOp').value,
+        sentimentValue: Number.isFinite(parseFloat(document.getElementById('sentimentValue').value))
+            ? parseFloat(document.getElementById('sentimentValue').value)
+            : null,
+        dateRange: document.getElementById('dateRange').value,
+        sortBy: document.getElementById('sortBy').value
+    };
+}
+
+// Apply all filters
+function filterPosts(posts, filters) {
+    return posts.filter(post => {
+        // Search
+        if (filters.search) {
+            const safeSelftext = post.selftext || '';
+            const searchText = `${post.title} ${safeSelftext}`.toLowerCase();
+            if (!searchText.includes(filters.search)) return false;
+        }
+
+        // Course
+        if (filters.course && post.course_code !== filters.course) return false;
+
+        // College (fixed)
+        if (filters.college && (!post.colleges || !post.colleges.includes(filters.college))) return false;
+
+        // Category
+        if (filters.category && (!post.categories || !post.categories.includes(filters.category))) return false;
+
+        // Intent
+        if (filters.intent && (!post.intent_tags || !post.intent_tags.includes(filters.intent))) return false;
+
+        // Sentiment
+        if (filters.sentimentOp && filters.sentimentValue !== null) {
+            const sentiment = post.VADER_Compound;
+            if (filters.sentimentOp === '<' && sentiment >= filters.sentimentValue) return false;
+            if (filters.sentimentOp === '>' && sentiment <= filters.sentimentValue) return false;
+        }
+
+        // Date
+        if (filters.dateRange !== 'all') {
+            const cutoff = filterByCreatedDate(filters.dateRange, maxCreatedUtc);
+            if (post.created_utc < cutoff) return false;
+        }
+
+        return true;
+    });
+}
+
+// Date cutoff
+function filterByCreatedDate(range, maxUtc) {
+    const secondsIn = { '24h': 86400, '7d': 604800, '30d': 2592000 };
+    return maxUtc - (secondsIn[range] || 0);
+}
+
+// Sort posts
+function sortPosts(posts, sortOption) {
+    const sorted = [...posts];
+    switch (sortOption) {
+        case 'sentiment_low':   return sorted.sort((a,b)=>a.VADER_Compound-b.VADER_Compound);
+        case 'sentiment_high':  return sorted.sort((a,b)=>b.VADER_Compound-a.VADER_Compound);
+        case 'length_short':    return sorted.sort((a,b)=>a.text_length-b.text_length);
+        case 'length_long':     return sorted.sort((a,b)=>b.text_length-a.text_length);
+        case 'recent':
+        default:                return sorted.sort((a,b)=>b.created_utc-a.created_utc);
+    }
+}
+
+// Main view update
+function updateView() {
+    const filters = getFilterState();
+    filteredPosts = sortPosts(filterPosts(allPosts, filters), filters.sortBy);
+    displayedCount = 0;
+    renderPostList(POSTS_PER_PAGE);
+    document.getElementById('displayCount').textContent = `Displaying ${filteredPosts.length} posts`;
+}
+
+// Render list
+function renderPostList(count) {
+    const postList = document.getElementById('postList');
+    const postsToShow = filteredPosts.slice(displayedCount, displayedCount + count);
+
+    if (displayedCount === 0) postList.innerHTML = '';
+
+    postsToShow.forEach(post => {
+        const postCard = renderPostCard(post);
+        postList.appendChild(postCard);
+    });
+
+    displayedCount += postsToShow.length;
+    updateLoadMoreButton();
+}
+
+// Single card
+function renderPostCard(post) {
+    const card = document.createElement('div');
+    card.className = 'post-card';
+    card.dataset.postId = post.post_id;
+
+    const searchQuery = document.getElementById('search').value.toLowerCase();
+    const isEmpty = !post.selftext || post.selftext.trim() === '';
+    const safeSelftext = isEmpty
+        ? '<span class="no-text-placeholder">[no post text]</span>'
+        : highlightSearch(post.selftext, searchQuery);
+
+    const highlightedTitle = highlightSearch(post.title, searchQuery);
+    const isLongText = !isEmpty && post.selftext.length > 200;
+    const selftextClass = isLongText ? 'selftext-collapsed' : '';
+
+    card.innerHTML = `
+        <div class="post-row-1">
+            <div class="post-title">${highlightedTitle}</div>
+            <div class="post-selftext">
+                <div class="${selftextClass}" id="selftext-${post.post_id}">
+                    ${safeSelftext}
+                </div>
+                ${(!isEmpty && isLongText) ? `<button class="expand-btn" onclick="toggleExpand('${post.post_id}')">Show more</button>` : ''}
+                ${isEmpty ? `<a href="https://reddit.com${post.permalink}" target="_blank" class="post-link">View Full Post</a>` : ''}
+            </div>
+        </div>
+        <div class="post-row-2">
+            <span class="course-info">${post.course_code || ''} - ${post.course_title || ''}</span>
+            <div class="categories">
+                ${(post.categories || []).map(cat => `<span class="tag">${cat}</span>`).join('')}
+            </div>
+            <div class="intent-tags">
+                ${(post.intent_tags || []).map(tag => `<span class="tag intent-tag">${tag.replace(/_/g,' ')}</span>`).join('')}
+            </div>
+
+            <div class="post-meta">
+                <span class="sentiment-score ${getSentimentClass(post.VADER_Compound)}">
+                    Sentiment: ${post.VADER_Compound.toFixed(3)}
+                </span>
+                <span class="date">${formatDate(post.created_utc)}</span>
+                <a href="https://reddit.com${post.permalink}" target="_blank" class="post-link">View Post</a>
+            </div>
+        </div>
+    `;
+    return card;
+}
+
+// Expand/collapse
+function toggleExpand(postId){
+    const selftext = document.getElementById(`selftext-${postId}`);
+    const btn = selftext.nextElementSibling;
+    if(selftext.classList.contains('selftext-collapsed')){
+        selftext.classList.remove('selftext-collapsed');
+        btn.textContent='Show less';
+    }else{
+        selftext.classList.add('selftext-collapsed');
+        btn.textContent='Show more';
+    }
+}
+
+// Highlight search term
+function highlightSearch(text, query){
+    if(!query || !text) return text;
+    const regex = new RegExp(`(${escapeRegExp(query)})`,'gi');
+    return text.replace(regex,'<mark>$1</mark>');
+}
+
+// Sentiment CSS
+function getSentimentClass(score){
+    if(score < -0.5) return 'sentiment-bold-red';
+    if(score < -0.1) return 'sentiment-red';
+    if(score <  0.1) return 'sentiment-grey';
+    if(score <  0.5) return 'sentiment-green';
+    return 'sentiment-bold-green';
+}
+
+// Load more
+function loadMore(){ renderPostList(POSTS_PER_PAGE); }
+
+// Load more button state
+function updateLoadMoreButton(){
+    const btn = document.getElementById('loadMoreBtn');
+    const status = document.getElementById('loadMoreStatus');
+
+    if(displayedCount >= filteredPosts.length){
+        btn.style.display='none';
+        status.textContent=`Showing all ${filteredPosts.length} posts`;
+    }else{
+        btn.style.display='inline-block';
+        btn.textContent=`Load More Posts (${displayedCount}/${filteredPosts.length})`;
+        status.textContent='';
+    }
+}
+
+// Date format
+function formatDate(ts){
+    return new Date(ts*1000).toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'});
+}
+
+// Utils
+function debounce(func,wait){
+    let timeout;
+    return function(...args){
+        clearTimeout(timeout);
+        timeout=setTimeout(()=>func(...args),wait);
+    };
+}
+function escapeRegExp(str){return str.replace(/[.*+?^${}()|[\\]\\]/g,'\\$&');}
+
+// Start
+init();
+</script>
+</body>
+</html>

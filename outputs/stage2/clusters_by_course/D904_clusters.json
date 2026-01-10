@@ -1,0 +1,25 @@
+{
+  "course": "D904",
+  "clusters": [
+    {
+      "cluster_id": "D904_1",
+      "title": "Feedback and Evaluation Issues",
+      "root_cause_summary": "Students feel overwhelmed and distracted due to excessive nitpicking and criticism during evaluations.",
+      "pain_point_ids": [
+        "13t1ar6_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D904_2",
+      "title": "Lack of Performance Feedback",
+      "root_cause_summary": "Students are frustrated by the absence of feedback on performance, hindering their ability to identify areas for improvement.",
+      "pain_point_ids": [
+        "13t1ar6_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,16 @@
+help_keywords = [
+    "need help", "help!", "help with", "any advice", "looking for advice",
+    "advice on", "tips on", "looking for tips", "need suggestions",
+    "need recommendations", "how do i", "where do i", "where can i",
+    "what do i", "when should i", "which should i", "does anyone know",
+    "does anyone have", "anyone know how", "can someone help",
+    "can anyone help", "stuck on", "struggling with", "cannot figure out",
+    "can’t figure out", "having trouble with", "confused about",
+    "lost on", "don’t understand", "not sure how", "no idea how",
+    "trying to figure out", "help me understand", "explain how",
+    "can someone explain", "make sense of", "anyone dealt with",
+    "how did you handle", "how did you manage", "what worked for you",
+    "am i missing something", "doing something wrong", "what am i doing wrong",
+    "should i be", "am i supposed to", "can anyone explain",
+    "what's the best way to", "any pointers on",
+]

@@ -1,0 +1,16 @@
+{
+  "course": "C273",
+  "clusters": [
+    {
+      "cluster_id": "C273_1",
+      "title": "Course Difficulty",
+      "root_cause_summary": "Students feel the course content is excessively challenging, leading to frustration and poor performance.",
+      "pain_point_ids": [
+        "1lheeqb_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

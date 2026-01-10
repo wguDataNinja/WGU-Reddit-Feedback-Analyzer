@@ -1,0 +1,116 @@
+{
+  "course": "D277",
+  "clusters": [
+    {
+      "cluster_id": "D277_1",
+      "title": "Assessment Clarity",
+      "root_cause_summary": "Students are uncertain about the expectations and requirements for course assessments, leading to confusion.",
+      "pain_point_ids": [
+        "1d8p0bo_2",
+        "1ao50lq_0",
+        "186r4c6_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D277_2",
+      "title": "Task Requirement Confusion",
+      "root_cause_summary": "Students are unclear about where and how to apply requirements for specific tasks.",
+      "pain_point_ids": [
+        "1d8p0bo_1",
+        "1io32ox_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D277_3",
+      "title": "Coding Onboarding Issues",
+      "root_cause_summary": "Students feel lost and unsure about how to initiate coding assignments in the course.",
+      "pain_point_ids": [
+        "1i0glkr_0",
+        "1m6umpu_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D277_4",
+      "title": "Instructor Support Delays",
+      "root_cause_summary": "Students experience frustration due to a lack of timely support from instructors after multiple attempts to seek help.",
+      "pain_point_ids": [
+        "1kuii8v_0",
+        "1gq27yl_1"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D277_5",
+      "title": "Technical Issue with GitLab Hosting",
+      "root_cause_summary": "Students encounter issues with GitLab Page links, resulting in confusion and technical errors like 404 codes.",
+      "pain_point_ids": [
+        "1kmtkgc_0",
+        "1g0zhqx_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D277_6",
+      "title": "JavaScript Technical Challenges",
+      "root_cause_summary": "Students encounter difficulties with JavaScript coding tasks, particularly in validating inputs.",
+      "pain_point_ids": [
+        "1ewdyzc_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D277_7",
+      "title": "Coding Anxiety",
+      "root_cause_summary": "Students experience feelings of discouragement and overwhelm when tackling coding assignments, despite having some understanding of the material.",
+      "pain_point_ids": [
+        "1gq27yl_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D277_8",
+      "title": "Unreliable Hosting Services",
+      "root_cause_summary": "Students face difficulties due to unreliable hosting services required for project submissions.",
+      "pain_point_ids": [
+        "1d8p0bo_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D277_1",
+      "summary": "Students are uncertain about the expectations and requirements for course assessments, leading to confusion.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:34:14.649997Z"
+    },
+    {
+      "cluster_id": "D277_2",
+      "summary": "Students are unclear about where and how to apply requirements for specific tasks.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:34:14.650025Z"
+    },
+    {
+      "cluster_id": "D277_3",
+      "summary": "Students feel lost and unsure about how to initiate coding assignments in the course.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:34:14.650029Z"
+    },
+    {
+      "cluster_id": "D277_4",
+      "summary": "Students experience frustration due to a lack of timely support from instructors after multiple attempts to seek help.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:34:14.650032Z"
+    },
+    {
+      "cluster_id": "D277_5",
+      "summary": "Students encounter issues with GitLab Page links, resulting in confusion and technical errors like 404 codes.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:34:14.650035Z"
+    }
+  ]
+}

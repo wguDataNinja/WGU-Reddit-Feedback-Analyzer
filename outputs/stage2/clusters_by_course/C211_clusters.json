@@ -1,0 +1,102 @@
+{
+  "course": "C211",
+  "clusters": [
+    {
+      "cluster_id": "C211_1",
+      "title": "Question Clarity in Assessments",
+      "root_cause_summary": "Confusing wording of questions is impacting students' ability to successfully complete assessments.",
+      "pain_point_ids": [
+        "1limtxp_0",
+        "1b7uvxy_0",
+        "1m2hl4r_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C211_2",
+      "title": "Exam Retake Process Delays",
+      "root_cause_summary": "Delays in approval processes are causing stress for students attempting to retake exams.",
+      "pain_point_ids": [
+        "1l4gd5s_0",
+        "1i5z4ev_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C211_3",
+      "title": "Capstone Project Feasibility",
+      "root_cause_summary": "Students are concerned about the practicality of completing major projects within tight deadlines.",
+      "pain_point_ids": [
+        "1lu24vq_0",
+        "1l8fui8_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C211_4",
+      "title": "Exam Platform Anxiety",
+      "root_cause_summary": "Students are anxious about the technology used for exams.",
+      "pain_point_ids": [
+        "1jfi5qu_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C211_5",
+      "title": "Communication Issues with Instructors",
+      "root_cause_summary": "Students are facing difficulties in obtaining necessary information from their instructors.",
+      "pain_point_ids": [
+        "1e12ncu_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C211_6",
+      "title": "Study Resources Availability",
+      "root_cause_summary": "Students are having difficulty accessing necessary study materials and resources.",
+      "pain_point_ids": [
+        "1kqiw9n_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C211_7",
+      "title": "Clarity on Review Materials",
+      "root_cause_summary": "Students are uncertain about the relevance of review sessions to assessment materials.",
+      "pain_point_ids": [
+        "1lepdi1_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C211_8",
+      "title": "Information Overload in Course Content",
+      "root_cause_summary": "Students are overwhelmed by the volume and lack of coherence in the course material, making it difficult to retain information.",
+      "pain_point_ids": [
+        "1lxxu02_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "C211_1",
+      "summary": "Confusing wording of questions is impacting students' ability to successfully complete assessments.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:29:47.588469Z"
+    },
+    {
+      "cluster_id": "C211_2",
+      "summary": "Delays in approval processes are causing stress for students attempting to retake exams.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:29:47.588585Z"
+    },
+    {
+      "cluster_id": "C211_3",
+      "summary": "Students are concerned about the practicality of completing major projects within tight deadlines.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:29:47.588595Z"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "course": "D661",
+  "clusters": [
+    {
+      "cluster_id": "D661_1",
+      "title": "Building Interpersonal Skills",
+      "root_cause_summary": "Students struggle with establishing rapport and interpersonal skills needed for simulations.",
+      "pain_point_ids": [
+        "1jzuuy3_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D661_2",
+      "title": "Expectations and Preparation",
+      "root_cause_summary": "Students feel unprepared and uncertain about course components and expectations.",
+      "pain_point_ids": [
+        "1jw0nj7_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D661_3",
+      "title": "Anxiety in Virtual Simulations",
+      "root_cause_summary": "Students experience anxiety due to the simulation format and lack of interaction during classes.",
+      "pain_point_ids": [
+        "1i1q61u_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

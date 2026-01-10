@@ -1,0 +1,16 @@
+{
+  "course": "C721",
+  "clusters": [
+    {
+      "cluster_id": "C721_1",
+      "title": "Assessment Load and Complexity",
+      "root_cause_summary": "Students feel overwhelmed by the lengthy and complex nature of assessments.",
+      "pain_point_ids": [
+        "1fumiuc_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

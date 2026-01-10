@@ -1,0 +1,78 @@
+{
+  "course": "C213",
+  "clusters": [
+    {
+      "cluster_id": "C213_1",
+      "title": "Preparation for Assessments",
+      "root_cause_summary": "Students feel unprepared for assessments despite utilizing resources, indicating a gap in their confidence and understanding.",
+      "pain_point_ids": [
+        "1kvcnzt_0",
+        "1adh5n2_0",
+        "18virqh_0",
+        "1aryd1y_0",
+        "1kvdiq6_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C213_2",
+      "title": "Exam Process Frustration",
+      "root_cause_summary": "Students are experiencing significant frustration with the examination process, leading to delays and stress.",
+      "pain_point_ids": [
+        "1e93oh1_0",
+        "1adh5n2_1",
+        "1kebzmr_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C213_3",
+      "title": "Course Progression Challenges",
+      "root_cause_summary": "Students feel overwhelmed and stuck in the course due to a lack of relevant prior experience and slow course progression.",
+      "pain_point_ids": [
+        "1e1sbcc_0",
+        "1kjjmg8_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C213_4",
+      "title": "Information Overload",
+      "root_cause_summary": "Students are feeling overwhelmed by the excessive amount of information presented in the course.",
+      "pain_point_ids": [
+        "1k1dbkb_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C213_5",
+      "title": "Engagement Issues",
+      "root_cause_summary": "Students are struggling to engage with course materials, finding them boring and uninteresting.",
+      "pain_point_ids": [
+        "198lbb3_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "C213_1",
+      "summary": "Students feel unprepared for assessments despite utilizing resources, indicating a gap in their confidence and understanding.",
+      "post_count": 5,
+      "detected_on": "2025-07-25T07:33:49.245328Z"
+    },
+    {
+      "cluster_id": "C213_2",
+      "summary": "Students are experiencing significant frustration with the examination process, leading to delays and stress.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:33:49.245342Z"
+    },
+    {
+      "cluster_id": "C213_3",
+      "summary": "Students feel overwhelmed and stuck in the course due to a lack of relevant prior experience and slow course progression.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:33:49.245345Z"
+    }
+  ]
+}

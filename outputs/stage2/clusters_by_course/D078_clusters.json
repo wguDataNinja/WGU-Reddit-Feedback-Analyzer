@@ -1,0 +1,34 @@
+{
+  "course": "D078",
+  "clusters": [
+    {
+      "cluster_id": "D078_1",
+      "title": "Lack of Clarity in Task Requirements",
+      "root_cause_summary": "Students are struggling to understand the requirements for assignments and tasks.",
+      "pain_point_ids": [
+        "1gqrs3w_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D078_2",
+      "title": "Difficulties with Course Material Engagement",
+      "root_cause_summary": "Students find it hard to engage with the course material due to its content focus.",
+      "pain_point_ids": [
+        "1ijxa5n_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D078_3",
+      "title": "Confusion Over Submission Process",
+      "root_cause_summary": "Students feel stressed and confused about the submission process and any limitations associated with it.",
+      "pain_point_ids": [
+        "1l5mpq6_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

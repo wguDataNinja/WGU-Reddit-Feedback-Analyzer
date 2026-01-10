@@ -1,0 +1,80 @@
+{
+  "course": "D287",
+  "clusters": [
+    {
+      "cluster_id": "D287_1",
+      "title": "Lack of Guidance on Logic Implementation",
+      "root_cause_summary": "Insufficient directions provided for logical implementation in projects, leaving students to rely on external resources.",
+      "pain_point_ids": [
+        "1era7to_0",
+        "1j92m4m_0",
+        "1f38klq_0",
+        "1f38dr6_0",
+        "1l1yqto_0",
+        "1d80my9_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D287_2",
+      "title": "Unclear Error Messaging",
+      "root_cause_summary": "Lack of error messaging for custom validators, leading to confusion during code submissions.",
+      "pain_point_ids": [
+        "1atxpk7_0",
+        "1grzgjg_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D287_3",
+      "title": "Discrepancies in Evaluation",
+      "root_cause_summary": "Confusion between local environment setup and evaluator's feedback leading to misunderstandings in assessment.",
+      "pain_point_ids": [
+        "1jdkvg0_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D287_4",
+      "title": "Code Formatting Issues",
+      "root_cause_summary": "Inconsistent and poorly formatted pre-existing code in the course that does not reflect proper coding standards.",
+      "pain_point_ids": [
+        "1hyofpu_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D287_5",
+      "title": "Technical Issues Unaddressed in Course Materials",
+      "root_cause_summary": "Instructors did not provide guidance for technical problems students faced, leaving them unsupported during the course.",
+      "pain_point_ids": [
+        "1by7wbq_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D287_6",
+      "title": "Difficulty with Project Creativity and Representation",
+      "root_cause_summary": "Challenges in generating ideas and confidence for creative project representations, impacting overall project completion.",
+      "pain_point_ids": [
+        "1av9983_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D287_1",
+      "summary": "Insufficient directions provided for logical implementation in projects, leaving students to rely on external resources.",
+      "post_count": 6,
+      "detected_on": "2025-07-25T07:48:03.890201Z"
+    },
+    {
+      "cluster_id": "D287_2",
+      "summary": "Lack of error messaging for custom validators, leading to confusion during code submissions.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:48:03.890242Z"
+    }
+  ]
+}

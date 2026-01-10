@@ -1,0 +1,78 @@
+{
+  "course": "D197",
+  "clusters": [
+    {
+      "cluster_id": "D197_1",
+      "title": "Vague Task Instructions",
+      "root_cause_summary": "Students are frustrated by the unclear and vague task instructions, making it difficult to understand the expectations.",
+      "pain_point_ids": [
+        "1cj1m2c_0",
+        "1bco480_0",
+        "1b8ks9p_0",
+        "1j1cwxy_0",
+        "1lqxp9w_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D197_2",
+      "title": "Lack of Technical Support",
+      "root_cause_summary": "Students are unable to progress due to insufficient technical support and guidance when encountering issues.",
+      "pain_point_ids": [
+        "1b8ks9p_1",
+        "1gl3fu1_0",
+        "1cly2hq_0",
+        "1amidgv_0",
+        "1efcz0i_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D197_3",
+      "title": "Version Control Challenges",
+      "root_cause_summary": "Students struggle with effectively managing version control and recovery processes following mistakes.",
+      "pain_point_ids": [
+        "1l1yd7g_0",
+        "1bq7sec_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D197_4",
+      "title": "Submission Access Issues",
+      "root_cause_summary": "Students are facing difficulties accessing submission links, leading to 404 errors and hindering their ability to submit work.",
+      "pain_point_ids": [
+        "1bqrzmb_0",
+        "1lhdi9o_0"
+      ],
+      "is_potential": false
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D197_1",
+      "summary": "Students are frustrated by the unclear and vague task instructions, making it difficult to understand the expectations.",
+      "post_count": 5,
+      "detected_on": "2025-07-25T07:42:56.994345Z"
+    },
+    {
+      "cluster_id": "D197_2",
+      "summary": "Students are unable to progress due to insufficient technical support and guidance when encountering issues.",
+      "post_count": 5,
+      "detected_on": "2025-07-25T07:42:56.994365Z"
+    },
+    {
+      "cluster_id": "D197_3",
+      "summary": "Students struggle with effectively managing version control and recovery processes following mistakes.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:42:56.994369Z"
+    },
+    {
+      "cluster_id": "D197_4",
+      "summary": "Students are facing difficulties accessing submission links, leading to 404 errors and hindering their ability to submit work.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:42:56.994372Z"
+    }
+  ]
+}

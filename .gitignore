@@ -1,156 +1,60 @@
-# -------------------------
-# Environments / IDE / OS
-# -------------------------
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+
+# Logs and system files
+*.log
+.DS_Store
+
+# IDE / environment
+.idea/
 .venv/
 env/
 venv/
 .vscode/
-.idea/
-.DS_Store
-*.swp
 
-# -------------------------
-# Python build / cache
-# -------------------------
-__pycache__/
-*.py[cod]
-*.pyo
-*.pyd
-*.so
-*.egg-info/
-dist/
-build/
-.pytest_cache/
+# Jupyter
+.ipynb_checkpoints/
 
-# -------------------------
 # Secrets
-# -------------------------
-.env
-.env.*
 *.key
 *.pem
 
-# -------------------------
-# Logs (never publish)
-# -------------------------
-*.log
+# Data files — allow specific includes later
+*.json
+*.csv
+*.sqlite
+*.db
+*.pkl
+
+# Log and output dirs
 logs/
-
-# -------------------------
-# Notebooks / dev / legacy / visuals / scripts
-# -------------------------
-notebooks/
-dev/
-archive_legacy/
-visuals/
-scripts/
-prototype/
-**/.ipynb_checkpoints/
-**/.old/
-
-# -------------------------
-# Local databases
-# -------------------------
-db/
-*.db
-*.sqlite
-
-# -------------------------
-# Generated outputs (never publish)
-# -------------------------
 outputs/
-tmp*
-*.tmp
-CONTENT_BUNDLE.txt
-tracked_files.txt
+notebooks/outputs/
+data/output/
 
-# -------------------------
-# Data: deny all, allow only approved references
-# -------------------------
-data/**
-!data/course_list_with_college.csv
-!data/wgu_subreddits.txt
+# Old/unused dirs
+WGU_catalog copy/
+old/
 
-# -------------------------
-# Artifacts: deny all, allow only paper/audit bundle
-# -------------------------
-artifacts/**
+# Allow-listed dirs (don't ignore)
+!fetchers/
+!WGU_catalog/
+!notebooks/
 
-# Locks / snapshots
-!artifacts/stage0_lock.json
-!artifacts/schema_snapshot_stage0.json
+data/.old/
+data/stopwords/
 
-# Benchmark evidence
-!artifacts/benchmark/
-!artifacts/benchmark/gold/
-!artifacts/benchmark/gold/gold_labels.csv
-!artifacts/benchmark/stage1_panel_DEV.csv
-!artifacts/benchmark/stage1_panel_TEST.csv
-!artifacts/benchmark/stage1_run_index.csv
-!artifacts/benchmark/cost_estimates.csv
-!artifacts/benchmark/gating/
-!artifacts/benchmark/gating/**
+db/
+dev/
+fetchers/fetch_comments_custom.py
+fetchers/fetch_user_stats.py
+fetchers/fetch_users_daily.py
+fetchers/helpers.py
+/gui/
+/gui/
 
-# Report-ready outputs
-!artifacts/report_data/
-!artifacts/report_data/**
+/gui/
+/requirements.txt
 
-# Pinned Stage 1 run (paper)
-!artifacts/stage1/
-!artifacts/stage1/full_corpus/
-!artifacts/stage1/full_corpus/gpt-5-mini_s1_optimal_fullcorpus_20251126_023336/
-!artifacts/stage1/full_corpus/gpt-5-mini_s1_optimal_fullcorpus_20251126_023336/manifest.json
-!artifacts/stage1/full_corpus/gpt-5-mini_s1_optimal_fullcorpus_20251126_023336/predictions_FULL.csv
-!artifacts/stage1/full_corpus/gpt-5-mini_s1_optimal_fullcorpus_20251126_023336/s1_refined.txt
-
-# Pinned Stage 3 artifacts (paper)
-!artifacts/stage3/
-!artifacts/stage3/preprocessed/
-!artifacts/stage3/preprocessed/gpt-5-mini_s2_cluster_full_20251126_080011/
-!artifacts/stage3/preprocessed/gpt-5-mini_s2_cluster_full_20251126_080011/**
-!artifacts/stage3/runs/
-!artifacts/stage3/runs/gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_full_20251130_084422/
-!artifacts/stage3/runs/gpt-5-mini_s3_global_gpt-5-mini_s2_cluster_full_20251130_084422/**
-
-# Canonical Stage 2 derived artifacts (paper rebuild)
-!artifacts/stage2/
-!artifacts/stage2/manifest.json
-!artifacts/stage2/painpoints_llm_friendly.csv
-# -------------------------
-# Hugo site: keep source only
-# -------------------------
-site/public/
-site/resources/
-site/.hugo_build.lock
-site/.git/
-site.BACKUP_*/
-# Hard blocks
-/outputs/
-/outputs/**
-/logs/
-/logs/**
-/db/
-/db/**
-*.db
-*.sqlite
-*.sqlite3
-.env
-.env.*
-
-# Hard blocks
-/outputs/
-/outputs/**
-/logs/
-/logs/**
-/db/
-/db/**
-*.db
-*.sqlite
-*.sqlite3
-.env
-.env.*
-
-
-docs/tables/
-docs/templates/
-tests/
+/app.py

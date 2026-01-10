@@ -1,0 +1,52 @@
+{
+  "course": "C200",
+  "clusters": [
+    {
+      "cluster_id": "C200_1",
+      "title": "Anxiety Over Task Deadlines",
+      "root_cause_summary": "Students feel anxious about the consequences of not completing tasks by the class deadline.",
+      "pain_point_ids": [
+        "1k3xay2_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C200_2",
+      "title": "Concerns Over AI Detection",
+      "root_cause_summary": "Students are frustrated with AI detection tools inaccurately flagging their work for AI resemblance.",
+      "pain_point_ids": [
+        "1jsjoqe_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C200_3",
+      "title": "Feedback and Revision Frustration",
+      "root_cause_summary": "Students feel that their feedback is not acknowledged or incorporated in the revision process.",
+      "pain_point_ids": [
+        "1ap07fb_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C200_4",
+      "title": "Lack of Experience in Management",
+      "root_cause_summary": "Students are confused about course tasks due to their lack of experience in management or leadership roles.",
+      "pain_point_ids": [
+        "1k73poq_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C200_5",
+      "title": "Clarification on Task Instructions",
+      "root_cause_summary": "Students seek clarity on how to incorporate specific resources into their tasks.",
+      "pain_point_ids": [
+        "1k73poq_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

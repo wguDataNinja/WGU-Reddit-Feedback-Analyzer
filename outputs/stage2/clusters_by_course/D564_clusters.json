@@ -1,0 +1,34 @@
+{
+  "course": "D564",
+  "clusters": [
+    {
+      "cluster_id": "D564_1",
+      "title": "Overwhelming Coursework Requirements",
+      "root_cause_summary": "Students feel overwhelmed by the detailed and lengthy requirements of course materials, hindering their ability to succeed.",
+      "pain_point_ids": [
+        "1iy8p35_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D564_2",
+      "title": "Access Issues for Testing",
+      "root_cause_summary": "Significant delays and access problems with the test system create additional stress and difficulty for students.",
+      "pain_point_ids": [
+        "1khlnhd_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D564_3",
+      "title": "Personal Responsibilities and Support",
+      "root_cause_summary": "Students are struggling to balance course demands with personal responsibilities and lack adequate support to help them succeed.",
+      "pain_point_ids": [
+        "1lzpaug_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

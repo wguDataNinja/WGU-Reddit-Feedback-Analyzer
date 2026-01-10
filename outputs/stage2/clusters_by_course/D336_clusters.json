@@ -1,0 +1,52 @@
+{
+  "course": "D336",
+  "clusters": [
+    {
+      "cluster_id": "D336_1",
+      "title": "Insufficient Depth in Course Materials",
+      "root_cause_summary": "Lack of coverage of key topics in course materials leading to confusion and low exam performance.",
+      "pain_point_ids": [
+        "1kbwwg3_0",
+        "1knh6o0_0",
+        "1ks8dgt_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D336_2",
+      "title": "Impact of Certification Scores on Career Opportunities",
+      "root_cause_summary": "Concerns about how low passing scores on certifications can influence future job applications.",
+      "pain_point_ids": [
+        "1jktsyu_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D336_3",
+      "title": "Engagement and Success Strategies in Course Content",
+      "root_cause_summary": "Boredom with the course content leading to uncertainty about how to succeed.",
+      "pain_point_ids": [
+        "1hx6spy_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D336_4",
+      "title": "Delays in Test Result Recognition",
+      "root_cause_summary": "Delays in the recognition of test results impacting students' progression.",
+      "pain_point_ids": [
+        "1cv4q0b_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D336_1",
+      "summary": "Lack of coverage of key topics in course materials leading to confusion and low exam performance.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:30:46.399204Z"
+    }
+  ]
+}

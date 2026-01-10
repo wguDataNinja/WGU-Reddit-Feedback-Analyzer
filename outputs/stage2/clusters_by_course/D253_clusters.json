@@ -1,0 +1,25 @@
+{
+  "course": "D253",
+  "clusters": [
+    {
+      "cluster_id": "D253_1",
+      "title": "Engagement with Personal Assignments",
+      "root_cause_summary": "Students find personal assignments tedious and time-consuming, leading to frustration.",
+      "pain_point_ids": [
+        "1ijdqsv_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D253_2",
+      "title": "Motivation and Engagement Issues",
+      "root_cause_summary": "Students struggle with motivation due to the perceived dullness of the course materials.",
+      "pain_point_ids": [
+        "1l07raw_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

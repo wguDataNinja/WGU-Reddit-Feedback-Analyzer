@@ -1,0 +1,80 @@
+{
+  "course": "D076",
+  "clusters": [
+    {
+      "cluster_id": "D076_1",
+      "title": "Engagement with Course Materials",
+      "root_cause_summary": "Course materials are unengaging and difficult to understand, hindering student interest and comprehension.",
+      "pain_point_ids": [
+        "1m7jk72_2",
+        "1l537n0_0",
+        "1l944z3_0",
+        "1l537n0_1"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D076_2",
+      "title": "Course Content Density",
+      "root_cause_summary": "The course content is overly dense and packed with information, leading to a lack of enjoyment.",
+      "pain_point_ids": [
+        "1jjowbr_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D076_3",
+      "title": "Insufficient Exam Preparation",
+      "root_cause_summary": "Course materials do not adequately prepare students for assessments, leading to struggles in passing.",
+      "pain_point_ids": [
+        "1jyktr2_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D076_4",
+      "title": "Lack of Foundational Knowledge",
+      "root_cause_summary": "Students lack foundational knowledge, making it difficult to understand complex vocabulary and concepts.",
+      "pain_point_ids": [
+        "1jyktr2_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D076_5",
+      "title": "Challenging Assessments",
+      "root_cause_summary": "Assessments are perceived as particularly challenging, creating stress and difficulty for students.",
+      "pain_point_ids": [
+        "1kcqbrv_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D076_6",
+      "title": "Lack of Instructional Support",
+      "root_cause_summary": "Students feel lost and unmotivated due to inadequate instructional support from their course instructor.",
+      "pain_point_ids": [
+        "1m7jk72_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D076_7",
+      "title": "Course Layout Confusion",
+      "root_cause_summary": "Students struggle with a confusing course layout that affects their ability to navigate materials effectively.",
+      "pain_point_ids": [
+        "1m7jk72_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D076_1",
+      "summary": "Course materials are unengaging and difficult to understand, hindering student interest and comprehension.",
+      "post_count": 4,
+      "detected_on": "2025-07-25T07:35:40.154918Z"
+    }
+  ]
+}

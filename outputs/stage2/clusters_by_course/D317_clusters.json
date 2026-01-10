@@ -1,0 +1,43 @@
+{
+  "course": "D317",
+  "clusters": [
+    {
+      "cluster_id": "D317_1",
+      "title": "Exam Question Quality",
+      "root_cause_summary": "Students are struggling with the exam due to poorly worded questions and challenging performance-based questions (PBQs).",
+      "pain_point_ids": [
+        "1k1ertc_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D317_2",
+      "title": "Study Material Effectiveness",
+      "root_cause_summary": "Students feel unprepared for exams despite studying all provided materials.",
+      "pain_point_ids": [
+        "1g5t9va_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D317_3",
+      "title": "Course Structure Confusion",
+      "root_cause_summary": "Students are frustrated with the course structure and the order of classes, affecting their learning experience.",
+      "pain_point_ids": [
+        "1f0gvpy_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D317_4",
+      "title": "Exam Administration Issues",
+      "root_cause_summary": "Students are experiencing exam cancellations and technical difficulties that affect their ability to complete the course.",
+      "pain_point_ids": [
+        "17ksvn8_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

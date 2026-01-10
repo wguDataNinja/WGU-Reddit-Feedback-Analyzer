@@ -1,0 +1,25 @@
+{
+  "course": "D370",
+  "clusters": [
+    {
+      "cluster_id": "D370_1",
+      "title": "Access to Resources",
+      "root_cause_summary": "Students lack access to necessary materials, such as templates, required for completing tasks.",
+      "pain_point_ids": [
+        "1j69qvq_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D370_2",
+      "title": "Platform Reliability",
+      "root_cause_summary": "Students are experiencing downtime of the learning platform, preventing access to assignment instructions and materials.",
+      "pain_point_ids": [
+        "1l8k499_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

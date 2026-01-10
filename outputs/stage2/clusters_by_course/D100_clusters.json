@@ -1,0 +1,25 @@
+{
+  "course": "D100",
+  "clusters": [
+    {
+      "cluster_id": "D100_1",
+      "title": "Unclear Course Materials",
+      "root_cause_summary": "Students find course videos and materials unclear, leading to confusion and difficulty in understanding the content.",
+      "pain_point_ids": [
+        "1gi3pu5_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D100_2",
+      "title": "Data Handling Issues",
+      "root_cause_summary": "Students are experiencing frustration with tools and functionalities in the course, particularly with pivot tables not providing expected data ranges.",
+      "pain_point_ids": [
+        "1gkmpc0_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

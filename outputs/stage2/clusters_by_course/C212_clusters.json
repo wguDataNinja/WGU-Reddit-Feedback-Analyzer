@@ -1,0 +1,34 @@
+{
+  "course": "C212",
+  "clusters": [
+    {
+      "cluster_id": "C212_1",
+      "title": "Clarity of Assignment Expectations",
+      "root_cause_summary": "Students are unclear about specific requirements and expectations for assignments.",
+      "pain_point_ids": [
+        "19enoj0_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C212_2",
+      "title": "Textbook Accessibility Issues",
+      "root_cause_summary": "Students are experiencing difficulties in finding the required course materials.",
+      "pain_point_ids": [
+        "19enoj0_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C212_3",
+      "title": "Course Navigation Difficulties",
+      "root_cause_summary": "Students find the course page hard to navigate, leading to frustration in accessing course content.",
+      "pain_point_ids": [
+        "19enoj0_2"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

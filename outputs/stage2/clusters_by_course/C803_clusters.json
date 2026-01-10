@@ -1,0 +1,25 @@
+{
+  "course": "C803",
+  "clusters": [
+    {
+      "cluster_id": "C803_1",
+      "title": "Content Availability Issues",
+      "root_cause_summary": "Students encounter challenges in locating sufficient and appropriate content for assignments due to constraints in the guidelines.",
+      "pain_point_ids": [
+        "1akotp4_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C803_2",
+      "title": "Instructor Support Challenges",
+      "root_cause_summary": "Students feel unsupported due to delayed responses and limited availability of instructors, affecting their learning experience.",
+      "pain_point_ids": [
+        "1akotp4_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,43 @@
+{
+  "course": "D488",
+  "clusters": [
+    {
+      "cluster_id": "D488_1",
+      "title": "Assessment Anxiety",
+      "root_cause_summary": "Students feel anxious about assessment outcomes due to limited attempts and unclear consequences.",
+      "pain_point_ids": [
+        "1jvzvjq_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D488_2",
+      "title": "Content Clarity Issues",
+      "root_cause_summary": "Students experience confusion regarding course content and assessment answers due to lack of clarity.",
+      "pain_point_ids": [
+        "1iu682l_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D488_3",
+      "title": "Lab Relevance Uncertainty",
+      "root_cause_summary": "Students are uncertain about the necessity and relevance of lab activities in relation to course assessments.",
+      "pain_point_ids": [
+        "1lvra99_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D488_4",
+      "title": "Technical Issues in Labs",
+      "root_cause_summary": "Students struggle to complete lab work due to technical issues, such as lagging and non-functional features.",
+      "pain_point_ids": [
+        "1m12pgo_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

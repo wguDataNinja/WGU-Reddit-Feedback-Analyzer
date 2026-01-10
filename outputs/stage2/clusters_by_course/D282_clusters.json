@@ -1,0 +1,70 @@
+{
+  "course": "D282",
+  "clusters": [
+    {
+      "cluster_id": "D282_1",
+      "title": "Content Complexity",
+      "root_cause_summary": "Students feel overwhelmed by the detailed pricing and product information required for the test.",
+      "pain_point_ids": [
+        "18i06tv_0",
+        "19bgz4v_0",
+        "18id5yn_1"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D282_2",
+      "title": "Resource Diversity",
+      "root_cause_summary": "Students feel unprepared due to reliance on a single study resource.",
+      "pain_point_ids": [
+        "1jabnim_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D282_3",
+      "title": "Access Issues",
+      "root_cause_summary": "Students are unable to access the lab environment due to credential issues.",
+      "pain_point_ids": [
+        "1imjbds_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D282_4",
+      "title": "Study Load Management",
+      "root_cause_summary": "Students feel overwhelmed and exhausted from extensive study requirements.",
+      "pain_point_ids": [
+        "1dqs5xt_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D282_5",
+      "title": "Exam Scheduling Challenges",
+      "root_cause_summary": "Students face challenges with scheduling and rescheduling exam appointments.",
+      "pain_point_ids": [
+        "18id5yn_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D282_6",
+      "title": "Exam Preparedness and Support",
+      "root_cause_summary": "Students feel discouraged after multiple failures despite a sense of preparation, indicating a need for better support and resources for exam success.",
+      "pain_point_ids": [
+        "1ka5dap_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D282_1",
+      "summary": "Students feel overwhelmed by the detailed pricing and product information required for the test.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:50:43.358751Z"
+    }
+  ]
+}

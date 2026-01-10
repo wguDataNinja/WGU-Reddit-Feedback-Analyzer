@@ -1,0 +1,52 @@
+{
+  "course": "C723",
+  "clusters": [
+    {
+      "cluster_id": "C723_1",
+      "title": "Exam Anxiety and Course Selection",
+      "root_cause_summary": "Students are uncertain about examination outcomes and their options for course continuation.",
+      "pain_point_ids": [
+        "1ifr41p_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C723_2",
+      "title": "Challenges with Course Concepts and Calculations",
+      "root_cause_summary": "Students are facing difficulties in understanding specific course concepts, leading to confusion in problem-solving.",
+      "pain_point_ids": [
+        "1j4la68_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C723_3",
+      "title": "Intimidation by Course Material",
+      "root_cause_summary": "Students feel intimidated by the course material and uncertain about the assessments' difficulty.",
+      "pain_point_ids": [
+        "1ixh1kh_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C723_4",
+      "title": "Accessing Course Materials",
+      "root_cause_summary": "Students are experiencing issues accessing course materials, hindering their ability to engage with the course.",
+      "pain_point_ids": [
+        "1kots11_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C723_5",
+      "title": "Overwhelmed by Math Content",
+      "root_cause_summary": "Students struggle with math-related content, which contributes to feelings of overwhelm and inadequacy.",
+      "pain_point_ids": [
+        "1li2crt_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

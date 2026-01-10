@@ -1,0 +1,25 @@
+{
+  "course": "C100",
+  "clusters": [
+    {
+      "cluster_id": "C100_1",
+      "title": "Assessment Preparedness",
+      "root_cause_summary": "Students struggle with passing assessments despite feeling confident in their understanding of the material.",
+      "pain_point_ids": [
+        "y8ajxy_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C100_2",
+      "title": "Engagement in Learning Materials",
+      "root_cause_summary": "Students feel unprepared for assessments due to a lack of engaging and sufficient study materials.",
+      "pain_point_ids": [
+        "1eyww6a_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

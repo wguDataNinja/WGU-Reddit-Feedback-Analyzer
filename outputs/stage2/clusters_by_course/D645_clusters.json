@@ -1,0 +1,16 @@
+{
+  "course": "D645",
+  "clusters": [
+    {
+      "cluster_id": "D645_1",
+      "title": "Submission Process Confusion",
+      "root_cause_summary": "Students are unclear on the process for combining and submitting multiple templates for assignments.",
+      "pain_point_ids": [
+        "1l2tpe5_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

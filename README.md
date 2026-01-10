@@ -1,169 +1,241 @@
-# WGU Reddit Analyzer
 
-## Overview
+WGU Reddit Analyzer Pipeline
 
-Western Governors University provides many official channels for students to seek academic help and support, but Reddit
-is not one of them. Despite this, many WGU students use Reddit to ask questions, express frustration, and discuss course 
-experiences across more than 50 WGU-related subreddits. These unsolicited and informal conversations represent a large, 
-fragmented body of feedback that is difficult to analyze using traditional methods.
+Last updated: 2025-12-14
 
-The **WGU Reddit Analyzer** is a reproducible research pipeline that uses large language models (LLMs) to transform this 
-unstructured social media discussion into structured, analyzable data. The pipeline produces course-level issue summaries, 
-cross-course issue categories, and deterministic reporting tables suitable for academic analysis.
+⸻
 
-A read-only static website presents selected outputs and can be accessed [here](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/).
+Purpose
 
----
+The WGU Reddit Analyzer is a reproducible, auditable pipeline for extracting actionable student pain points from Reddit discussions about Western Governors University (WGU).
 
-## Scope and Non-Goals
+Its goal is not sentiment monitoring, but structured issue discovery:
+	•	identifying whether a post describes a real, course-side problem
+	•	grouping similar issues
+	•	producing clean, traceable data for analysis, reporting, and research
 
-### In Scope
+The system is designed to balance:
+	•	methodological rigor
+	•	transparency and auditability
+	•	practical cost and performance constraints
 
-- Public Reddit posts from WGU-related subreddits  
-- Posts referencing exactly one identifiable WGU course  
-- Sentiment-based filtering to focus analysis on negative experiences  
-- LLM-based classification, clustering, and synthesis  
-- Artifact-driven reproducibility with stored outputs  
-- Cost and latency tracking for LLM stages  
+It is suitable both for internal analysis and for academic or external review.
 
-### Out of Scope
+⸻
 
-- Reddit comments or full discussion threads  
-- Posts referencing multiple courses  
-- Neutral or positive sentiment posts   
-- Causal claims or evaluation of course quality  
+What the System Does (At a High Level)
 
----
+The analyzer takes Reddit posts and transforms them into structured insights through a multi-stage process:
+	1.	Collect and clean relevant Reddit posts
+	2.	Detect whether each post contains a genuine, actionable pain point
+	3.	Group similar pain points within courses
+	4.	Normalize those groups into a global issue taxonomy
+	5.	Produce clean tables for reporting and downstream use
 
-## Dataset Overview
+At every step, the system writes explicit artifacts so results can be inspected, reproduced, or challenged.
 
-At a high level:
+⸻
 
-- Roughly 27,000 Reddit posts were initially collected into a local database  
-- Filtering based on sentiment and course-code rules produced a frozen analysis corpus of **1,103 posts**  
-- These posts reference **242 WGU courses** across **51 subreddits**  
-- A separate benchmark sample of approximately 200 posts was manually labeled for evaluation purposes  
+System Architecture Overview
 
-Counts represent posts, not students, outcomes, or prevalence.  
-Detailed collection and filtering rules are documented in the pipeline specification.
+The pipeline is organized into four main analytical stages, all operating on a shared, frozen dataset.
 
----
+Stage 0 — Data Collection and Filtering
+	•	Ingests Reddit posts from WGU-related subreddits
+	•	Removes spam, deleted, or empty content
+	•	Detects valid WGU course codes
+	•	Retains posts with strong negative sentiment
+	•	Produces a stable, frozen dataset used by all later stages
 
-## Pipeline Overview
+Key output:
+artifacts/stage0_filtered_posts.jsonl
 
-The analyzer is implemented as a staged pipeline. Each stage produces explicit, stored artifacts that are reused downstream.
+⸻
 
-### Locked Reddit Corpus
+Stage 1 — Pain Point Classification
 
-A fixed dataset of Reddit posts is constructed once and treated as immutable by all downstream stages. Filtering rules ensure that each post is public, negative in sentiment, and associated with exactly one course.
+Stage 1 determines whether a post contains a fixable, course-side pain point.
 
-### Pain-Point Classification
+Each post is classified into one of three labels:
+	•	y — contains a clear pain point
+	•	n — does not contain a pain point
+	•	u — unclear or unusable (ambiguous, parsing failure, or invalid output)
 
-Each post is independently evaluated by an LLM to determine whether it contains a fixable, course-side pain point. Outputs follow a strict schema and explicitly record parsing errors, schema violations, and failures.
+If a pain point is detected, the model also produces:
+	•	a short root-cause summary
+	•	a concise text snippet anchored in the post
 
-Prompt and model selection for this stage are driven by documented benchmarking and evaluation procedures.
+Stage 1 operates in two modes:
 
-### Course-Level Clustering
+Benchmark Mode (DEV / TEST)
+Used to evaluate prompts and models against human-labeled data.
 
-Posts identified as containing course-side issues are grouped within each course into recurring issue clusters. This step aggregates individual complaints into higher-level themes while preserving traceability.
+Measures include:
+	•	precision, recall, F1, and accuracy
+	•	handling of ambiguous outputs
+	•	cost and latency
+	•	error modes and parsing behavior
 
-### Cross-Course Normalization
+All benchmark runs produce:
+	•	prediction tables
+	•	metrics summaries
+	•	alignment diagnostics (confusion matrices)
+	•	full run manifests with provenance
 
-Course-level clusters are normalized into shared issue categories across courses. This resolves differences in wording and granularity and enables cross-course analysis.
+Full-Corpus Mode
+Once a model and prompt are selected, Stage 1 runs across the entire dataset to produce inputs for later stages.
 
-### Reporting and Presentation
+Only posts confidently labeled as pain points are passed downstream.
 
-Final reporting tables are produced deterministically from stored artifacts. No LLMs are used beyond the normalization stage.
+⸻
 
-A complete, authoritative description of pipeline behavior lives in  
-[`docs/PIPELINE_SPEC.md`](docs/PIPELINE_SPEC.md).
+Stage 2 — Course-Level Clustering
 
----
+Stage 2 groups individual pain points within each course into coherent themes.
 
-## Evaluation and Benchmarking
+For each course, the system:
+	•	collects pain-point posts
+	•	clusters them using an LLM
+	•	produces summaries and membership lists
 
-Pain-point detection is treated explicitly as a classification task with frozen DEV and TEST splits. Evaluation uses standard classification metrics, with clearly defined exclusions and error handling rules.
+The result is a set of course-specific issue clusters, each backed by explicit artifacts and manifests.
 
-Prompt iteration is gated by paired statistical testing to prevent silent regressions. Operational metrics such as cost and latency are tracked but do not drive statistical acceptance decisions.
+⸻
 
-Detailed documentation is available in:
+Stage 3 — Global Issue Normalization
 
-- [`docs/BENCHMARK_GUIDE.md`](docs/BENCHMARK_GUIDE.md)  
-- [`docs/COST_ESTIMATION.md`](docs/COST_ESTIMATION.md)  
-- [`docs/LABEL_GUIDE.md`](docs/LABEL_GUIDE.md)  
+Stage 3 merges course-level clusters into a shared global issue taxonomy.
 
----
+This step:
+	•	aligns similar issues across different courses
+	•	assigns global issue identifiers
+	•	ensures full coverage or explicit exclusion
 
-## Methodological Grounding
+It produces mappings from posts and course clusters to global issue types, enabling cross-course analysis.
 
-The pipeline design is informed by recent research on LLM-based classification and large-scale qualitative analysis of social media data. These influences shape the project’s emphasis on fixed datasets, explicit schemas, staged processing, and evaluation-driven prompt refinement.
+⸻
 
-A full discussion of these influences is documented in  
-[`docs/METHODOLOGICAL_FOUNDATIONS.md`](docs/METHODOLOGICAL_FOUNDATIONS.md).
+Stage 4 — Report Data Layer
 
----
+Stage 4 produces clean, deterministic tables for reporting and analysis.
 
-## Reproducibility
+Outputs include:
+	•	post-level master tables
+	•	course summaries
+	•	global issue summaries
+	•	issue-by-course matrices
 
-All results presented in the accompanying paper and static website are derived from stored artifacts included in this repository.
+All outputs are deterministic joins and aggregations of prior stages.
 
-- Reported results are pinned to specific runs  
-- Downstream tables can be rebuilt deterministically  
-- Reproduction does **not** require re-running any LLM stages or API access  
+⸻
 
-Authoritative run pins and rebuild instructions are documented in  
-[`docs/PAPER_RUNS.md`](docs/PAPER_RUNS.md).
+Evaluation, Benchmarking, and Validation
 
----
+Explicit Benchmarking
 
-## Static Website (GUI)
+Stage 1 is the only stage with full empirical benchmarking against gold labels.
 
-The repository includes a static website that presents selected outputs of the pipeline.
+Benchmark artifacts include:
+	•	3×3 confusion matrices over {y, n, u}
+	•	binary metrics computed under a strict policy
+	•	per-run cost and latency summaries
+	•	post-level inspection panels for false positives and false negatives
 
-The site:
+Ambiguous outputs are never silently dropped; exclusions are explicitly counted.
 
-- displays precomputed artifacts only  
-- performs no analysis or inference  
-- supports exploration of courses, issue categories, and source posts  
+⸻
 
-The website is a presentation layer, not an analytical component. All interpretation belongs to the pipeline artifacts and the paper.
+Statistical Validation of Prompt Improvements
 
-Documentation for the site lives in  
-[`site/README_SITE.md`](site/README_SITE.md).
+Prompt updates are evaluated using paired statistical tests, not just headline metrics.
 
-A link to the hosted site will be added here once finalized.
+For each prompt comparison on the same DEV set, the system computes:
+	•	paired correctness differences
+	•	McNemar’s exact test to assess whether improvements are statistically meaningful
+	•	class-distribution chi-square tests to detect large behavioral shifts
 
----
+A new prompt is accepted only if:
+	•	F1 score does not regress
+	•	McNemar’s test shows a statistically significant improvement
+	•	distribution shifts are reviewed and acknowledged
 
-## Repository Structure
+This ensures that prompt iteration is grounded in evidence, not anecdotal improvements.
 
-- `src/` — pipeline implementation  
-- `artifacts/` — stored outputs for all stages  
-- `docs/` — specifications, benchmarks, labeling guides, and paper references  
-- `prompts/` — LLM prompt templates  
-- `site/` — static website source  
-- `archive_legacy/` — deprecated prototypes  
+⸻
 
-Changes to the project over time are tracked in  
-[`CHANGELOG.md`](CHANGELOG.md).
+Reproducibility and Provenance
 
----
+The pipeline enforces reproducibility through:
+	•	a frozen Stage 0 dataset
+	•	fixed DEV/TEST benchmark splits
+	•	versioned prompts stored alongside outputs
+	•	per-run manifests recording configuration and hashes
+	•	explicit schema_version fields on all major artifacts
+	•	raw model input and output logs for audits
 
-## Ethics and Limitations
+Any run can be recreated or independently inspected.
 
-- Only public Reddit posts are used  
-- Usernames are removed from stored artifacts  
-- Displayed excerpts are truncated and privacy-reviewed  
-- Results are aggregate and not representative of all student experiences  
+⸻
 
-This project is intended for research and methodological exploration, not institutional evaluation.
+Repository Structure (High Level)
 
----
+src/wgu_reddit_analyzer/
+├── fetchers/        Reddit ingestion
+├── pipeline/        Stage 0 dataset build
+├── benchmark/       Stage 1 benchmarking and evaluation
+├── stage1/          Full-corpus Stage 1 classification
+├── stage2/          Course-level clustering
+├── stage3/          Global issue normalization
+├── report_data/     Final report tables
+├── refinement/      Refinement and iteration logging
+└── utils/           Shared helpers and logging
 
-## What This Work Demonstrates
+Supporting folders:
+	•	prompts/ — versioned prompt templates
+	•	artifacts/ — generated data and run outputs
+	•	docs/ — technical and methodological documentation
+	•	dev/ — internal development and alignment logs
+	•	archive_legacy/ — deprecated experiments
 
-This project shows that large language models can be used in a disciplined, reproducible way to structure large volumes of informal social media discussion into data suitable for academic analysis.
+⸻
 
-Applied to Reddit posts about WGU courses, the pipeline transforms scattered, unsolicited student discussion into stable issue summaries and cross-course categories while preserving traceability and transparency.
+Methodological Alignment
 
-While this repository focuses on course-related pain points, the same approach could support other research questions about student discussion, such as what students value about their programs or why they choose WGU, given appropriate evaluation.
+The design of the WGU Reddit Analyzer aligns with the framework described in:
+
+LLM-as-classifier: Semi-Supervised, Iterative Framework for Hierarchical Text Classification using Large Language Models (2025)
+
+That framework emphasizes:
+	•	domain-driven schemas
+	•	semi-supervised topic discovery
+	•	explicit iterative refinement
+	•	statistical validation of updates
+	•	robustness and drift awareness
+
+The analyzer already satisfies many of these principles through its frozen corpus, hierarchical stages, versioned prompts, deterministic artifacts, and strong provenance guarantees.
+
+A focused three-step alignment plan brings the system to a defensible level of methodological rigor:
+	1.	Explicit schema and hierarchy documentation
+	2.	Alignment matrices and visible refinement loops
+	3.	Statistical gating of Stage 1 prompt updates
+
+Together, these steps support transparent, auditable iteration without requiring major architectural changes.
+
+⸻
+
+Status
+	•	Stage 0 dataset locked
+	•	Stage 1 benchmarking and statistical validation complete
+	•	Stage 2–4 fully operational
+	•	Prompt refinement loop active and documented
+
+The system is production-ready for analysis and suitable for external review.
+
+⸻
+
+References
+	•	Rao et al. (2025). QuaLLM Framework for Reddit Feedback Extraction
+	•	De Santis et al. (2025). LLM Robustness on Noisy Social Text
+	•	LLM-as-classifier: Semi-Supervised, Iterative Framework for Hierarchical Text Classification using Large Language Models (2025)
+
+⸻

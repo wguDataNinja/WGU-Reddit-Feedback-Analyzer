@@ -1,0 +1,16 @@
+{
+  "course": "C172",
+  "clusters": [
+    {
+      "cluster_id": "C172_1",
+      "title": "Assessment Preparedness",
+      "root_cause_summary": "Students feel unprepared for assessments, leading to repeated failures.",
+      "pain_point_ids": [
+        "1lft6k1_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

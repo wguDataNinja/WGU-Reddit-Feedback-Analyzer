@@ -1,0 +1,85 @@
+{
+  "course": "C949",
+  "clusters": [
+    {
+      "cluster_id": "C949_1",
+      "title": "Alignment of Assessment and Study Materials",
+      "root_cause_summary": "Discrepancies between operational assessment content and study materials lead to student frustration.",
+      "pain_point_ids": [
+        "1itr62r_0",
+        "1m50chh_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C949_2",
+      "title": "Clarification on Course Content Scope",
+      "root_cause_summary": "Uncertainty around the scope of operational assessments regarding specific topics like time complexities creates student confusion.",
+      "pain_point_ids": [
+        "1ga245o_0",
+        "1id36nl_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "C949_3",
+      "title": "Testing Difficulty and Retake Concerns",
+      "root_cause_summary": "Students are experiencing anxiety and difficulty related to the challenges of retaking tests.",
+      "pain_point_ids": [
+        "1k6eaph_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C949_4",
+      "title": "Grading Consistency and Fairness",
+      "root_cause_summary": "Students are facing confusion and feelings of unfairness due to inconsistent grading results despite meeting requirements.",
+      "pain_point_ids": [
+        "1ewa9ww_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C949_5",
+      "title": "Test Preparedness and Content Clarity",
+      "root_cause_summary": "Students experience test anxiety due to unclear content coverage, leading to a sense of unpreparedness.",
+      "pain_point_ids": [
+        "1aiwpnx_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C949_6",
+      "title": "Student Confidence in Problem-Solving",
+      "root_cause_summary": "Students are struggling with self-doubt regarding their capability to independently generate solutions to problems.",
+      "pain_point_ids": [
+        "1io5f4e_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C949_7",
+      "title": "Organization of Course Resources",
+      "root_cause_summary": "Students are finding course resources disorganized and overwhelming, which impacts their ability to study effectively.",
+      "pain_point_ids": [
+        "1hq6d0u_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "C949_1",
+      "summary": "Discrepancies between operational assessment content and study materials lead to student frustration.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:38:20.611238Z"
+    },
+    {
+      "cluster_id": "C949_2",
+      "summary": "Uncertainty around the scope of operational assessments regarding specific topics like time complexities creates student confusion.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:38:20.611282Z"
+    }
+  ]
+}

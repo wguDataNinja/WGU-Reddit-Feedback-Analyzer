@@ -1,0 +1,25 @@
+{
+  "course": "C180",
+  "clusters": [
+    {
+      "cluster_id": "C180_1",
+      "title": "Assessment Clarity",
+      "root_cause_summary": "Students find assessment questions poorly worded, making it difficult to apply learned material.",
+      "pain_point_ids": [
+        "1kqff60_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C180_2",
+      "title": "Test Anxiety and Memory Retention",
+      "root_cause_summary": "Students experience anxiety during tests and have concerns about their memory retention capabilities.",
+      "pain_point_ids": [
+        "1lg606d_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,16 @@
+{
+  "course": "D386",
+  "clusters": [
+    {
+      "cluster_id": "D386_1",
+      "title": "Assessment Clarity",
+      "root_cause_summary": "Students lack clarity on how pre-assessments align with actual assessments, leading to uncertainty about their preparedness.",
+      "pain_point_ids": [
+        "1ik8xn3_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

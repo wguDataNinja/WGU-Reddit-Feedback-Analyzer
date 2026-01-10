@@ -1,0 +1,141 @@
+{
+  "course": "D335",
+  "clusters": [
+    {
+      "cluster_id": "D335_1",
+      "title": "Assessment Difficulty",
+      "root_cause_summary": "Students perceive inconsistency in difficulty levels between practice tests and actual assessments.",
+      "pain_point_ids": [
+        "1kn24ob_0",
+        "186ysa1_0",
+        "1lnaond_0",
+        "1fppuft_0",
+        "1k576kv_0",
+        "17b02hw_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D335_2",
+      "title": "Course Material Comprehension",
+      "root_cause_summary": "Students feel overwhelmed by the complexity of course material, leading to confusion around key concepts.",
+      "pain_point_ids": [
+        "1j7gd6z_0",
+        "1gehs7e_0",
+        "1ljmjka_0",
+        "1kw95db_1"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D335_3",
+      "title": "Lack of Resource Accessibility",
+      "root_cause_summary": "Students encounter difficulties finding answers or resources leading to increased frustration and confusion.",
+      "pain_point_ids": [
+        "1fkzesb_1",
+        "1ku3tth_0",
+        "1lgei7k_1"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D335_4",
+      "title": "Assessment Consistency Issues",
+      "root_cause_summary": "Students are uncertain about the consistency and similarity of questions across multiple attempts of assessments.",
+      "pain_point_ids": [
+        "1lggj54_0",
+        "1fxu616_0",
+        "1gppieo_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D335_5",
+      "title": "Resource Effectiveness Concerns",
+      "root_cause_summary": "Students find certain resources like zyBooks ineffective for learning essential coding skills.",
+      "pain_point_ids": [
+        "1lgei7k_0",
+        "1kix1rt_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D335_6",
+      "title": "Memorization Reliance",
+      "root_cause_summary": "Students express frustration over a heavy reliance on memorization for assessments rather than conceptual understanding.",
+      "pain_point_ids": [
+        "1gc6cg8_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D335_7",
+      "title": "Automatic Grader Concerns",
+      "root_cause_summary": "Students have concerns about the reliability of the automatic grader used for assessments.",
+      "pain_point_ids": [
+        "18fnjri_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D335_8",
+      "title": "Test Case Output Visibility",
+      "root_cause_summary": "Students feel anxious due to lack of visibility of output from test cases during the OA, affecting their performance confidence.",
+      "pain_point_ids": [
+        "1gehs7e_1"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D335_9",
+      "title": "Skill Gap in Technical Concepts",
+      "root_cause_summary": "Students lack foundational skills in technical concepts like file manipulation and CSV, impacting their ability to succeed.",
+      "pain_point_ids": [
+        "1k9fy44_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D335_10",
+      "title": "Mentorship Support Issues",
+      "root_cause_summary": "Students feel unsupported by mentors, leading to unanswered questions and frustration.",
+      "pain_point_ids": [
+        "1kw95db_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D335_1",
+      "summary": "Students perceive inconsistency in difficulty levels between practice tests and actual assessments.",
+      "post_count": 6,
+      "detected_on": "2025-07-25T07:40:10.494070Z"
+    },
+    {
+      "cluster_id": "D335_2",
+      "summary": "Students feel overwhelmed by the complexity of course material, leading to confusion around key concepts.",
+      "post_count": 4,
+      "detected_on": "2025-07-25T07:40:10.494119Z"
+    },
+    {
+      "cluster_id": "D335_3",
+      "summary": "Students encounter difficulties finding answers or resources leading to increased frustration and confusion.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:40:10.494134Z"
+    },
+    {
+      "cluster_id": "D335_4",
+      "summary": "Students are uncertain about the consistency and similarity of questions across multiple attempts of assessments.",
+      "post_count": 3,
+      "detected_on": "2025-07-25T07:40:10.494144Z"
+    },
+    {
+      "cluster_id": "D335_5",
+      "summary": "Students find certain resources like zyBooks ineffective for learning essential coding skills.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:40:10.494149Z"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "course": "D372",
+  "clusters": [
+    {
+      "cluster_id": "D372_1",
+      "title": "Clarity on Sources and Citations",
+      "root_cause_summary": "Students are uncertain about the requirements for using sources and citations in their assignments.",
+      "pain_point_ids": [
+        "1jvb53m_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D372_2",
+      "title": "Understanding Similarity Scores",
+      "root_cause_summary": "Students are confused about how to interpret and respond to high similarity scores on their submissions.",
+      "pain_point_ids": [
+        "1ioag3m_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D372_3",
+      "title": "Guidance on Archetype Selection",
+      "root_cause_summary": "Students struggle to understand the requirements and criteria for selecting archetypes in assignments.",
+      "pain_point_ids": [
+        "1f61o8r_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

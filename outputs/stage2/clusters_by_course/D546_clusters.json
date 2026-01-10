@@ -1,0 +1,16 @@
+{
+  "course": "D546",
+  "clusters": [
+    {
+      "cluster_id": "D546_1",
+      "title": "Inconsistent Feedback",
+      "root_cause_summary": "Students are receiving varied and conflicting feedback on their work, creating uncertainty about their academic performance.",
+      "pain_point_ids": [
+        "1lvwxh5_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

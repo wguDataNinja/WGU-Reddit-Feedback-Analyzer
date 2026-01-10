@@ -1,0 +1,25 @@
+{
+  "course": "D599",
+  "clusters": [
+    {
+      "cluster_id": "D599_1",
+      "title": "Data Completeness Issues",
+      "root_cause_summary": "Students are facing challenges due to missing data in course datasets, impacting project completion.",
+      "pain_point_ids": [
+        "1ivaifd_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D599_2",
+      "title": "Data Presentation Confusion",
+      "root_cause_summary": "Students are unclear on how to effectively identify and present data distributions for various variable types.",
+      "pain_point_ids": [
+        "1lgvylz_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

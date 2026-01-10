@@ -1,0 +1,16 @@
+{
+  "course": "C484",
+  "clusters": [
+    {
+      "cluster_id": "C484_1",
+      "title": "Ineffective Study Strategies",
+      "root_cause_summary": "Students struggle to improve their performance in assessments despite using various study resources.",
+      "pain_point_ids": [
+        "1leiowm_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,25 @@
+{
+  "course": "C218",
+  "clusters": [
+    {
+      "cluster_id": "C218_1",
+      "title": "Project Clarity",
+      "root_cause_summary": "Students lack clear understanding of tasks and expectations for major projects.",
+      "pain_point_ids": [
+        "1js2ygy_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C218_2",
+      "title": "Expectation Clarity",
+      "root_cause_summary": "Students are unclear about expectations regarding financial outcomes in simulations.",
+      "pain_point_ids": [
+        "1b4evif_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,100 +1,111 @@
-# WGU Reddit Analyzer — Stage 1 Label Guide
+# WGU Reddit Analyzer – Stage 1C Label Guide
 
 _Last updated: 2025-11-08_
 
 ---
 
 ## Purpose
+Defines a clear and minimal framework for manual labeling of the Stage 1B benchmark sample (≈200 posts).  
+Gold labels are saved to:
 
-This document defines the manual labeling procedure for the Stage 1 benchmark sample of Reddit posts.  
-Gold labels are stored in:
+```
+artifacts/benchmark/gold/gold_labels.csv
+```
 
-
-`artifacts/benchmark/gold/gold_labels.csv`
-
-
-These labels are used for model tuning on DEV data, final evaluation on TEST data, and downstream error and clustering analysis.
+These labels support:
+- Model tuning (**DEV**)  
+- Final evaluation (**TEST**)  
+- Root-cause clustering in Stage 2  
 
 ---
 
 ## Scope
-
-Labeling applies only to posts drawn from:
-
-- `artifacts/benchmark/DEV_candidates.jsonl`
-- `artifacts/benchmark/TEST_candidates.jsonl`
-
-All posts are:
-- 20–600 tokens in length  
-- associated with exactly one WGU course code  
-- filtered for negative sentiment (VADER compound < −0.2)
+**Input posts:**  
+- Source files:
+  - `artifacts/benchmark/DEV_candidates.jsonl`
+  - `artifacts/benchmark/TEST_candidates.jsonl`
+- 20–600 tokens each  
+- Exactly one `course_code`  
+- Negative sentiment (VADER < −0.2)
 
 ---
 
-## Label Schema
-
-Each labeled row contains the following fields:
+## Schema (8 Fields)
 
 | Field | Type | Description |
-|------|------|-------------|
-| post_id | string | Reddit post ID |
-| split | DEV or TEST | Dataset split |
-| course_code | string | WGU course identifier |
-| contains_painpoint | y / n / u | Whether a fixable course-side pain point is present |
-| root_cause_summary | string | One-line description of the issue (if y) |
-| ambiguity_flag | 0 / 1 | Indicates unclear or borderline cases |
-| labeler_id | string | Defaults to `AI1` |
-| notes | string | Optional clarifying notes |
+|--------|------|-------------|
+| **post_id** | str | Reddit post ID |
+| **split** | DEV / TEST | Source split |
+| **course_code** | str | WGU course identifier |
+| **contains_painpoint** | y / n / u | Student pain point present |
+| **root_cause_summary** | str | One-line issue summary (if y) |
+| **ambiguity_flag** | 0 / 1 | 1 = unclear or edge case |
+| **labeler_id** | str | Default `AI1` |
+| **notes** | str | Optional free-text note |
 
 ---
 
 ## Definition of a Pain Point
+A **pain point** is a fixable, course-related friction that WGU designers or instructors could address.  
+It is *not* general venting or personal circumstance.
 
-A pain point is a **fixable, course-side issue** that could plausibly be addressed through changes to course design, instructions, assessment, tooling, staffing, or process.
+**Mark y** when the post reports an actionable course-side problem (design, clarity, grading, pacing, support, or process).
 
-Mark `y` when a post reports an actionable course-related problem.  
-Examples include unclear instructions, contradictory rubric feedback, assessment tooling failures, or support delays.
+*Examples:*  
+- “Rubric feedback contradicts instructions.”  
+- “Examity kept freezing during OA.”  
+- “Unclear citation rules in AFT2.”  
 
-Mark `n` when the post reflects personal circumstances, general venting, celebration, or non-actionable commentary.
+**Mark n** when the issue is personal or external (alarm, internet, family, motivation) or general chatter.  
+*Example:* “Finally passed C214!”  
 
-Mark `u` only when it is genuinely unclear whether a course-side issue is present. In most unclear cases, prefer `n` and set the ambiguity flag.
-
----
-
-## Root Cause Summary
-
-For `y` labels, provide a short, concrete phrase describing the issue, such as:
-
-- “Unclear OA rubric”
-- “Proctoring delays”
-- “Mentor unresponsive”
-
-Leave this field blank for `n` and `u`.
+**Mark u** only if the relation to course issues is uncertain.  
+*Example:* “Failed OA again, not sure why.”  
+(Otherwise treat as n and set `ambiguity_flag = 1` if unclear.)
 
 ---
 
-## Ambiguity Flag
+## root_cause_summary
+Short, concrete phrase for the course-side issue.  
+Examples:  
+- “Unclear OA rubric”  
+- “Proctoring delays”  
+- “Mentor unresponsive”  
 
-Set `ambiguity_flag = 1` if the post could reasonably be labeled differently due to missing context, sarcasm, or mixed causes.  
-Set to `0` when the decision is clear.
+Leave blank for `n` or `u`.
 
-This flag is used to analyze edge cases and is excluded from metric calculations.
+---
+
+## ambiguity_flag
+Use `1` if the case could reasonably be labeled differently (sarcasm, mixed causes, missing context).  
+`0` = clear decision.  
+This flag helps identify edge cases for LLM error analysis.
+
+---
+
+## notes (optional)
+Brief clarifications, observations, or patterns.  
+Leave empty to skip.
 
 ---
 
 ## Operational Notes
+- Run with:  
+  ```bash
+  python -m wgu_reddit_analyzer.labeling.label_posts
+  ```
+- Skips already-labeled posts and resumes safely.  
+- Writes after each label; deterministic order (DEV → TEST → course → post_id).  
+- Once verified, `gold_labels.csv` is locked for benchmarking.
 
-Labeling is performed using:
+---
 
-```bash
-python -m wgu_reddit_analyzer.labeling.label_posts
-```
+## Example Decision
+> “I reworded UPs and EPs and sent back for resubmission. Is it due to not citing? Help!”
 
-The labeling tool:
-- skips posts that are already labeled,
-- processes posts in deterministic order (DEV → TEST → course → post_id),
-- writes results incrementally after each label.
+→ `y`  **root_cause_summary:** “Unclear citation requirements for AFT2 Task 1.”  
+→ `ambiguity_flag:` 0  
+→ `notes:` (blank)
 
-Once reviewed and verified, `gold_labels.csv` is treated as locked for benchmarking.
-
+---
 

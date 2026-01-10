@@ -1,0 +1,16 @@
+{
+  "course": "D389",
+  "clusters": [
+    {
+      "cluster_id": "D389_1",
+      "title": "Confusion Over Task Requirements",
+      "root_cause_summary": "Students are experiencing confusion stemming from conflicting information regarding task completion guidelines.",
+      "pain_point_ids": [
+        "1jwcnpb_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

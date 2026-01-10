@@ -1,0 +1,34 @@
+{
+  "course": "C952",
+  "clusters": [
+    {
+      "cluster_id": "C952_1",
+      "title": "Assessment Difficulty",
+      "root_cause_summary": "Students find the overall assessment challenging and overwhelming.",
+      "pain_point_ids": [
+        "1i0usaw_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C952_2",
+      "title": "Vocabulary Overload",
+      "root_cause_summary": "Students feel overwhelmed by extensive vocabulary lists and seek simplification.",
+      "pain_point_ids": [
+        "1fgqxpt_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "C952_3",
+      "title": "Content Mismatch",
+      "root_cause_summary": "Students feel unprepared for exams due to discrepancies between test content and learning materials.",
+      "pain_point_ids": [
+        "1du1gzj_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

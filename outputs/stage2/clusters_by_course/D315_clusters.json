@@ -1,0 +1,34 @@
+{
+  "course": "D315",
+  "clusters": [
+    {
+      "cluster_id": "D315_1",
+      "title": "Inadequate Practice Resources",
+      "root_cause_summary": "Students feel unprepared due to insufficient coverage of necessary material in provided practice resources.",
+      "pain_point_ids": [
+        "1k3ev55_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D315_2",
+      "title": "Misalignment of Exam Content",
+      "root_cause_summary": "Students struggle with assessments that feature questions significantly different from the practice materials.",
+      "pain_point_ids": [
+        "1e54966_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D315_3",
+      "title": "Exam Pressure and Anxiety",
+      "root_cause_summary": "Students feel overwhelmed and anxious about the course due to the high stakes of failing assessments multiple times.",
+      "pain_point_ids": [
+        "1fie25i_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,16 @@
+{
+  "course": "D692",
+  "clusters": [
+    {
+      "cluster_id": "D692_1",
+      "title": "Assessment-Related Stress",
+      "root_cause_summary": "Students are experiencing high levels of stress and anxiety associated with course assessments.",
+      "pain_point_ids": [
+        "1lw4v8c_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

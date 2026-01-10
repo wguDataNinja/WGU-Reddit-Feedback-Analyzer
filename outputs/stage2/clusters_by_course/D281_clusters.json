@@ -1,0 +1,51 @@
+{
+  "course": "D281",
+  "clusters": [
+    {
+      "cluster_id": "D281_1",
+      "title": "Lack of Practice Opportunities",
+      "root_cause_summary": "Students are struggling with assessments due to insufficient practice exams prior to attempts.",
+      "pain_point_ids": [
+        "1ka4mze_0",
+        "1j3gfcl_0"
+      ],
+      "is_potential": false
+    },
+    {
+      "cluster_id": "D281_2",
+      "title": "Clarity and Accuracy of Course Material",
+      "root_cause_summary": "Students are confused about the clarity and correctness of the course material.",
+      "pain_point_ids": [
+        "1jknuyb_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D281_3",
+      "title": "Technical Issues During Online Exams",
+      "root_cause_summary": "Students experienced significant delays and technical issues while trying to take the online exam.",
+      "pain_point_ids": [
+        "19fctbx_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D281_4",
+      "title": "Proctor Behavior and Professionalism",
+      "root_cause_summary": "Students encountered unprofessional behavior from the proctor during the exam.",
+      "pain_point_ids": [
+        "19fctbx_1"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": [
+    {
+      "cluster_id": "D281_1",
+      "summary": "Students are struggling with assessments due to insufficient practice exams prior to attempts.",
+      "post_count": 2,
+      "detected_on": "2025-07-25T07:44:54.113548Z"
+    }
+  ]
+}

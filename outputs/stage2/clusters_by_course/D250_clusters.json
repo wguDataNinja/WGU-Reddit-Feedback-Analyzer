@@ -1,0 +1,16 @@
+{
+  "course": "D250",
+  "clusters": [
+    {
+      "cluster_id": "D250_1",
+      "title": "Assessment and Learning Support Effectiveness",
+      "root_cause_summary": "Students are uncertain about the resources available for assessment preparation and their effectiveness, leading to feelings of discouragement.",
+      "pain_point_ids": [
+        "1ir0mee_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

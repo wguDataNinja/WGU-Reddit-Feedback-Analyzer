@@ -1,0 +1,16 @@
+{
+  "course": "D378",
+  "clusters": [
+    {
+      "cluster_id": "D378_1",
+      "title": "Mismatch Between Study Materials and Test Content",
+      "root_cause_summary": "Students experience anxiety due to inconsistencies between provided study materials and the actual content of assessments.",
+      "pain_point_ids": [
+        "1kj7i9q_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

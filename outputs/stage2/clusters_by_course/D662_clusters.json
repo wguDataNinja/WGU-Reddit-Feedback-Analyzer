@@ -1,0 +1,25 @@
+{
+  "course": "D662",
+  "clusters": [
+    {
+      "cluster_id": "D662_1",
+      "title": "Course Difficulty Anxiety",
+      "root_cause_summary": "Students experience anxiety about course difficulty, leading to procrastination and avoidance of assessments.",
+      "pain_point_ids": [
+        "1l2efbi_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D662_2",
+      "title": "Lack of Test Review Opportunities",
+      "root_cause_summary": "Students feel discouraged due to the inability to review past tests, impacting their motivation and learning improvement.",
+      "pain_point_ids": [
+        "1kqtizu_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

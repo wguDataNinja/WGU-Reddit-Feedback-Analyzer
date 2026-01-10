@@ -1,0 +1,25 @@
+{
+  "course": "D099",
+  "clusters": [
+    {
+      "cluster_id": "D099_1",
+      "title": "Ineffective Preparation Resources",
+      "root_cause_summary": "Students are struggling to find effective study materials and resources to adequately prepare for the exam.",
+      "pain_point_ids": [
+        "1kf5l94_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D099_2",
+      "title": "Technical Difficulties During Assessments",
+      "root_cause_summary": "Students are encountering technical issues during online assessments, which negatively affect their performance.",
+      "pain_point_ids": [
+        "1kpowha_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,25 @@
+{
+  "course": "D635",
+  "clusters": [
+    {
+      "cluster_id": "D635_1",
+      "title": "Resource Requirements Confusion",
+      "root_cause_summary": "Students are unclear about the requirements for credible resources in assignments.",
+      "pain_point_ids": [
+        "1k5auv1_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D635_2",
+      "title": "Assessment Feedback and Support",
+      "root_cause_summary": "Students feel discouraged by assessment outcomes despite prior successes, indicating a need for better study support and feedback mechanisms.",
+      "pain_point_ids": [
+        "1i378zt_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

@@ -1,0 +1,16 @@
+{
+  "course": "D337",
+  "clusters": [
+    {
+      "cluster_id": "D337_1",
+      "title": "Engagement with Course Material",
+      "root_cause_summary": "Students feel that the course content is not necessary for success, leading to disengagement.",
+      "pain_point_ids": [
+        "1blh3rd_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}

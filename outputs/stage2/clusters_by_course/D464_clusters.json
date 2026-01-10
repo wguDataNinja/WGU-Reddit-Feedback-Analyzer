@@ -1,0 +1,25 @@
+{
+  "course": "D464",
+  "clusters": [
+    {
+      "cluster_id": "D464_1",
+      "title": "Resource Accessibility for Course Success",
+      "root_cause_summary": "Students feel they lack sufficient resources and support to adequately prepare for assessments.",
+      "pain_point_ids": [
+        "1k5du0t_0"
+      ],
+      "is_potential": true
+    },
+    {
+      "cluster_id": "D464_2",
+      "title": "Alignment of Course Materials and Assessment",
+      "root_cause_summary": "Students are experiencing confusion and dissatisfaction due to a disconnect between the content provided in the course materials and the format or subject matter of final assessments.",
+      "pain_point_ids": [
+        "1jsn2yz_0"
+      ],
+      "is_potential": true
+    }
+  ],
+  "alert_threshold": 2,
+  "alerts": []
+}
