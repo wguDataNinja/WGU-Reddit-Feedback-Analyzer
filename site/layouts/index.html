@@ -114,7 +114,7 @@
       <ol class="wra-list">
         {{ range $topCourses }}
           <li>
-            <a href="{{ printf "courses/%s/" .code | relURL }}">{{ .code }}{{ if .title }} — {{ .title }}{{ end }}</a>
+            <a href="{{ printf "courses/%s/" (lower .code) | relURL }}">{{ .code }}{{ if .title }} — {{ .title }}{{ end }}</a>
             <span class="wra-muted"> ({{ .pp }} posts)</span>
           </li>
         {{ end }}

@@ -14,7 +14,7 @@
   <ul>
     {{- range first 6 $sorted -}}
       <li>
-        <a href="{{ (printf "courses/%s/" .course_code) | absURL }}">
+        <a href="{{ (printf "courses/%s/" (lower .course_code)) | absURL }}">
           {{ .course_code }} – {{ index . "course_title" }}
         </a>
       </li>
