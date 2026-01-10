@@ -6,4 +6,6 @@ This site accompanies the **WGU Reddit Analyzer** project, an LLM (Large Languag
 
 This snapshot includes **1,103 posts across 242 courses**, filtered for low sentiment. Counts reflect discussion volume (posts), not students, and do not measure satisfaction or performance.
 
+This site contains AI-generated content and may contain mistakes.
+
 <a class="wra-link" href="https://github.com/wguDataNinja/WGU-Reddit-Feedback-Analyzer">View project repository</a>
