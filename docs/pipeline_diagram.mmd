@@ -1,0 +1,23 @@
+flowchart LR
+%%{init: {'themeVariables': { 'clusterPadding': 24 }} }%%
+
+subgraph PIPELINE["WGU Reddit Analyzer Pipeline"]
+  style PIPELINE font-size:28px,font-weight:bold
+
+  S1["Frozen Reddit Snapshot
+Public Reddit posts"]
+
+  S2["Pain-Point Detection LLM
+Identifies fixable course issues"]
+
+  S3["Within-Course Grouping LLM
+Related issues grouped within each course"]
+
+  S4["Issue Normalization LLM
+Consistent issue names"]
+
+  S5["Reporting and Inspection
+Static tables figures and site"]
+
+  S1 --> S2 --> S3 --> S4 --> S5
+end

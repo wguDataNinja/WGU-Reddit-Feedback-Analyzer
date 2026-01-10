@@ -1,7 +1,7 @@
 # WGU Reddit Analyzer – Stage 1 Benchmark Guide
 
 **Version:** 2025-11-22  
-**Scope:** Full evaluation pipeline for Stage-1 pain-point detection using LLMs.
+**Scope:** Evaluation framework for Stage 1 pain-point detection using LLMs.
 
 ---
 
@@ -9,11 +9,13 @@
 
 This guide defines:
 
-- how Stage-1 LLM classifiers are evaluated  
+- how Stage 1 LLM classifiers are evaluated  
 - how prompts and models are compared  
 - how metrics, cost, and latency are computed  
 - how DEV and TEST benchmarks are run  
-- how FP/FN analysis drives prompt optimization  
+- how error analysis informs prompt selection  
+
+Benchmarks are evaluative and do not define core pipeline guarantees.
 
 ---
 
@@ -23,7 +25,7 @@ This guide defines:
 
 Evaluate `llama3`, `gpt-5-nano`, `gpt-5-mini`, and `gpt-5` across:
 
-- accuracy / precision / recall / F1  
+- accuracy, precision, recall, F1  
 - cost  
 - latency  
 
@@ -33,33 +35,37 @@ For each model:
 
 - zero-shot baseline (`s1_zero.txt`)  
 - few-shot v1 (`s1_few.txt`)  
-- final tuned prompt (`s1_optimal.txt`, refined Stage 1 prompt selected after DEV analysis)
+- final tuned prompt (`s1_optimal.txt`)
+
+In documentation and paper text, *refined* is a narrative alias for the selected prompt.
+Executable authority is defined by the prompt snapshot stored with each run.
 
 ### 2.3 Schema stability
 
-All models must return outputs that can be normalized into the Stage-1 schema.  
-The parser must behave identically across all model outputs.
+All models are expected to return outputs that can be normalized into the Stage 1 schema.
 
-### 2.4 Prompt promotion and acceptance criteria
+The parser is designed to normalize outputs where possible. Parse and schema errors are recorded and surfaced in artifacts rather than prevented.
 
-Changes to Stage-1 prompts are accepted only if they satisfy explicit acceptance criteria on the same labeled examples.
+### 2.4 Prompt promotion and evaluation criteria
 
-Disagreements between a baseline prompt and a candidate prompt are evaluated using McNemar’s test on DEV to ensure that observed improvements are not due to chance. Prompt promotion additionally requires improvement without performance regression on core classification metrics, particularly F1.
+Prompt changes are evaluated on the same labeled examples.
 
-Operational metrics such as cost and latency are recorded but do not affect acceptance decisions.
+Disagreements between a baseline prompt and a candidate prompt are analyzed using McNemar’s test on DEV to assess whether observed differences are statistically meaningful. These results guide prompt selection but are not treated as mechanical acceptance gates.
+
+Core classification metrics, particularly F1, are used to detect regressions. Operational metrics such as cost and latency are recorded for analysis but do not determine selection.
 
 ### 2.5 Prompt selection under metric tradeoffs
 
-Prompt refinement does not guarantee improvement across all metrics. In practice, tighter prompts often reduce false positives and improve precision while lowering recall.
+Prompt refinement does not imply improvement across all metrics.
 
-Prompt selection is therefore treated as a multi-objective decision rather than a single-metric optimization. Candidate prompts are evaluated jointly on:
+In practice, tighter prompts often reduce false positives and improve precision while lowering recall. Prompt selection is therefore treated as a multi-objective decision informed by:
 
-- statistical improvement under McNemar’s test  
-- balance between precision and recall (F1)  
+- paired statistical testing on DEV  
+- balance between precision and recall  
 - error and schema stability  
 - cost and latency characteristics  
 
-Final selection favors prompts that achieve statistically justified improvements without performance regression. The selected prompt is referred to as the **refined** Stage 1 prompt.
+Final selection favors prompts that demonstrate statistically supported improvements without clear regression. The selected prompt is referred to as the *refined* Stage 1 prompt.
 
 ---
 
@@ -87,9 +93,9 @@ Final selection favors prompts that achieve statistically justified improvements
 - `DEV_candidates.jsonl`  
 - `TEST_candidates.jsonl`  
 - `gold/gold_labels.csv`  
-- `gating/` (pairwise prompt comparison artifacts)
+- `gating/`  
 
-Each prompt comparison produces a gating directory containing a summary of the acceptance decision and the paired example rows used for evaluation.
+Gating artifacts support comparative analysis and review. They are not authoritative acceptance records.
 
 ---
 
@@ -98,18 +104,20 @@ Each prompt comparison produces a gating directory containing a summary of the a
 Two frozen splits are used.
 
 ### DEV
+
 - used for prompt iteration  
 - used for model comparison  
-- used for FP/FN clustering  
-- authoritative for selecting the final prompt  
+- used for FP/FN analysis  
+- authoritative for guiding prompt selection  
 
 ### TEST
-- untouched until prompt freeze  
+
+- held fixed until prompt selection is complete  
 - used for final evaluation only  
 
 `gold_labels.csv` must not change without a dataset version bump.
 
-Only `artifacts/benchmark/gold/gold_labels.csv` is authoritative; any backups are stored under `artifacts/benchmark/gold/.old`.
+Only `artifacts/benchmark/gold/gold_labels.csv` is authoritative. Any backups are stored under `artifacts/benchmark/gold/.old`.
 
 ---
 
@@ -118,6 +126,7 @@ Only `artifacts/benchmark/gold/gold_labels.csv` is authoritative; any backups ar
 **Prompt directory:** `prompts/`
 
 Each benchmark run copies its prompt file into the run directory for reproducibility.
+Prompt snapshots inside run directories define executable behavior.
 
 | Prompt | Purpose |
 |---|---|
@@ -125,6 +134,11 @@ Each benchmark run copies its prompt file into the run directory for reproducibi
 | `s1_few.txt` | Few-shot v1 |
 | `s1_optimal.txt` | Final tuned prompt (refined) |
 
+Benchmark runs require explicit prompt and model flags. Code defaults are historical and not assumed runnable.
+
 **Runner flag:**
 ```bash
 --prompt prompts/<prompt>.txt
+```
+
+___
