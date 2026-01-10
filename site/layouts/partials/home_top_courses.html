@@ -14,10 +14,9 @@
   <ul>
     {{- range first 6 $sorted -}}
       <li>
-        <a href="{{ printf "/courses/%s/" .course_code | relURL }}">
+        <a href="{{ (printf "courses/%s/" .course_code) | absURL }}">
           {{ .course_code }} – {{ index . "course_title" }}
         </a>
-        {{- if gt .pp_int 0 }} ({{ .pp_int }}){{ end -}}
       </li>
     {{- end -}}
   </ul>
