@@ -31,7 +31,10 @@ import sys
 import time
 from pathlib import Path
 
-from wgu_reddit_analyzer.fetchers.fetch_comments_daily import fetch_comments
+# Temporarily disabled (2026-01-10): comments fetcher wiring mismatch.
+# Re-enable by uncommenting the import and the comments stage block in main().
+# from wgu_reddit_analyzer.fetchers.fetch_comments_daily import fetch_comments
+
 from wgu_reddit_analyzer.fetchers.fetch_posts_daily import fetch_posts
 from wgu_reddit_analyzer.fetchers.fetch_subreddits_daily import fetch_subreddits
 from wgu_reddit_analyzer.utils.config_loader import (
@@ -177,13 +180,21 @@ def main() -> int:
         logger.exception("Posts stage failed: %s", exc)
         total_failures += 1
 
-    try:
-        comments_result = fetch_comments()
-        summary["comments"] = comments_result
-        total_failures += comments_result.get("failures", 0)
-    except Exception as exc:  # noqa: BLE001
-        logger.exception("Comments stage failed: %s", exc)
-        total_failures += 1
+    # Comments stage disabled (see import note above). Keep a stub for run_log compatibility.
+    summary["comments"] = {
+        "comments_inserted": 0,
+        "failures": 0,
+        "disabled": True,
+    }
+
+    # To re-enable later, uncomment this block and the import at the top.
+    # try:
+    #     comments_result = fetch_comments()
+    #     summary["comments"] = comments_result
+    #     total_failures += comments_result.get("failures", 0)
+    # except Exception as exc:  # noqa: BLE001
+    #     logger.exception("Comments stage failed: %s", exc)
+    #     total_failures += 1
 
     try:
         subreddits_result = fetch_subreddits()

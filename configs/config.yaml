@@ -57,11 +57,11 @@ pdf_export:
 
 # supports both AppCfg and fetchers
 reddit:
-  client_id: ${REDDIT_CLIENT_ID:-2AdPjpG_iSQh0TWD6nKjEg}
-  client_secret: ${REDDIT_CLIENT_SECRET:-uMUTf6xmHSMmaL751WXAoJG0URjaDw}
+  client_id: ${REDDIT_CLIENT_ID}
+  client_secret: ${REDDIT_CLIENT_SECRET}
   user_agent: ${REDDIT_USER_AGENT:-Subreddit Sentiment Analysis by u/BuddyOwensPVB}
   username: ${REDDIT_USERNAME:-BuddyOwensPVB}
-  password: ${REDDIT_PASSWORD:-X7^x4RctF$*z}
+  password: ${REDDIT_PASSWORD}
   client_id_env: REDDIT_CLIENT_ID
   client_secret_env: REDDIT_CLIENT_SECRET
   user_agent_env: REDDIT_USER_AGENT
