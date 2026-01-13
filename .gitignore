@@ -154,3 +154,8 @@ site.BACKUP_*/
 docs/tables/
 docs/templates/
 tests/configs/config.yaml
+
+# local-only internal docs
+/docs/PIPELINE_SPEC_DETAILED.md
+/docs/pipeline_diagram.mmd
+/docs/_database_coverage.md
