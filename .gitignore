@@ -153,4 +153,4 @@ site.BACKUP_*/
 
 docs/tables/
 docs/templates/
-tests/
+tests/configs/config.yaml
