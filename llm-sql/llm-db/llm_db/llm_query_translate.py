@@ -303,9 +303,27 @@ def _data_to_query_plan(
     spec = QuerySpec(template_id=template_id, params=params)
 
     # Create QueryPlan
+    # Create QueryPlan
     return QueryPlan(
+        dataset_slug=run_slug,
         spec=spec,
-        run_slug=run_slug,
-        original_query=nl_query,
-        translator="llm",
     )
+
+
+def translate_nl_to_plan_llm(nl_query: str, model: str = "llama3:latest", *, limit: int | None = None, day: str | None = None, run_slug: str = "posts"):
+    provider = "llama3"
+    gpt_model = "gpt-5-nano"
+    if model.startswith("gpt"):
+        provider = "gpt"
+        gpt_model = model
+
+    plan = translate_to_query_plan(
+        nl_query,
+        run_slug=run_slug,
+        day=day,
+        limit=limit if limit is not None else 50,
+        provider=provider,
+        gpt_model=gpt_model,
+    )
+
+    return plan, None
