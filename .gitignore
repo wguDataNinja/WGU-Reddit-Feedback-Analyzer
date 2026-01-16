@@ -159,3 +159,11 @@ tests/configs/config.yaml
 /docs/PIPELINE_SPEC_DETAILED.md
 /docs/pipeline_diagram.mmd
 /docs/_database_coverage.md
+
+# -------------------------
+# Local-only / sensitive directories (removed from tracking 2026-01-16)
+# -------------------------
+_demo/
+configs/
+llm-sql/
+tests/
