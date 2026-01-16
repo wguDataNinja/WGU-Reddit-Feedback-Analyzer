@@ -44,7 +44,7 @@
               {{ $cc := index . "course_code" }}
               {{ $n := index . "num_posts" }}
               <li>
-                <a href="{{ printf "courses/%s/" $cc | relURL }}">{{ $cc }}</a>
+                <a href="{{ printf "courses/%s/" (lower $cc) | relURL }}">{{ $cc }}</a>
                 (posts: {{ $n }})
               </li>
             {{ end }}
