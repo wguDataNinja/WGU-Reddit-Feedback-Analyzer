@@ -46,7 +46,7 @@
 
 {{ range $rows }}
   <div class="wra-card">
-    <h2><a href="{{ lower .rel }}">{{ .title }}</a></h2>
+    <h2><a href="{{ .rel }}">{{ .title }}</a></h2>
 
     {{ if .desc }}
       <p class="wra-muted">{{ .desc }}</p>
