@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/sitemap.xml

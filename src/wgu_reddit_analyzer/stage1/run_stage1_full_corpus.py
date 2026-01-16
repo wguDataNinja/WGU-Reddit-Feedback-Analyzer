@@ -1,29 +1,31 @@
 """
 Stage 1 Full-Corpus Runner
 
-Runs the Stage 1 pain-point classifier (chosen model and prompt) over the Stage 0
-filtered corpus and writes a self-contained run directory of artifacts.
+Runs the Stage 1 pain-point classifier (selected model + prompt) over the
+Stage 0 filtered corpus and writes a self-contained artifact directory.
 
 Reads
 - Stage 0 corpus JSONL (default: artifacts/stage0_filtered_posts.jsonl)
-  Each line must include at least: post_id, title, selftext.
-  course_code is optional and defaults to an empty string.
+  Required fields: post_id, title, selftext
+  Optional: course_code (defaults to empty)
 
-Writes (one run directory)
+Writes (single run directory)
 - predictions_FULL.csv
-  One row per processed post_id with:
-    post_id, course_code, pred_contains_painpoint, root_cause_summary_pred,
-    pain_point_snippet_pred, confidence_pred, parse_error, schema_error,
-    used_fallback, llm_failure
+  One row per post with pain-point decision and extracted fields
 - raw_io_FULL.jsonl
-  One JSON object per model call including prompt/response text and error flags.
+  One record per model call (prompt, response, error flags)
 - manifest.json
-  Provenance: inputs, identifiers, counts, timing, cost, environment, git.
+  Run provenance: inputs, counts, timing, cost, environment
 - prompt_used.txt
-  Exact prompt file content used for the run.
+  Exact prompt text used
 
-Default output layout
-- artifacts/stage1/full_corpus/<run_slug>_<timestamp>_<run_id>/
+Normal usage:
+  python src/wgu_reddit_analyzer/stage1/run_stage1_full_corpus.py \
+    --model <model_name> --output-dir <output_dir>
+
+Demo usage:
+  python src/wgu_reddit_analyzer/stage1/run_stage1_full_corpus.py \
+    --model llama3 --limit 10 --output-dir _demo
 """
 
 from __future__ import annotations
@@ -53,7 +55,7 @@ logger = get_logger("stage1.run_stage1_full_corpus")
 
 DEFAULT_STAGE0_JSONL = Path("artifacts/stage0_filtered_posts.jsonl")
 DEFAULT_OUT_ROOT = Path("artifacts/stage1/full_corpus")
-DEFAULT_PROMPT_PATH = Path("prompts/s1_refined.txt")
+DEFAULT_PROMPT_PATH = Path("prompts/s1_optimal.txt")
 
 
 @dataclass(frozen=True)

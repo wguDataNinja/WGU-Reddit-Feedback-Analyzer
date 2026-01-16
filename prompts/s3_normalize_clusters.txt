@@ -56,9 +56,8 @@ OUTPUT FORMAT (STRICT)
 {
   "global_clusters": [
     {
-      "provisional_label": "string",
+      "course_issue_description": "string",
       "normalized_issue_label": "string",
-      "short_description": "string",
       "member_cluster_ids": ["id1","id2"]
     }
   ],

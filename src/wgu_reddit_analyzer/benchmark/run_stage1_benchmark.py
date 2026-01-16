@@ -20,6 +20,9 @@ Design goals:
 - Reproducible and auditable benchmarks
 - Clear, stable CLI for external users
 - No hidden corrective logic
+
+Usage:
+python src/wgu_reddit_analyzer/stage1/run_stage1_full_corpus.py --model llama3 --limit 5 --output-dir .
 """
 
 from __future__ import annotations

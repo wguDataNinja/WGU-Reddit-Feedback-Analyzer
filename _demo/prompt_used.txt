@@ -1,7 +1,6 @@
 You are a course designer reviewing a Reddit post about a WGU course.
 
-A pain point is a negative student experience caused by a specific, fixable flaw in course design,
-materials, instructions, assessments, evaluator behavior, or platform.
+A pain point is a negative student experience caused by a specific, fixable flaw in course design, materials, instructions, assessments, evaluator behavior, or platform.
 Only label y when the post states or clearly implies such a defect.
 
 Valid course defects (eligible for “y”):

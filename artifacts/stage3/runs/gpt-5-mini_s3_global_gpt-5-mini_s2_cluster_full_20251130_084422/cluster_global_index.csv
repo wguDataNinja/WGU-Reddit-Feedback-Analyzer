@@ -1,4 +1,4 @@
-cluster_id,global_cluster_id,course_code,course_title,num_posts,provisional_label,normalized_issue_label
+cluster_id,global_cluster_id,course_code,course_title,num_posts,course_issue_description,normalized_issue_label
 AFT2_1,G005,AFT2,AFT2 – Accreditation Audit,1,Ambiguous or conflicting assignment and assessment instructions,unclear_or_ambiguous_instructions
 C165_1,G014,C165,Integrated Physical Sciences,1,Practice and course materials not aligned to assessments,assessment_material_misalignment
 C165_2,G016,C165,Integrated Physical Sciences,1,Low-quality or insufficient course materials,missing_or_low_quality_materials
@@ -235,7 +235,7 @@ D479_1,G030,D479,User Experience Design,1,Workflow or policy barriers blocking p
 D481_1,G030,D481,Security Foundations,1,Workflow or policy barriers blocking progress,workflow_or_policy_barriers
 D481_2,G030,D481,Security Foundations,1,Workflow or policy barriers blocking progress,workflow_or_policy_barriers
 D482_1,G017,D482,Secure Network Design,1,"Low-quality, missing, or poorly organized course materials",missing_or_low_quality_materials
-D483_1,G003,D483,Security Operations,2,platform_or_environment_failures,platform_or_environment_failures
+D483_1,G003,D483,Security Operations,2,Platform or environment failures,platform_or_environment_failures
 D483_2,G006,D483,Security Operations,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
 D483_3,G006,D483,Security Operations,1,Unclear or conflicting instructions and rubrics,unclear_or_ambiguous_instructions
 D483_4,G012,D483,Security Operations,1,Assessment and materials misalignment (OA/PA/rubric mismatch),assessment_material_misalignment

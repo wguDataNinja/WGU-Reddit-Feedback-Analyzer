@@ -49,7 +49,9 @@ Detailed collection and filtering rules are documented in the pipeline specifica
 
 The analyzer is implemented as a staged pipeline. Each step produces stored artifacts that are reused downstream.
 
-![Pipeline Diagram](docs/figures/pipeline_diagram.png)
+<p align="center">
+  <img src="docs/figures/pipeline_diagram.png" width="60%">
+</p>
 
 ### Frozen Reddit Snapshot
 
