@@ -1,50 +1,38 @@
 # WGU Reddit Snapshot
 
 ## What This Is
-
 The WGU Reddit Snapshot is a public, read-only interface for exploring the dataset produced by the **WGU Reddit Analyzer** capstone project.
 
-The Analyzer is the analytical system.  
-This site only displays its outputs.
-
-No analysis is performed in the GUI.
-
----
+The Analyzer performs all analysis.  
+This site displays its outputs only.
 
 ## The Dataset
-
-The GUI displays the **fixed dataset used by the pipeline**.
+The GUI displays the fixed dataset used by the pipeline.
 
 It includes:
 - 1,103 Reddit posts
 - 242 WGU courses
 - Posts collected from 51 WGU-related subreddits
 
-Posts were filtered upstream by the pipeline for:
-- Public availability
-- Strongly negative sentiment
-- Exactly one identifiable WGU course code
+Posts were filtered upstream for:
+- public availability
+- strongly negative sentiment
+- exactly one identifiable WGU course code
 
-Counts represent **posts**, not students or outcomes.
-
----
+Counts represent posts, not students or outcomes.
 
 ## What You’re Seeing
+All groupings, categories, and counts shown on this site are precomputed pipeline outputs.
 
-All groupings, categories, and counts shown on this site are **precomputed pipeline outputs**.
+- course groupings are derived from course-level clustering
+- cross-course categories come from normalized clusters
+- excerpts are truncated, privacy-reviewed fragments
+- ordering reflects post volume only
 
-- Course groupings come from course-level clustering
-- Cross-course categories come from Stage 3 normalized clusters
-- Excerpts are truncated, privacy-reviewed fragments of posts
-- Ordering reflects post volume only
-
-The GUI does not create, infer, or evaluate anything.
-
----
+The GUI does not generate or evaluate data.
 
 ## Limits
-
-This site shows a single, frozen dataset.  
+This site presents a single, frozen dataset.  
 It does not represent all student experiences or institutional performance.
 
-Methodology and interpretation belong to the paper and pipeline artifacts.
+Methodology and interpretation are documented in the project paper and pipeline artifacts.

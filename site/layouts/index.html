@@ -82,7 +82,7 @@
   {{ end }}
 {{ end }}
 
-{{ $collegeTop3 := dict }}
+{{ $collegeTopN := dict }}
 {{ range $allowedColleges }}
   {{ $col := . }}
   {{ $byCol := (index $collegeIssueCounts $col) }}
@@ -99,7 +99,7 @@
     {{ end }}
     {{ $rows = sort $rows "posts" "desc" }}
   {{ end }}
-  {{ $collegeTop3 = merge $collegeTop3 (dict $col (first 3 $rows)) }}
+  {{ $collegeTopN = merge $collegeTopN (dict $col (first 6 $rows)) }}
 {{ end }}
 
 <section class="wra-hero">
@@ -154,7 +154,7 @@
 
     {{ range $allowedColleges }}
       {{ $col := . }}
-      {{ $rows := (index $collegeTop3 $col) }}
+      {{ $rows := (index $collegeTopN $col) }}
 
       <br>
       <h3>{{ $col }}</h3>

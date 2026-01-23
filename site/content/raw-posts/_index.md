@@ -1,3 +1,3 @@
 ---
-title: Source posts
+title: Search Posts
 ---

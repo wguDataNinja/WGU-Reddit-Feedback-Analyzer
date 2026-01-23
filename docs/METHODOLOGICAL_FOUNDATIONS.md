@@ -1,146 +1,130 @@
 # Methodological Foundations
 
-This project is informed by three published works that address complementary aspects of using large language models to analyze noisy, large-scale social media data. Each paper influenced specific design decisions in the WGU Reddit Analyzer. None are treated as blueprints, and no claim of full replication is made.
+This project draws on three published works addressing complementary challenges in using large language models to analyze noisy, large-scale social media data. Each source informed specific design choices in the WGU Reddit Analyzer. None are treated as prescriptive templates, and no claim of full replication is made.
 
-What follows describes, for each source:
+For each source, this document explains:
 - what the paper contributes,
-- why it is relevant to this project,
+- why it is relevant here,
 - how its ideas are applied,
-- and where the project intentionally diverges.
+- and where the project diverges.
 
 ---
 
-## You et al. (2025): LLM-as-Classifier Framework
+## You et al. (2025): LLM-as-Classifier Discipline
 
-### What the paper does
-
-You et al. present a framework for using large language models as classifiers without fine-tuning. The paper emphasizes:
-- explicit and stable label schemas,
+### Contribution
+You et al. describe a disciplined approach to using large language models as classifiers without fine-tuning. Key elements include:
+- explicit label schemas,
 - frozen benchmark datasets,
-- prompt-as-classifier artifacts,
+- prompt snapshots treated as classifier artifacts,
 - iterative prompt refinement,
-- and controlled evaluation using paired statistical tests (for example, McNemar’s test).
+- and paired statistical testing (e.g., McNemar’s test) to compare prompt variants.
 
-Prompt changes are framed as methodological changes that should be justified empirically on held-out labeled data.
+Prompt changes are treated as methodological changes that require empirical justification on held-out labeled data.
 
 ---
 
-### Why it is relevant
-
-Stage 1 of this project is a classification task: determining whether a Reddit post contains a fixable, course-side pain point. The problem matches the paper’s core use case:
+### Relevance
+Stage 1 of this project is a classification task: determining whether a Reddit post contains a fixable, course-side pain point. The setting closely matches the paper’s target use case:
 - short, noisy text,
-- semantic judgment rather than keyword matching,
-- and a need for reproducible and auditable prompt iteration.
+- semantic judgment rather than keyword detection,
+- and a need for reproducible, auditable prompt iteration.
 
 ---
 
-### How it is applied
-
-This project adopts core principles from the paper’s classification discipline:
-- an explicit schema (`y / n / u`) with normalization rules,
+### Application
+This project adopts the paper’s core classification discipline:
+- an explicit `y / n / u` label schema with normalization rules,
 - frozen DEV and TEST splits with human-labeled gold data,
 - prompt snapshots stored with each run,
 - reproducible artifacts and run manifests,
-- iterative refinement informed by error analysis,
+- error-driven prompt refinement,
 - paired evaluation of prompt variants on identical examples,
-- and statistical testing used to guide prompt selection and identify regressions.
+- and statistical testing used to guide prompt selection and detect regressions.
 
-These practices inform how prompt variants are compared and selected, rather than enforcing mechanical acceptance rules.
+These practices guide comparison and selection without acting as mechanical acceptance gates.
 
 ---
 
-### Limits of alignment
-
-The project does not implement all diagnostics discussed in the paper, such as:
-- sequence invariance testing,
-- adversarial prompt injection defenses,
-- or post-deployment drift monitoring.
-
-These components fall outside the scope of this work. The implementation adopts core principles rather than claiming completeness with respect to the paper’s full methodology.
+### Divergence
+The project does not implement all diagnostics discussed in the paper, such as sequence invariance testing, adversarial prompt defenses, or post-deployment drift monitoring. These elements fall outside scope. The alignment is conceptual and procedural rather than exhaustive.
 
 ---
 
 ## Rao et al. (2025): QuaLLM
 
-### What the paper does
-
-Rao et al. introduce QuaLLM, a multi-stage framework for extracting, aggregating, and organizing themes from large-scale Reddit data using LLMs. The framework draws inspiration from qualitative research practices and emphasizes:
+### Contribution
+Rao et al. introduce QuaLLM, a multi-stage framework for extracting and organizing themes from large-scale Reddit data. The approach emphasizes:
 - structured extraction,
 - aggregation across many posts,
-- and consistency through scale.
+- and stability through scale.
 
 Human involvement is assumed for schema definition, evaluation, and interpretation.
 
 ---
 
-### Why it is relevant
-
-The WGU Reddit Analyzer processes thousands of Reddit posts distributed across dozens of subreddits. The core challenge is not individual post interpretation, but organizing dispersed discussion into stable, analyzable structures.
+### Relevance
+The WGU Reddit Analyzer processes thousands of posts across many courses. The primary challenge is not interpreting individual posts, but organizing dispersed discussion into stable, analyzable structures.
 
 ---
 
-### How it is applied
-
-The overall pipeline structure reflects QuaLLM’s staged approach:
+### Application
+The pipeline reflects QuaLLM’s staged structure:
 - extraction of structured records from individual posts,
 - aggregation within bounded contexts (courses),
-- normalization into shared issue categories across contexts,
+- normalization across contexts into shared issue categories,
 - and reliance on scale and aggregation to reduce sensitivity to individual errors.
 
 Stages 2 and 3 align conceptually with QuaLLM’s aggregation and normalization steps, adapted to course-level and cross-course analysis.
 
 ---
 
-### Limits of alignment
+### Divergence
+Key differences include:
+- fully automated inference with no human-in-the-loop decisions,
+- human involvement limited to labeling, schema design, and interpretation,
+- outputs treated as deterministic artifacts from pinned runs rather than exploratory qualitative hypotheses.
 
-There are important differences:
-- runtime inference is fully automated, with no human-in-the-loop decision making,
-- human involvement occurs in labeling, schema design, and interpretation, not during inference,
-- outputs are treated as authoritative artifacts derived from pinned runs, not as exploratory qualitative hypotheses.
-
-The pipeline adopts a similar structure but prioritizes determinism, reproducibility, and artifact authority.
+The pipeline adopts the staged structure while prioritizing determinism and reproducibility.
 
 ---
 
-## De Santis et al. (2025): Classification of Noisy Social Media Text
+## De Santis et al. (2025): Noisy Social Media Classification
 
-### What the paper does
-
-De Santis et al. compare traditional NLP methods, transformer-based models, and LLM-based approaches on short, informal social media posts. The paper shows that:
-- bag-of-words methods perform poorly on noisy social text,
+### Contribution
+De Santis et al. compare traditional NLP methods, transformer-based models, and LLM-based approaches on short, informal social media text. The study shows that:
+- bag-of-words methods perform poorly on noisy text,
 - contextual models perform better with minimal preprocessing,
-- and F1-based metrics are critical under class imbalance.
+- and F1-based metrics are essential under class imbalance.
 
 ---
 
-### Why it is relevant
-
-Reddit posts about WGU courses share the same properties:
+### Relevance
+Reddit posts about WGU courses exhibit the same characteristics:
 - informal language,
 - implicit complaints,
 - ambiguity,
 - and meaningful class imbalance.
 
-The project faces the same modeling and evaluation challenges described in the paper.
+The evaluation challenges closely match those described in the paper.
 
 ---
 
-### How it is applied
-
-The paper supports:
+### Application
+This work supports:
 - the choice to use LLM-based classification rather than classical NLP baselines,
-- minimal preprocessing for LLM inputs,
+- minimal preprocessing of inputs,
 - and emphasis on precision, recall, and F1 rather than accuracy alone.
 
-Its role here is methodological justification rather than direct replication or validation.
+Its role is to justify modeling and evaluation choices, not to validate results.
 
 ---
 
 ## Summary
 
-Each source informs a different layer of the project:
+Each source informs a distinct layer of the project:
 - You et al. guide how classification is defined, evaluated, and refined.
-- Rao et al. motivate a staged pipeline for large-scale Reddit analysis.
+- Rao et al. motivate a staged, aggregation-based pipeline for large-scale Reddit analysis.
 - De Santis et al. support the use of LLMs and F1-based evaluation on noisy social text.
 
-These ideas are applied selectively and transparently, adapted to the goals of a reproducible, artifact-driven research pipeline.
+These ideas are applied selectively and transparently in service of a reproducible, artifact-driven analysis pipeline.

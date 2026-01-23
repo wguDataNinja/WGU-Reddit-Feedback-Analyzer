@@ -1,27 +1,32 @@
 # PIPELINE_SPEC.md  
-WGU Reddit Analyzer — Pipeline Specification
+WGU Reddit Analyzer Pipeline Specification
 
-This document specifies the WGU Reddit Analyzer pipeline as implemented in the repository.  
-It describes each stage’s purpose, inputs, outputs, invariants, and reproduction boundaries.
+This document describes the WGU Reddit Analyzer pipeline as implemented in the repository.  
+It explains each stage’s purpose, inputs, outputs, and how results are produced and traced.
 
 ---
 
 ## Scope
 
-This pipeline is designed for artifact-driven analysis and reporting of Reddit posts related to WGU courses.
+This pipeline supports artifact-driven analysis and reporting of Reddit posts related to WGU courses.
 
-It is not designed for live inference, automated decision making, or institutional evaluation.
+It is not intended for live inference, automated decision-making, or institutional evaluation.
 
 ---
 
 ## Guarantees
 
-- All reported results are derived from stored artifacts included in the repository.  
-- Results can be reproduced using pinned runs and documented rebuild procedures.  
-- LLM calls occur only in explicitly defined stages.  
-- Each stage’s transformations and filters are documented at the artifact level.
+- All reported results are derived from stored artifacts in the repository.
+- Results can be reproduced using pinned runs and documented rebuild procedures.
+- LLM calls occur only in explicitly defined stages.
+- Each stage produces artifacts consumed downstream.
 
 ---
+
+### Input Reference Caveat
+
+Course codes and course names are derived from a scraped snapshot of the public WGU course catalog as of June 2025; only courses present in that snapshot are included. Reproducibility applies to stored artifacts and pipeline behavior given this fixed reference.
+___
 
 ## Non-Goals
 
@@ -50,13 +55,12 @@ produces new artifacts used downstream.
 
 ---
 
-## Invariants and Artifact Authority
+## Artifact Authority and Reproduction
 
-- Stored artifacts are authoritative for all downstream behavior.  
-- Prompt snapshots, not narrative labels, define executable behavior.  
-- Historical defaults in code are not assumed runnable.  
-- Reproduction requires explicit runner commands and flags.  
-- Orphaned or legacy artifacts may exist for analysis but are not normative.
+- Stored artifacts define downstream behavior.
+- Prompt snapshots stored with each run define executable behavior.
+- Reproduction requires explicit runner commands and flags.
+- Legacy or exploratory artifacts may exist but are not used for reporting.
 
 ---
 
@@ -68,7 +72,7 @@ Each post is assigned exactly one value:
 
 - `y` — contains a fixable course-side pain point  
 - `n` — does not contain a fixable course-side pain point  
-- `u` — unknown or unusable due to parsing or expected-format failure  
+- `u` — unknown due to parsing or format failure  
 
 **Definition: fixable course-side pain point**
 
@@ -78,9 +82,7 @@ plausibly be addressed by institutional action.
 
 On parse or expected-format error:
 - `contains_painpoint = "u"`
-- `confidence_pred` is set to `0.0`
-
-Parsing and schema errors are recorded, not prevented.
+- `confidence_pred = 0.0`
 
 ---
 
@@ -103,14 +105,12 @@ Current issue families (`schema_version = "1.0.0"`):
 - `prerequisite_or_readiness_mismatch`
 - `other_or_uncategorized`
 
-The number of global issue instances produced by a run may be much larger than the number of families.
-
 Authoritative Stage 3 outputs include:
 - `global_clusters.json`  
 - `post_global_index.csv`  
 - `cluster_global_index.csv`
 
-These files are co-authoritative and jointly define Stage 3 results.
+These files jointly define Stage 3 results.
 
 ---
 
@@ -128,13 +128,29 @@ The pipeline follows a fixed hierarchy:
 3. **Course-level cluster (Stage 2)**  
    - Cluster IDs are unique within a course.  
    - Posts may belong to multiple clusters.  
-   - Empty or malformed summaries are dropped prior to clustering.
+   - Empty or malformed summaries are dropped before clustering.
 
 4. **Global issue instance (Stage 3)**  
-   - Every course-level cluster appears at most once.  
-   - Each cluster is either assigned to a global instance or recorded as unassigned.
+   - Each course-level cluster appears at most once.  
+   - Clusters are either assigned to a global issue instance or recorded as unassigned.
 
 Stage 4 tables include `schema_version` for traceability.
+
+---
+
+## Robustness to Stage 1 Error
+
+Stage 1 classification is imperfect by design, reflecting ambiguity in how course-related
+complaints are expressed. The pipeline mitigates the impact of individual classification errors
+through aggregation in later stages.
+
+- A **false negative** excludes a single post from clustering, resulting primarily in lost signal
+  for that post.
+- A **false positive** may pass to Stage 2 but is unlikely to cluster with other posts describing
+  the same issue, preventing it from forming a stable theme in Stage 3.
+
+As a result, downstream analysis depends on repeated patterns across multiple posts rather than
+perfect classification of individual posts.
 
 ---
 
@@ -167,10 +183,9 @@ Create a fixed Reddit dataset used by all downstream stages.
 - Sentiment filtering is imperfect.
 - Some non-complaint posts may pass the filter.
 - Some valid complaints may be excluded.
-- These errors are accepted at Stage 0.
 
 **Reproduction**
-- Uses stored output only.  
+- Uses stored output only.
 - Stage 0 is not rerun.
 
 ---
@@ -181,13 +196,11 @@ Stage 1 evaluates each post independently to determine whether it contains a fix
 course-side pain point.
 
 Prompt selection for this stage is informed by benchmarking and paired statistical testing.
-These procedures guide selection but do not mechanically enforce acceptance.
 
-In documentation and paper text, *refined* is a narrative alias for the selected prompt.
-Executable authority comes from prompt snapshots stored with each run.
+In documentation and paper text, *refined* refers to the prompt that was ultimately selected.
+The exact prompt used in any run is the snapshot stored with that run’s artifacts.
 
-Benchmark runs require explicit prompt and model flags. Code defaults are historical and
-non-runnable.
+Benchmark runs specify prompt and model explicitly.
 
 ---
 
@@ -217,5 +230,5 @@ The authoritative pin for all paper-reported results is documented in:
 The final tuned prompt filename stored in `prompts/`.
 
 **refined**  
-A narrative alias for the selected prompt used in paper text.  
-Executable authority is defined by the stored prompt snapshot for a given run.
+The prompt selected for reporting, as referenced in paper text.  
+The executable prompt is the snapshot stored with the corresponding run.

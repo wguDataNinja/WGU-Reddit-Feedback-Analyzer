@@ -6,8 +6,21 @@ Western Governors University provides many official channels for students to see
 
 The **WGU Reddit Analyzer** is a reproducible research pipeline that uses large language models (LLMs) to transform this unstructured social media discussion into structured, analyzable data. The pipeline produces course-level issue summaries, cross-course issue categories, and deterministic reporting tables suitable for academic analysis.
 
-A read-only static website presents selected outputs and can be accessed  
-[here](https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/).
+---
+
+## Project Snapshot (Read-Only)
+
+The WGU Reddit Snapshot site provides an easy way to explore the results of the analysis without reading raw artifacts or code. It allows navigation through:
+
+- Individual pain points extracted from posts  
+- Course-level issue clusters  
+- Cross-course global issue categories  
+
+The site reflects a fixed snapshot of the pipeline’s outputs and is intended for review and exploration only.
+
+### View the Snapshot Site
+
+https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/
 
 ---
 
@@ -116,35 +129,30 @@ A full discussion of these influences is documented in
 
 ---
 
-## Reproducibility
+## Key Artifacts and Reproducibility
 
-All results presented in the accompanying paper and static website are derived from authoritative artifacts produced by
-pinned runs.
+This repository is organized around stored artifacts produced by pinned pipeline runs. All reported analyses, tables, and figures trace back to these artifacts.
 
-- Reported results are pinned to specific runs  
-- Downstream tables can be rebuilt deterministically  
-- Reproduction does **not** require re-running any LLM stages or API access  
+### Core Data
+- `artifacts/stage0_filtered_posts.jsonl` — frozen Reddit corpus used by all stages
+- `artifacts/benchmark/gold/gold_labels.csv` — human-labeled benchmark data (DEV/TEST)
 
-Authoritative run pins and rebuild instructions are documented in  
-[`docs/PAPER_RUNS.md`](docs/PAPER_RUNS.md).
+### Evaluation and Benchmarking
+- `artifacts/benchmark/` — model and prompt evaluation outputs, including TEST metrics and paired statistical tests
+- `docs/BENCHMARK_GUIDE.md` — evaluation protocol and interpretation
+- `docs/LABEL_GUIDE.md` — labeling policy and ambiguity handling
 
----
+### Analysis Outputs
+- `artifacts/stage3/global_clusters.json`
+- `artifacts/stage3/post_global_index.csv`
+- `artifacts/stage3/cluster_global_index.csv`
 
-## Static Website (GUI)
+These files define the global issue catalog and post-to-issue mappings produced by the pipeline.
 
-The repository includes a static website that presents selected outputs of the pipeline.
+### Reproducibility
+- `docs/PAPER_RUNS.md` — pinned runs, artifact paths, and deterministic rebuild commands
 
-The site:
-
-- displays precomputed artifacts only  
-- performs no analysis or inference  
-- supports exploration of courses, issue categories, and source posts  
-
-The website is a presentation layer, not an analytical component. All interpretation belongs to the pipeline artifacts
-and the paper.
-
-Documentation for the site lives in  
-[`site/README_SITE.md`](site/README_SITE.md).
+All downstream tables and figures can be rebuilt from stored artifacts without re-running LLM stages.
 
 ---
 

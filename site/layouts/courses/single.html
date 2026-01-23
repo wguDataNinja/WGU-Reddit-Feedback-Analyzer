@@ -114,7 +114,7 @@
                 <a class="wra-link" href="{{ printf "global-issues/%s/" ($issue | urlize) | relURL }}">Common theme</a>
               {{ end }}
 
-              <a class="wra-link" href="{{ printf "raw-posts/?course=%s" $code | relURL }}{{ if $issue }}&issue={{ $issue | urlquery }}{{ end }}">Source posts</a>
+              <a class="wra-link" href="{{ printf "raw-posts/?course=%s" $code | relURL }}{{ if $issue }}&issue={{ $issue | urlquery }}{{ end }}">Search posts</a>
             </div>
 
             {{ if $summary }}<p class="wra-muted" style="margin-top:.5rem;">{{ $summary }}</p>{{ end }}
@@ -142,7 +142,7 @@
                       {{ if $pid }}
                         <a href="{{ $reddit }}">Open post</a>
                       {{ else }}
-                        <a href="{{ printf "raw-posts/?course=%s&q=%s" $code ($q | urlquery) | relURL }}">Find in source posts</a>
+                        <a href="{{ printf "raw-posts/?course=%s&q=%s" $code ($q | urlquery) | relURL }}">Find in search posts</a>
                       {{ end }}
                     </div>
                   </li>
