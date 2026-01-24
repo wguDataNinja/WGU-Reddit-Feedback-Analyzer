@@ -5,8 +5,14 @@
 </header>
 
 <style>
-.wra-card{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme);margin-top:1rem}
-.wra-row{display:flex;gap:.75rem;flex-wrap:wrap;align-items:baseline}
+.wra-wrap{margin-top:1rem}
+.wra-panel{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme)}
+.wra-controls{display:grid;grid-template-columns:1fr;gap:.75rem}
+@media (min-width:900px){.wra-controls{grid-template-columns:1.2fr .8fr}}
+.wra-controls input,.wra-controls select{width:100%;padding:.55rem .65rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme);color:inherit}
+.wra-row{display:flex;gap:.75rem;flex-wrap:wrap;align-items:baseline;justify-content:space-between;margin-top:.75rem}
+.wra-list{margin-top:1rem;display:grid;grid-template-columns:1fr;gap:1rem}
+.wra-card{padding:1rem;border:1px solid var(--border);border-radius:var(--radius);background:var(--theme)}
 .wra-muted{opacity:.85}
 .wra-link{margin-top:.5rem;display:inline-block}
 </style>
@@ -21,27 +27,53 @@
 {{ end }}
 {{ $rows = sort $rows "posts" "desc" }}
 
-{{ range $rows }}
-  <div class="wra-card">
-    <h2>
-      <a href="{{ printf "courses/%s/" (urlize .code) | relURL }}">{{ .code }}</a>{{ if .title }} — {{ .title }}{{ end }}
-    </h2>
-
-    <div class="wra-row">
-      <strong>Posts:</strong> {{ .posts }}
+<div class="wra-wrap" id="wra-courses">
+  <div class="wra-panel">
+    <div class="wra-controls">
+      <div>
+        <label class="wra-muted">Keyword</label>
+        <input id="wra-course-q" type="text" placeholder="Search code or title" />
+      </div>
+      <div>
+        <label class="wra-muted">College</label>
+        <select id="wra-college">
+          <option value="">All colleges</option>
+        </select>
+      </div>
     </div>
 
-    <p class="wra-muted">
-      {{ if and .colleges (gt (len .colleges) 0) }}
-        Colleges: {{ delimit .colleges ", " }}
-      {{ else }}
-        Colleges: Unspecified
-      {{ end }}
-    </p>
-
-    <a class="wra-link" href="{{ printf "raw-posts/?course=%s" .code | relURL }}">
-      View search posts
-    </a>
+    <div class="wra-row">
+      <div class="wra-muted" id="wra-course-status">Loading…</div>
+      <div class="wra-muted" id="wra-course-filter-status"></div>
+    </div>
   </div>
-{{ end }}
+
+  <div class="wra-list" id="wra-course-list">
+    {{ range $rows }}
+      <div class="wra-card" data-code="{{ .code }}" data-title="{{ .title }}" data-colleges='{{ delimit .colleges "|" }}'>
+        <h2>
+          <a href="{{ printf "courses/%s/" (urlize .code) | relURL }}">{{ .code }}</a>{{ if .title }} — {{ .title }}{{ end }}
+        </h2>
+
+        <div class="wra-row">
+          <strong>Posts:</strong> {{ .posts }}
+        </div>
+
+        <p class="wra-muted">
+          {{ if and .colleges (gt (len .colleges) 0) }}
+            Colleges: {{ delimit .colleges ", " }}
+          {{ else }}
+            Colleges: Unspecified
+          {{ end }}
+        </p>
+
+        <a class="wra-link" href="{{ printf "raw-posts/?course=%s" .code | relURL }}">
+          View search posts
+        </a>
+      </div>
+    {{ end }}
+  </div>
+</div>
+
+<script defer src='{{ "js/courses.js" | relURL }}'></script>
 {{ end }}

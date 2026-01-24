@@ -1,6 +1,6 @@
-# WGU Reddit Analyzer — Static Website
+# WGU-Reddit Snapshot — Static Website
 
-This directory contains the **static Hugo website** that accompanies the WGU Reddit Analyzer capstone project.
+This directory contains the **static Hugo website** that accompanies the WGU-Reddit Analyzer capstone project.
 
 The website is a **presentation-only deliverable**. It performs **no analysis**, runs **no models**, and applies **no transformations** to the data it displays.
 

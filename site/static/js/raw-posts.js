@@ -20,7 +20,6 @@
 
   const elQ = document.getElementById("wra-q");
   const elCourse = document.getElementById("wra-course");
-  const elPageSize = document.getElementById("wra-page-size");
   const elStatus = document.getElementById("wra-status");
   const elFilterStatus = document.getElementById("wra-filter-status");
   const elResults = document.getElementById("wra-results");
@@ -111,8 +110,7 @@
     const u = new URL(window.location.href);
     return {
       q: (u.searchParams.get("q") || "").trim(),
-      course: (u.searchParams.get("course") || "").trim(),
-      pageSize: (u.searchParams.get("pagesize") || "").trim()
+      course: (u.searchParams.get("course") || "").trim()
     };
   }
 
@@ -120,11 +118,6 @@
     const st = getUrlState();
 
     if (st.q) elQ.value = st.q;
-
-    if (st.pageSize && elPageSize) {
-      const allowed = new Set(Array.from(elPageSize.options).map(o => String(o.value)));
-      if (allowed.has(String(st.pageSize))) elPageSize.value = String(st.pageSize);
-    }
 
     if (st.course) {
       const desired = String(st.course).trim().toUpperCase();
@@ -172,10 +165,7 @@
     render();
   }
 
-  function pageSize() {
-    const n = Number(elPageSize.value);
-    return Number.isFinite(n) && n > 0 ? n : 50;
-  }
+  const PAGE_SIZE = 50;
 
   function bestRedditUrl(p) {
     const permalink = String(p.permalink || "");
@@ -185,7 +175,7 @@
   }
 
   function render() {
-    const ps = pageSize();
+    const ps = PAGE_SIZE;
     const total = filtered.length;
     const totalPages = Math.max(1, Math.ceil(total / ps));
     if (page > totalPages) page = totalPages;
@@ -258,7 +248,6 @@
       t = setTimeout(applyFilters, 150);
     });
     elCourse.addEventListener("change", applyFilters);
-    elPageSize.addEventListener("change", applyFilters);
     elPrev.addEventListener("click", () => { page = Math.max(1, page - 1); render(); });
     elNext.addEventListener("click", () => { page = page + 1; render(); });
   }

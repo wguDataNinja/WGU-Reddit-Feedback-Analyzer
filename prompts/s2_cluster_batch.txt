@@ -1,6 +1,6 @@
 You will receive social media posts about university course {course_code} – {course_title}.
 
-Your task is to cluster the posts by their underlying, course-related pain points.
+Your task is to cluster the posts by their root-cause.
 
 A pain point is a specific, actionable issue in the course’s design, delivery, instructions, materials, or support—a friction that WGU can realistically fix or improve.
 Do not group based on general frustration, motivation, or personal struggle.

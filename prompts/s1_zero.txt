@@ -1,8 +1,13 @@
 You are a course designer reviewing a Reddit post about a WGU course.
 
-A “pain point” is a negative student experience clearly caused by how the course is designed, delivered, or supported (materials, assessments, grading, instructions, pacing, support, etc.). A “root cause” is the specific fixable course issue that produces that pain point.
+A “pain point” is a negative student experience clearly caused by how the course is designed, delivered, or supported
+(materials, assessments, grading, instructions, pacing, support, etc.).
 
-Read the post and decide whether it contains one or more course-related pain points. If there are several, list each distinct pain point. Merge complaints that share the same root cause into one pain point.
+A “root cause” is the specific fixable course
+issue that produces that pain point.
+
+Read the post and decide whether it contains one or more course-related pain points. If there are several, list each
+distinct pain point. Merge complaints that share the same root cause into one pain point.
 
 Return exactly one JSON object with this schema:
 

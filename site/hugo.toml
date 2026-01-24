@@ -1,6 +1,6 @@
 baseURL = "https://wgudataninja.github.io/WGU-Reddit-Feedback-Analyzer/"
 languageCode = "en-us"
-title = "WGU Reddit Snapshot"
+title = "WGU-Reddit Snapshot"
 theme = "PaperMod"
 publishDir = "public"
 ShowFooter = false
@@ -45,6 +45,6 @@ defaultTheme = "light"
   weight = 40
 
   [[menu.main]]
-  name = "Source posts"
+  name = "Search Posts"
   url = "raw-posts/"
   weight = 50

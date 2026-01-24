@@ -4,7 +4,7 @@ title: "About"
 
 ## Overview
 
-This site accompanies the **WGU Reddit Analyzer**, a capstone project that examines whether large language models can be used to organize unstructured student discussion in a reproducible and inspectable way.
+This site accompanies the **WGU-Reddit Analyzer**, a capstone project that examines whether large language models can be used to organize unstructured student discussion in a reproducible and inspectable way.
 
 Students frequently discuss course difficulties informally and anonymously in public spaces such as Reddit. This text is noisy, inconsistent, and difficult to analyze using traditional rule-based methods. Recent research shows that large language models can be used to extract and organize recurring themes from Reddit discussions using staged, schema-driven pipelines (Rao et al., 2025). <a href="https://arxiv.org/abs/2405.05345" target="_blank" rel="noopener">Link to paper</a>
 

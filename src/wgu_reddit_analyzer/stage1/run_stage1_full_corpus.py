@@ -229,34 +229,41 @@ def run_stage1_full_corpus(
     dry_run: bool = False,
     overwrite: bool = False,
 ) -> None:
+    # Validate inputs early (fail fast)
     if not prompt_path.is_file():
         raise FileNotFoundError(f"Prompt template not found at {prompt_path}")
     if not input_path.is_file():
         raise FileNotFoundError(f"Input JSONL not found at {input_path}")
 
+    # Load model metadata and prompt; hash inputs for provenance
     info = get_model_info(model_name)
     prompt_template = load_prompt_template(prompt_path)
     prompt_sha256 = _sha256_file(prompt_path)
     input_sha256 = _sha256_file(input_path)
 
+    # Load Stage 0 corpus (optional limit for smoke tests)
     examples, post_ids_in_order = load_full_corpus_inputs(input_path, limit=limit)
 
+    # Compute run identifiers (human-readable + unique)
     prompt_name = prompt_name_override or prompt_path.name
     size_tag = f"{limit}full" if limit is not None else "fullcorpus"
     run_slug = f"{model_name}_{Path(prompt_name).stem}_{size_tag}"
     run_id = f"s1_{_utc_timestamp_compact()}"
 
+    # Resolve output directory (explicit vs auto-generated)
     if output_dir is not None:
         _prepare_output_dir_explicit(output_dir, overwrite=overwrite)
         run_dir = output_dir
     else:
         run_dir = _ensure_run_dir(out_root=out_root, run_slug=run_slug, run_id=run_id)
 
+    # Define run artifact paths
     predictions_path = run_dir / "predictions_FULL.csv"
     manifest_path = run_dir / "manifest.json"
     raw_io_path = run_dir / "raw_io_FULL.jsonl"
     prompt_copy_path = run_dir / "prompt_used.txt"
 
+    # Dry run: print configuration only, no model calls
     if dry_run:
         print("DRY RUN")
         print(f"model_name: {model_name}")
@@ -267,9 +274,11 @@ def run_stage1_full_corpus(
         print(f"run_dir: {run_dir}")
         return
 
+    # Create run directory and snapshot prompt for reproducibility
     run_dir.mkdir(parents=True, exist_ok=True)
     prompt_copy_path.write_text(prompt_path.read_text(encoding="utf-8"), encoding="utf-8")
 
+    # Capture git state for traceability
     repo_root = _find_repo_root(Path(__file__).resolve())
     git = _get_git_info(repo_root)
 
@@ -279,6 +288,7 @@ def run_stage1_full_corpus(
     logger.info("input=%s (sha256=%s) posts=%d", str(input_path), input_sha256, len(examples))
     logger.info("run_dir=%s", str(run_dir))
 
+    # Initialize aggregates and error counters
     rows_for_csv: List[Dict[str, Any]] = []
     total_cost = 0.0
     total_elapsed = 0.0
@@ -291,6 +301,7 @@ def run_stage1_full_corpus(
 
     started_at = time.time()
 
+    # Main loop: one post → one model call
     for call_index, example in enumerate(examples):
         prompt_text = build_prompt(prompt_template, example)
 
@@ -298,6 +309,7 @@ def run_stage1_full_corpus(
         exc_text: Optional[str] = None
         exc_tb: Optional[str] = None
 
+        # Call classifier; fail soft on exceptions
         try:
             pred_obj, llm_result = classify_post(
                 model_name=model_name,
@@ -331,7 +343,7 @@ def run_stage1_full_corpus(
                 schema_error=False,
                 used_fallback=False,
             )
-
+        # Timing, cost, and error counters
         total_cost += float(getattr(llm_result, "total_cost_usd", 0.0) or 0.0)
         total_elapsed += float(getattr(llm_result, "elapsed_sec", 0.0) or 0.0)
 
@@ -344,6 +356,7 @@ def run_stage1_full_corpus(
         if bool(getattr(llm_result, "llm_failure", False)):
             num_llm_failures += 1
 
+        # Normalize label and confidence
         pred_label = (getattr(pred_obj, "contains_painpoint", "") or "").lower() or "u"
         if pred_label not in {"y", "n", "u"}:
             pred_label = "u"
